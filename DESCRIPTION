@@ -28,4 +28,4 @@ Suggests:
     roxygen2
 Remotes: registercentrum/rcplot
 URL: https://github.com/registercentrum/rcplot
-BugReports: https://github.com/swehip/registercentrum/rcplot
+BugReports: https://github.com/registercentrum/rcplot

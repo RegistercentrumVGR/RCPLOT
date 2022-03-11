@@ -34,7 +34,7 @@ devtools::install_github("registercentrum/rcplot")
 Here are some example plots but please see the individual manual pages for a comprehensive list.
 
 ```{r example}
-library(slrplotfun)
+library(rcplot)
 set.seed(123)
 
 # Create some data

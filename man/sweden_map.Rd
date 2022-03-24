@@ -3,217 +3,64 @@
 \docType{data}
 \name{sweden_map}
 \alias{sweden_map}
-\alias{swe_allpoints}
-\alias{swe_kommuner}
-\alias{swe_kommuner_allpoints}
-\alias{swe_landsting_allpoints}
-\alias{swe_landsting}
-\alias{swe}
-\title{Sweden map data set}
+\alias{swe_coords_municipality}
+\alias{swe_coords_county}
+\title{Sweden map data set with township included, compressed version}
 \format{
-A data frame with 407898 rows and 5 variables.
-The negligible variables with just one type of observation
-have been removed from the original data set:
+A data frame with 11488 rows and 9 variables. This is a filtered
+version of swe_kommuner_allpoints where all points with piece equal to "3"
+or larger are removed (small details) and only every thirtieth point being
+used (see examples):
 \describe{
 \item{long}{longitude, numeric}
 \item{lat}{latitude, numeric}
 \item{order}{specifies the order for each point, integer}
-\item{piece}{"1" if point belongs to mainland,
-
-"2" if point belongs to Gotland (largest island in Sweden),
-
-"3" if point belongs to Öland,
-
-"4" if point belongs to Orust or Tjörn,
-
-"5" if point belongs to Fårö,
-
-everything else if point belongs to any other smaller island, factor}
-\item{group}{Each region in the map is a polygon where
-
-"1.1" if point belongs to mainland,
-
-"1.2" if point belongs to Gotland (largest island in Sweden),
-
-"1.3" if point belongs to Öland,
-
-"1.4" if point belongs to Orust or Tjörn,
-
-"1.5" if point belongs to Fårö,
-
-everything else if point belongs to any other smaller island, factor}
+\item{piece}{"1" for the most essential, "2" and more for detailed points, factor}
+\item{group}{Each region or island in the map is a polygon where each level in this variable is a polygon, factor}
+\item{Region}{id of county, integer}
+\item{Kommun}{id of township, integer}
 }
-
-A data frame with 11488 rows and 9 variables. This is a filtered
-version of swe_kommuner_allpoints where all points with piece equal to "3"
-or larger are removed (small details) and only every thirtieth point being
-used (see examples). \describe{ \item{long}{longitude, numeric}
-\item{lat}{latitude, numeric} \item{order}{specifies the order for each
-point, integer} \item{piece}{"1" for the most essential, "2" and more for
-detailed points, factor} \item{group}{Each region or island in the map is a
-polygon where each level in this variable is a polygon, factor}
-\item{ID_1}{id of county, integer} \item{NAME_1}{name of county, character}
-\item{ID_2}{id of township, integer} \item{NAME_2}{name of township,
-character} }
-
-A data frame with 521384 rows and 9 variables. The negligible
-variables have been removed from the original data set: \describe{
-\item{long}{longitude, numeric} \item{lat}{latitude, numeric}
-\item{order}{specifies the order for each point, integer} \item{piece}{"1"
-for the most essential, "2" and more for detailed points, factor}
-\item{group}{Each region or island in the map is a polygon where each level
-in this variable is a polygon, factor} \item{ID_1}{id of county, integer}
-\item{NAME_1}{name of county, character} \item{ID_2}{id of township,
-integer} \item{NAME_2}{name of township, character} }
-
-A data frame with 434288 rows and 8 variables. The negligible
-variables have been removed from the original data set: \describe{
-\item{id}{id of county, character} \item{long}{longitude, numeric}
-\item{lat}{latitude, numeric} \item{order}{specifies the order for each
-point, integer} \item{piece}{"1" for the most essential, "2" and more for
-detailed points (Öland, Orust, and Tjörn included in "2"), factor}
-\item{group}{Each region or island in the map is a polygon where each level
-in this variable is a polygon, factor} \item{NAME_1}{name of county,
-character} \item{VARNAME_1}{alternative name of county, character} }
 
 A data frame with 7,791 rows and 19 variables. This is a filtered
 version of swe_landsting_allpoints where all points with piece equal to "3"
 or larger are removed (small details) and only every thirtieth point being
 used (see examples). Also some example variables are included for example
-purposes, calculated for 2016 annual report.
-
+purposes, calculated for 2016 annual report:
 \describe{
-\item{NAME_1        }{name of county, character}
-\item{id            }{id of county, character}
-\item{long          }{longitude, numeric}
-\item{lat           }{latitude, numeric}
-\item{order         }{specifies the order for each point, integer}
-\item{piece         }{"1" for the most essential, "2" and more for
-detailed points (Öland, Orust, and Tjörn included
-in "2"), factor}
-\item{group         }{Each region or island in the map is a polygon where
-each level in this variable is a polygon, factor}
-\item{VARNAME_1     }{alternative name of county, character}
-\item{cat_eq5d      }{Preoperative  EQ5D*}
-\item{cat_eqvas     }{Preoperative  EQ VAS*}
-\item{cat_pain      }{Preoperative  Pain VAS*}
-\item{cat_eq5d_post }{Postoperative EQ5D*}
-\item{cat_eqvas_post}{Postoperative EQ VAS*}
-\item{cat_pain_post }{Postoperative Pain VAS*}
-\item{cat_sati_post }{Postoperative Satisfaction VAS*}
-\item{cat_eq5d_dev  }{Postoperative adjusted EQ5D*}
-\item{cat_eqvas_dev }{Postoperative adjusted EQ VAS*}
-\item{cat_pain_dev  }{Postoperative adjusted Pain VAS*}
-\item{cat_sati_dev  }{Postoperative adjusted Satisfaction VAS*}
+\item{long  }{longitude, numeric}
+\item{lat   }{latitude, numeric}
+\item{order }{specifies the order for each point, integer}
+\item{piece }{"1" for the most essential, "2" and more for detailed points (Öland, Orust, and Tjörn included in "2"), factor}
+\item{group }{Each region or island in the map is a polygon where}
+\item{Region}{id of county, character}
 }
-\itemize{
-\item Factor variable with 3 levels for counties compared to the interval
-\eqn{(\mu - \sigma, \mu + \sigma} where \eqn{\mu} and \eqn{\sigma} are the
-mean and standard deviation for whole Sweden:
-bad (below the interval), average (within) and good (above).
-}
-
-A data frame with 6564 rows and 5 variables. This is a filtered
-version of swe_allpoints where all points with piece equal to "6" or larger
-are removed (small islands) and only every thirtieth point being used (see
-examples).
-
-\describe{ \item{long}{longitude, numeric} \item{lat}{latitude, numeric}
-\item{order}{specifies the order for each point, integer} \item{piece}{"1"
-if point belongs to mainland,
-
-"2" if point belongs to Gotland (largest island in Sweden),
-
-"3" if point belongs to Öland,
-
-"4" if point belongs to Orust or Tjörn,
-
-"5" if point belongs to Fårö} \item{group}{Each region in the map is a
-polygon where
-
-"1.1" if point belongs to mainland,
-
-"1.2" if point belongs to Gotland (largest island in Sweden),
-
-"1.3" if point belongs to Öland,
-
-"1.4" if point belongs to Orust or Tjörn,
-
-"1.5" if point belongs to Fårö} }
 }
 \usage{
-swe_allpoints
+swe_coords_municipality
 
-swe_kommuner
-
-swe_kommuner_allpoints
-
-swe_landsting_allpoints
-
-swe_landsting
-
-swe
+swe_coords_county
 }
 \description{
-A dataset used to create elegant figures of Sweden with ggplot2.
+Sweden map data set with township included, compressed version
 
-A dataset used to create elegant figures of Sweden with ggplot2.
+Sweden map data set with county included, compressed version
 }
 \examples{
 
 # Example on how to make map of Sweden using ggplot2.
 # Note that coord_map() is essential for the map to be in actual scale.
 
-ggplot2::ggplot(data = swe_allpoints, ggplot2::aes(x=long, y=lat, group = group)) +
-  ggplot2::geom_polygon(color = "transparent", fill = "blue")  +
-  ggplot2::coord_map() +
-  ggplot2::theme_minimal()
-
-# How the data set was created
-
-swe_example <- dplyr::filter(swe_kommuner_allpoints,
-  piece \%in\% c("1", "2")) \%>\%
-  dplyr::filter(order \%\% 30 == 1) \%>\%
-  droplevels()
-
-# Example on how to make map of Sweden using ggplot2.
-# Note that coord_map() is essential for the map to be in actual scale.
-
-ggplot2::ggplot(data = swe_kommuner, ggplot2::aes(x=long, y=lat, group = group)) +
+ggplot2::ggplot(data = swe_coords_municipality, ggplot2::aes(x=long, y=lat, group = group)) +
   ggplot2::geom_polygon(color = "white", size = 0, fill = "blue")  +
   ggplot2::coord_map() +
   ggplot2::theme_minimal()
 
-
-# Example on how to make map of Sweden using ggplot2.
-# Note that coord_map() is essential for the map to be in actual scale.
-
-ggplot2::ggplot(data = swe_kommuner_allpoints, ggplot2::aes(x=long, y=lat, group = group)) +
-  ggplot2::geom_polygon(color = "white", size = 0, fill = "blue")  +
-  ggplot2::coord_map() +
-  ggplot2::theme_minimal()
-
-
-# Example on how to make map of Sweden using ggplot2.
-# Note that coord_map() is essential for the map to be in actual scale.
-
-ggplot2::ggplot(data = swe_landsting_allpoints, ggplot2::aes(x=long, y=lat, group = group)) +
-  ggplot2::geom_polygon(color = "white", size = 0, fill = "blue")  +
-  ggplot2::coord_map() +
-  ggplot2::theme_minimal()
-# How swe_landsting_allpoints was filtered
-
-swe_example <-
-  dplyr::filter(swe_landsting_allpoints,
-  piece \%in\% c("1", "2")) \%>\%
-  dplyr::filter(order \%\% 30 == 1) \%>\%
-  droplevels()
 
 # Example on how to make map of Sweden using ggplot2.
 # Note that coord_map() is essential for the map to be in actual scale.
 
 ggplot2::ggplot(
-  data = swe_landsting,
+  data = swe_coords_county,
   ggplot2::aes(x=long, y=lat, group = group)
 ) +
 ggplot2::geom_polygon(color = "transparent", fill = "blue") +
@@ -223,7 +70,7 @@ ggplot2::theme_minimal()
 # Example on how to make a nice Sweden map with text guides.
 
 ggplot2::ggplot(
-  data = swe_landsting,
+  data = swe_coords_county,
   ggplot2::aes(x=long, y=lat, group = group)
 ) +
 ggplot2::geom_polygon(color = "white", size = 0, fill = "grey")  +
@@ -264,25 +111,7 @@ ggplot2::theme(
   legend.justification = c(0,1),
   plot.margin          = ggplot2::margin(0,0,0,0, unit = "cm")
 )
-# How the data set was created
 
-swe_example <- dplyr::filter(swe_allpoints,
-piece \%in\% c("1", "2", "3", "4", "5")) \%>\%
-  dplyr::filter(order \%\% 30 == 1) \%>\%
-  droplevels()
-
-# Example on how to make map of Sweden using ggplot2.
-# Note that coord_map() is essential for the map to be in actual scale.
-
-ggplot2::ggplot(data = swe, ggplot2::aes(x=long, y=lat, group = group)) +
-  ggplot2::geom_polygon(color = "transparent", fill = "blue")  +
-  ggplot2::coord_map() +
-  ggplot2::theme_minimal()
 
 }
-\keyword{county}
-\keyword{kommuner}
-\keyword{landsting}
-\keyword{map}
-\keyword{municipality}
-\keyword{region}
+\keyword{datasets}

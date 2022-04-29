@@ -35,8 +35,9 @@
 #' @param label_breaks            Order of the legend keys.
 #' @param n_risk_break            Minimum number at risk to include
 #' @param ribbon_ci               Show confidence interval
+#' @param theme                   Theme to use.
 #' @param ribbon_alpha            Degree of transparency for confidence interval
-#' @param ...                     arguments passed to [theme_slr()]
+#' @param ...                     arguments passed to [theme_select()]
 #'
 #' @return                        ggplot object containing Kaplan-Meier plot.
 #'
@@ -68,6 +69,7 @@ km_plot <- function(
   legend.position        = c(0, 1),
   legend_labels          = ggplot2::waiver(),
   label_breaks           = ggplot2::waiver(),
+  theme                  = getOption("theme"),
   ...
 ) {
 
@@ -257,7 +259,8 @@ km_plot <- function(
     ggplot2::ggtitle(title, subtitle = subtitle) +
     ggplot2::xlab(x_lab) +
     ggplot2::ylab(y_lab) +
-    theme_slr(
+    theme_select(
+      theme,
       legend.position       = legend.position,
       legend.justification  = legend.position,
       subtitle              = !is.null(subtitle),

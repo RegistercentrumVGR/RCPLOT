@@ -4,24 +4,25 @@
 #'
 #' @param df               Data frame.
 #' @param age_var          Name of age variable.
-#' @param gender_var       Name of gender variable.
+#' @param fill_var         Name of group variable (gender or other).
 #' @param man_level        Name of man level, probably "Man" or "Män".
 #' @param age_breaks       Each age observation in an interval.
 #' @param age_labels       Label of the interval.
 #' @param percent          If `TRUE`, x-axis is in percent form.
 #'                           Otherwise in count form.
+#' @param theme            Theme to use for figure, default is `getOption("theme")`
 #' @param x_breaks         Length between each break on x-axis.
 #' @param x_breaks_end     Break end, default for 100,000. Works for all count
 #'                           values below that.
 #' @param title,subtitle   Plot title/subtitle, `NULL` for no title.
 #' @param x_lab,y_lab      X/Y-axis labels, use `NULL` for no label.
-#' @param fill_colors      Colors of the genders.
+#' @param fill_colors      Colors of the groups.
 #' @param legend.position  Position of the legend in plot,
 #'                           if `c(1,1)`, `c(1,0)` etc, legend inside plot.
 #' @param legend_labels    Label for each legend key.
 #' @param label_breaks     Order of the legend keys.
 #' @param legend_row,legend_col How many rows/columns for the legends.
-#' @param ...             arguments passed to [theme_slr()]
+#' @param ...             arguments passed to [theme_select()]
 #'
 #' @return                ggplot object containing age pyramid plot.
 #' @example               man/examples/age_pyramid.R
@@ -29,7 +30,7 @@
 age_pyramid <-
   function(df,
            age_var           = "Alder",
-           gender_var        = "Kon",
+           fill_var        = "Kon",
            man_level         = "Man",
            age_breaks        = c(0, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, Inf),
            age_labels        = c("0-39", "40-44", "45-49", "50-54", "55-59",
@@ -42,7 +43,8 @@ age_pyramid <-
            subtitle          = NULL,
            y_lab             = NULL,
            x_lab             = NULL,
-           fill_colors       = slr_colors(2),
+           fill_colors       = NULL,
+           theme             = NULL,
            legend.position   = c(0, 0),
            legend_labels     = ggplot2::waiver(),
            label_breaks      = ggplot2::waiver(),
@@ -57,6 +59,12 @@ age_pyramid <-
   x_breaks <- unique(c(-br, 0, br))
   x_labels <- abs(x_breaks)
   n        <- nrow(df)
+  # Fill colors ------------------------------------------------------------
+  if (is.null(fill_colors)) {
+    n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
+    fill_colors <- colors_select(n)
+  }
+
 
   # Data transformation -----------------------------------------------------
 
@@ -66,14 +74,14 @@ age_pyramid <-
       {{age_var}} :=
         cut(.data[[age_var]], breaks = age_breaks, labels = age_labels)
     ) %>%
-    dplyr::group_by(.data[[gender_var]], .data[[age_var]]) %>%
+    dplyr::group_by(.data[[fill_var]], .data[[age_var]]) %>%
     dplyr::summarise(Population = dplyr::n()) %>%
     stats::na.omit(df) %>%
     dplyr::add_tally(.data$Population) %>%
     dplyr::mutate(
       Population = replace(
         .data$Population,
-        .data[[gender_var]] == man_level,
+        .data[[fill_var]] == man_level,
         -.data$Population),
       percent = .data$Population / n * 100
     )
@@ -86,7 +94,7 @@ age_pyramid <-
   # ggplot ------------------------------------------------------------------
 
   ggplot2::ggplot(df,
-    ggplot2::aes(.data[[age_var]], .data$Population, fill = .data[[gender_var]])
+    ggplot2::aes(.data[[age_var]], .data$Population, fill = .data[[fill_var]])
   ) +
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::xlab(x_lab) +
@@ -105,10 +113,12 @@ age_pyramid <-
     guide  = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
   ) +
   ggplot2::coord_flip() +
-  theme_slr(
+  theme_select(
+    theme,
     legend.position = legend.position,
     legend_title = TRUE,
     subtitle     = !is.null(subtitle),
-    x_lab_exists  = !is.null(x_lab)
+    x_lab_exists  = !is.null(x_lab),
+    ...
   )
 }

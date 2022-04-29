@@ -23,7 +23,8 @@ Imports:
     scales,
     magrittr,
     rlang (>= 0.1.2),
-    mapproj
+    mapproj,
+    RColorBrewer
 Suggests:
     survival,
     roxygen2,

@@ -26,6 +26,7 @@ bar_plot(
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
   legend_col = NULL,
+  theme = getOption("theme"),
   expand = FALSE,
   flip = FALSE,
   ...
@@ -53,7 +54,7 @@ if percentages should be for \code{x_var} or \code{fill_var}.}
 \item{y_percent}{If \code{TRUE}, y axis is in percent form.
 Otherwise in count form.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 
 \item{y_lim}{Limit on y axis.}
 
@@ -80,12 +81,14 @@ values below that.}
 
 \item{legend_col}{How many columns for the legends.}
 
+\item{theme}{Theme to use}
+
 \item{expand}{If \code{TRUE}, the margins around the data are kept.}
 
 \item{flip}{If \code{TRUE}, x and y axis changes positions making
 the bars go horizontally instead of vertically.}
 
-\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
+\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
 \preformatted{              ggplot object containing bar plot.

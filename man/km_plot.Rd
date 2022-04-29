@@ -30,6 +30,7 @@ km_plot(
   legend.position = c(0, 1),
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
+  theme = getOption("theme"),
   ...
 )
 }
@@ -53,7 +54,7 @@ level in the strata.}
 
 \item{y_lim}{Limit on y-axis.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 
 \item{y_breaks}{Length between each break on y-axis.}
 
@@ -92,7 +93,9 @@ they appear in \code{names(survfit_obj$strata)}.}
 
 \item{label_breaks}{Order of the legend keys.}
 
-\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
+\item{theme}{Theme to use.}
+
+\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
 \preformatted{                   ggplot object containing Kaplan-Meier plot.

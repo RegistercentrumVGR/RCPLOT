@@ -37,7 +37,7 @@ Use \code{NULL} if only one color for bars.}
 
 \item{fill_colors}{Color of the different categories in \code{fill_var}.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 
 \item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
 }

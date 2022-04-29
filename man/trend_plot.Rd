@@ -47,7 +47,7 @@ trend_plot(
 
 \item{point_size}{Size of the points.}
 
-\item{percent_accuracy}{Set accuracy for \code{\link[scales:label_percent]{scales::percent_format()}}.}
+\item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 }
 \value{
 \preformatted{            ggplot object containing trend plot.

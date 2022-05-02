@@ -67,12 +67,12 @@ bar_plot <-
            ...
   ) {
 
-
     # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
       n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
-      fill_colors <- slr_colors(n)
+      fill_colors <- colors_select(n)
     }
+
     # If y_var != NULL, no summarise is needed. -------------------------------
 
     show_legend <- TRUE

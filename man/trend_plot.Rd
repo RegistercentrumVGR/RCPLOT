@@ -15,11 +15,13 @@ trend_plot(
   x_lab = "år",
   title = NULL,
   subtitle = NULL,
-  line_color = slr_colors(1),
-  fill_color = "#CADBD5",
+  line_colors = NULL,
+  fill_colors = "#CADBD5",
+  theme = getOption("theme"),
   line_size = 1,
   point_size = 1,
-  percent_accuracy = 1
+  percent_accuracy = 1,
+  ...
 )
 }
 \arguments{
@@ -39,15 +41,19 @@ trend_plot(
 
 \item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
 
-\item{line_color}{Color of the line.}
+\item{line_colors}{Color of the line.}
 
-\item{fill_color}{Fill color}
+\item{fill_colors}{Fill color}
+
+\item{theme}{Theme to use, default is \code{getOption("theme")}}
 
 \item{line_size}{Size of the line.}
 
 \item{point_size}{Size of the points.}
 
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
+
+\item{...}{Additional arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
 \preformatted{            ggplot object containing trend plot.

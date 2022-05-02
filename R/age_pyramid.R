@@ -59,10 +59,11 @@ age_pyramid <-
   x_breaks <- unique(c(-br, 0, br))
   x_labels <- abs(x_breaks)
   n        <- nrow(df)
+
   # Fill colors ------------------------------------------------------------
   if (is.null(fill_colors)) {
-    n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
-    fill_colors <- colors_select(n)
+    ncol <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
+    fill_colors <- colors_select(ncol)
   }
 
 

@@ -73,10 +73,13 @@ km_plot <- function(
   ...
 ) {
 
-  # Data suitable for ggplot ------------------------------------------------
+  # Line colors ------------------------------------------------------------
 
-  if (is.null(line_colors))
-    line_colors <- slr_colors(dplyr::n_distinct(survfit_obj$strata))
+  if (is.null(line_colors)){
+    line_colors <- colors_select(dplyr::n_distinct(survfit_obj$strata))
+  }
+
+  # Data suitable for ggplot ------------------------------------------------
 
   if (!is.data.frame(survfit_obj)) {
     if (is.null(x_lim)) {
@@ -264,7 +267,8 @@ km_plot <- function(
       legend.position       = legend.position,
       legend.justification  = legend.position,
       subtitle              = !is.null(subtitle),
-      x_lab_exists           = !is.null(x_lab)
+      x_lab_exists           = !is.null(x_lab),
+      ...
     )
 
   if (show_ci) {

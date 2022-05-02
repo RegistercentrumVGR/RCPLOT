@@ -39,6 +39,7 @@ line_plot <-
   function(
     df,
     x_var,
+    # Rename to fill var for consistency?
     color_var         = NULL,
     y_var             = NULL,
     group_by_x_var    = TRUE,
@@ -62,10 +63,10 @@ line_plot <-
     ...
   ) {
 
-    # Fill colours ------------------------------------------------------------
+    # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
       n <- if (!is.null(color_var)) length(unique(df[[color_var]])) else NULL
-      fill_colors <- slr_colors(n)
+      fill_colors <- colors_select(n)
     }
 
     # If y_var != NULL, no summarise is needed. -------------------------------

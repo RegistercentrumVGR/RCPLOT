@@ -15,14 +15,23 @@ colors_select <- function(n, type = "default", theme_name = getOption("theme")){
   if(is.null(theme_name)){
     theme_name <- "rc"
   }
-  return(
+
+  # RColorBrewer returns min 3 colors,
+  # throws warning if n < 3
+  if(is.null(n)){
+    n <- 3
+  }
+  n_org <- n
+  n <- max(n, 3)
+
+  colors <-
     switch(
       EXPR = theme_name,
       rc = rc_colors(n, type),
       slr = slr_colors(n),
       ndr = ndr_colors(n, type)
     )
-  )
+  return(colors[1:n_org])
 }
 
 #' Colors used by the SLR color pallette

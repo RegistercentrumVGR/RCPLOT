@@ -12,36 +12,46 @@
 #' @param x_lab,y_lab      X and Y-axis labels, use `NULL` for no label.
 #' @param title            Plot title, `NULL` for no title.
 #' @param subtitle         Small text under title, `NULL` for no subtitle.
-#' @param line_color       Color of the line.
-#' @param fill_color       Fill color
+#' @param line_colors       Color of the line.
+#' @param fill_colors       Fill color
 #' @param line_size        Size of the line.
 #' @param point_size       Size of the points.
+#' @param theme            Theme to use, default is `getOption("theme")`
+#' @param ...              Additional arguments passed to [theme_select()]
 #' @return                 ggplot object containing trend plot.
 #' @example                man/examples/trend_plot.R
 #' @export
 trend_plot <- function(
-                      df,
-                      x_var,
-                      y_var,
-                      y_breaks         = 5,
-                      y_lim            = c(54.9, 65.1),
-                      x_breaks         = 5,
-                      y_lab            = "Procent kvinnor",
-                      x_lab            = "\u00E5r",
-                      title            = NULL,
-                      subtitle         = NULL,
-                      line_color       = slr_colors(1),
-                      fill_color       = "#CADBD5",
-                      line_size        = 1,
-                      point_size       = 1,
-                      percent_accuracy = 1
-                    ) {
+    df,
+    x_var,
+    y_var,
+    y_breaks         = 5,
+    y_lim            = c(54.9, 65.1),
+    x_breaks         = 5,
+    y_lab            = "Procent kvinnor",
+    x_lab            = "\u00E5r",
+    title            = NULL,
+    subtitle         = NULL,
+    line_colors      = NULL,
+    fill_colors      = "#CADBD5",
+    theme            = getOption("theme"),
+    line_size        = 1,
+    point_size       = 1,
+    percent_accuracy = 1,
+    ...
+){
 
-    y_breaks <- y_breaks / 100
+  # Fill colors ------------------------------------------------------------
+  if (is.null(line_colors)) {
+    # Grab one color
+    line_colors <- colors_select(n = 1)
+  }
 
-    if (is.vector(y_lim)) {
-      y_lim <- y_lim / 100
-    }
+  y_breaks <- y_breaks / 100
+
+  if (is.vector(y_lim)) {
+    y_lim <- y_lim / 100
+  }
 
   ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_var]], y = .data[[y_var]])) +
     ggplot2::xlab(x_lab) +
@@ -55,11 +65,11 @@ trend_plot <- function(
     ggplot2::ggtitle(title, subtitle = subtitle) +
     ggplot2::geom_smooth(
       method = "loess",
-      colour = line_color,
+      colour = line_colors,
       size   = line_size,
-      fill   = fill_color,
+      fill   = fill_colors,
       alpha  = 0.9
     ) +
     ggplot2::geom_point(size = point_size) +
-    theme_slr()
+    theme_select(theme, ...)
 }

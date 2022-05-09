@@ -4,7 +4,7 @@
 \alias{slr_colors}
 \title{Colors used by the SLR color pallette}
 \usage{
-slr_colors(n = NULL)
+slr_colors(n = 9)
 }
 \arguments{
 \item{n}{number of colors}

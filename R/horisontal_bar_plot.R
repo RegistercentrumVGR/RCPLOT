@@ -63,8 +63,7 @@ horisontal_bar_plot <-
            fill_colors       = NULL,
            percent_accuracy  = 1,
            ...
-  )
-  {
+){
 
     # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
@@ -146,5 +145,5 @@ horisontal_bar_plot <-
       ggplot2::coord_flip()
 
   return(bars)
-  }
+}
 

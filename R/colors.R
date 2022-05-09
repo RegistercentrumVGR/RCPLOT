@@ -21,8 +21,6 @@ colors_select <- function(n, type = "default", theme_name = getOption("theme")){
   if(is.null(n)){
     n <- 3
   }
-  n_org <- n
-  n <- max(n, 3)
 
   colors <-
     switch(
@@ -31,40 +29,7 @@ colors_select <- function(n, type = "default", theme_name = getOption("theme")){
       slr = slr_colors(n),
       ndr = ndr_colors(n, type)
     )
-  return(colors[1:n_org])
-}
-
-#' Colors used by the SLR color pallette
-#'
-#' @param n number of colors
-#'
-#' @return vector with color codes
-#' @export
-#'
-#' @examples
-#' slr_colors(2) # two colors (not yeallow and blue)
-slr_colors <- function(n = NULL) {
-  clrs <- c(
-    yellow = "#FCC557",
-    blue   = "#3E92AA",
-    black  = "#000000",
-    purple = "#8B599B",
-    orange = "#D98736",
-    green  = "#64B996",
-    red    = "#C90327",
-    pink   = "#DC95B2",
-    grey   = "#CCCCCC"
-  )
-
-  choose <-
-    if      (is.null(n) || n <= 1) c("blue")
-  else if (n == 2)               c("yellow", "blue")
-  else if (n == 3)               c("yellow", "blue", "black")
-  else if (n == 4)               c("yellow", "green", "black", "blue")
-  else if (n <= length(clrs))    seq_along(clrs)
-  else stop("SLR does not have that many colors!")
-
-  unname(clrs[choose])
+  return(colors[1:n])
 }
 
 #' Wrapper for RColorBrewer to get colors
@@ -87,8 +52,49 @@ rc_colors <- function(n = 3, type = "default") {
     Spectral = "Spectral",
     Paired = "Paired"
   )
+  col <- RColorBrewer::brewer.pal(
+    max(n, 3), color_names[[type]])[1:n]
+  return(col)
+}
 
-  RColorBrewer::brewer.pal(n, color_names[[type]])
+#' Colors used by the SLR color pallette
+#'
+#' @param n number of colors
+#'
+#' @return vector with color codes
+#' @export
+#'
+#' @examples
+#' slr_colors(2) # two colors (not yeallow and blue)
+slr_colors <- function(n = 9) {
+  clrs <- c(
+    yellow = "#FCC557",
+    blue   = "#3E92AA",
+    black  = "#000000",
+    purple = "#8B599B",
+    orange = "#D98736",
+    green  = "#64B996",
+    red    = "#C90327",
+    pink   = "#DC95B2",
+    grey   = "#CCCCCC"
+  )
+
+  choose <-
+    if(is.null(n) || n <= 1) {
+      c("blue")
+    }else if (n == 2){
+      c("yellow", "blue")
+    }else if (n == 3){
+      c("yellow", "blue", "black")
+    }else if (n == 4){
+      c("yellow", "green", "black", "blue")
+    }else if (n <= length(clrs)) {
+      seq_along(clrs)
+    }else {
+      stop("SLR does not have that many colors!")
+    }
+
+  unname(clrs[choose])
 }
 
 #' NDR color palette

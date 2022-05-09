@@ -1,11 +1,15 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
 Version: 0.1.1
-Authors@R: 
+Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
            role = c("aut", "cre"),
-           email = "jonatan.natman@vgregion.se")
+           email = "jonatan.natman@vgregion.se"),
+           person(given = "Rikard",
+           family = "Isaksson",
+           role = c("aut"),
+           email = "rikard.isaksson@vgregion.se"))
 Description: Implementing the graphical design used by Registercentrum. Used for annual reports and more.
 License: AGPL (>= 3)
 Encoding: UTF-8
@@ -14,7 +18,7 @@ LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Depends: 
-  R (>= 3.5.0)
+    R (>= 3.5.0)
 Imports: 
     dplyr,
     ggplot2,
@@ -23,8 +27,8 @@ Imports:
     scales,
     magrittr,
     rlang (>= 0.1.2),
-    mapproj,
-    RColorBrewer
+    RColorBrewer,
+    sf
 Suggests:
     survival,
     roxygen2,

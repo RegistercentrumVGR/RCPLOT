@@ -30,7 +30,7 @@
 age_pyramid <-
   function(df,
            age_var           = "Alder",
-           fill_var        = "Kon",
+           fill_var          = "Kon",
            man_level         = "Man",
            age_breaks        = c(0, 39, 44, 49, 54, 59, 64, 69, 74, 79, 84, Inf),
            age_labels        = c("0-39", "40-44", "45-49", "50-54", "55-59",

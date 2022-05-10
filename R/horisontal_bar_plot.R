@@ -6,6 +6,7 @@
 #' @param label_trans labels for axis_guide$label_trans
 #' @param ...         arguments passed to guide_axis
 #'
+#' @rdname horisontal_bar_plot
 #' @export
 guide_axis_label_trans <- function(label_trans = identity, ...){
   axis_guide <- ggplot2::guide_axis(...)
@@ -18,6 +19,7 @@ guide_axis_label_trans <- function(label_trans = identity, ...){
 #'          from guide_train ... or something
 #' @param ... arguments passed to NextMethod
 #'
+#' @rdname horisontal_bar_plot
 #' @export
 guide_train.guide_axis_trans <- function(x, ...){
   trained <- NextMethod()

@@ -6,6 +6,7 @@
 #' @return theme-function to use
 #' @export
 #'
+#' @rdname registercentrum_themes
 #' @examples
 #' theme_select("rc")
 
@@ -39,6 +40,8 @@ theme_select <- function(theme_name = getOption("theme"), ...){
 #' @param text_size,title_size,subtitle_size Text size for most text, title and subtitle
 #' @param x_lab_exists Indicator if x label should be blank or not
 #' @return Modified version of [theme_classic()]
+#'
+#' @rdname registercentrum_themes
 #' @export
 #' @import ggplot2
 theme_rc <- function(
@@ -121,6 +124,8 @@ theme_rc <- function(
 #' @param text_size,title_size,subtitle_size Text size for most text, title and subtitle
 #' @param x_lab_exists Indicator if x label should be blank or not
 #' @return Modified version of [theme_classic()]
+#'
+#' @rdname registercentrum_themes
 #' @export
 #' @import ggplot2
 theme_slr <- function(

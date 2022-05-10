@@ -3,20 +3,30 @@ region_coords <- counties
 municip_coords <- municipalities
 
 # Map with labels
+data <- region_coords %>%
+  dplyr::mutate(
+    labels = paste0(id, " - ", Name)
+  )
 
 map_plot(
-  df = region_coords,
-  fill_var = "id",
-  label_var = "Name"
+  df = data,
+  fill_var = "labels",
+  label_var = "id",
+  fill_colors = c(RColorBrewer::brewer.pal(12, "Set3"),
+                  RColorBrewer::brewer.pal(9, "Spectral"))
 )
 
 # Add some "interresting" data to coordinate dataset and plot
-region_coords[["var"]] <- sample(c("Bäst", "Bra", "Dålig", "Sämst"),
-                                 size = 21, replace = TRUE)
+region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
+                                 size = 21, replace = TRUE),
+                                 ordered = TRUE,
+                                 levels = c("Sämst", "Dålig", "Bra", "Bäst")
+                                 )
 
 map_plot(
   df = region_coords,
-  fill_var = "var"
+  fill_var = "var",
+  fill_colors = rc_colors(n = 4, type = "RYG")
 )
 
 # Plot both municipalities and region outlines

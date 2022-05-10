@@ -4,7 +4,16 @@
 \alias{map_plot}
 \title{Plot map using geom_sf}
 \usage{
-map_plot(df, fill_var = "id", label_var = NULL)
+map_plot(
+  df,
+  fill_var = "id",
+  label_var = NULL,
+  fill_colors = NULL,
+  legend_labels = ggplot2::waiver(),
+  label_breaks = ggplot2::waiver(),
+  legend_row = NULL,
+  legend_col = NULL
+)
 }
 \arguments{
 \item{df}{data.frame map data. One column
@@ -14,6 +23,16 @@ coordinates for regions to map.}
 \item{fill_var}{Variable to use for colouring regions}
 
 \item{label_var}{Variable to use label names}
+
+\item{fill_colors}{Manually set colors}
+
+\item{legend_labels}{Manually set labels, character vector.}
+
+\item{label_breaks}{Manually set legend breaks}
+
+\item{legend_row}{Number of rows in legend}
+
+\item{legend_col}{Number of cols in legend}
 }
 \value{
 ggplot object with map figure
@@ -27,20 +46,30 @@ region_coords <- counties
 municip_coords <- municipalities
 
 # Map with labels
+data <- region_coords \%>\%
+  dplyr::mutate(
+    labels = paste0(id, " - ", Name)
+  )
 
 map_plot(
-  df = region_coords,
-  fill_var = "id",
-  label_var = "Name"
+  df = data,
+  fill_var = "labels",
+  label_var = "id",
+  fill_colors = c(RColorBrewer::brewer.pal(12, "Set3"),
+                  RColorBrewer::brewer.pal(9, "Spectral"))
 )
 
 # Add some "interresting" data to coordinate dataset and plot
-region_coords[["var"]] <- sample(c("Bäst", "Bra", "Dålig", "Sämst"),
-                                 size = 21, replace = TRUE)
+region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
+                                 size = 21, replace = TRUE),
+                                 ordered = TRUE,
+                                 levels = c("Sämst", "Dålig", "Bra", "Bäst")
+                                 )
 
 map_plot(
   df = region_coords,
-  fill_var = "var"
+  fill_var = "var",
+  fill_colors = rc_colors(n = 4, type = "RYG")
 )
 
 # Plot both municipalities and region outlines

@@ -76,7 +76,8 @@ codes <- df %>%
     RegionID_tmp = ifelse(RegionID == "00", MunicipID, RegionID),
     MunicipID = ifelse(RegionID == "00", NA_character_, MunicipID),
     RegionID = RegionID_tmp,
-    Name = gsub("(s län| län)", "", Name)
+    Name = gsub("(s län| län)", "", Name),
+    Name = stringi::stri_enc_toutf8(Name)
   ) %>%
   dplyr::select(-RegionID_tmp, -Code)
 
@@ -99,9 +100,14 @@ municipalities <- dplyr::full_join(
   municip_names,
   by = "id"
 )
+# Save data to correct folder
+save(counties, file = file.path("data", "counties.rda"),
+     compress = "bzip2", ascii = TRUE)
+save(municipalities, file = file.path("data", "municipalities.rda"),
+     compress = "bzip2", ascii = TRUE)
 
-usethis::use_data(counties, overwrite = TRUE)
-usethis::use_data(municipalities, overwrite = TRUE)
+#usethis::use_data(counties, overwrite = TRUE)
+#usethis::use_data(municipalities, overwrite = TRUE)
 # Remove xls-file if it exists
 if(file.exists(xlsxfile)){
   file.remove(xlsxfile)

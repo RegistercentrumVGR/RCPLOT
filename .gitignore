@@ -50,5 +50,8 @@ docs/
 # translation temp files
 po/*~
 
+# README.html preview
+README.html
+
 # RStudio Connect folder
 rsconnect/

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# slrplotfun
+# rcplot
 
 <!-- badges: start -->
 
@@ -10,9 +10,10 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of slrplotfun is to implement the design used by the Swedish
-Arthroplasty Register with figures produced by ggplot2. Functions are
-used for the annual report and more.
+The goal of rcplot is to implement a default design to be used by
+registers linked to Registercentrum with figures produced by ggplot2.
+Plot functions are used for the annual reports, R-shiny web
+presentations and more.
 
 ## Installation
 
@@ -24,7 +25,7 @@ You can install the development version from
 devtools::install_github("registercentrum/rcplot")
 ```
 
-## Example
+## Examples
 
 Here are some example plots but please see the individual manual pages
 for a comprehensive list.

@@ -34,6 +34,7 @@
 #' @param legend_row         How many rows for the legends.
 #' @param legend_col         How many columns for the legends.
 #' @param theme              Theme to use
+#' @param bar_width          Bar width in geom_bar
 #' @param ...                arguments passed to [theme_select()]
 #'
 #' @return                   ggplot object containing bar plot.
@@ -64,6 +65,7 @@ bar_plot <-
            theme             = getOption("theme"),
            expand            = FALSE,
            flip              = FALSE,
+           bar_width         = 0.5,
            ...
   ) {
 
@@ -165,7 +167,7 @@ bar_plot <-
         bars <-
           bars +
           ggplot2::geom_bar(
-            width = 0.5,
+            width = bar_width,
             mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / .data$y2, fill = .data[[fill_var]]),
             stat = "identity",
             show.legend = show_legend,
@@ -182,7 +184,7 @@ bar_plot <-
         bars <-
           bars +
           ggplot2::geom_bar(
-            width = 0.5,
+            width = bar_width,
             mapping = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
             stat = "identity",
             show.legend = show_legend,
@@ -198,7 +200,7 @@ bar_plot <-
         bars <-
           bars +
           ggplot2::geom_bar(
-            width       = 0.5,
+            width       = bar_width,
             mapping     = ggplot2::aes(x = .data[[x_var]], y = .data$y / sum(.data$y), fill = .data[[fill_var]]),
             stat        = "identity",
             show.legend = show_legend,
@@ -217,7 +219,7 @@ bar_plot <-
       bars <-
         bars +
         ggplot2::geom_bar(
-          width       = 0.5,
+          width       = bar_width,
           mapping     = ggplot2::aes(
             x = .data[[x_var]],
             y = .data$y,
@@ -238,7 +240,7 @@ bar_plot <-
       bars <-
         bars +
         ggplot2::geom_bar(
-          width = 0.5,
+          width = bar_width,
           mapping = ggplot2::aes(
             x = .data[[x_var]],
             y = .data$y,
@@ -260,7 +262,7 @@ bar_plot <-
       bars <-
         bars +
         ggplot2::geom_bar(
-          width = 0.5,
+          width = bar_width,
           mapping = ggplot2::aes(
             x = .data[[x_var]],
             y = .data$y,

@@ -75,8 +75,8 @@ km_plot <- function(
 
   # Line colors ------------------------------------------------------------
 
-  if (is.null(line_colors)){
-    line_colors <- colors_select(dplyr::n_distinct(survfit_obj$strata))
+  if(is.null(line_colors)){
+    line_colors <- colors_select(length(survfit_obj$strata))
   }
 
   # Data suitable for ggplot ------------------------------------------------

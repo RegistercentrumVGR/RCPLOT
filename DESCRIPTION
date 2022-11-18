@@ -33,7 +33,4 @@ Suggests:
     survival,
     roxygen2,
     testthat (>= 3.0.0)
-Remotes: registercentrum/rcplot
-URL: https://github.com/registercentrum/rcplot
-BugReports: https://github.com/registercentrum/rcplot
 Config/testthat/edition: 3

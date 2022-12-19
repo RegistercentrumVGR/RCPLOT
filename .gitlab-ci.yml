@@ -18,6 +18,7 @@ check-prod:
     - echo 'R_LIBS_USER="${LIBS_USER}"' > .Renviron
     - apt-get update
     - R -e 'install.packages("pak", lib = Sys.getenv("R_LIBS_USER"), repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+    - R -e 'getOption("repos")'
     - R -e 'pak::pkg_install("distro", lib = Sys.getenv("R_LIBS_USER"))'
     - R -e 'pak::local_system_requirements(execute = TRUE, sudo = FALSE)'
     - echo 'INSTALL R PACKAGE DEPENDENCIES'

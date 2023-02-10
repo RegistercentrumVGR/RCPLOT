@@ -3,13 +3,6 @@
 
 # rcplot
 
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/registercentrum/rcplot/workflows/R-CMD-check/badge.svg)](https://github.com/registercentrum/rcplot/actions)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-<!-- badges: end -->
-
 The goal of rcplot is to implement a default design to be used by
 registers linked to Registercentrum with figures produced by ggplot2.
 Plot functions are used for the annual reports, R-shiny web

@@ -14,20 +14,15 @@ knitr::opts_chunk$set(
 
 # rcplot
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/registercentrum/rcplot/workflows/R-CMD-check/badge.svg)](https://github.com/registercentrum/rcplot/actions)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-<!-- badges: end -->
-
 The goal of rcplot is to implement a default design to be used by registers linked to Registercentrum with figures produced by ggplot2. Plot functions are used for the annual reports, R-shiny web presentations and more.
 
 ## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitLab](https://gitlab.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("registercentrum/rcplot")
+install.packages("remotes")
+remotes::install_gitlab("registercentrum/statistikenheten/rcplot")
 ```
 
 ## Examples

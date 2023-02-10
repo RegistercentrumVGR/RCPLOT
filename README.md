@@ -11,11 +11,11 @@ presentations and more.
 ## Installation
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitLab](https://gitlab.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("registercentrum/rcplot")
+install.packages("remotes")
+remotes::install_gitlab("registercentrum/statistikenheten/rcplot")
 ```
 
 ## Examples
@@ -25,7 +25,7 @@ for a comprehensive list.
 
 ``` r
 library(rcplot)
-set.seed(123)
+set.seed(11223344)
 
 # Create some data
 df <- data.frame(
@@ -40,6 +40,7 @@ age_pyramid(df, age_var = 'age', fill_var = 'gender',
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
+
 # Bar plot
 bar_plot(df = ggplot2::diamonds, x_var = 'color',
          fill_var = 'cut', y_breaks = 2)
@@ -48,6 +49,7 @@ bar_plot(df = ggplot2::diamonds, x_var = 'color',
 <img src="man/figures/README-example-2.png" width="100%" />
 
 ``` r
+
 # KM-plot with 2 levels
 survfit_obj <- survival::survfit(
   survival::Surv(time/365.24, status) ~ sex,
@@ -60,6 +62,7 @@ km_plot(survfit_obj, y_lim = c(0,100), y_breaks = 10, x_lim = c(0,9))
 <img src="man/figures/README-example-3.png" width="100%" />
 
 ``` r
+
 # Line plot
 line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
 ```
@@ -67,6 +70,7 @@ line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks =
 <img src="man/figures/README-example-4.png" width="100%" />
 
 ``` r
+
 # Map figure of Counties, Sweden
 region_coords <- rcplot::counties
 region_coords[["var"]] <- factor(
@@ -86,6 +90,7 @@ map_plot(
 <img src="man/figures/README-example-5.png" width="100%" />
 
 ``` r
+
 # Map figure of Västra Götalandsregionen
 vgregion <- dplyr::filter(rcplot::municipalities, RegionID == "14")
 

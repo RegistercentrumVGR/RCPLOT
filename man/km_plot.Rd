@@ -98,8 +98,8 @@ they appear in \code{names(survfit_obj$strata)}.}
 \item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
-\preformatted{                   ggplot object containing Kaplan-Meier plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{                   ggplot object containing Kaplan-Meier plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 By default it plots 1-KM. Set cum_inc = \code{FALSE} to plot the survival function.

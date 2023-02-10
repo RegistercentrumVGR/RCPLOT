@@ -84,8 +84,8 @@ values below that.}
 \item{...}{Arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
-\preformatted{            Ggplot object containing line-plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{            Ggplot object containing line-plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 Standard line plot using ggplot2. Y-variable not necessary.

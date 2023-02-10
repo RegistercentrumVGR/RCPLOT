@@ -57,8 +57,8 @@ Use \code{NULL} if only one color for bars.}
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 }
 \value{
-\preformatted{              ggplot object containing bar plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{              ggplot object containing bar plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 Plot a bar plot using ggplot2.

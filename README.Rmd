@@ -31,7 +31,7 @@ Here are some example plots but please see the individual manual pages for a com
 
 ```{r example}
 library(rcplot)
-set.seed(123)
+set.seed(11223344)
 
 # Create some data
 df <- data.frame(

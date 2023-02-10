@@ -56,8 +56,8 @@ trend_plot(
 \item{...}{Additional arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
-\preformatted{            ggplot object containing trend plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{            ggplot object containing trend plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 Simple function to show trend in percent (y_var) between different years

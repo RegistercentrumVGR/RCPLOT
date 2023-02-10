@@ -29,6 +29,7 @@ bar_plot(
   theme = getOption("theme"),
   expand = FALSE,
   flip = FALSE,
+  bar_width = 0.5,
   ...
 )
 }
@@ -88,11 +89,13 @@ values below that.}
 \item{flip}{If \code{TRUE}, x and y axis changes positions making
 the bars go horizontally instead of vertically.}
 
+\item{bar_width}{Bar width in geom_bar}
+
 \item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
-\preformatted{              ggplot object containing bar plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{              ggplot object containing bar plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 Plot a bar plot using ggplot2.

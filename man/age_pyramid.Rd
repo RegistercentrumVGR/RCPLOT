@@ -70,8 +70,8 @@ if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 \item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
 }
 \value{
-\preformatted{           ggplot object containing age pyramid plot.
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{           ggplot object containing age pyramid plot.
+}\if{html}{\out{</div>}}
 }
 \description{
 Plot an age pyramid using ggplot2.

@@ -152,7 +152,7 @@ bar_plot <-
       theme_select(
         theme,
         subtitle = !is.null(subtitle),
-        x_lab_exists = !is.null(x_lab),
+        x_lab_exists = !is.null(x_lab) | (!is.null(y_lab) & flip),
         ...
       )
 
@@ -177,7 +177,7 @@ bar_plot <-
             labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
             breaks = seq(0, 1, by = y_breaks),
             limits = y_lim,
-            expand = if(expand) ggplot2::waiver() else c(0,0)
+            expand = if (expand) ggplot2::waiver() else c(0,0)
           )
 
       } else if (style == "fill") {
@@ -194,7 +194,7 @@ bar_plot <-
             labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
             breaks = seq(0, 1, by = y_breaks),
             limits = y_lim,
-            expand = if(expand) ggplot2::waiver() else c(0,0)
+            expand = if (expand) ggplot2::waiver() else c(0,0)
           )
       } else{
         bars <-
@@ -210,7 +210,7 @@ bar_plot <-
             labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
             breaks = seq(0, 1, by = y_breaks),
             limits = y_lim,
-            expand = if(expand) ggplot2::waiver() else c(0,0)
+            expand = if (expand) ggplot2::waiver() else c(0,0)
           )
 
       }
@@ -233,7 +233,7 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) ggplot2::waiver() else c(0,0)
+          expand = if (expand) ggplot2::waiver() else c(0,0)
         )
 
     } else if (style == "dodge") {
@@ -254,7 +254,7 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) ggplot2::waiver() else c(0,0)
+          expand = if (expand) ggplot2::waiver() else c(0,0)
         )
 
 
@@ -276,7 +276,7 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) ggplot2::waiver() else c(0,0),
+          expand = if (expand) ggplot2::waiver() else c(0,0)
         )
     }
 
@@ -290,11 +290,11 @@ bar_plot <-
         )
     }
 
-    if(flip){
+    if (flip) {
       bars <-
         bars +
         ggplot2::coord_flip()
-      
+
     }
 
     bars

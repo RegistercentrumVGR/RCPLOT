@@ -12,7 +12,7 @@
 
 theme_select <- function(theme_name = getOption("theme"), ...){
   # Default theme is RC theme
-  if(is.null(theme_name)){
+  if (is.null(theme_name)) {
     theme_name <- "rc"
   }
   return(
@@ -156,7 +156,7 @@ theme_slr <- function(
     axis.text.x           = element_text(angle = axis_text_angle),
     axis.ticks.x          = element_line(size = 0.2),
     axis.ticks.y          = element_blank(),
-    axis.title.x          = if(x_lab_exists) {
+    axis.title.x          = if (x_lab_exists) {
       element_text(size = rel(1),
                    margin = margin(t = 10, r = 0, b = 0, l = 0))
 

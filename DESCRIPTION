@@ -1,15 +1,23 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
            role = c("aut", "cre"),
-           email = "jonatan.natman@vgregion.se"),
-           person(given = "Rikard",
+           email = "jonatan.natman@vgregion.se"
+    ),
+    person(given = "Rikard",
            family = "Isaksson",
            role = c("aut"),
-           email = "rikard.isaksson@vgregion.se"))
+           email = "rikard.isaksson@vgregion.se"
+    ),
+    person(given = "Erik",
+           family = "Bülow",
+           role = c("aut"),
+           email = "erik.bulow@vgregion.se"
+    )
+)
 Description: Implementing the graphical design used by Registercentrum. Used for annual reports and more.
 License: AGPL (>= 3)
 Encoding: UTF-8

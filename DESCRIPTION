@@ -16,8 +16,7 @@ Authors@R: c(
            family = "Bülow",
            role = c("aut"),
            email = "erik.bulow@vgregion.se"
-    )
-)
+    ))
 Description: Implementing the graphical design used by Registercentrum. Used for annual reports and more.
 License: AGPL (>= 3)
 Encoding: UTF-8

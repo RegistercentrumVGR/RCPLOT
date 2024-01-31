@@ -26,7 +26,7 @@ rcsave <- function(
   ...
 ) {
 
-  if(device == "tiff"){
+  if(class(device) != "function" && device == "tiff"){
     ggplot2::ggsave(
       filename = file,
       plot = plot,
@@ -40,7 +40,7 @@ rcsave <- function(
       compression = "lzw",
       ...
     )
-  }else if(device == "pdf"){
+  }else if(class(device) != "function" && device == "pdf"){
     ggplot2::ggsave(
       filename = file,
       plot = plot,

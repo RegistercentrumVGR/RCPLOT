@@ -37,7 +37,8 @@ map_plot <- function(
   p <- ggplot2::ggplot() +
     ggplot2::geom_sf(
       data = df,
-      mapping = aes(fill = .data[[fill_var]])
+      mapping = aes(fill = .data[[fill_var]],
+                    geometry = geometry)
     ) +
     ggplot2::scale_fill_manual(
       values = fill_colors,

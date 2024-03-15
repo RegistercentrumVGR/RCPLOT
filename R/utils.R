@@ -23,6 +23,7 @@ rcsave <- function(
   dpi = getOption("figure_dpi"),
   device = getOption("figure_device"),
   family = getOption("figure_family"),
+  compression = "lzw",
   ...
 ) {
 
@@ -37,7 +38,7 @@ rcsave <- function(
       type = "cairo",
       device = device,
       family = family,
-      compression = "lzw",
+      compression = compression,
       ...
     )
   }else if(class(device) != "function" && device == "pdf"){
@@ -62,6 +63,7 @@ rcsave <- function(
       type = "cairo",
       device = device,
       family = family,
+      compression = compression,
       ...
     )
   }

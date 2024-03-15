@@ -62,7 +62,6 @@ rcsave <- function(
       type = "cairo",
       device = device,
       family = family,
-      compression = "lzw",
       ...
     )
   }

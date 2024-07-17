@@ -33,9 +33,13 @@
 #' @param label_breaks       Order of the legend keys.
 #' @param legend_row         How many rows for the legends.
 #' @param legend_col         How many columns for the legends.
-#' @param theme              Theme to use
-#' @param bar_width          Bar width in geom_bar
-#' @param ...                arguments passed to [theme_select()]
+#' @param theme              Theme to use.
+#' @param bar_width          Bar width in geom_bar.
+#' @param label_number       Whether or not to use scales::label_number when
+#'                            y_percent is FALSE. This is useful since it
+#'                            disables scientific notation when dealing with
+#'                            large numbers.
+#' @param ...                arguments passed to [theme_select()].
 #'
 #' @return                   ggplot object containing bar plot.
 #' @example                  man/examples/bar_plot.R
@@ -66,6 +70,7 @@ bar_plot <-
            expand            = FALSE,
            flip              = FALSE,
            bar_width         = 0.5,
+           label_number      = TRUE,
            ...
   ) {
 
@@ -233,7 +238,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if (expand) ggplot2::waiver() else c(0,0)
+          expand = if (expand) ggplot2::waiver() else c(0,0),
+          labels = scales::label_number()
         )
 
     } else if (style == "dodge") {
@@ -254,7 +260,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if (expand) ggplot2::waiver() else c(0,0)
+          expand = if (expand) ggplot2::waiver() else c(0,0),
+          labels = scales::label_number()
         )
 
 
@@ -276,7 +283,8 @@ bar_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if (expand) ggplot2::waiver() else c(0,0)
+          expand = if (expand) ggplot2::waiver() else c(0,0),
+          labels = scales::label_number()
         )
     }
 

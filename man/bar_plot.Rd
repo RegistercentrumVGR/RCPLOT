@@ -30,6 +30,7 @@ bar_plot(
   expand = FALSE,
   flip = FALSE,
   bar_width = 0.5,
+  label_number = TRUE,
   ...
 )
 }
@@ -82,16 +83,21 @@ values below that.}
 
 \item{legend_col}{How many columns for the legends.}
 
-\item{theme}{Theme to use}
+\item{theme}{Theme to use.}
 
 \item{expand}{If \code{TRUE}, the margins around the data are kept.}
 
 \item{flip}{If \code{TRUE}, x and y axis changes positions making
 the bars go horizontally instead of vertically.}
 
-\item{bar_width}{Bar width in geom_bar}
+\item{bar_width}{Bar width in geom_bar.}
 
-\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
+\item{label_number}{Whether or not to use scales::label_number when
+y_percent is FALSE. This is useful since it
+disables scientific notation when dealing with
+large numbers.}
+
+\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}.}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{              ggplot object containing bar plot.

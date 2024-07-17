@@ -44,8 +44,8 @@ theme_slr(
 \item{axis_text_angle}{passed to
 \code{axis.text.x = element_text(angle = axis_text_angle)}}
 
-\item{legend.position}{the position of legends ("none", "left", "right",
-"bottom", "top", or two-element numeric vector)}
+\item{legend.position}{the default position of legends ("none", "left",
+"right", "bottom", "top", "inside")}
 
 \item{legend.justification}{anchor point for positioning legend inside plot
 ("center" or two-element numeric vector) or the justification according to

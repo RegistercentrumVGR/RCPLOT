@@ -1,58 +1,7 @@
 stages:
-  - check
-  - document
+  - test
+  - build
 
-variables:
-  LIBS_USER: "$CI_PROJECT_DIR/ci/lib"
-
-cache:
-    paths:
-      - $LIBS_USER
-
-check-prod:
-  image: rocker/r-ver:4.2.0
-  stage: check
-  script:
-    - mkdir -p $LIBS_USER
-    - echo 'R_LIBS_USER="${LIBS_USER}"' > .Renviron
-    - apt-get update
-    - R -e 'install.packages("pak", lib = Sys.getenv("R_LIBS_USER"), repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-    - R -e 'getOption("repos")'
-    - R -e 'pak::pkg_install("distro", lib = Sys.getenv("R_LIBS_USER"))'
-    - R -e 'pak::local_system_requirements(execute = TRUE, sudo = FALSE)'
-    - echo 'INSTALL R PACKAGE DEPENDENCIES'
-    - R -e 'pak::pkg_install("rcmdcheck", lib = Sys.getenv("R_LIBS_USER"))'
-    - R -e 'pak::local_install_dev_deps(lib = Sys.getenv("R_LIBS_USER"))'
-    - echo "Check package"
-    - R -e 'rcmdcheck::rcmdcheck(args = c("--no-manual", "--no-build-vignettes"), error_on = "error")'
-    - echo "Build package"
-    - R CMD build . --no-build-vignettes --no-manual
-  artifacts:
-    paths:
-      - "*.tar.gz"
-
-pages:
-  image: rocker/r-ver:4.2.0
-  stage: document
-  only:
-    refs:
-    - master
-  script:
-    - echo "Build pages"
-    - mkdir -p $LIBS_USER
-    - echo 'R_LIBS_USER="${LIBS_USER}"' > .Renviron
-    - echo 'INSTALL SYSTEM DEPENDENCIES'
-    - apt-get update
-    - R -e 'install.packages("pak", lib = Sys.getenv("R_LIBS_USER"), repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-    - R -e 'pak::pkg_install("distro", lib = Sys.getenv("R_LIBS_USER"))'
-    - R -e 'pak::local_system_requirements(execute = TRUE, sudo = FALSE)'
-    - echo 'INSTALL R PACKAGE DEPENDENCIES'
-    - R -e 'pak::pkg_install("pkgdown", lib = Sys.getenv("R_LIBS_USER"))'
-    - R -e 'pak::local_install_dev_deps(lib = Sys.getenv("R_LIBS_USER"))'
-    - echo 'BUILD DOCUMENTATION'
-    - R -e 'pkgdown::build_site(lazy = TRUE, preview = FALSE)'
-    # Fuling
-    - mv docs public
-  artifacts:
-    paths:
-      - public
+include:
+  - project: 'registercentrum/pipelines/r-package-ci'
+    file: '/full-pipeline.yml'

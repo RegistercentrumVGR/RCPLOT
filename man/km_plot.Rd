@@ -27,10 +27,9 @@ km_plot(
   ribbon_alpha = 0.5,
   ci_line_size = 0.2,
   line_colors = NULL,
-  legend.position = c(0, 1),
+  legend_position = c(0, 1),
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
-  theme = getOption("theme"),
   ...
 )
 }
@@ -38,9 +37,9 @@ km_plot(
 \item{survfit_obj}{Object returned from \code{\link[survival:survfit]{survival::survfit()}}.
 Also works with data frame
 if year and surv variable exist. lower
-and upper variable needed if \code{show_ci = TRUE}.
-Specify strata variable needed
-if several curves wanted.}
+and upper variable needed if
+\code{show_ci = TRUE}. Specify strata variable
+needed if several curves wanted.}
 
 \item{make_step}{If \code{TRUE}, step data will be created.}
 
@@ -70,7 +69,8 @@ large because of too many points!}
 
 \item{title}{Plot title, \code{NULL} for no title.}
 
-\item{subtitle}{Small text under title, \code{NULL} for no subtitle.}
+\item{subtitle}{Small text under title, \code{NULL} for no
+subtitle.}
 
 \item{x_lab, y_lab}{X- and Y-axis labels.}
 
@@ -86,23 +86,22 @@ large because of too many points!}
 
 \item{line_colors}{Color of the different curves.}
 
-\item{legend.position}{Position of the legend in plot.}
+\item{legend_position}{Position of the legend in plot.}
 
 \item{legend_labels}{Label for each legend key, default order as
 they appear in \code{names(survfit_obj$strata)}.}
 
 \item{label_breaks}{Order of the legend keys.}
 
-\item{theme}{Theme to use.}
-
-\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
+\item{...}{arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{                   ggplot object containing Kaplan-Meier plot.
 }\if{html}{\out{</div>}}
 }
 \description{
-By default it plots 1-KM. Set cum_inc = \code{FALSE} to plot the survival function.
+By default it plots 1-KM. Set cum_inc = \code{FALSE} to plot the survival
+function.
 }
 \examples{
 library(survival)

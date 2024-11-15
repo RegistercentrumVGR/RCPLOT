@@ -1,7 +1,13 @@
+---
 stages:
   - test
   - build
+  - release
 
 include:
   - project: 'registercentrum/pipelines/r-package-ci'
+    ref: rework_before_script
     file: '/full-pipeline.yml'
+  - project: 'registercentrum/pipelines/r-package-ci'
+    ref: rework_before_script 
+    file: '/release.yml'

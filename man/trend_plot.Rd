@@ -17,7 +17,6 @@ trend_plot(
   subtitle = NULL,
   line_colors = NULL,
   fill_colors = "#CADBD5",
-  theme = getOption("theme"),
   line_size = 1,
   point_size = 1,
   percent_accuracy = 1,
@@ -45,15 +44,13 @@ trend_plot(
 
 \item{fill_colors}{Fill color}
 
-\item{theme}{Theme to use, default is \code{getOption("theme")}}
-
 \item{line_size}{Size of the line.}
 
 \item{point_size}{Size of the points.}
 
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 
-\item{...}{Additional arguments passed to \code{\link[=theme_select]{theme_select()}}}
+\item{...}{Additional arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{            ggplot object containing trend plot.

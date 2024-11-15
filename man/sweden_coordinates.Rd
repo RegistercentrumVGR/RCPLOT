@@ -24,10 +24,10 @@ A sf dataset with one row per municipality
 }
 \source{
 \url{http://api.thenmap.net/v2/se-4/geo/2020-06-03}
-\url{"https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls"}
+\url{https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls}
 
 \url{http://api.thenmap.net/v2/se-7/geo/2020-06-03}
-\url{"https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls"}
+\url{https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls}
 }
 \usage{
 counties
@@ -68,7 +68,7 @@ region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
 map_plot(
   df = region_coords,
   fill_var = "var",
-  fill_colors = rc_colors(n = 4, type = "RYG")
+  fill_colors = colors_rc(n = 4, type = "RYG")
 )
 
 # Plot both municipalities and region outlines
@@ -122,7 +122,7 @@ region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
 map_plot(
   df = region_coords,
   fill_var = "var",
-  fill_colors = rc_colors(n = 4, type = "RYG")
+  fill_colors = colors_rc(n = 4, type = "RYG")
 )
 
 # Plot both municipalities and region outlines

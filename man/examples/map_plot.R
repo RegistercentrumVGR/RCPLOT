@@ -26,7 +26,7 @@ region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
 map_plot(
   df = region_coords,
   fill_var = "var",
-  fill_colors = rc_colors(n = 4, type = "RYG")
+  fill_colors = colors_rc(n = 4, type = "RYG")
 )
 
 # Plot both municipalities and region outlines

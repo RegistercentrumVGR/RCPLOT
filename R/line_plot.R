@@ -6,13 +6,14 @@
 #' @param x_var            Variable for x-axis, use string name.
 #'                           Recommended that x_var is
 #'                           in character in df (not necessary).
-#' @param color_var        Variable for the different colors in lines, use string
-#'                           name. Use `NULL` if only one color for lines.
+#' @param color_var        Variable for the different colors in lines, use
+#'                           string name. Use `NULL` if only one color for
+#'                           lines.
 #' @param y_var            Variable for y axis, if `NULL`, count is used.
-#' @param group_by_x_var   Boolean indicating if percentages should be for `x_var`
-#'                           or `color_var`.
-#' @param y_percent        If `TRUE`, y-axis is in percent form. Otherwise in count
-#'                           form.
+#' @param group_by_x_var   Boolean indicating if percentages should be for
+#'                           `x_var` or `color_var`.
+#' @param y_percent        If `TRUE`, y-axis is in percent form. Otherwise in
+#'                           count form.
 #' @param percent_accuracy Set accuracy for [scales::percent_format()].
 #' @param y_lim            Limit on y-axis.
 #' @param y_breaks         Length between each break on y-axis.
@@ -29,44 +30,39 @@
 #' @param label_breaks     Order of the legend keys.
 #' @param legend_row       How many rows for the legends.
 #' @param legend_col       How many columns for the legends.
-#' @param theme            Theme to use
-#' @param ...              Arguments passed to [theme_select()]
+#' @param ...              Arguments passed to [theme_rc()]
 #'
 #' @return                 Ggplot object containing line-plot.
 #' @example                man/examples/line_plot.R
 #' @export
 line_plot <-
-  function(
-    df,
-    x_var,
-    # Rename to fill var for consistency?
-    color_var         = NULL,
-    y_var             = NULL,
-    group_by_x_var    = TRUE,
-    y_percent         = TRUE,
-    percent_accuracy  = 1,
-    y_lim             = NULL,
-    y_breaks          = 2000,
-    y_breaks_end      = 100000,
-    line_size         = 1,
-    title             = NULL,
-    subtitle          = NULL,
-    y_lab             = NULL,
-    x_lab             = NULL,
-    fill_colors       = NULL,
-    legend_labels     = ggplot2::waiver(),
-    label_breaks      = ggplot2::waiver(),
-    theme             = getOption("theme"),
-    legend_row        = NULL,
-    legend_col        = NULL,
-    expand            = TRUE,
-    ...
-  ) {
-
+  function(df,
+           x_var,
+           # Rename to fill var for consistency?
+           color_var = NULL,
+           y_var = NULL,
+           group_by_x_var = TRUE,
+           y_percent = TRUE,
+           percent_accuracy = 1,
+           y_lim = NULL,
+           y_breaks = 2000,
+           y_breaks_end = 100000,
+           line_size = 1,
+           title = NULL,
+           subtitle = NULL,
+           y_lab = NULL,
+           x_lab = NULL,
+           fill_colors = NULL,
+           legend_labels = ggplot2::waiver(),
+           label_breaks = ggplot2::waiver(),
+           legend_row = NULL,
+           legend_col = NULL,
+           expand = TRUE,
+           ...) {
     # Fill colors ------------------------------------------------------------
     if (is.null(fill_colors)) {
       n <- if (!is.null(color_var)) length(unique(df[[color_var]])) else NULL
-      fill_colors <- colors_select(n)
+      fill_colors <- colors_rc(n)
     }
 
     # If y_var != NULL, no summarise is needed. -------------------------------
@@ -74,16 +70,15 @@ line_plot <-
     show_legend <- TRUE
 
     if (is.character(y_var)) {
-      names(df)[names(df) == y_var] <- 'y'
+      names(df)[names(df) == y_var] <- "y"
       df$y2 <- 1
 
       if (!is.character(color_var)) {
         color_var <- "color_var"
         show_legend <- FALSE
       }
-
-    } else{
-      # Only one fill variabel used means no legend needed  ---------------------
+    } else {
+      # Only one fill variabel used means no legend needed  -------------------
 
       if (!is.character(color_var)) {
         color_var <- "color_var"
@@ -93,8 +88,8 @@ line_plot <-
           dplyr::group_by(.data[[x_var]]) %>%
           dplyr::summarise(y = dplyr::n()) %>%
           dplyr::mutate(y2 = sum(.data$y))
-      } else{
-        # Data transformations ----------------------------------------------------
+      } else {
+        # Data transformations ------------------------------------------------
 
         if (group_by_x_var) {
           df <-
@@ -103,8 +98,7 @@ line_plot <-
             dplyr::summarise(y = dplyr::n()) %>%
             dplyr::group_by(.data[[x_var]]) %>%
             dplyr::mutate(y2 = sum(.data$y))
-
-        } else{
+        } else {
           df <-
             df %>%
             dplyr::group_by(.data[[x_var]], .data[[color_var]]) %>%
@@ -124,12 +118,11 @@ line_plot <-
         labels = legend_labels,
         breaks = label_breaks,
         guide = ggplot2::guide_legend(nrow = legend_row, ncol = legend_col)
-      )  +
+      ) +
       ggplot2::ylab(y_lab) +
       ggplot2::xlab(x_lab) +
       ggplot2::ggtitle(title, subtitle = subtitle) +
-      theme_select(
-        theme,
+      theme_rc(
         subtitle = !is.null(subtitle),
         x_lab_exists = !is.null(x_lab),
         ...
@@ -147,10 +140,16 @@ line_plot <-
           mapping = ggplot2::aes(
             x = .data[[x_var]],
             y = .data$y / .data$y2,
-            color = if (utils::hasName(lines$data, color_var))
-              .data[[color_var]] else color_var,
-            group = if (utils::hasName(lines$data, color_var))
-              .data[[color_var]] else color_var
+            color = if (utils::hasName(lines$data, color_var)) {
+              .data[[color_var]]
+            } else {
+              color_var
+            },
+            group = if (utils::hasName(lines$data, color_var)) {
+              .data[[color_var]]
+            } else {
+              color_var
+            }
           ),
           show.legend = show_legend,
           size = line_size
@@ -159,19 +158,24 @@ line_plot <-
           labels = scales::percent_format(accuracy = percent_accuracy),
           breaks = seq(0, 1, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) waiver() else c(0,0)
+          expand = if (expand) waiver() else c(0, 0)
         )
-
-    } else{
+    } else {
       lines <-
         lines + ggplot2::geom_line(
           mapping = ggplot2::aes(
             x = .data[[x_var]],
             y = .data$y,
-            color = if (utils::hasName(lines$data, color_var))
-              .data[[color_var]] else color_var,
-            group = if (utils::hasName(lines$data, color_var))
-              .data[[color_var]] else color_var
+            color = if (utils::hasName(lines$data, color_var)) {
+              .data[[color_var]]
+            } else {
+              color_var
+            },
+            group = if (utils::hasName(lines$data, color_var)) {
+              .data[[color_var]]
+            } else {
+              color_var
+            }
           ),
           show.legend = show_legend,
           size = line_size
@@ -179,9 +183,8 @@ line_plot <-
         ggplot2::scale_y_continuous(
           breaks = seq(0, y_breaks_end, by = y_breaks),
           limits = y_lim,
-          expand = if(expand) waiver() else c(0,0)
+          expand = if (expand) waiver() else c(0, 0)
         )
     }
     lines
   }
-

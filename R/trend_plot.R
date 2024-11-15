@@ -16,8 +16,7 @@
 #' @param fill_colors       Fill color
 #' @param line_size        Size of the line.
 #' @param point_size       Size of the points.
-#' @param theme            Theme to use, default is `getOption("theme")`
-#' @param ...              Additional arguments passed to [theme_select()]
+#' @param ...              Additional arguments passed to [theme_rc()]
 #' @return                 ggplot object containing trend plot.
 #' @example                man/examples/trend_plot.R
 #' @export
@@ -25,26 +24,23 @@ trend_plot <- function(
     df,
     x_var,
     y_var,
-    y_breaks         = 5,
-    y_lim            = c(54.9, 65.1),
-    x_breaks         = 5,
-    y_lab            = "Procent kvinnor",
-    x_lab            = "\u00E5r",
-    title            = NULL,
-    subtitle         = NULL,
-    line_colors      = NULL,
-    fill_colors      = "#CADBD5",
-    theme            = getOption("theme"),
-    line_size        = 1,
-    point_size       = 1,
+    y_breaks = 5,
+    y_lim = c(54.9, 65.1),
+    x_breaks = 5,
+    y_lab = "Procent kvinnor",
+    x_lab = "\u00E5r",
+    title = NULL,
+    subtitle = NULL,
+    line_colors = NULL,
+    fill_colors = "#CADBD5",
+    line_size = 1,
+    point_size = 1,
     percent_accuracy = 1,
-    ...
-){
-
+    ...) {
   # Fill colors ------------------------------------------------------------
   if (is.null(line_colors)) {
     # Grab one color
-    line_colors <- colors_select(n = 1)
+    line_colors <- colors_rc(n = 1)
   }
 
   y_breaks <- y_breaks / 100
@@ -57,7 +53,10 @@ trend_plot <- function(
     ggplot2::xlab(x_lab) +
     ggplot2::ylab(y_lab) +
     ggplot2::scale_y_continuous(
-      labels = scales::percent_format(accuracy = percent_accuracy, suffix = " %"),
+      labels = scales::percent_format(
+        accuracy = percent_accuracy,
+        suffix = " %"
+      ),
       breaks = seq(0, 1, by = y_breaks),
       limits = y_lim
     ) +
@@ -71,5 +70,5 @@ trend_plot <- function(
       alpha  = 0.9
     ) +
     ggplot2::geom_point(size = point_size) +
-    theme_select(theme, ...)
+    theme_rc(...)
 }

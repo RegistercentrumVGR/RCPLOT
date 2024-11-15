@@ -12,7 +12,9 @@
 #' @rdname sweden_coordinates
 #' @source
 #'   \url{http://api.thenmap.net/v2/se-4/geo/2020-06-03}
-#'   \url{"https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls"}
+# nolint start: line_length_linter.
+#'   \url{https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls}
+# nolint end
 "counties"
 
 #' Map coordinates for Sweden municipalites
@@ -30,5 +32,7 @@
 #' @rdname sweden_coordinates
 #' @source
 #'   \url{http://api.thenmap.net/v2/se-7/geo/2020-06-03}
-#'   \url{"https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls"}
+# nolint start: line_length_linter.
+#'   \url{https://www.scb.se/contentassets/7a89e48960f741e08918e489ea36354a/kommunlankod_20211229.xls}
+# nolint end
 "municipalities"

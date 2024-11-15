@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -23,13 +23,12 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends: 
     R (>= 3.5.0)
 Imports: 
     dplyr,
     ggplot2,
-    forcats,
     gridExtra,
     scales,
     magrittr,

@@ -9,8 +9,9 @@ test_that("map plot works", {
         fill_var = "id",
         fill_colors = c(
           RColorBrewer::brewer.pal(12, "Set3"),
-          RColorBrewer::brewer.pal(9, "Spectral"))
+          RColorBrewer::brewer.pal(9, "Spectral")
         )
       )
+    )
   )
 })

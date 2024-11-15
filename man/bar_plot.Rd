@@ -26,7 +26,6 @@ bar_plot(
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
   legend_col = NULL,
-  theme = getOption("theme"),
   expand = FALSE,
   flip = FALSE,
   bar_width = 0.5,
@@ -51,7 +50,8 @@ Use \code{NULL} if only one color for bars.}
 fill requires \code{y_percent = TRUE}.}
 
 \item{group_by_x_var}{Only relevant for style dodge. Boolean indicating
-if percentages should be for \code{x_var} or \code{fill_var}.}
+if percentages should be for \code{x_var} or
+\code{fill_var}.}
 
 \item{y_percent}{If \code{TRUE}, y axis is in percent form.
 Otherwise in count form.}
@@ -83,8 +83,6 @@ values below that.}
 
 \item{legend_col}{How many columns for the legends.}
 
-\item{theme}{Theme to use.}
-
 \item{expand}{If \code{TRUE}, the margins around the data are kept.}
 
 \item{flip}{If \code{TRUE}, x and y axis changes positions making
@@ -97,7 +95,7 @@ y_percent is FALSE. This is useful since it
 disables scientific notation when dealing with
 large numbers.}
 
-\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}.}
+\item{...}{arguments passed to \code{\link[=theme_rc]{theme_rc()}}.}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{              ggplot object containing bar plot.

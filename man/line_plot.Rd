@@ -23,7 +23,6 @@ line_plot(
   fill_colors = NULL,
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
-  theme = getOption("theme"),
   legend_row = NULL,
   legend_col = NULL,
   expand = TRUE,
@@ -37,16 +36,17 @@ line_plot(
 Recommended that x_var is
 in character in df (not necessary).}
 
-\item{color_var}{Variable for the different colors in lines, use string
-name. Use \code{NULL} if only one color for lines.}
+\item{color_var}{Variable for the different colors in lines, use
+string name. Use \code{NULL} if only one color for
+lines.}
 
 \item{y_var}{Variable for y axis, if \code{NULL}, count is used.}
 
-\item{group_by_x_var}{Boolean indicating if percentages should be for \code{x_var}
-or \code{color_var}.}
+\item{group_by_x_var}{Boolean indicating if percentages should be for
+\code{x_var} or \code{color_var}.}
 
-\item{y_percent}{If \code{TRUE}, y-axis is in percent form. Otherwise in count
-form.}
+\item{y_percent}{If \code{TRUE}, y-axis is in percent form. Otherwise in
+count form.}
 
 \item{percent_accuracy}{Set accuracy for \code{\link[scales:percent_format]{scales::percent_format()}}.}
 
@@ -73,15 +73,13 @@ values below that.}
 
 \item{label_breaks}{Order of the legend keys.}
 
-\item{theme}{Theme to use}
-
 \item{legend_row}{How many rows for the legends.}
 
 \item{legend_col}{How many columns for the legends.}
 
 \item{expand}{If \code{TRUE}, the margins around the data are kept.}
 
-\item{...}{Arguments passed to \code{\link[=theme_select]{theme_select()}}}
+\item{...}{Arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{            Ggplot object containing line-plot.

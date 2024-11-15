@@ -17,28 +17,28 @@
 #' @export
 
 map_plot <- function(
-  df,
-  fill_var      = "id",
-  label_var     = NULL,
-  fill_colors   = NULL,
-  legend_labels = ggplot2::waiver(),
-  label_breaks  = ggplot2::waiver(),
-  legend_row    = NULL,
-  legend_col    = NULL
-  ){
-
+    df,
+    fill_var = "id",
+    label_var = NULL,
+    fill_colors = NULL,
+    legend_labels = ggplot2::waiver(),
+    label_breaks = ggplot2::waiver(),
+    legend_row = NULL,
+    legend_col = NULL) {
   # Fill colors ------------------------------------------------------------
   if (is.null(fill_colors)) {
     n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
-    fill_colors <- colors_select(n)
+    fill_colors <- colors_rc(n)
   }
 
   # Create map plot
   p <- ggplot2::ggplot() +
     ggplot2::geom_sf(
       data = df,
-      mapping = aes(fill = .data[[fill_var]],
-                    geometry = geometry)
+      mapping = ggplot2::aes(
+        fill = .data[[fill_var]],
+        geometry = .data[["geometry"]]
+      )
     ) +
     ggplot2::scale_fill_manual(
       values = fill_colors,
@@ -49,7 +49,7 @@ map_plot <- function(
     ggplot2::theme_void()
 
 
-  if(!is.null(label_var)){
+  if (!is.null(label_var)) {
     # Add region names
     p <- p +
       ggplot2::geom_sf_label(

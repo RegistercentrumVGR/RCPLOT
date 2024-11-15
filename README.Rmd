@@ -37,32 +37,38 @@ set.seed(11223344)
 # Create some data
 df <- data.frame(
   age = rpois(100000, 65),
-  gender = sample(c('Woman', 'Woman', 'Man'), size = 100000, replace = TRUE))
+  gender = sample(c("Woman", "Woman", "Man"), size = 100000, replace = TRUE)
+)
 
 # Age pyramid
-age_pyramid(df, age_var = 'age', fill_var = 'gender',
-            man_level = 'Man', title = "This is an age pyramid")
+age_pyramid(df,
+  age_var = "age", fill_var = "gender",
+  man_level = "Man", title = "This is an age pyramid"
+)
 
 # Bar plot
-bar_plot(df = ggplot2::diamonds, x_var = 'color',
-         fill_var = 'cut', y_breaks = 2)
+bar_plot(
+  df = ggplot2::diamonds, x_var = "color",
+  fill_var = "cut", y_breaks = 2
+)
 
 # KM-plot with 2 levels
 survfit_obj <- survival::survfit(
-  survival::Surv(time/365.24, status) ~ sex,
+  survival::Surv(time / 365.24, status) ~ sex,
   data = survival::colon
 )
 
-km_plot(survfit_obj, y_lim = c(0,100), y_breaks = 10, x_lim = c(0,9))
+km_plot(survfit_obj, y_lim = c(0, 100), y_breaks = 10, x_lim = c(0, 9))
 
 # Line plot
-line_plot(df = ggplot2::diamonds, x_var = 'cut', color_var = 'color', y_breaks = 2)
+line_plot(df = ggplot2::diamonds, x_var = "cut", color_var = "color", y_breaks = 2)
 
 # Map figure of Counties, Sweden
 region_coords <- rcplot::counties
 region_coords[["var"]] <- factor(
   sample(c("Sämst", "Dålig", "Bra", "Bäst"),
-         size = nrow(region_coords), replace = TRUE),
+    size = nrow(region_coords), replace = TRUE
+  ),
   ordered = TRUE,
   levels = c("Sämst", "Dålig", "Bra", "Bäst")
 )
@@ -78,7 +84,8 @@ vgregion <- dplyr::filter(rcplot::municipalities, RegionID == "14")
 
 vgregion[["var"]] <- factor(
   sample(c("Sämst", "Dålig", "Bra", "Bäst"),
-         size = nrow(vgregion), replace = TRUE),
+    size = nrow(vgregion), replace = TRUE
+  ),
   ordered = TRUE,
   levels = c("Sämst", "Dålig", "Bra", "Bäst")
 )

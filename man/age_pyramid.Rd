@@ -20,8 +20,7 @@ age_pyramid(
   y_lab = NULL,
   x_lab = NULL,
   fill_colors = NULL,
-  theme = NULL,
-  legend.position = c(0, 0),
+  legend_position = c(0, 0),
   legend_labels = ggplot2::waiver(),
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
@@ -56,9 +55,7 @@ values below that.}
 
 \item{fill_colors}{Colors of the groups.}
 
-\item{theme}{Theme to use for figure, default is \code{getOption("theme")}}
-
-\item{legend.position}{Position of the legend in plot,
+\item{legend_position}{Position of the legend in plot,
 if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_labels}{Label for each legend key.}
@@ -67,7 +64,7 @@ if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_row, legend_col}{How many rows/columns for the legends.}
 
-\item{...}{arguments passed to \code{\link[=theme_select]{theme_select()}}}
+\item{...}{arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{           ggplot object containing age pyramid plot.

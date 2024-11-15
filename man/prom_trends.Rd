@@ -23,7 +23,7 @@ prom_trends(
   line_colors = c("#3E92AA", "#C90327", "black"),
   line_size = 0.5,
   point_size = 1.5,
-  legend.position = c(0, 0),
+  legend_position = c(0, 0),
   n_row = 1,
   n_col = 3,
   ...
@@ -46,7 +46,8 @@ prom_trends(
 
 \item{satis_obs}{Data frame with observed satisfaction VAS data.}
 
-\item{satis_riket}{Data frame with Swedish average satisfaction VAS data.}
+\item{satis_riket}{Data frame with Swedish average satisfaction VAS
+data.}
 
 \item{riket_name}{Character to find what row is Swedish average,
 usually named "Riket".}
@@ -60,7 +61,8 @@ The year variables will be renamed as they appear
 in the data set.}
 
 \item{subset}{Which plots should be generated, \code{subset = 1}
-corresponds to the first plot in alphabetical order.}
+corresponds to the first plot in alphabetical
+order.}
 
 \item{legend_labels}{Labels for the legends in the plot.}
 
@@ -70,13 +72,14 @@ corresponds to the first plot in alphabetical order.}
 
 \item{point_size}{Point sizes in plot.}
 
-\item{legend.position}{Position of the legend in plot, matrix where each row
+\item{legend_position}{Position of the legend in plot, matrix where
+each row
 corresponds to a legend position is recommended,
 if \code{length(subset) > 1}.}
 
 \item{n_row, n_col}{Number of rows/columns for the three plots.}
 
-\item{...}{arguments passed to \code{\link[=theme_slr]{theme_slr()}}}
+\item{...}{arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
 List of several gtable objects where each gtable object is one clinic

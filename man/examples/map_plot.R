@@ -12,21 +12,26 @@ map_plot(
   df = data,
   fill_var = "labels",
   label_var = "id",
-  fill_colors = c(RColorBrewer::brewer.pal(12, "Set3"),
-                  RColorBrewer::brewer.pal(9, "Spectral"))
+  fill_colors = c(
+    RColorBrewer::brewer.pal(12, "Set3"),
+    RColorBrewer::brewer.pal(9, "Spectral")
+  )
 )
 
 # Add some "interresting" data to coordinate dataset and plot
-region_coords[["var"]] <- factor(sample(c("Sämst", "Dålig", "Bra", "Bäst"),
-                                 size = 21, replace = TRUE),
-                                 ordered = TRUE,
-                                 levels = c("Sämst", "Dålig", "Bra", "Bäst")
-                                 )
+region_coords[["var"]] <- factor(
+  sample(
+    c("Sämst", "Dålig", "Bra", "Bäst"),
+    size = 21,
+    replace = TRUE
+  ),
+  ordered = TRUE,
+  levels = c("Sämst", "Dålig", "Bra", "Bäst")
+)
 
 map_plot(
   df = region_coords,
-  fill_var = "var",
-  fill_colors = colors_rc(n = 4, type = "RYG")
+  fill_var = "var"
 )
 
 # Plot both municipalities and region outlines
@@ -38,8 +43,11 @@ ggplot2::ggplot() +
 # Plot municipalities of Västra Götalands Län, with and without labels
 vgregion <- dplyr::filter(municipalities, RegionID == "14")
 
-vgregion[["var"]] <- sample(c("Bäst", "Bra", "Dålig", "Sämst"),
-                            size = nrow(vgregion), replace = TRUE)
+vgregion[["var"]] <- sample(
+  c("Bäst", "Bra", "Dålig", "Sämst"),
+  size = nrow(vgregion),
+  replace = TRUE
+)
 
 map_plot(
   df = vgregion,
@@ -50,5 +58,3 @@ map_plot(
   fill_var = "var",
   label_var = "Name"
 )
-
-

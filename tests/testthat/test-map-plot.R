@@ -7,10 +7,7 @@ test_that("map plot works", {
       map_plot(
         df = counties,
         fill_var = "id",
-        fill_colors = c(
-          RColorBrewer::brewer.pal(12, "Set3"),
-          RColorBrewer::brewer.pal(9, "Spectral")
-        )
+        palette_type = "sequential"
       )
     )
   )

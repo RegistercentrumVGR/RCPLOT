@@ -18,7 +18,6 @@
 #' @param point_size       Size of the points.
 #' @param ...              Additional arguments passed to [theme_rc()]
 #' @return                 ggplot object containing trend plot.
-#' @example                man/examples/trend_plot.R
 #' @export
 trend_plot <- function(
     df,
@@ -37,6 +36,9 @@ trend_plot <- function(
     point_size = 1,
     percent_accuracy = 1,
     ...) {
+  lifecycle::deprecate_warn(
+    when = "1.1.0", what = "trend_plot()", with = "line_plot_2()"
+  )
   # Fill colors ------------------------------------------------------------
   if (is.null(line_colors)) {
     # Grab one color

@@ -5,11 +5,12 @@
 #'           coordinates for regions to map.
 #' @param fill_var Variable to use for colouring regions
 #' @param label_var Variable to use label names
-#' @param fill_colors Manually set colors
+#' @param fill_colors Deprecated
 #' @param legend_labels Manually set labels, character vector.
 #' @param label_breaks Manually set legend breaks
 #' @param legend_row Number of rows in legend
 #' @param legend_col Number of cols in legend
+#' @param palette_type Passed to [colors_rc_2()]
 #'
 #' @return ggplot object with map figure
 #' @example man/examples/map_plot.R
@@ -24,12 +25,18 @@ map_plot <- function(
     legend_labels = ggplot2::waiver(),
     label_breaks = ggplot2::waiver(),
     legend_row = NULL,
-    legend_col = NULL) {
+    legend_col = NULL,
+    palette_type = "sequential") {
   # Fill colors ------------------------------------------------------------
-  if (is.null(fill_colors)) {
-    n <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
-    fill_colors <- colors_rc(n)
-  }
+  lifecycle::deprecate_warn(
+    when = "1.1.0",
+    what = "map_plot(fill_colors)",
+    with = "map_plot(palette_type)"
+  )
+
+  n <- length(unique(df[[fill_var]]))
+
+  fill_colors <- colors_rc_2(n = n, type = palette_type)
 
   # Create map plot
   p <- ggplot2::ggplot() +

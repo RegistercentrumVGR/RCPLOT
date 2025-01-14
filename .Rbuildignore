@@ -12,3 +12,4 @@
 ^.gitlab-ci.yml$
 ^.lintr$
 ^ci$
+man-roxygen

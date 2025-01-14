@@ -42,7 +42,6 @@
 #'
 #' @return                        ggplot object containing Kaplan-Meier plot.
 #'
-#' @example                       man/examples/km_plot.R
 #' @export
 km_plot <- function(
     survfit_obj,
@@ -71,6 +70,11 @@ km_plot <- function(
     legend_labels = ggplot2::waiver(),
     label_breaks = ggplot2::waiver(),
     ...) {
+
+  lifecycle::deprecate_warn(
+    when = "1.1.0",
+    what = "km_plot()"
+  )
   # Line colors ------------------------------------------------------------
 
   if (is.null(line_colors)) {
@@ -187,11 +191,11 @@ km_plot <- function(
         lapply(gsub, pattern = ".*=", replacement = "") %>%
         lapply(paste0, collapse = ", ")
 
-      df$strata <-
-        factor(df$strata,
-          levels = levels(df$strata),
-          labels = strata
-        )
+      df$strata <- factor(
+        df$strata,
+        levels = levels(df$strata),
+        labels = strata
+      )
     }
   } else {
     df <- survfit_obj
@@ -279,7 +283,6 @@ km_plot <- function(
       legend_position = legend_position,
       legend_justification = legend_position,
       subtitle = !is.null(subtitle),
-      x_lab_exists = !is.null(x_lab),
       ...
     )
 
@@ -323,4 +326,155 @@ km_plot <- function(
     }
   }
   km
+}
+
+#' Title
+#'
+#' @param survfit_obj an object of class survfit, typically produced by
+#' [survival::survfit()]
+#' @param n_risk_break when the number of subjects at risk is lower than this
+#' argument the survival probability is censored from there on
+#' @param add_ci whether or not to add a confidence interval
+#' @param ci_alpha the alpha of the confidence interval ribbon
+#' @param risk_table whether or not to add a table describing the number at risk
+#' @param plot_type one of NULL (for standard survival), "cumhaz" (for
+#' cumulative hazard), and "event" (for cumulative events)
+#' @param legend_title the title of the legend
+#' @param legend_position one of "top", "bottom", "left", "right", and "none
+#' @param legend_labs the labels for the legend
+#' @param x_lab the label for the x-axis
+#' @param y_lab the label for the y-axis
+#' @param title the title of the plot
+#' @param y_breaks vector of breaks for y-axis
+#' @param y_labels vector of labels for y-labels
+#' @param y_lim limits for y-axis
+#' @param x_breaks vector of breaks for x-axis
+#' @param x_labels vector of labels for x-axis
+#' @param x_lim limits x-axis
+#' @param plotly whether or not to convert the finished plot to a plotly
+#' graph
+#' @param facet_by the name of the variable to facet by
+#'
+#' @export
+#' @example man/examples/km_plot_2.R
+km_plot_2 <- function(survfit_obj,
+                      n_risk_break = 50,
+                      x_lab = NULL,
+                      y_lab = "Survival probablity",
+                      y_breaks = ggplot2::waiver(),
+                      y_labels = scales::label_percent(),
+                      y_lim = c(0, 1),
+                      title = ggplot2::waiver(),
+                      x_breaks = ggplot2::waiver(),
+                      x_labels = ggplot2::waiver(),
+                      x_lim = NULL,
+                      add_ci = TRUE,
+                      ci_alpha = 0.2,
+                      risk_table = TRUE,
+                      plot_type = NULL,
+                      legend_title = "Strata",
+                      legend_position = "top",
+                      legend_labs = NULL,
+                      facet_by = NULL,
+                      plotly = FALSE) {
+
+  checkmate::assert_integerish(
+    n_risk_break, len = 1, lower = 0, any.missing = FALSE
+  )
+  checkmate::assert_numeric(
+    ci_alpha, lower = 0, upper = 1, len = 1, any.missing = FALSE
+  )
+  checkmate::assert_class(survfit_obj, classes = "survfit")
+  checkmate::assert_logical(add_ci, any.missing = FALSE, len = 1)
+  checkmate::assert_logical(risk_table, any.missing = FALSE, len = 1)
+  checkmate::assert(
+    checkmate::check_choice(plot_type, c("cumhaz", "event")),
+    checkmate::check_null(plot_type)
+  )
+  checkmate::assert_choice(
+    legend_position,
+    c("top", "bottom", "left", "right", "none")
+  )
+  checkmate::assert_character(legend_title)
+  checkmate::assert(
+    checkmate::check_null(legend_labs),
+    checkmate::check_character(legend_labs)
+  )
+
+  if (!is.null(facet_by) && risk_table) {
+    rlang::warn(
+      "faceting risk tables is not supported, setting risk_table to FALSE"
+    )
+    risk_table <- FALSE
+  }
+
+  censored <- which(survfit_obj$n_risk < n_risk_break)
+  survfit_obj$lower[censored] <- NA
+  survfit_obj$upper[censored] <- NA
+  survfit_obj$surv[censored] <- NA
+
+  n <- 1
+
+  if ("strata" %in% names(survfit_obj)) {
+    n <- length(names(survfit_obj$strata))
+  }
+
+  colors <- colors_rc_2(n = n)
+
+  plt <- survminer::ggsurvplot(
+    fit = survfit_obj,
+    fun = plot_type,
+    palette = colors,
+    conf.int = add_ci,
+    conf.int.alpha = ci_alpha,
+    risk.table = risk_table,
+    censor = FALSE,
+    xlab = x_lab,
+    ylab = y_lab,
+    legend = legend_position,
+    legend.title = legend_title,
+    legend.labs = legend_labs,
+    facet.by = facet_by
+  )
+
+  scale_and_labs <- function(plot) {
+    plot +
+      ggplot2::scale_y_continuous(
+        breaks = y_breaks,
+        labels = y_labels,
+        limits = y_lim
+      ) +
+      ggplot2::scale_x_continuous(
+        breaks = x_breaks,
+        labels = x_breaks,
+        limits = x_lim
+      ) +
+      ggplot2::labs(
+        title = title
+      )
+  }
+
+  # When plot is not faceted it has class "ggsurvplot"
+  if (is.null(facet_by)) {
+    plt$plot <- scale_and_labs(plt$plot)
+  } else {
+    plt <- scale_and_labs(plt)
+  }
+
+
+  if (plotly) {
+    if (add_ci) {
+      rlang::warn("confidence intervals are not supported by plotly yet")
+      suppressWarnings({
+        plt <- plt |>
+          plotly::ggplotly()
+      })
+    } else {
+      plt <- plt |>
+        plotly::ggplotly()
+    }
+  }
+
+  return(plt)
+
 }

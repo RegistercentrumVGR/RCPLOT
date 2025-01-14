@@ -20,6 +20,3 @@ vector with color codes
 \description{
 Wrapper for RColorBrewer to get colors
 }
-\examples{
-colors_rc(2)
-}

@@ -8,14 +8,13 @@ theme_rc(
   axis_text_angle = NULL,
   legend_position = "bottom",
   legend_justification = legend_position,
-  legend_title = FALSE,
   text_size = 7,
   subtitle_size = 8,
   title_size = 9,
   title_hjust = 0.5,
   subtitle = FALSE,
-  x_lab_exists = FALSE,
-  title_margin = if (subtitle) 1 else title_size/2
+  title_margin = if (subtitle) 1 else title_size/2,
+  plot_type = "bar"
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ theme_rc(
 
 \item{legend_justification}{passed to legend.justification}
 
-\item{legend_title}{Include legend title (boolean)}
-
 \item{text_size, title_size, subtitle_size}{Text size for most text,
 title and subtitle}
 
@@ -36,7 +33,7 @@ title and subtitle}
 
 \item{subtitle}{is a subtitle used in the figure (boolean)?}
 
-\item{x_lab_exists}{Indicator if x label should be blank or not}
+\item{plot_type}{One of "bar" or "line" controling the major grid lines}
 }
 \value{
 Modified version of \code{\link[=theme_classic]{theme_classic()}}

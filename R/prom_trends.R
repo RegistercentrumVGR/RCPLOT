@@ -36,7 +36,6 @@
 #' @param ...              arguments passed to [theme_rc()]
 #'
 #' @return List of several gtable objects where each gtable object is one clinic
-#' @example man/examples/prom_trends.R
 #' @export
 prom_trends <-
   function(eq_vas_exp,
@@ -64,6 +63,9 @@ prom_trends <-
            n_row = 1,
            n_col = 3,
            ...) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0", what = "prom_trends()", with = "line_plot_2()"
+    )
     # Transforming data to be suitable for ggplot -----------------------------
 
     ggp_suit <- function(df, year, sheet) {

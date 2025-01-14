@@ -3,7 +3,6 @@
 #' Implementation of graphical profile used in package by
 #' default.
 #'
-#' @param legend_title Include legend title (boolean)
 #' @param legend_position passed to legend.posision
 #' @param legend_justification passed to legend.justification
 #' @param subtitle is a subtitle used in the figure (boolean)?
@@ -14,7 +13,7 @@
 #'   `axis.text.x = element_text(angle = axis_text_angle)`
 #' @param text_size,title_size,subtitle_size Text size for most text,
 #'                                             title and subtitle
-#' @param x_lab_exists Indicator if x label should be blank or not
+#' @param plot_type One of "bar" or "line" controling the major grid lines
 #' @return Modified version of [theme_classic()]
 #'
 #' @rdname registercentrum_themes
@@ -24,15 +23,16 @@ theme_rc <- function(
     axis_text_angle = NULL,
     legend_position = "bottom",
     legend_justification = legend_position,
-    legend_title = FALSE,
     text_size = 7,
     subtitle_size = 8,
     title_size = 9,
     title_hjust = 0.5,
     subtitle = FALSE,
-    x_lab_exists = FALSE,
-    title_margin = if (subtitle) 1 else title_size / 2) {
-  theme_classic() %+replace%
+    title_margin = if (subtitle) 1 else title_size / 2,
+    plot_type = "bar") {
+  checkmate::assert_choice(plot_type, c("bar", "line"))
+
+  thm <- theme_classic() %+replace%
     theme(
 
       # General ---------------------------------------------------------------
@@ -41,19 +41,20 @@ theme_rc <- function(
 
       # Axis ------------------------------------------------------------------
 
-      axis.line = element_line(size = 0.2),
+      axis.line = element_line(linewidth = 0.2),
       axis.text = element_text(size = rel(1)),
       axis.text.x = element_text(angle = axis_text_angle),
-      axis.ticks.x = element_line(size = 0.2),
+      axis.ticks.x = element_line(linewidth = 0.2),
       axis.ticks.y = element_blank(),
-      axis.title.x = if (x_lab_exists) {
-        element_text(
-          size = rel(1),
-          margin = margin(t = 10, r = 0, b = 0, l = 0)
-        )
-      } else {
-        element_blank()
-      },
+      axis.title.x = element_text(
+        size = rel(1),
+        margin = margin(t = 10, r = 0, b = 0, l = 0)
+      ),
+      axis.title.y = element_text(
+        size = rel(1),
+        margin = margin(t = 0, r = 10, b = 0, l = 0),
+        angle = 90
+      ),
 
 
       # Legend ----------------------------------------------------------------
@@ -61,21 +62,22 @@ theme_rc <- function(
       legend.background = element_rect(fill = "transparent"),
       legend.justification = legend_justification,
       legend.key.height = unit(text_size, "pt"),
-      legend.key.width = unit(text_size, "pt"),
       legend.position = legend_position,
       legend.text = element_text(size = rel(1)),
-      legend.title = if (legend_title) {
-        element_text(size = text_size)
-      } else {
-        element_blank()
-      },
+      legend.title = element_text(size = text_size),
 
 
       # Panel -----------------------------------------------------------------
 
       panel.background = element_rect(fill = "white"),
-      panel.grid.major.y = element_line(colour = "#ADAEAE", size = 0.2),
-
+      panel.grid.major.y = element_line(
+        colour = "#ADAEAE33",
+        linewidth = 0.2
+      ),
+      panel.grid.major.x = element_line(
+        colour = "#ADAEAE33",
+        linewidth = 0.2
+      ),
 
       # Plot ------------------------------------------------------------------
       plot.margin = margin(0.2, 0.4, 0.2, 0.4, unit = "cm"),
@@ -84,6 +86,22 @@ theme_rc <- function(
         size   = title_size,
         margin = margin(b = title_margin)
       ),
-      plot.subtitle = element_text(hjust = 0.5, size = subtitle_size)
+      plot.subtitle = element_text(hjust = 0.5, size = subtitle_size),
+      strip.background = element_rect(
+        color = "black",
+        fill = "white",
+        size = 1,
+        linetype = "solid"
+      )
     )
+
+  if (plot_type == "bar") {
+    thm <- thm %+replace%
+      theme(
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_blank()
+      )
+  }
+
+  return(thm)
 }

@@ -21,6 +21,8 @@
 #' @param legend_labels    Label for each legend key.
 #' @param label_breaks     Order of the legend keys.
 #' @param legend_row,legend_col How many rows/columns for the legends.
+#' @param obfuscate Whether or not to obfuscate the data using
+#'  [RCStat::obfuscate_data()]
 #' @param ...             arguments passed to [theme_rc()]
 #'
 #' @return                ggplot object containing age pyramid plot.
@@ -50,7 +52,14 @@ age_pyramid <-
            label_breaks = ggplot2::waiver(),
            legend_row = NULL,
            legend_col = NULL,
+           obfuscate = TRUE,
            ...) {
+
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "age_pyramid(fill_colors)"
+    )
+
     # Breaks and labels for x-axis (which is currently y-axis before coordflip)
 
     br <- seq(0, x_breaks_end, x_breaks)
@@ -58,12 +67,14 @@ age_pyramid <-
     x_labels <- abs(x_breaks)
     n <- nrow(df)
 
-    # Fill colors ------------------------------------------------------------
-    if (is.null(fill_colors)) {
-      ncol <- if (!is.null(fill_var)) length(unique(df[[fill_var]])) else NULL
-      fill_colors <- colors_rc(ncol)
+    if (obfuscate) {
+      n <- RCStat::roundc(n, -1)
     }
 
+    # Fill colors ------------------------------------------------------------
+
+    ncol <- length(unique(df[[fill_var]]))
+    fill_colors <- colors_rc_2(n = ncol)
 
     # Data transformation -----------------------------------------------------
 
@@ -85,6 +96,25 @@ age_pyramid <-
         ),
         percent = .data$Population / n * 100
       )
+
+    if (obfuscate) {
+      df <- df |>
+        dplyr::mutate(
+          Population = abs(.data[["Population"]])
+        ) |>
+        RCStat::obfuscate_data(
+          total_var = "n",
+          count_var = "Population",
+          prop_var = "percent"
+        ) |>
+        dplyr::mutate(
+          Population = dplyr::if_else(
+            .data[[fill_var]] == man_level,
+            -.data[["Population"]],
+            .data[["Population"]]
+          )
+        )
+    }
 
     if (percent) {
       df <- dplyr::mutate(df, Population = .data$percent)
@@ -116,9 +146,7 @@ age_pyramid <-
       ggplot2::coord_flip() +
       theme_rc(
         legend_position = legend_position,
-        legend_title = TRUE,
         subtitle = !is.null(subtitle),
-        x_lab_exists = !is.null(x_lab),
         ...
       )
   }

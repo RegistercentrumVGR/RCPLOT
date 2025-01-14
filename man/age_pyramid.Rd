@@ -25,6 +25,7 @@ age_pyramid(
   label_breaks = ggplot2::waiver(),
   legend_row = NULL,
   legend_col = NULL,
+  obfuscate = TRUE,
   ...
 )
 }
@@ -64,6 +65,9 @@ if \code{c(1,1)}, \code{c(1,0)} etc, legend inside plot.}
 
 \item{legend_row, legend_col}{How many rows/columns for the legends.}
 
+\item{obfuscate}{Whether or not to obfuscate the data using
+\code{\link[RCStat:obfuscate_data]{RCStat::obfuscate_data()}}}
+
 \item{...}{arguments passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \value{
@@ -76,15 +80,39 @@ Plot an age pyramid using ggplot2.
 \examples{
 # Creating data
 set.seed(123)
-df <- data.frame(age = rpois(100000, 65),
-  gender = sample(c('Woman', 'Woman', 'Man'), 100000, replace = TRUE))
+df <- data.frame(
+  age = rpois(100000, 65),
+  gender = sample(
+    c("Woman", "Woman", "Man"), 100000,
+    replace = TRUE
+  )
+)
 
 # Age pyramid
-age_pyramid(df, age_var = 'age', fill_var = 'gender',
-  man_level = 'Man', title = "This is an age pyramid")
+age_pyramid(df,
+  age_var = "age", fill_var = "gender",
+  man_level = "Man", title = "This is an age pyramid",
+  obfuscate = FALSE
+)
 
 # Age pyramid with percent = FALSE
-age_pyramid(df, age_var = 'age', fill_var = 'gender',
-  man_level = 'Man', percent = FALSE, x_breaks = 5000,
-  title = "This is an age pyramid")
+age_pyramid(df,
+  age_var = "age", fill_var = "gender",
+  man_level = "Man", percent = FALSE, x_breaks = 5000,
+  title = "This is an age pyramid", obfuscate = FALSE
+)
+
+df <- data.frame(
+  age = rpois(1083, 65),
+  gender = sample(
+    c("Woman", "Woman", "Man"), 1083,
+    replace = TRUE
+  )
+)
+
+age_pyramid(df,
+  age_var = "age", fill_var = "gender",
+  man_level = "Man", percent = FALSE, x_breaks = 5000,
+  title = "This is an age pyramid", obfuscate = TRUE
+)
 }

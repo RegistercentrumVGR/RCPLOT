@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -48,4 +48,4 @@ Suggests:
     roxygen2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Remotes: RegistercentrumVGR/RCSTAT
+Remotes: RegistercentrumVGR/RCStat

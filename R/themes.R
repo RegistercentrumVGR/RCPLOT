@@ -45,7 +45,7 @@ theme_rc <- function(
       axis.text = element_text(size = rel(1)),
       axis.text.x = element_text(angle = axis_text_angle),
       axis.ticks.x = element_line(linewidth = 0.2),
-      axis.ticks.y = element_blank(),
+      axis.ticks.y = element_line(linewidth = 0.2),
       axis.title.x = element_text(
         size = rel(1),
         margin = margin(t = 10, r = 0, b = 0, l = 0)

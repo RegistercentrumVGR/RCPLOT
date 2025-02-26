@@ -487,15 +487,15 @@ bar_plot_2 <- function(df,
     checkmate::check_choice(fill_var, names(df))
     checkmate::assert_choice(
       arrange_by_fill,
-      unique(df |> pull(!!fill_var))
+      unique(df |> dplyr::pull(!!fill_var))
     )
     if (arrange_desc) {
       df_order <- df |>
         dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
         dplyr::select(.data[[x_var]], .data[[arrange_by]]) |>
-        dplyr::arrange(desc(.data[[arrange_by]])) |>
-        mutate(ord = 1:dplyr::n()) |>
-        dplyr::select(-.data[[arrange_by]])
+        dplyr::arrange(dplyr::desc(.data[[arrange_by]])) |>
+        dplyr::mutate(ord := 1:dplyr::n()) |>
+        dplyr::select(dplyr::all_of(c(x_var, "ord")))
 
       df <- dplyr::left_join(df,
         df_order,
@@ -510,8 +510,8 @@ bar_plot_2 <- function(df,
         dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
         dplyr::select(.data[[x_var]], .data[[arrange_by]]) |>
         dplyr::arrange(.data[[arrange_by]]) |>
-        mutate(ord = 1:dplyr::n()) |>
-        dplyr::select(all_of(c(x_var, "ord")))
+        dplyr::mutate(ord := 1:dplyr::n()) |>
+        dplyr::select(dplyr::all_of(c(x_var, "ord")))
 
       df <- dplyr::left_join(df,
         df_order,

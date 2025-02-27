@@ -183,6 +183,6 @@ bar_plot_2(
   y_labels = scales::label_percent(),
   arrange_by = "unit",
   arrange_desc = FALSE,
-  arrange_by_fill = 1
+  arrange_by_fill = "Ja"
 )
 

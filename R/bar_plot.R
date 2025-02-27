@@ -501,7 +501,7 @@ bar_plot_2 <- function(df,
         df_order,
         by = x_var
       ) |>
-        dplyr::arrange(ord) |>
+        dplyr::arrange(.data[["ord"]]) |>
         dplyr::mutate(
           !!x_var := forcats::fct_inorder(.data[[x_var]])
         )
@@ -517,7 +517,7 @@ bar_plot_2 <- function(df,
         df_order,
         by = x_var
       ) |>
-        dplyr::arrange(ord) |>
+        dplyr::arrange(.data[["ord"]]) |>
         dplyr::mutate(
           !!x_var := forcats::fct_inorder(.data[[x_var]])
         )

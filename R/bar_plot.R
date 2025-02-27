@@ -483,47 +483,37 @@ bar_plot_2 <- function(df,
       )
   }
 
-  ord <- NULL
-
   if (!is.null(arrange_by) && !is.null(arrange_by_fill)) {
     checkmate::check_choice(fill_var, names(df))
     checkmate::assert_choice(
       arrange_by_fill,
       unique(df |> dplyr::pull(!!fill_var))
     )
+
+    df_order <- df |>
+      dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
+      dplyr::select(.data[[x_var]], .data[[arrange_by]])
+
     if (arrange_desc) {
-      df_order <- df |>
-        dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
-        dplyr::select(.data[[x_var]], .data[[arrange_by]]) |>
+      df_order <- df_order |>
         dplyr::arrange(dplyr::desc(.data[[arrange_by]])) |>
-        dplyr::mutate(ord := 1:dplyr::n()) |>
+        dplyr::mutate(ord = seq_len(dplyr::n())) |>
         dplyr::select(dplyr::all_of(c(x_var, "ord")))
-
-      df <- dplyr::left_join(df,
-        df_order,
-        by = x_var
-      ) |>
-        dplyr::arrange(.data[["ord"]]) |>
-        dplyr::mutate(
-          !!x_var := forcats::fct_inorder(.data[[x_var]])
-        )
     } else {
-      df_order <- df |>
-        dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
-        dplyr::select(.data[[x_var]], .data[[arrange_by]]) |>
+      df_order <- df_order |>
         dplyr::arrange(.data[[arrange_by]]) |>
-        dplyr::mutate(ord := 1:dplyr::n()) |>
+        dplyr::mutate(ord = seq_len(dplyr::n())) |>
         dplyr::select(dplyr::all_of(c(x_var, "ord")))
-
-      df <- dplyr::left_join(df,
-        df_order,
-        by = x_var
-      ) |>
-        dplyr::arrange(.data[["ord"]]) |>
-        dplyr::mutate(
-          !!x_var := forcats::fct_inorder(.data[[x_var]])
-        )
     }
+
+    df <- dplyr::left_join(df,
+      df_order,
+      by = x_var
+    ) |>
+      dplyr::arrange(.data[["ord"]]) |>
+      dplyr::mutate(
+        !!x_var := forcats::fct_inorder(.data[[x_var]])
+      )
   }
 
   if (facet) {

@@ -483,6 +483,8 @@ bar_plot_2 <- function(df,
       )
   }
 
+  ord <- NULL
+
   if (!is.null(arrange_by) && !is.null(arrange_by_fill)) {
     checkmate::check_choice(fill_var, names(df))
     checkmate::assert_choice(

@@ -181,7 +181,7 @@ bar_plot_2(
   horizontal = TRUE,
   position = "stack",
   y_labels = scales::label_percent(),
-  arrange_by = "unit",
+  arrange_by = "prop",
   arrange_desc = FALSE,
   arrange_by_fill = "Ja"
 )

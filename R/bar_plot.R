@@ -351,6 +351,8 @@ bar_plot <-
 #' been censored, requires `obfuscated_reason` column produced by
 #' [RCStat::obfuscate_data()]
 #' @param arrange_by the name of the variable to arrange by
+#' @param arrange_by_fill the category in fill_var that should be considered
+#' in the ordering
 #' @param arrange_desc whether to arrange in descending order
 #' @param fill_var_order a character vector of values in `fill_var` passed to
 #' [forcats::fct_relevel()] which determines the order the colored bars appear
@@ -392,6 +394,7 @@ bar_plot_2 <- function(df,
                        facet = FALSE,
                        facet_by = NULL,
                        arrange_by = x_var,
+                       arrange_by_fill = NULL,
                        arrange_desc = FALSE,
                        fill_var_order = NULL,
                        reference_line = NULL,
@@ -475,6 +478,39 @@ bar_plot_2 <- function(df,
     }
 
     df <- df |>
+      dplyr::mutate(
+        !!x_var := forcats::fct_inorder(.data[[x_var]])
+      )
+  }
+
+  if (!is.null(arrange_by) && !is.null(arrange_by_fill)) {
+    checkmate::check_choice(fill_var, names(df))
+    checkmate::assert_choice(
+      arrange_by_fill,
+      unique(df |> dplyr::pull(!!fill_var))
+    )
+
+    df_order <- df |>
+      dplyr::filter(.data[[fill_var]] == arrange_by_fill) |>
+      dplyr::select(.data[[x_var]], .data[[arrange_by]])
+
+    if (arrange_desc) {
+      df_order <- df_order |>
+        dplyr::arrange(dplyr::desc(.data[[arrange_by]])) |>
+        dplyr::mutate(ord = seq_len(dplyr::n())) |>
+        dplyr::select(dplyr::all_of(c(x_var, "ord")))
+    } else {
+      df_order <- df_order |>
+        dplyr::arrange(.data[[arrange_by]]) |>
+        dplyr::mutate(ord = seq_len(dplyr::n())) |>
+        dplyr::select(dplyr::all_of(c(x_var, "ord")))
+    }
+
+    df <- dplyr::left_join(df,
+      df_order,
+      by = x_var
+    ) |>
+      dplyr::arrange(.data[["ord"]]) |>
       dplyr::mutate(
         !!x_var := forcats::fct_inorder(.data[[x_var]])
       )

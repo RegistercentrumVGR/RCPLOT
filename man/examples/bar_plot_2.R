@@ -172,3 +172,17 @@ bar_plot_2(
   add_total = TRUE,
   total_var = "total"
 )
+
+bar_plot_2(
+  df = df_3,
+  x_var = "unit",
+  y_var = "prop",
+  fill_var = "category",
+  horizontal = TRUE,
+  position = "stack",
+  y_labels = scales::label_percent(),
+  arrange_by = "prop",
+  arrange_desc = FALSE,
+  arrange_by_fill = "Ja"
+)
+

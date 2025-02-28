@@ -33,6 +33,7 @@ bar_plot_2(
   facet = FALSE,
   facet_by = NULL,
   arrange_by = x_var,
+  arrange_by_fill = NULL,
   arrange_desc = FALSE,
   fill_var_order = NULL,
   reference_line = NULL,
@@ -101,6 +102,9 @@ graph}
 \item{facet_by}{the name of the variable to facet by}
 
 \item{arrange_by}{the name of the variable to arrange by}
+
+\item{arrange_by_fill}{the category in fill_var that should be considered
+in the ordering}
 
 \item{arrange_desc}{whether to arrange in descending order}
 
@@ -303,4 +307,18 @@ bar_plot_2(
   add_total = TRUE,
   total_var = "total"
 )
+
+bar_plot_2(
+  df = df_3,
+  x_var = "unit",
+  y_var = "prop",
+  fill_var = "category",
+  horizontal = TRUE,
+  position = "stack",
+  y_labels = scales::label_percent(),
+  arrange_by = "prop",
+  arrange_desc = FALSE,
+  arrange_by_fill = "Ja"
+)
+
 }

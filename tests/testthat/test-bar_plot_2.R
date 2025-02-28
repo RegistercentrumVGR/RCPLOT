@@ -1,4 +1,4 @@
-test_that("line_plot_2 works", {
+test_that("bar_plot_2 works", {
 
   df <- data.frame(
     unit = letters[1:3],
@@ -47,5 +47,19 @@ test_that("line_plot_2 works", {
       bar_var = "abc"
     )
   })
+
+  expect_error({
+    bar_plot_2(
+      df = df,
+      x_var = "category",
+      y_var = "prop",
+      fill_var = "unit",
+      arrange_by_fill = "d"
+    )
+  })
+
+
+
+
 
 })

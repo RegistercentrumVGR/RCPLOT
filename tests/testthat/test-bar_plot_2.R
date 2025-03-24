@@ -59,7 +59,19 @@ test_that("bar_plot_2 works", {
   })
 
 
+  df <- data.frame(
+    unit = letters[3:1],
+    prop = 0.5
+  ) |>
+    dplyr::mutate(unit = forcats::fct_inorder(.data[["unit"]]))
 
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "unit",
+    y_var = "prop"
+  )
+
+  vdiffr::expect_doppelganger("x_var factor", plt)
 
 
 })

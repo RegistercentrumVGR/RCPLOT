@@ -436,10 +436,12 @@ bar_plot_2 <- function(df,
 
   caption <- NULL
 
-  df <- df |>
-    dplyr::mutate(
-      !!x_var := as.character(.data[[x_var]])
-    )
+  if (!(is.factor(df[[x_var]]) || is.character(df[[x_var]]))) {
+    df <- df |>
+      dplyr::mutate(
+        !!x_var := as.character(.data[[x_var]])
+      )
+  }
 
   if (add_total) {
     checkmate::assert_choice(total_var, names(df))

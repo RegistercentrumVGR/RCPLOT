@@ -462,12 +462,26 @@ bar_plot_2 <- function(df,
       }
     }
 
-    df <- df |>
-      dplyr::mutate(
-        !!x_var := paste0(
-          .data[[x_var]], ", N = ", .data[[total_var]], obfuscated
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(
+          !!x_var := forcats::fct_relabel(
+            .data[[x_var]],
+            ~ paste0(.x, ", N = ", .data[[total_var]], obfuscated)
+          )
         )
-      )
+
+    } else {
+
+      df <- df |>
+        dplyr::mutate(
+          !!x_var := paste0(
+            .data[[x_var]], ", N = ", .data[[total_var]], obfuscated
+          )
+        )
+
+    }
+
   }
 
   if (!is.null(arrange_by)) {

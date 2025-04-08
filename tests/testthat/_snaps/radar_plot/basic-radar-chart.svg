@@ -45,15 +45,15 @@
 <text x='374.40' y='79.60' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='8.01px' lengthAdjust='spacingAndGlyphs'>A</text>
 <text x='196.58' y='387.60' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='8.01px' lengthAdjust='spacingAndGlyphs'>B</text>
 <text x='552.22' y='387.60' text-anchor='middle' style='font-size: 12.00px; font-family: sans;' textLength='8.67px' lengthAdjust='spacingAndGlyphs'>C</text>
-<polygon points='374.40,183.02 310.89,317.47 480.25,341.91 ' style='stroke-width: 3.00; stroke: #0072B2; fill: none;' />
+<polygon points='374.40,183.02 310.89,317.47 480.25,341.91 ' style='stroke-width: 2.25; stroke: #0072B2; fill: none;' />
 <circle cx='374.40' cy='183.02' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #0072B2;' />
 <circle cx='310.89' cy='317.47' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #0072B2;' />
 <circle cx='480.25' cy='341.91' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #0072B2;' />
-<polygon points='374.40,158.58 289.72,329.69 501.42,354.13 ' style='stroke-width: 3.00; stroke: #D55E00; fill: none;' />
+<polygon points='374.40,158.58 289.72,329.69 501.42,354.13 ' style='stroke-width: 2.25; stroke: #D55E00; fill: none;' />
 <circle cx='374.40' cy='158.58' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #D55E00;' />
 <circle cx='289.72' cy='329.69' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #D55E00;' />
 <circle cx='501.42' cy='354.13' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #D55E00;' />
-<polygon points='374.40,134.13 268.55,341.91 459.08,329.69 ' style='stroke-width: 3.00; stroke: #CC79A7; fill: none;' />
+<polygon points='374.40,134.13 268.55,341.91 459.08,329.69 ' style='stroke-width: 2.25; stroke: #CC79A7; fill: none;' />
 <circle cx='374.40' cy='134.13' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #CC79A7;' />
 <circle cx='268.55' cy='341.91' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #CC79A7;' />
 <circle cx='459.08' cy='329.69' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #CC79A7;' />

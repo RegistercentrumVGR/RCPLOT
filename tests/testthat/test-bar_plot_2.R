@@ -61,7 +61,8 @@ test_that("bar_plot_2 works", {
 
   df <- data.frame(
     unit = letters[3:1],
-    prop = 0.5
+    prop = 0.5,
+    total = 1:3
   ) |>
     dplyr::mutate(unit = forcats::fct_inorder(.data[["unit"]]))
 
@@ -73,5 +74,14 @@ test_that("bar_plot_2 works", {
 
   vdiffr::expect_doppelganger("x_var factor", plt)
 
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "unit",
+    y_var = "prop",
+    add_total = TRUE,
+    total_var = "total"
+  )
+
+  vdiffr::expect_doppelganger("x_var factor with total", plt)
 
 })

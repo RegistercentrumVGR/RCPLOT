@@ -43,7 +43,8 @@ Imports:
     plotly,
     forcats,
     survminer,
-    fmsb
+    fmsb,
+    tibble
 Suggests:
     survival,
     roxygen2,

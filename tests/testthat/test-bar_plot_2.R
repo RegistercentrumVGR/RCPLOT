@@ -84,4 +84,24 @@ test_that("bar_plot_2 works", {
 
   vdiffr::expect_doppelganger("x_var factor with total", plt)
 
+  df <- data.frame(
+    x = letters[3:1],
+    y = 1:3,
+    z = 1:6,
+    type = 1:2
+  ) |>
+    dplyr::mutate(x = forcats::fct_inorder(x))
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "z",
+    fill_var = "type",
+    add_total = TRUE,
+    total_var = "y"
+  )
+
+  vdiffr::expect_doppelganger("x_var factor with total with fill", plt)
+
+
 })

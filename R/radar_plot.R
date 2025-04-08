@@ -63,7 +63,7 @@ radar_plot <- function(
         axislabcol = "black",
     )
     if (!is.null(legend_col)) {
-        legend(
+        graphics::legend(
             x = 1,
             y = 1.35,
             legend = row.names(df),

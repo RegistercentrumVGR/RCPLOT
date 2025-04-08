@@ -56,7 +56,7 @@ radar_plot <- function(
         maxmin = TRUE,
         pty = 16,
         caxislabels = pretty(y_min:y_max, n = seg),
-        plwd = 4,
+        plwd = 3,
         plty = 1,
         cglty = 1,
         cglcol = "grey",

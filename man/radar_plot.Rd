@@ -9,7 +9,8 @@ radar_plot(
   seg = NULL,
   colors = rcplot::colors_rc_2(nrow(df)),
   y_max = NULL,
-  y_min = NULL
+  y_min = NULL,
+  legend_col = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ automatically set based on \code{pretty(y_min:y_max)}.}
 automatically set to the maximum value in \code{df} plus one.}
 
 \item{y_min}{Minimum value for the radar chart axes. Defaults to \code{0}.}
+
+\item{legend_col}{The name of the column containing group names for the legend.}
 }
 \value{
 A radar chart plotted using \code{fmsb::radarchart()}.

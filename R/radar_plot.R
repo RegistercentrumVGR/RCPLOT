@@ -11,6 +11,7 @@
 #' @param y_max Maximum value for the radar chart axes. If `NULL`, it is
 #' automatically set to the maximum value in `df` plus one.
 #' @param y_min Minimum value for the radar chart axes. Defaults to `0`.
+#' @param legend_col The name of the column containing group names for the legend.
 #'
 #' @return A radar chart plotted using `fmsb::radarchart()`.
 #' @export
@@ -61,19 +62,17 @@ radar_plot <- function(
         cglcol = "grey",
         axislabcol = "black",
     )
-    if (!is.null(legend_col)){
+    if (!is.null(legend_col)) {
         legend(
-            x=1,
-            y=1.35,
+            x = 1,
+            y = 1.35,
             legend = row.names(df),
             bty = "n",
-            pch=15,
-            col=colors,
+            pch = 15,
+            col = colors,
             text.col = "black",
-            cex=1.15,
-            pt.cex=3
+            cex = 1.15,
+            pt.cex = 3
         )
     }
-
 }
-

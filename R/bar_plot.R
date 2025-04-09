@@ -463,11 +463,21 @@ bar_plot_2 <- function(df,
     }
 
     if (is.factor(df[[x_var]])) {
+      lvls <- levels(df[[x_var]])
       df <- df |>
+        dplyr::arrange(.data[[x_var]]) |>
         dplyr::mutate(
-          !!x_var := forcats::fct_relabel(
+          !!x_var := paste0(
+            .data[[x_var]], ", N = ", .data[[total_var]], obfuscated
+          ),
+          !!x_var := factor(
             .data[[x_var]],
-            ~ paste0(.x, ", N = ", .data[[total_var]], obfuscated)
+            levels = paste0(
+              lvls,
+              ", N = ",
+              unique(.data[[total_var]]),
+              obfuscated
+            )
           )
         )
 
@@ -522,7 +532,8 @@ bar_plot_2 <- function(df,
         dplyr::select(dplyr::all_of(c(x_var, "ord")))
     }
 
-    df <- dplyr::left_join(df,
+    df <- dplyr::left_join(
+      df,
       df_order,
       by = x_var
     ) |>

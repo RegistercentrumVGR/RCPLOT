@@ -6,11 +6,10 @@
 #' @param df A data frame containing the values for the radar plot.
 #' @param seg Number of segments in the radar chart. If `NULL`, it is
 #' automatically set based on `pretty(y_min:y_max)`.
-#' @param colors A vector of colors used for the radar chart lines. Defaults to
-#' `rcplot::colors_rc_2(nrow(df))`.
-#' @param y_max Maximum value for the radar chart axes. If `NULL`, it is
-#' automatically set to the maximum value in `df` plus one.
-#' @param y_min Minimum value for the radar chart axes. Defaults to `0`.
+#' @param palette_type selects the type of colors used for the groups in the
+#' chart can be one of "qualitative", "sequential" or "diverging"
+#' @param y_lim Minimum and maximum value for the radar chart axes. If `NULL`,
+#' it is automatically set to 0 - the maximum value in the df + 1
 #' @param legend_col The name of the column containing group names for the
 #' legend.
 #'
@@ -23,9 +22,8 @@
 radar_plot <- function(
   df,
   seg = NULL,
-  colors = rcplot::colors_rc_2(nrow(df)),
-  y_max = NULL,
-  y_min = NULL,
+  palette_type = "qualitative",
+  y_lim = NULL,
   legend_col = NULL
 ) {
 
@@ -36,8 +34,10 @@ radar_plot <- function(
   if (!all(sapply(df, is.numeric))) stop("Not all columns are numerical")
 
   # Set y-axis limits if not provided
-  if (is.null(y_max)) y_max <- max(df, na.rm = TRUE) + 1
-  if (is.null(y_min)) y_min <- 0
+  if (all(is.null(y_lim[1]) | is.na(y_lim[1]))) y_lim[1] <- c(0)
+  if (
+    all(is.na(y_lim[2]) | is.na(y_lim[2]))
+  ) y_lim[2] <- max(df, na.rm = TRUE) + 1
 
   # Create min and max rows dynamically
   make_boundary_row <- function(value) {
@@ -57,21 +57,21 @@ radar_plot <- function(
   }
 
   plot_df <- dplyr::bind_rows(
-    make_boundary_row(y_max),
-    make_boundary_row(y_min),
+    make_boundary_row(y_lim[2]),
+    make_boundary_row(y_lim[1]),
     df
   )
 
-  if (is.null(seg)) seg <- length(pretty(y_min:y_max)) - 1
+  if (is.null(seg)) seg <- length(pretty(y_lim[1]:y_lim[2])) - 1
 
   fmsb::radarchart(
     plot_df,
     axistype = 1,
     seg = seg,
-    pcol = colors,
+    pcol = rcplot::colors_rc_2(nrow(df), type = palette_type),
     maxmin = TRUE,
     pty = 16,
-    caxislabels = pretty(y_min:y_max, n = seg),
+    caxislabels = pretty(y_lim[1]:y_lim[2], n = seg),
     plwd = 3,
     plty = 1,
     cglty = 1,
@@ -85,7 +85,7 @@ radar_plot <- function(
       legend = row.names(df),
       bty = "n",
       pch = 15,
-      col = colors,
+      col = rcplot::colors_rc_2(nrow(df), type = palette_type),
       text.col = "black",
       cex = 1.15,
       pt.cex = 3

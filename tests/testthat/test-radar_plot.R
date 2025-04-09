@@ -10,9 +10,11 @@ test_that("radar_plot throws an error for non-numeric columns", {
   expect_error(radar_plot(df), "Not all columns are numerical")
 })
 
-test_that("radar_plot correctly handles y_max and y_min arguments", {
+test_that("radar_plot correctly handles the y_lim argument", {
   df <- data.frame(A = c(1, 2), B = c(3, 4), C = c(5, 6))
-  expect_silent(radar_plot(df, y_max = 10, y_min = 1))
+  expect_silent(radar_plot(df, y_lim = c(1, 10)))
+  expect_silent(radar_plot(df, y_lim = c(NA, 10)))
+  expect_silent(radar_plot(df, y_lim = c(1, NA)))
 })
 
 test_that("radar_plot correctly handles seg parameter", {
@@ -20,10 +22,11 @@ test_that("radar_plot correctly handles seg parameter", {
   expect_silent(radar_plot(df, seg = 4))
 })
 
-test_that("radar_plot uses custom colors", {
+test_that("radar_plot correctly handles the palette_type argument", {
   df <- data.frame(A = c(1, 2), B = c(3, 4), C = c(5, 6))
-  colors <- c("red", "blue")
-  expect_silent(radar_plot(df, colors = colors))
+  expect_silent(radar_plot(df, palette_type = "qualitative"))
+  expect_silent(radar_plot(df, palette_type = "sequential"))
+  expect_silent(radar_plot(df, palette_type = "diverging"))
 })
 
 test_that("radar_plot processes legend_col correctly", {

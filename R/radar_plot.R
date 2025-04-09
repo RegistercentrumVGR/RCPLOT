@@ -11,7 +11,8 @@
 #' @param y_max Maximum value for the radar chart axes. If `NULL`, it is
 #' automatically set to the maximum value in `df` plus one.
 #' @param y_min Minimum value for the radar chart axes. Defaults to `0`.
-#' @param legend_col The name of the column containing group names for the legend.
+#' @param legend_col The name of the column containing group names for the
+#' legend.
 #'
 #' @return A radar chart plotted using `fmsb::radarchart()`.
 #' @export
@@ -40,10 +41,26 @@ radar_plot <- function(
 
   # Create min and max rows dynamically
   make_boundary_row <- function(value) {
-    as.data.frame(matrix(rep(value, ncol(df)), nrow = 1, dimnames = list(NULL, colnames(df))))
+    as.data.frame(
+      matrix(
+        rep(
+          value,
+          ncol(df)
+        ),
+        nrow = 1,
+        dimnames = list(
+          NULL,
+          colnames(df)
+        )
+      )
+    )
   }
 
-  plot_df <- dplyr::bind_rows(make_boundary_row(y_max), make_boundary_row(y_min), df)
+  plot_df <- dplyr::bind_rows(
+    make_boundary_row(y_max),
+    make_boundary_row(y_min),
+    df
+  )
 
   if (is.null(seg)) seg <- length(pretty(y_min:y_max)) - 1
 

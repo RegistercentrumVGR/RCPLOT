@@ -7,9 +7,8 @@
 radar_plot(
   df,
   seg = NULL,
-  colors = rcplot::colors_rc_2(nrow(df)),
-  y_max = NULL,
-  y_min = NULL,
+  palette_type = "qualitative",
+  y_lim = NULL,
   legend_col = NULL
 )
 }
@@ -19,15 +18,14 @@ radar_plot(
 \item{seg}{Number of segments in the radar chart. If \code{NULL}, it is
 automatically set based on \code{pretty(y_min:y_max)}.}
 
-\item{colors}{A vector of colors used for the radar chart lines. Defaults to
-\code{rcplot::colors_rc_2(nrow(df))}.}
+\item{palette_type}{selects the type of colors used for the groups in the
+chart can be one of "qualitative", "sequential" or "diverging"}
 
-\item{y_max}{Maximum value for the radar chart axes. If \code{NULL}, it is
-automatically set to the maximum value in \code{df} plus one.}
+\item{y_lim}{Minimum and maximum value for the radar chart axes. If \code{NULL},
+it is automatically set to 0 - the maximum value in the df + 1}
 
-\item{y_min}{Minimum value for the radar chart axes. Defaults to \code{0}.}
-
-\item{legend_col}{The name of the column containing group names for the legend.}
+\item{legend_col}{The name of the column containing group names for the
+legend.}
 }
 \value{
 A radar chart plotted using \code{fmsb::radarchart()}.

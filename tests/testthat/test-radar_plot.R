@@ -27,7 +27,9 @@ test_that("radar_plot uses custom colors", {
 })
 
 test_that("radar_plot processes legend_col correctly", {
-  df <- tibble::tibble(group = c("G1", "G2"), A = c(3, 4), B = c(5, 6), C = c(7, 8))
+  df <- tibble::tibble(
+    group = c("G1", "G2"), A = c(3, 4), B = c(5, 6), C = c(7, 8)
+  )
   expect_silent(radar_plot(df, legend_col = "group"))
 })
 
@@ -44,4 +46,3 @@ test_that("radar_plot generates expected radar chart", {
 
   vdiffr::expect_doppelganger("basic radar chart", plot_fn)
 })
-

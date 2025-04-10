@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.1.7
+Version: 1.2.0
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -42,7 +42,9 @@ Imports:
     lifecycle,
     plotly,
     forcats,
-    survminer
+    survminer,
+    fmsb,
+    tibble
 Suggests:
     survival,
     roxygen2,

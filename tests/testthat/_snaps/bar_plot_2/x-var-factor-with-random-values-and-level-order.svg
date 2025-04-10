@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' data-engine-version='2.0' width='720.00pt' height='576.00pt' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpMjAuMTZ8NzA4LjY2fDE4LjIxfDU2MS4zMg=='>
+    <rect x='20.16' y='18.21' width='688.50' height='543.11' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMjAuMTZ8NzA4LjY2fDE4LjIxfDU2MS4zMg==)'>
+<rect x='20.16' y='18.21' width='688.50' height='543.11' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='52.44' y='380.29' width='193.64' height='181.04' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2;' />
+<rect x='267.59' y='199.25' width='193.64' height='362.07' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2;' />
+<rect x='482.75' y='18.21' width='193.64' height='543.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<polyline points='20.16,561.32 20.16,18.21 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<text x='15.23' y='563.73' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='15.23' y='382.69' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='15.23' y='201.66' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='15.23' y='20.62' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>3</text>
+<polyline points='17.42,561.32 20.16,561.32 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='17.42,380.29 20.16,380.29 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='17.42,199.25 20.16,199.25 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='17.42,18.21 20.16,18.21 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='20.16,561.32 708.66,561.32 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='149.26,564.06 149.26,561.32 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='364.41,564.06 364.41,561.32 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='579.57,564.06 579.57,561.32 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<text x='149.26' y='569.60' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.71px' lengthAdjust='spacingAndGlyphs'>a, N = 3</text>
+<text x='364.41' y='569.60' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.71px' lengthAdjust='spacingAndGlyphs'>b, N = 4</text>
+<text x='579.57' y='569.60' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.32px' lengthAdjust='spacingAndGlyphs'>c, N = 5</text>
+<text x='364.41' y='12.80' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='189.12px' lengthAdjust='spacingAndGlyphs'>x_var factor with random values and level order</text>
+</g>
+</svg>

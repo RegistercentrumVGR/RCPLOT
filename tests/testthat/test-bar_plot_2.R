@@ -103,5 +103,82 @@ test_that("bar_plot_2 works", {
 
   vdiffr::expect_doppelganger("x_var factor with total with fill", plt)
 
+  df <- data.frame(
+    x = factor(letters[1:3], levels = letters[4:1]),
+    y = 1:3,
+    total = 3:5
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    add_total = TRUE,
+    total_var = "total"
+  )
+
+  vdiffr::expect_doppelganger("x_var factor with not all levels present", plt)
+
+  set.seed(1)
+
+  df <- data.frame(
+    x = factor(sample(letters[1:3]), levels = sample(letters)),
+    y = 1:3,
+    total = 3:5
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    add_total = TRUE,
+    total_var = "total"
+  )
+
+  vdiffr::expect_doppelganger(
+    "x_var factor with random values and level order",
+    plt
+  )
+
+  df <- data.frame(
+    x = factor(letters[1:3], levels = letters[4:1]),
+    y = 1:6,
+    total = 3:5,
+    type = 1:2
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    add_total = TRUE,
+    total_var = "total",
+    fill_var = "type"
+  )
+
+  vdiffr::expect_doppelganger(
+    "x_var factor with fill and not all levels present",
+    plt
+  )
+
+
+  df <- data.frame(
+    x = factor(letters[1:3], levels = letters[4:1]),
+    y = 1:3,
+    total = c(3, 10, 10)
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    add_total = TRUE,
+    total_var = "total"
+  )
+
+  vdiffr::expect_doppelganger(
+    "x_var factor with same total",
+    plt
+  )
 
 })

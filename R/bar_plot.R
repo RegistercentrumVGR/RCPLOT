@@ -463,21 +463,26 @@ bar_plot_2 <- function(df,
     }
 
     if (is.factor(df[[x_var]])) {
-      lvls <- levels(df[[x_var]])
+
       df <- df |>
-        dplyr::arrange(.data[[x_var]]) |>
+        dplyr::arrange(.data[[x_var]])
+
+      m <- match(unique(df[[x_var]]), df[[x_var]])
+      new_lvls <- paste0(
+        unique(df[[x_var]]),
+        ", N = ",
+        df[[total_var]][m],
+        obfuscated
+      )
+
+      df <- df |>
         dplyr::mutate(
           !!x_var := paste0(
             .data[[x_var]], ", N = ", .data[[total_var]], obfuscated
           ),
           !!x_var := factor(
             .data[[x_var]],
-            levels = paste0(
-              lvls,
-              ", N = ",
-              unique(.data[[total_var]]),
-              obfuscated
-            )
+            levels = new_lvls
           )
         )
 

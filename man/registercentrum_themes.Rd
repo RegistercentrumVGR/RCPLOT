@@ -37,8 +37,6 @@ title and subtitle}
 \item{remove_grid}{If grid should be added}
 
 \item{remove_legend}{If legends should be removed}
-
-\item{plot_type}{One of "bar" or "line" controling the major grid lines}
 }
 \value{
 Modified version of \code{\link[=theme_classic]{theme_classic()}}

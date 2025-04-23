@@ -28,6 +28,8 @@ line_plot_2(
   facet_by = NULL,
   color_nrow = 1,
   linetype_nrow = 1,
+  line_size = 1,
+  point_size = 1.5,
   point_shape_var = NULL,
   colors = NULL,
   remove_grid = TRUE,
@@ -83,6 +85,10 @@ graph}
 \item{color_nrow}{the number of rows for the color legend}
 
 \item{linetype_nrow}{the number of rows for the linetype legend}
+
+\item{line_size}{the size of lines}
+
+\item{point_size}{the size of pointe in lines}
 
 \item{point_shape_var}{the name of the variable used to adjust the shapes of
 the points if \code{point} is \code{TRUE}}

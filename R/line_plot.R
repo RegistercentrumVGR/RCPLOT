@@ -203,6 +203,8 @@ line_plot <-
 #' @param color_title the title of the color legend
 #' @param color_nrow the number of rows for the color legend
 #' @param linetype_nrow the number of rows for the linetype legend
+#' @param line_size the size of lines
+#' @param point_size the size of pointe in lines
 #' @param point_shape_var the name of the variable used to adjust the shapes of
 #' the points if `point` is `TRUE`
 #' @param colors manually specified colors to use for fill, only used when
@@ -237,6 +239,8 @@ line_plot_2 <- function(df,
                         facet_by = NULL,
                         color_nrow = 1,
                         linetype_nrow = 1,
+                        line_size = 1,
+                        point_size = 1.5,
                         point_shape_var = NULL,
                         colors = NULL,
                         remove_grid = TRUE,
@@ -350,7 +354,7 @@ line_plot_2 <- function(df,
     data = df,
     mapping = mapping
   ) +
-    ggplot2::geom_line() +
+    ggplot2::geom_line(linewidth = line_size) +
     ggplot2::scale_x_continuous(
       breaks = x_breaks,
       labels = x_labels,
@@ -362,7 +366,7 @@ line_plot_2 <- function(df,
       limits = y_lim
     ) +
     theme_rc(
-      plot_type = "line", text_size = text_size,
+      text_size = text_size,
       remove_grid = remove_grid,
       remove_legend = remove_legend
     ) +
@@ -389,7 +393,7 @@ line_plot_2 <- function(df,
 
   if (point) {
     plt <- plt +
-      ggplot2::geom_point()
+      ggplot2::geom_point(size = point_size)
   }
 
   if (is.null(color_var)) {

@@ -635,7 +635,6 @@ bar_plot_2 <- function(df,
       limits = x_lim
     ) +
     theme_rc(
-      plot_type = "bar",
       text_size = text_size,
       remove_grid = remove_grid,
       remove_legend = remove_legend

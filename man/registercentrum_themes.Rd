@@ -15,8 +15,7 @@ theme_rc(
   subtitle = FALSE,
   title_margin = if (subtitle) 1 else title_size/2,
   remove_grid = TRUE,
-  remove_legend = FALSE,
-  plot_type = "bar"
+  remove_legend = FALSE
 )
 }
 \arguments{

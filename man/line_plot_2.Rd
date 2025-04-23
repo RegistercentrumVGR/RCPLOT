@@ -29,7 +29,8 @@ line_plot_2(
   color_nrow = 1,
   linetype_nrow = 1,
   point_shape_var = NULL,
-  colors = NULL
+  colors = NULL,
+  text_size = 7
 )
 }
 \arguments{
@@ -87,6 +88,8 @@ the points if \code{point} is \code{TRUE}}
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \description{
 Produces a line plot according to Registercentrum graphical standards.

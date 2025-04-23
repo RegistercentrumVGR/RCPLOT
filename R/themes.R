@@ -90,7 +90,7 @@ theme_rc <- function(
       strip.background = element_rect(
         color = "black",
         fill = "white",
-        size = 1,
+        linewidth = 1,
         linetype = "solid"
       )
     )

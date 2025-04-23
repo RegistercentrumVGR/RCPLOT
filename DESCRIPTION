@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -44,7 +44,8 @@ Imports:
     forcats,
     survminer,
     fmsb,
-    tibble
+    tibble,
+    prismatic
 Suggests:
     survival,
     roxygen2,

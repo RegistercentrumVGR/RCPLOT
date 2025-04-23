@@ -20,7 +20,7 @@ bar_plot_2(
   position = "dodge",
   label = FALSE,
   label_vjust = 0.25,
-  label_size = 2.5,
+  label_size = lifecycle::deprecated(),
   x_lab = NULL,
   y_lab = NULL,
   title = ggplot2::waiver(),
@@ -38,7 +38,10 @@ bar_plot_2(
   fill_var_order = NULL,
   reference_line = NULL,
   legend_nrow = 1,
-  colors = NULL
+  colors = NULL,
+  text_size = 7,
+  width = 0.9,
+  label_contrast = FALSE
 )
 }
 \arguments{
@@ -72,7 +75,7 @@ bar_plot_2(
 
 \item{label_vjust}{the vertical adjustment of the labels}
 
-\item{label_size}{the size of the labels}
+\item{label_size}{deprecated}
 
 \item{x_lab}{the label for the x-axis}
 
@@ -119,6 +122,13 @@ in}
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
+
+\item{width}{the width of the bars}
+
+\item{label_contrast}{whether to automatically pick the most contrasting
+color for labels compared to the fill aesthetic}
 }
 \description{
 Produces a bar plot according to Registercentrum graphical standards.

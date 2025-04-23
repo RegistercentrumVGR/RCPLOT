@@ -342,7 +342,7 @@ bar_plot <-
 #' @param position one of `dodge` and `stack`
 #' @param label whether or not to add labels to the plot
 #' @param label_vjust the vertical adjustment of the labels
-#' @param label_size the size of the labels
+#' @param label_size deprecated
 #' @param fill_title the title of the fill legend
 #' @param add_total whether or not to add a total to the name of each bar
 #' @param total_var the name of the total variable used when `add_total` is
@@ -362,6 +362,9 @@ bar_plot <-
 #' @param colors manually specified colors to use for fill, only used when
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
+#' @param width the width of the bars
+#' @param label_contrast whether to automatically pick the most contrasting
+#' color for labels compared to the fill aesthetic
 #' @template plot
 #' @example man/examples/bar_plot_2.R
 #'
@@ -381,7 +384,7 @@ bar_plot_2 <- function(df,
                        position = "dodge",
                        label = FALSE,
                        label_vjust = 0.25,
-                       label_size = 2.5,
+                       label_size = lifecycle::deprecated(),
                        x_lab = NULL,
                        y_lab = NULL,
                        title = ggplot2::waiver(),
@@ -399,7 +402,10 @@ bar_plot_2 <- function(df,
                        fill_var_order = NULL,
                        reference_line = NULL,
                        legend_nrow = 1,
-                       colors = NULL) {
+                       colors = NULL,
+                       text_size = 7,
+                       width = 0.9,
+                       label_contrast = FALSE) {
   checkmate::assert_data_frame(
     df,
     min.rows = 1, min.cols = 1
@@ -433,6 +439,26 @@ bar_plot_2 <- function(df,
     checkmate::check_null(reference_line),
     checkmate::check_numeric(reference_line)
   )
+  checkmate::assert_numeric(
+    width,
+    lower = 0.01,
+    upper = 1,
+    any.missing = FALSE,
+    len = 1
+  )
+  checkmate::assert_logical(
+    label_contrast,
+    len = 1,
+    any.missing = FALSE
+  )
+
+  if (lifecycle::is_present(label_size)) {
+    lifecycle::deprecate_warn(
+      when = "1.2.2",
+      what = "bar_plot_2(label_size)",
+      with = "bar_plot_2(text_size)"
+    )
+  }
 
   caption <- NULL
 
@@ -575,7 +601,7 @@ bar_plot_2 <- function(df,
   }
 
   if (position == "dodge") {
-    pos <- position_dodge(width = 0.9)
+    pos <- position_dodge(width = width)
   } else if (position == "stack") {
     pos <- ggplot2::position_stack(reverse = TRUE)
   }
@@ -595,7 +621,7 @@ bar_plot_2 <- function(df,
       fill = .data[[fill_var_name]]
     )
   ) +
-    ggplot2::geom_bar(stat = "identity", position = pos) +
+    ggplot2::geom_col(position = pos, width = width) +
     ggplot2::scale_y_continuous(
       breaks = y_breaks,
       labels = y_labels,
@@ -607,7 +633,7 @@ bar_plot_2 <- function(df,
       labels = x_labels,
       limits = x_lim
     ) +
-    theme_rc(plot_type = "bar") +
+    theme_rc(plot_type = "bar", text_size = text_size) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab,
@@ -626,25 +652,40 @@ bar_plot_2 <- function(df,
     } else {
       label_pos <- ggplot2::position_dodge(width = 0.9)
     }
+
+    text_mapping <- ggplot2::aes(
+      label = .data[[y_var_text]]
+    )
+
+    if (label_contrast) {
+      text_mapping <- utils::modifyList(
+        text_mapping,
+        ggplot2::aes(
+          color = ggplot2::after_scale(
+            prismatic::best_contrast(
+              .data$fill,
+              c("black", "white")
+            )
+          )
+        )
+      )
+    }
+
     if (horizontal) {
       plt <- plt +
         ggplot2::geom_text(
-          mapping = ggplot2::aes(
-            label = .data[[y_var_text]]
-          ),
+          mapping = text_mapping,
           position = label_pos,
           hjust = label_vjust,
-          size = label_size
+          size = text_size * 5 / 14
         )
     } else {
       plt <- plt +
         ggplot2::geom_text(
-          mapping = ggplot2::aes(
-            label = .data[[y_var_text]]
-          ),
+          mapping = text_mapping,
           position = label_pos,
           vjust = label_vjust,
-          size = label_size
+          size = text_size * 5 / 14
         )
     }
   }

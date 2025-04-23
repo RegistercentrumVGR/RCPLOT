@@ -236,7 +236,8 @@ line_plot_2 <- function(df,
                         color_nrow = 1,
                         linetype_nrow = 1,
                         point_shape_var = NULL,
-                        colors = NULL) {
+                        colors = NULL,
+                        text_size = 7) {
 
   checkmate::assert_data_frame(
     df, min.rows = 1, all.missing = FALSE, min.cols = 1
@@ -360,7 +361,7 @@ line_plot_2 <- function(df,
       labels = y_labels,
       limits = y_lim
     ) +
-    theme_rc(plot_type = "line") +
+    theme_rc(plot_type = "line", text_size = text_size) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab,

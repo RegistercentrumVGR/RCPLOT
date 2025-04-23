@@ -43,7 +43,8 @@ density_plot <- function(df,
                          plotly = FALSE,
                          facet = FALSE,
                          facet_by = NULL,
-                         colors = NULL) {
+                         colors = NULL,
+                         text_size = 7) {
 
   checkmate::assert_data_frame(
     df, min.rows = 1, min.cols = 1, all.missing = FALSE
@@ -128,7 +129,7 @@ density_plot <- function(df,
       y = y_lab,
       title = title
     ) +
-    theme_rc() +
+    theme_rc(text_size = text_size) +
     ggplot2::scale_fill_manual(
       values = fill_colors,
       name = color_title,

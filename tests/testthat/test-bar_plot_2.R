@@ -161,7 +161,6 @@ test_that("bar_plot_2 works", {
     plt
   )
 
-
   df <- data.frame(
     x = factor(letters[1:3], levels = letters[4:1]),
     y = 1:3,
@@ -180,5 +179,82 @@ test_that("bar_plot_2 works", {
     "x_var factor with same total",
     plt
   )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    width = 0.5
+  )
+
+  vdiffr::expect_doppelganger("skinny bars", plt)
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    width = 0.5,
+    text_size = 20,
+    label = TRUE,
+    y_var_text = "total",
+    label_vjust = 1,
+    y_lim = c(0, 5)
+  )
+
+  vdiffr::expect_doppelganger("big text", plt)
+
+  expect_warning(
+    bar_plot_2(
+      df = df,
+      x_var = "x",
+      y_var = "y",
+      width = 0.5,
+      label_size = 20,
+      label = TRUE,
+      y_var_text = "total",
+      label_vjust = -0.25,
+      y_lim = c(0, 5)
+    ),
+    "deprecated"
+  )
+
+  df <- data.frame(
+    x = letters[1:9],
+    y = 1:9,
+    n = 10
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    label = TRUE,
+    y_var_text = "n",
+    label_vjust = 1,
+    label_contrast = TRUE
+  )
+
+  vdiffr::expect_doppelganger("text contrast", plt)
+
+  df <- data.frame(
+    x = rep(letters[1:3], each = 6),
+    y = 1,
+    category = letters[1:6]
+  )
+
+  plt <- bar_plot_2(
+    df = df,
+    x_var = "x",
+    y_var = "y",
+    label = TRUE,
+    y_var_text = "y",
+    label_contrast = TRUE,
+    fill_var = "category",
+    position = "stack",
+    palette_type = "sequential"
+  )
+
+  vdiffr::expect_doppelganger("text contrast 2", plt)
+
 
 })

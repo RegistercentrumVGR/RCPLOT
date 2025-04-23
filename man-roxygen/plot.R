@@ -14,6 +14,7 @@
 #' graph
 #' @param facet whether or not to facet the plots using [ggplot2::facet_wrap]
 #' @param facet_by the name of the variable to facet by
+#' @param text_size passed to [rcplot::theme_rc()]
 #'
 #' @details
 #' The arguments `*_lim`, `*_breaks`, and `*_labels` are passed to

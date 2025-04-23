@@ -42,7 +42,8 @@ bar_plot_2(
   text_size = 7,
   width = 0.9,
   label_contrast = FALSE,
-  remove_grid = TRUE
+  remove_grid = TRUE,
+  remove_legend = FALSE
 )
 }
 \arguments{
@@ -132,6 +133,8 @@ in}
 color for labels compared to the fill aesthetic}
 
 \item{remove_grid}{if grid should be removed}
+
+\item{remove_legend}{if all legends should be removed}
 }
 \description{
 Produces a bar plot according to Registercentrum graphical standards.

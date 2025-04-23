@@ -15,6 +15,7 @@
 #'                                             title and subtitle
 #'
 #' @param remove_grid If grid should be added
+#' @param remove_legend If legends should be removed
 #' @param plot_type One of "bar" or "line" controling the major grid lines
 #' @return Modified version of [theme_classic()]
 #'
@@ -32,6 +33,7 @@ theme_rc <- function(
     subtitle = FALSE,
     title_margin = if (subtitle) 1 else title_size / 2,
     remove_grid = TRUE,
+    remove_legend = FALSE,
     plot_type = "bar") {
   checkmate::assert_choice(plot_type, c("bar", "line"))
 
@@ -104,6 +106,13 @@ theme_rc <- function(
       theme(
         panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_blank()
+      )
+  }
+
+  if (remove_legend) {
+    thm <- thm %+replace%
+      theme(
+        legend.position = "none"
       )
   }
 

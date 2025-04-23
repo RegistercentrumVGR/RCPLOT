@@ -15,6 +15,7 @@ theme_rc(
   subtitle = FALSE,
   title_margin = if (subtitle) 1 else title_size/2,
   remove_grid = TRUE,
+  remove_legend = FALSE,
   plot_type = "bar"
 )
 }
@@ -35,6 +36,8 @@ title and subtitle}
 \item{subtitle}{is a subtitle used in the figure (boolean)?}
 
 \item{remove_grid}{If grid should be added}
+
+\item{remove_legend}{If legends should be removed}
 
 \item{plot_type}{One of "bar" or "line" controling the major grid lines}
 }

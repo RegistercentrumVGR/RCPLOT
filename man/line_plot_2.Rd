@@ -31,6 +31,7 @@ line_plot_2(
   point_shape_var = NULL,
   colors = NULL,
   remove_grid = TRUE,
+  remove_legend = FALSE,
   text_size = 7
 )
 }
@@ -91,6 +92,8 @@ the points if \code{point} is \code{TRUE}}
 \code{colors_rc_2(9, "qualitative")}}
 
 \item{remove_grid}{if gridlines should be removed}
+
+\item{remove_legend}{if all legends should be removed}
 
 \item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }

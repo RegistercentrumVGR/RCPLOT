@@ -366,6 +366,7 @@ bar_plot <-
 #' @param label_contrast whether to automatically pick the most contrasting
 #' color for labels compared to the fill aesthetic
 #' @param remove_grid if grid should be removed
+#' @param remove_legend if all legends should be removed
 #' @template plot
 #' @example man/examples/bar_plot_2.R
 #'
@@ -407,7 +408,8 @@ bar_plot_2 <- function(df,
                        text_size = 7,
                        width = 0.9,
                        label_contrast = FALSE,
-                       remove_grid = TRUE) {
+                       remove_grid = TRUE,
+                       remove_legend = FALSE) {
   checkmate::assert_data_frame(
     df,
     min.rows = 1, min.cols = 1
@@ -426,6 +428,7 @@ bar_plot_2 <- function(df,
   checkmate::assert_choice(position, c("dodge", "stack"))
   checkmate::assert_logical(label, len = 1, any.missing = FALSE)
   checkmate::assert_logical(remove_grid, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(remove_legend, len = 1, any.missing = FALSE)
   checkmate::assert_choice(
     palette_type, c("qualitative", "sequential", "diverging")
   )
@@ -634,7 +637,8 @@ bar_plot_2 <- function(df,
     theme_rc(
       plot_type = "bar",
       text_size = text_size,
-      remove_grid = remove_grid
+      remove_grid = remove_grid,
+      remove_legend = remove_legend
     ) +
     ggplot2::labs(
       x = x_lab,

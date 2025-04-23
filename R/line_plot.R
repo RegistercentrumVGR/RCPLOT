@@ -209,6 +209,7 @@ line_plot <-
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
 #' @param remove_grid if gridlines should be removed
+#' @param remove_legend if all legends should be removed
 #' @template plot
 #' @example man/examples/line_plot_2.R
 #'
@@ -239,6 +240,7 @@ line_plot_2 <- function(df,
                         point_shape_var = NULL,
                         colors = NULL,
                         remove_grid = TRUE,
+                        remove_legend = FALSE,
                         text_size = 7) {
   checkmate::assert_data_frame(
     df,
@@ -256,6 +258,7 @@ line_plot_2 <- function(df,
   )
   checkmate::assert_logical(point, len = 1, any.missing = FALSE)
   checkmate::assert_logical(remove_grid, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(remove_legend, len = 1, any.missing = FALSE)
   checkmate::assert_choice(
     palette_type, c("qualitative", "sequential", "diverging")
   )
@@ -360,7 +363,8 @@ line_plot_2 <- function(df,
     ) +
     theme_rc(
       plot_type = "line", text_size = text_size,
-      remove_grid = remove_grid
+      remove_grid = remove_grid,
+      remove_legend = remove_legend
     ) +
     ggplot2::labs(
       x = x_lab,

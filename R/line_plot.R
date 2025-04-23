@@ -208,6 +208,7 @@ line_plot <-
 #' @param colors manually specified colors to use for fill, only used when
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
+#' @param remove_grid if gridlines should be removed
 #' @template plot
 #' @example man/examples/line_plot_2.R
 #'
@@ -237,10 +238,11 @@ line_plot_2 <- function(df,
                         linetype_nrow = 1,
                         point_shape_var = NULL,
                         colors = NULL,
+                        remove_grid = TRUE,
                         text_size = 7) {
-
   checkmate::assert_data_frame(
-    df, min.rows = 1, all.missing = FALSE, min.cols = 1
+    df,
+    min.rows = 1, all.missing = FALSE, min.cols = 1
   )
   checkmate::assert_choice(x_var, names(df))
   checkmate::assert_choice(y_var, names(df))
@@ -253,6 +255,7 @@ line_plot_2 <- function(df,
     checkmate::check_null(color_var)
   )
   checkmate::assert_logical(point, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(remove_grid, len = 1, any.missing = FALSE)
   checkmate::assert_choice(
     palette_type, c("qualitative", "sequential", "diverging")
   )
@@ -279,16 +282,13 @@ line_plot_2 <- function(df,
   # an ugly solution. This solution also means we don't have to specify "name"
   # in the scale_*_*-functions to change the legend titles.
   if (!is.null(color_var)) {
-
     if (!is.null(color_title)) {
       df <- dplyr::rename(df, !!color_title := color_var)
 
       color_var_name <- color_title
-
     } else {
       color_var_name <- color_var
     }
-
   } else {
     df <- dplyr::mutate(df, dummy_color_var = "1")
     color_var_name <- "dummy_color_var"
@@ -301,12 +301,10 @@ line_plot_2 <- function(df,
   )
 
   if (!is.null(linetype_var)) {
-
     if (!is.null(linetype_title)) {
       df <- dplyr::rename(df, !!linetype_title := linetype_var)
 
       linetype_var_name <- linetype_title
-
     } else {
       linetype_var_name <- linetype_var
     }
@@ -317,7 +315,6 @@ line_plot_2 <- function(df,
         linetype = .data[[linetype_var_name]]
       )
     )
-
   }
 
   if (!is.null(point_shape_var)) {
@@ -361,7 +358,10 @@ line_plot_2 <- function(df,
       labels = y_labels,
       limits = y_lim
     ) +
-    theme_rc(plot_type = "line", text_size = text_size) +
+    theme_rc(
+      plot_type = "line", text_size = text_size,
+      remove_grid = remove_grid
+    ) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab,
@@ -409,5 +409,4 @@ line_plot_2 <- function(df,
   }
 
   return(plt)
-
 }

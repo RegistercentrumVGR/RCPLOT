@@ -27,6 +27,7 @@
 #' @param colors manually specified colors to use for fill, only used when
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
+#' @param remove_grid if grid should be removed
 #' @param text_size passed to [rcplot::theme_rc()]
 #' @example man/examples/box_plot.R
 #'
@@ -54,6 +55,7 @@ box_plot <- function(
     fill_title = NULL,
     palette_type = "qualitative",
     colors = NULL,
+    remove_grid = TRUE,
     text_size = 7) {
   # Warnings
   checkmate::assert_data_frame(
@@ -70,6 +72,7 @@ box_plot <- function(
   checkmate::assert_choice(
     palette_type, c("qualitative", "sequential", "diverging")
   )
+  checkmate::assert_logical(remove_grid, len = 1, any.missing = FALSE)
 
   if (add_total) {
     checkmate::assert_choice(total_col, names(df))
@@ -108,7 +111,6 @@ box_plot <- function(
     } else {
       fill_var_name <- fill_var
     }
-
   } else {
     df <- dplyr::mutate(df, dummy_fill_var = "1")
     fill_var_name <- "dummy_fill_var"
@@ -151,7 +153,10 @@ box_plot <- function(
       y = y_lab,
       title = title
     ) +
-    rcplot::theme_rc(text_size = text_size) +
+    rcplot::theme_rc(
+      text_size = text_size,
+      remove_grid = remove_grid
+    ) +
     ggplot2::scale_fill_manual(
       values = fill_colors,
       name = fill_title

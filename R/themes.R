@@ -13,6 +13,8 @@
 #'   `axis.text.x = element_text(angle = axis_text_angle)`
 #' @param text_size,title_size,subtitle_size Text size for most text,
 #'                                             title and subtitle
+#'
+#' @param remove_grid If grid should be added
 #' @param plot_type One of "bar" or "line" controling the major grid lines
 #' @return Modified version of [theme_classic()]
 #'
@@ -29,6 +31,7 @@ theme_rc <- function(
     title_hjust = 0.5,
     subtitle = FALSE,
     title_margin = if (subtitle) 1 else title_size / 2,
+    remove_grid = TRUE,
     plot_type = "bar") {
   checkmate::assert_choice(plot_type, c("bar", "line"))
 
@@ -95,7 +98,8 @@ theme_rc <- function(
       )
     )
 
-  if (plot_type == "bar") {
+
+  if (remove_grid) {
     thm <- thm %+replace%
       theme(
         panel.grid.major.y = element_blank(),

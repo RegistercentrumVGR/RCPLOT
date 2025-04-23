@@ -14,6 +14,7 @@ theme_rc(
   title_hjust = 0.5,
   subtitle = FALSE,
   title_margin = if (subtitle) 1 else title_size/2,
+  remove_grid = TRUE,
   plot_type = "bar"
 )
 }
@@ -32,6 +33,8 @@ title and subtitle}
 \verb{plot.title = element_text(hjust = title_hjust, margin = margin(b = title_margin)}}
 
 \item{subtitle}{is a subtitle used in the figure (boolean)?}
+
+\item{remove_grid}{If grid should be added}
 
 \item{plot_type}{One of "bar" or "line" controling the major grid lines}
 }

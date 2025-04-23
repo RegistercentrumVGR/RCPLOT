@@ -41,7 +41,8 @@ bar_plot_2(
   colors = NULL,
   text_size = 7,
   width = 0.9,
-  label_contrast = FALSE
+  label_contrast = FALSE,
+  remove_grid = TRUE
 )
 }
 \arguments{
@@ -129,6 +130,8 @@ in}
 
 \item{label_contrast}{whether to automatically pick the most contrasting
 color for labels compared to the fill aesthetic}
+
+\item{remove_grid}{if grid should be removed}
 }
 \description{
 Produces a bar plot according to Registercentrum graphical standards.

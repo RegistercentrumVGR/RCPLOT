@@ -30,6 +30,7 @@ line_plot_2(
   linetype_nrow = 1,
   point_shape_var = NULL,
   colors = NULL,
+  remove_grid = TRUE,
   text_size = 7
 )
 }
@@ -88,6 +89,8 @@ the points if \code{point} is \code{TRUE}}
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{remove_grid}{if gridlines should be removed}
 
 \item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }

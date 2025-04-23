@@ -27,6 +27,7 @@
 #' @param colors manually specified colors to use for fill, only used when
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
+#' @param text_size passed to [rcplot::theme_rc()]
 #' @example man/examples/box_plot.R
 #'
 #' @export
@@ -52,7 +53,8 @@ box_plot <- function(
     total_col = "total",
     fill_title = NULL,
     palette_type = "qualitative",
-    colors = NULL) {
+    colors = NULL,
+    text_size = 7) {
   # Warnings
   checkmate::assert_data_frame(
     df,
@@ -149,7 +151,7 @@ box_plot <- function(
       y = y_lab,
       title = title
     ) +
-    rcplot::theme_rc() +
+    rcplot::theme_rc(text_size = text_size) +
     ggplot2::scale_fill_manual(
       values = fill_colors,
       name = fill_title

@@ -25,7 +25,8 @@ scatter_plot(
   plotly = FALSE,
   facet = FALSE,
   facet_by = NULL,
-  colors = NULL
+  colors = NULL,
+  text_size = 7
 )
 }
 \arguments{
@@ -74,6 +75,8 @@ graph}
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }
 \description{
 Produce a scatter plot according to Registercentrum graphical standards

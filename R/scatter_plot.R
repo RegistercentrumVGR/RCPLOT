@@ -36,7 +36,8 @@ scatter_plot <- function(df,
                          plotly = FALSE,
                          facet = FALSE,
                          facet_by = NULL,
-                         colors = NULL) {
+                         colors = NULL,
+                         text_size = 7) {
 
 
   checkmate::assert_data_frame(
@@ -133,7 +134,7 @@ scatter_plot <- function(df,
       labels = x_labels,
       limits = x_lim
     ) +
-    theme_rc(plot_type = "line") +
+    theme_rc(plot_type = "line", text_size = text_size) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab,

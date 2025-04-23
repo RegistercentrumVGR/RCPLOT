@@ -27,6 +27,7 @@ box_plot(
   fill_title = NULL,
   palette_type = "qualitative",
   colors = NULL,
+  remove_grid = TRUE,
   text_size = 7
 )
 }
@@ -77,6 +78,8 @@ box_plot(
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{remove_grid}{if grid should be removed}
 
 \item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }

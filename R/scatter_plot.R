@@ -9,6 +9,7 @@
 #' @param color_title the title of the color legend
 #' @param shape_title the title of the shape legend
 #' @param colors manually specified colors to use for fill, only used when
+#' @param remove_grid if gridlines should be removed
 #' `palette_type` is `qualitative`, must be subset of
 #' `colors_rc_2(9, "qualitative")`
 #' @template plot
@@ -37,11 +38,11 @@ scatter_plot <- function(df,
                          facet = FALSE,
                          facet_by = NULL,
                          colors = NULL,
+                         remove_grid = FALSE,
                          text_size = 7) {
-
-
   checkmate::assert_data_frame(
-    df, min.rows = 1, min.cols = 1, all.missing = FALSE
+    df,
+    min.rows = 1, min.cols = 1, all.missing = FALSE
   )
   checkmate::assert_choice(x_var, names(df))
   checkmate::assert_choice(y_var, names(df))
@@ -58,6 +59,7 @@ scatter_plot <- function(df,
   )
   checkmate::assert_logical(plotly, len = 1, any.missing = FALSE)
   checkmate::assert_logical(facet, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(remove_grid, len = 1, any.missing = FALSE)
 
   if (facet) {
     checkmate::assert_choice(facet_by, names(df))
@@ -78,7 +80,6 @@ scatter_plot <- function(df,
     } else {
       color_var_name <- color_var
     }
-
   } else {
     df <- dplyr::mutate(df, dummy_color_var = "1")
     color_var_name <- "dummy_color_var"
@@ -109,7 +110,6 @@ scatter_plot <- function(df,
         shape = .data[[shape_var_name]]
       )
     )
-
   }
 
   if (!is.null(colors) && palette_type == "qualitative") {
@@ -134,7 +134,7 @@ scatter_plot <- function(df,
       labels = x_labels,
       limits = x_lim
     ) +
-    theme_rc(plot_type = "line", text_size = text_size) +
+    theme_rc(text_size = text_size, remove_grid = remove_grid) +
     ggplot2::labs(
       x = x_lab,
       y = y_lab,
@@ -169,5 +169,4 @@ scatter_plot <- function(df,
   }
 
   return(plt)
-
 }

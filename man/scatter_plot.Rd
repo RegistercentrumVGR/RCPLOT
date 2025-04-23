@@ -26,6 +26,7 @@ scatter_plot(
   facet = FALSE,
   facet_by = NULL,
   colors = NULL,
+  remove_grid = FALSE,
   text_size = 7
 )
 }
@@ -72,7 +73,9 @@ graph}
 
 \item{facet_by}{the name of the variable to facet by}
 
-\item{colors}{manually specified colors to use for fill, only used when
+\item{colors}{manually specified colors to use for fill, only used when}
+
+\item{remove_grid}{if gridlines should be removed
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
 

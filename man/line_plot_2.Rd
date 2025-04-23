@@ -28,8 +28,12 @@ line_plot_2(
   facet_by = NULL,
   color_nrow = 1,
   linetype_nrow = 1,
+  line_size = 1,
+  point_size = 1.5,
   point_shape_var = NULL,
   colors = NULL,
+  remove_grid = TRUE,
+  remove_legend = FALSE,
   text_size = 7
 )
 }
@@ -82,12 +86,20 @@ graph}
 
 \item{linetype_nrow}{the number of rows for the linetype legend}
 
+\item{line_size}{the size of lines}
+
+\item{point_size}{the size of pointe in lines}
+
 \item{point_shape_var}{the name of the variable used to adjust the shapes of
 the points if \code{point} is \code{TRUE}}
 
 \item{colors}{manually specified colors to use for fill, only used when
 \code{palette_type} is \code{qualitative}, must be subset of
 \code{colors_rc_2(9, "qualitative")}}
+
+\item{remove_grid}{if gridlines should be removed}
+
+\item{remove_legend}{if all legends should be removed}
 
 \item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
 }

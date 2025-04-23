@@ -626,7 +626,7 @@ bar_plot_2 <- function(df,
       breaks = y_breaks,
       labels = y_labels,
       limits = y_lim,
-      expand = c(0, 0)
+      expand = ggplot2::expansion(mult = c(0, 0.05))
     ) +
     ggplot2::scale_x_discrete(
       breaks = x_breaks,

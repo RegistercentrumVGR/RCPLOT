@@ -43,7 +43,8 @@ bar_plot_2(
   width = 0.9,
   label_contrast = FALSE,
   remove_grid = TRUE,
-  remove_legend = FALSE
+  remove_legend = FALSE,
+  labels_both_sides = FALSE
 )
 }
 \arguments{
@@ -135,6 +136,8 @@ color for labels compared to the fill aesthetic}
 \item{remove_grid}{if grid should be removed}
 
 \item{remove_legend}{if all legends should be removed}
+
+\item{labels_both_sides}{if both axis should have labels}
 }
 \description{
 Produces a bar plot according to Registercentrum graphical standards.

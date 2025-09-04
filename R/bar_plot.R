@@ -367,6 +367,7 @@ bar_plot <-
 #' color for labels compared to the fill aesthetic
 #' @param remove_grid if grid should be removed
 #' @param remove_legend if all legends should be removed
+#' @param labels_both_sides if both axis should have labels
 #' @template plot
 #' @example man/examples/bar_plot_2.R
 #'
@@ -409,7 +410,8 @@ bar_plot_2 <- function(df,
                        width = 0.9,
                        label_contrast = FALSE,
                        remove_grid = TRUE,
-                       remove_legend = FALSE) {
+                       remove_legend = FALSE,
+                       labels_both_sides = FALSE) {
   checkmate::assert_data_frame(
     df,
     min.rows = 1, min.cols = 1
@@ -614,6 +616,12 @@ bar_plot_2 <- function(df,
     fill_colors <- colors_rc_2(n = n, type = palette_type)
   }
 
+  if (labels_both_sides) {
+    second_axis <- ggplot2::dup_axis()
+  } else {
+    second_axis <- ggplot2::waiver()
+  }
+
   plt <- ggplot2::ggplot(
     data = df,
     mapping = ggplot2::aes(
@@ -627,7 +635,8 @@ bar_plot_2 <- function(df,
       breaks = y_breaks,
       labels = y_labels,
       limits = y_lim,
-      expand = ggplot2::expansion(mult = c(0, 0.05))
+      expand = ggplot2::expansion(mult = c(0, 0.05)),
+      sec.axis = second_axis
     ) +
     ggplot2::scale_x_discrete(
       breaks = x_breaks,

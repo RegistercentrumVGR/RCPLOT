@@ -257,7 +257,7 @@ test_that("bar_plot_2 works", {
   vdiffr::expect_doppelganger("text contrast 2", plt)
 
   df <- data.frame(y = c(0, 0.1, 0.3, 0.4),
-                   x = c(1,2,3,4))
+                   x = c(1, 2, 3, 4))
 
   plt <- rcplot::bar_plot_2(df,
                             x_var = "x",

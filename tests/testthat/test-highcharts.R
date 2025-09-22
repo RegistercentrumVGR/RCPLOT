@@ -209,6 +209,42 @@ test_that("add_y_axis works", {
 
 })
 
+test_that("plot_highcharts works", {
+
+  df <- data.frame(
+    x = "a",
+    y = 1
+  )
+
+  # Handles length 1 data correctly
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y"),
+    title = "",
+    group_vars = NULL,
+    y_lim = NULL,
+    y_breaks = NULL,
+    type = "column",
+    other_vars = NULL
+  ) |>
+    jsonlite::toJSON(auto_unbox = TRUE) |>
+    as.character() |>
+    expect_equal(
+      paste0(
+        '{',
+        '"title":{"text":""},',
+        '"chart":{"type":"column"},',
+        '"xAxis":{"categories":["a"]},',
+        '"series":[{"data":[1],"name":"","color":"#0072B2"}],',
+        '"yAxis":{"labels":{"format":"{value}"}},',
+        '"tooltip":{"pointFormat":"<b>{point.y}<\\/b>"}',
+        '}'
+      )
+    )
+
+})
+
 test_that("bar_plot_highcharts works", {
 
   df <- data.frame(

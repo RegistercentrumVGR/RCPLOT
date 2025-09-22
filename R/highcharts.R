@@ -126,8 +126,8 @@ box_plot_highcharts <- function(df,
 #' Create a config for a highchart plot
 #'
 #' @param df the data.frame to plot
-#' @param x_var the name of the x variable
-#' @param y_var the name of the y variable
+#' @param x_var the name of the x variable'
+#' @param vars a named list used to rename variables to proper highcharts keys
 #' @param title the title of plot
 #' @param group_vars the variables indicating a series to plot
 #' @param y_lim limits for the y-axis
@@ -137,6 +137,7 @@ box_plot_highcharts <- function(df,
 #' @param type the type of graph
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
+#' @param y_var the name of the y variable
 #'
 #' @return highcharts config
 #' @export
@@ -369,7 +370,7 @@ make_series <- function(df,
       dplyr::group_map(
         ~ c(
           list(
-            data = .x$y,
+            data = I(.x$y),
             name = .y$series_var,
             color = .y$color
           )

@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.4.0
+Version: 1.5.0
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -45,12 +45,14 @@ Imports:
     survminer,
     fmsb,
     tibble,
-    prismatic
+    prismatic,
+    purrr
 Suggests:
     survival,
     roxygen2,
     testthat (>= 3.0.0),
     vdiffr,
-    htmltools
+    htmltools,
+    jsonlite
 Config/testthat/edition: 3
 Remotes: RegistercentrumVGR/RCStat

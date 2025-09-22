@@ -146,10 +146,12 @@ test_that("add_y_axis works", {
     jsonlite::toJSON(auto_unbox = TRUE) |>
     as.character() |>
     expect_equal(
-      "{
-      \"chart\":{\"type\":\"line\"}
-      ,\"yAxis\":{\"labels\":{\"format\":\"{value}\"}}
-      }"
+      paste0(
+        '{',
+      '\"chart\":{\"type\":\"line\"}',
+      ',\"yAxis\":{\"labels\":{\"format\":\"{value}\"}}',
+      '}'
+      )
     )
 
   add_y_axis(list(), y_lim = c(0, 1)) |>

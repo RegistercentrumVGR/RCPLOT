@@ -368,6 +368,9 @@ make_series <- function(df,
                         proportion = FALSE,
                         scale_percentage = TRUE) {
 
+  checkmate::assert_list(vars, names = "named")
+  checkmate::assert_subset(unlist(vars), names(df))
+
   tmp <- df |>
     dplyr::mutate(
       dplyr::across(

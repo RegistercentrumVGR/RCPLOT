@@ -14,7 +14,9 @@ bar_plot_highcharts <- function(df,
                                 y_breaks = NULL,
                                 proportion = FALSE,
                                 scale_percentage = TRUE,
-                                other_vars = NULL) {
+                                other_vars = NULL,
+                                x_lab = NULL,
+                                y_lab = NULL) {
 
   type <- "column"
 
@@ -30,7 +32,9 @@ bar_plot_highcharts <- function(df,
     scale_percentage = scale_percentage,
     type = type,
     other_vars = other_vars,
-    horizontal = horizontal
+    horizontal = horizontal,
+    x_lab = x_lab,
+    y_lab = y_lab
   )
 
   stacking <- switch(
@@ -65,7 +69,9 @@ line_plot_highcharts <- function(df,
                                  y_breaks = NULL,
                                  proportion = FALSE,
                                  scale_percentage = TRUE,
-                                 other_vars = NULL) {
+                                 other_vars = NULL,
+                                 x_lab = NULL,
+                                 y_lab = NULL) {
 
   out <- plot_highcharts(
     df = df,
@@ -78,7 +84,9 @@ line_plot_highcharts <- function(df,
     proportion = proportion,
     scale_percentage = scale_percentage,
     type = "line",
-    other_vars = other_vars
+    other_vars = other_vars,
+    x_lab = x_lab,
+    y_lab = y_lab
   )
 
   return(out)
@@ -98,7 +106,9 @@ box_plot_highcharts <- function(df,
                                 title = "",
                                 y_lim = NULL,
                                 y_breaks = NULL,
-                                other_vars = NULL) {
+                                other_vars = NULL,
+                                x_lab = NULL,
+                                y_lab = NULL) {
 
   out <- plot_highcharts(
     df = df,
@@ -116,7 +126,9 @@ box_plot_highcharts <- function(df,
     y_breaks = y_breaks,
     type = "boxplot",
     other_vars = other_vars,
-    horizontal = horizontal
+    horizontal = horizontal,
+    x_lab = x_lab,
+    y_lab = y_lab
   )
 
   return(out)
@@ -138,6 +150,8 @@ box_plot_highcharts <- function(df,
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
 #' @param y_var the name of the y variable
+#' @param x_lab the title of the x axis
+#' @param y_lab the title of the y axis
 #'
 #' @return highcharts config
 #' @export
@@ -152,7 +166,9 @@ plot_highcharts <- function(df,
                             scale_percentage = FALSE,
                             type,
                             other_vars,
-                            horizontal = FALSE) {
+                            horizontal = FALSE,
+                            x_lab = NULL,
+                            y_lab = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -175,14 +191,23 @@ plot_highcharts <- function(df,
     chart <- list(type = type)
   }
 
+  x_axis <- list(
+    categories = I(as.character(unique(df[[x_var]])))
+  )
+
+  if (!is.null(x_lab)) {
+    x_axis <- c(
+      x_axis,
+      list(title = list(text = x_lab))
+    )
+  }
+
   out <- list(
     title = list(
       text = title
     ),
     chart = chart,
-    xAxis = list(
-      categories = I(as.character(unique(df[[x_var]])))
-    ),
+    xAxis = x_axis,
     series = I(
       make_series(
         df = df,
@@ -196,7 +221,7 @@ plot_highcharts <- function(df,
   )
 
   out <- out |>
-    add_y_axis(y_lim, y_breaks, proportion) |>
+    add_y_axis(y_lim, y_breaks, proportion, y_lab) |>
     add_tooltip(
       proportion = proportion,
       group_vars = group_vars,
@@ -212,7 +237,8 @@ plot_highcharts <- function(df,
 add_y_axis <- function(out,
                        y_lim = NULL,
                        y_breaks = NULL,
-                       proportion = FALSE) {
+                       proportion = FALSE,
+                       y_lab = NULL) {
   y_axis <- c()
 
   if (!is.null(y_lim)) {
@@ -227,6 +253,15 @@ add_y_axis <- function(out,
       y_axis,
       list(
         tickPositions = y_breaks
+      )
+    )
+  }
+
+  if (!is.null(y_lab)) {
+    y_axis <- c(
+      y_axis,
+      list(
+        title = list(text = y_lab)
       )
     )
   }

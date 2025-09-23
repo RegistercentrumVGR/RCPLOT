@@ -207,6 +207,23 @@ test_that("add_y_axis works", {
       )
     )
 
+  add_y_axis(
+    list(),
+    y_lab = "Hello World!"
+  ) |>
+    expect_equal(
+      list(
+        yAxis = list(
+          title = list(
+            text = "Hello World!"
+          ),
+          labels = list(
+            format = "{value}"
+          )
+        )
+      )
+    )
+
 })
 
 test_that("plot_highcharts works", {
@@ -361,7 +378,8 @@ test_that("bar_plot_highcharts works", {
         Täljare = "n"
       ),
       proportion = TRUE,
-      scale_percentage = TRUE
+      scale_percentage = TRUE,
+      x_lab = "Hello World!"
     ) |>
     expect_snapshot()
 

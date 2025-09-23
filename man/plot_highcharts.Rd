@@ -21,7 +21,9 @@ bar_plot_highcharts(
   y_breaks = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
-  other_vars = NULL
+  other_vars = NULL,
+  x_lab = NULL,
+  y_lab = NULL
 )
 
 line_plot_highcharts(
@@ -34,7 +36,9 @@ line_plot_highcharts(
   y_breaks = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
-  other_vars = NULL
+  other_vars = NULL,
+  x_lab = NULL,
+  y_lab = NULL
 )
 
 plot_highcharts(
@@ -49,10 +53,18 @@ plot_highcharts(
   scale_percentage = FALSE,
   type,
   other_vars,
-  horizontal = FALSE
+  horizontal = FALSE,
+  x_lab = NULL,
+  y_lab = NULL
 )
 
-add_y_axis(out, y_lim = NULL, y_breaks = NULL, proportion = FALSE)
+add_y_axis(
+  out,
+  y_lim = NULL,
+  y_breaks = NULL,
+  proportion = FALSE,
+  y_lab = NULL
+)
 
 add_tooltip(
   out,
@@ -77,7 +89,7 @@ make_series(
 \arguments{
 \item{df}{the data.frame to plot}
 
-\item{x_var}{the name of the x variable}
+\item{x_var}{the name of the x variable'}
 
 \item{y_var}{the name of the y variable}
 
@@ -101,7 +113,13 @@ ggplot2 semantics}
 \item{other_vars}{other variables to include in the tooltip, should be a
 named list where the name will be the key in the tooltip}
 
+\item{x_lab}{the title of the x axis}
+
+\item{y_lab}{the title of the y axis}
+
 \item{color_var}{the name of the color variable}
+
+\item{vars}{a named list used to rename variables to proper highcharts keys}
 
 \item{group_vars}{the variables indicating a series to plot}
 

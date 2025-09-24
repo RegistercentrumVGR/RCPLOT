@@ -28,7 +28,7 @@ Depends:
     R (>= 3.5.0)
 Imports: 
     dplyr,
-    ggplot2,
+    ggplot2 (< 4.0.0),
     gridExtra,
     scales,
     rlang (>= 0.1.2),

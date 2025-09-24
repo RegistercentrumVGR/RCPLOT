@@ -175,7 +175,7 @@ plot_highcharts <- function(df,
     checkmate::assert_subset(unlist(other_vars), names(df))
     checkmate::assert_character(
       unlist(other_vars),
-      pattern = "[a-zA-Z0-9_\\.å-öÅ-Ö]+"
+      pattern = "[a-zA-Z0-9_\\.\u00E5-\u00F6\u00C5-\u00D6]+"
     )
   }
 

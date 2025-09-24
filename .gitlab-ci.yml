@@ -35,7 +35,7 @@ include:
         )">>\
          ${R_HOME}/etc/Rprofile.site
     - Rscript -e 'pak::pak(c("MASS@7.3-60.2", "Matrix@1.6-5", "ggplot2@3.5.2"))'
-    - Rscript -e 'pak::local_install_dev_deps()'
+    - Rscript -e 'pak::local_install_dev_deps(upgrade = FALSE)'
 
 
 pages:

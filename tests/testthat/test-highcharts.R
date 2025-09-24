@@ -254,6 +254,7 @@ test_that("plot_highcharts works", {
         '"chart":{"type":"column"},',
         '"xAxis":{"categories":["a"]},',
         '"series":[{"data":[1],"name":"","color":"#0072B2"}],',
+        '"legend":{"enabled":false},',
         '"yAxis":{"labels":{"format":"{value}"}},',
         '"tooltip":{"pointFormat":"<b>{point.y}<\\/b>"}',
         '}'

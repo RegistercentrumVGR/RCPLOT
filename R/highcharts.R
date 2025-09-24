@@ -220,6 +220,13 @@ plot_highcharts <- function(df,
     )
   )
 
+  if (is.null(group_vars)) {
+    out <- c(
+      out,
+      list(legend = list(enabled = FALSE))
+    )
+  }
+
   out <- out |>
     add_y_axis(y_lim, y_breaks, proportion, y_lab) |>
     add_tooltip(

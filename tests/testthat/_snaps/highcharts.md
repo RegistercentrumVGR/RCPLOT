@@ -185,6 +185,11 @@
       
       
       
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
@@ -230,6 +235,11 @@
       [[1]]$color
       [1] "#0072B2"
       
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
       
       
       $yAxis
@@ -427,6 +437,11 @@
       
       
       
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
@@ -445,7 +460,7 @@
     Code
       bar_plot_highcharts(df, x_var = "county", y_var = "prop", fill_var = "year",
         other_vars = list(Nämnare = "total", Täljare = "n"), proportion = TRUE,
-        scale_percentage = TRUE)
+        scale_percentage = TRUE, x_lab = "Hello World!")
     Output
       $title
       $title$text
@@ -460,6 +475,11 @@
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$title
+      $xAxis$title$text
+      [1] "Hello World!"
+      
       
       
       $series
@@ -573,6 +593,11 @@
       [[1]]$color
       [1] "#0072B2"
       
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
       
       
       $yAxis
@@ -711,6 +736,11 @@
       [[1]]$color
       [1] "#0072B2"
       
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
       
       
       $yAxis

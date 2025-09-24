@@ -147,10 +147,10 @@ test_that("add_y_axis works", {
     as.character() |>
     expect_equal(
       paste0(
-        '{',
-      '\"chart\":{\"type\":\"line\"}',
-      ',\"yAxis\":{\"labels\":{\"format\":\"{value}\"}}',
-      '}'
+        "{",
+        '\"chart\":{\"type\":\"line\"}',
+        ',\"yAxis\":{\"labels\":{\"format\":\"{value}\"}}',
+        "}"
       )
     )
 
@@ -249,7 +249,7 @@ test_that("plot_highcharts works", {
     as.character() |>
     expect_equal(
       paste0(
-        '{',
+        "{",
         '"title":{"text":""},',
         '"chart":{"type":"column"},',
         '"xAxis":{"categories":["a"]},',
@@ -257,7 +257,7 @@ test_that("plot_highcharts works", {
         '"legend":{"enabled":false},',
         '"yAxis":{"labels":{"format":"{value}"}},',
         '"tooltip":{"pointFormat":"<b>{point.y}<\\/b>"}',
-        '}'
+        "}"
       )
     )
 

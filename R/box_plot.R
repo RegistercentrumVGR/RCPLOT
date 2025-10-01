@@ -60,7 +60,7 @@ box_plot <- function(
   # Warnings
   checkmate::assert_data_frame(
     df,
-    min.rows = 1, min.cols = 1, all.missing = FALSE
+    min.rows = 1, min.cols = 1
   )
   checkmate::assert_choice(x_var, names(df))
   checkmate::assert_choice(y_var, names(df))

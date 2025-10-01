@@ -48,4 +48,15 @@ test_that("line_plot_2 works", {
     )
   })
 
+  df <- df |>
+    dplyr::mutate(obfuscated_reason = NA)
+
+  line_plot_2(
+    df = df,
+    x_var = "category",
+    y_var = "prop",
+    color_var = "unit"
+  ) |>
+    expect_no_error()
+
 })

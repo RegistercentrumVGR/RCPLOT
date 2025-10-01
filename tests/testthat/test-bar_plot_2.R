@@ -276,7 +276,7 @@ test_that("bar_plot_2 works", {
     obfuscated_reason = NA
   )
 
- rcplot::bar_plot_2(
+  rcplot::bar_plot_2(
     df,
     x_var = "x",
     y_var = "y",
@@ -286,6 +286,6 @@ test_that("bar_plot_2 works", {
     remove_grid = FALSE,
     labels_both_sides = TRUE
   ) |>
-   expect_no_error()
+    expect_no_error()
 
 })

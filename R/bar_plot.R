@@ -622,6 +622,8 @@ bar_plot_2 <- function(df,
     second_axis <- ggplot2::waiver()
   }
 
+  expansion <- ifelse(label && label_vjust < 0, 0.1, 0.05)
+
   plt <- ggplot2::ggplot(
     data = df,
     mapping = ggplot2::aes(
@@ -635,7 +637,7 @@ bar_plot_2 <- function(df,
       breaks = y_breaks,
       labels = y_labels,
       limits = y_lim,
-      expand = ggplot2::expansion(mult = c(0, 0.05)),
+      expand = ggplot2::expansion(mult = c(0, expansion)),
       sec.axis = second_axis
     ) +
     ggplot2::scale_x_discrete(

@@ -259,14 +259,14 @@ test_that("bar_plot_2 works", {
   df <- data.frame(y = c(0, 0.1, 0.3, 0.4),
                    x = c(1, 2, 3, 4))
 
-  plt <- rcplot::bar_plot_2(df,
-                            x_var = "x",
-                            y_var = "y",
-                            y_labels = scales::label_percent(),
-                            horizontal = TRUE,
-                            text_size = 12,
-                            remove_grid = FALSE,
-                            labels_both_sides = TRUE)
+  plt <- bar_plot_2(df,
+                    x_var = "x",
+                    y_var = "y",
+                    y_labels = scales::label_percent(),
+                    horizontal = TRUE,
+                    text_size = 12,
+                    remove_grid = FALSE,
+                    labels_both_sides = TRUE)
 
   vdiffr::expect_doppelganger("labels on both sides", plt)
 
@@ -276,7 +276,7 @@ test_that("bar_plot_2 works", {
     obfuscated_reason = NA
   )
 
-  rcplot::bar_plot_2(
+  bar_plot_2(
     df,
     x_var = "x",
     y_var = "y",
@@ -287,5 +287,22 @@ test_that("bar_plot_2 works", {
     labels_both_sides = TRUE
   ) |>
     expect_no_error()
+
+  plt <- bar_plot_2(
+    df |>
+      dplyr::mutate(label = sprintf("%d%%", 100 * y)),
+    x_var = "x",
+    y_var = "y",
+    y_labels = scales::label_percent(),
+    horizontal = TRUE,
+    text_size = 12,
+    remove_grid = FALSE,
+    y_var_text = "label",
+    label = TRUE,
+    label_vjust = -0.25
+  )
+
+  vdiffr::expect_doppelganger("expansion works", plt)
+
 
 })

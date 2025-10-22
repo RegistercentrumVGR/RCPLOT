@@ -146,8 +146,6 @@ line_plot_highcharts <- function(df,
 #' @param title title of the graph
 #' @param y_lim limits of y-axis
 #' @param y_breaks breaks of y_axis
-#' @param proportion if the values are percentages
-#' @param scale_percentage if percentages should the scaled
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
@@ -212,7 +210,7 @@ box_plot_highcharts <- function(df,
 #' @param type the type of graph
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
-#' @param y_var the name of the y variable
+#' @param horizontal if plot should be horizontal
 #' @param x_lab the title of the x axis
 #' @param y_lab the title of the y axis
 #'

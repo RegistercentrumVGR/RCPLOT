@@ -76,6 +76,8 @@ make_series(
 \item{other_vars}{other variables to include in the tooltip, should be a
 named list where the name will be the key in the tooltip}
 
+\item{horizontal}{if plot should be horizontal}
+
 \item{x_lab}{the title of the x axis}
 
 \item{y_lab}{the title of the y axis}
@@ -86,8 +88,6 @@ named list where the name will be the key in the tooltip}
 
 \item{colors}{an optional subset of \code{\link[=colors_rc_2]{colors_rc_2()}} with
 \code{palette_type = "qualitative"} and \code{n = 9} used to manually set colors}
-
-\item{y_var}{the name of the y variable}
 }
 \value{
 highcharts config

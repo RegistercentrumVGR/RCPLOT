@@ -57,10 +57,6 @@ named list where the name will be the key in the tooltip}
 \item{x_lab}{labels on x axis}
 
 \item{y_lab}{labels on y axis}
-
-\item{proportion}{if the values are percentages}
-
-\item{scale_percentage}{if percentages should the scaled}
 }
 \value{
 highcharts config

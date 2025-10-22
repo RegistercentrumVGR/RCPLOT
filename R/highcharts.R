@@ -1,8 +1,26 @@
-#' @describeIn plot_highcharts creates a bar plot
+#' Highchart Bar plot
+#'
+#' creates a bar plot in highchart, outputs the config file
+#'
+#' @param df data
+#' @param x_var x-axis variable
+#' @param y_var y_axis variable
 #' @param fill_var the name of the fill variable
 #' @param horizontal whether or not the bar plot should be horizontal,
 #' @param position whether or not to make the bars stack or dodge according to
 #' ggplot2 semantics
+#' @param title title of the graph
+#' @param y_lim limits of y-axis
+#' @param y_breaks breaks of y_axis
+#' @param proportion if the values are percentages
+#' @param scale_percentage if percentages should the scaled
+#' @param other_vars other variables to include in the tooltip, should be a
+#' named list where the name will be the key in the tooltip
+#' @param x_lab labels on x axis
+#' @param y_lab labels on y axis
+#'
+#' @return highcharts config
+#' @export
 bar_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,
@@ -58,8 +76,26 @@ bar_plot_highcharts <- function(df,
   return(out)
 }
 
-#' @describeIn plot_highcharts creates a line plot
+#' Highchart Line plot
+#'
+#' creates a line plot in highchart, outputs config for highchart
+#'
+#' @param df data
+#' @param x_var x-axis variabel
+#' @param y_var y_axis variabel
 #' @param color_var the name of the color variable
+#' @param title title of the graph
+#' @param y_lim limits of y-axis
+#' @param y_breaks breaks of y_axis
+#' @param proportion if the values are percentages
+#' @param scale_percentage if percentages should the scaled
+#' @param other_vars other variables to include in the tooltip, should be a
+#' named list where the name will be the key in the tooltip
+#' @param x_lab labels on x axis
+#' @param y_lab labels on y axis
+#'
+#' @return highcharts config
+#' @export
 line_plot_highcharts <- function(df,
                                  x_var,
                                  y_var,
@@ -92,7 +128,32 @@ line_plot_highcharts <- function(df,
   return(out)
 
 }
-
+#' Highchart Box plot
+#'
+#' creates highchart box plot, outputs highchart config
+#'
+#' @param df data
+#' @param x_var x-axis variable
+#' @param y_var y_axis variable
+#' @param y_lower the 25% value
+#' @param y_upper the 75% value
+#' @param y_min the minimum value
+#' @param y_max the maximum value
+#' @param fill_var the name of the fill variable
+#' @param horizontal whether or not the bar plot should be horizontal,
+#' @param position whether or not to make the bars stack or dodge according to
+#' ggplot2 semantics
+#' @param title title of the graph
+#' @param y_lim limits of y-axis
+#' @param y_breaks breaks of y_axis
+#' @param other_vars other variables to include in the tooltip, should be a
+#' named list where the name will be the key in the tooltip
+#' @param x_lab labels on x axis
+#' @param y_lab labels on y axis
+#'
+#'
+#' @return highcharts config
+#' @export
 box_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,
@@ -149,7 +210,7 @@ box_plot_highcharts <- function(df,
 #' @param type the type of graph
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
-#' @param y_var the name of the y variable
+#' @param horizontal if plot should be horizontal
 #' @param x_lab the title of the x axis
 #' @param y_lab the title of the y axis
 #'

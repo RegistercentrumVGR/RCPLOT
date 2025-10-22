@@ -3,6 +3,7 @@
 \name{bar_plot_highcharts}
 \alias{bar_plot_highcharts}
 \alias{line_plot_highcharts}
+\alias{box_plot_highcharts}
 \alias{plot_highcharts}
 \alias{add_y_axis}
 \alias{add_tooltip}
@@ -36,6 +37,25 @@ line_plot_highcharts(
   y_breaks = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
+  other_vars = NULL,
+  x_lab = NULL,
+  y_lab = NULL
+)
+
+box_plot_highcharts(
+  df,
+  x_var,
+  y_var,
+  y_lower,
+  y_upper,
+  y_min,
+  y_max,
+  horizontal = FALSE,
+  fill_var = NULL,
+  position = "dodge",
+  title = "",
+  y_lim = NULL,
+  y_breaks = NULL,
   other_vars = NULL,
   x_lab = NULL,
   y_lab = NULL
@@ -143,6 +163,8 @@ Create a config for a highchart plot
 \item \code{bar_plot_highcharts()}: creates a bar plot
 
 \item \code{line_plot_highcharts()}: creates a line plot
+
+\item \code{box_plot_highcharts()}: creates a line plot
 
 \item \code{add_y_axis()}: add the y axis to the config
 

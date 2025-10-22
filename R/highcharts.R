@@ -3,6 +3,7 @@
 #' @param horizontal whether or not the bar plot should be horizontal,
 #' @param position whether or not to make the bars stack or dodge according to
 #' ggplot2 semantics
+#' @export
 bar_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,
@@ -60,6 +61,7 @@ bar_plot_highcharts <- function(df,
 
 #' @describeIn plot_highcharts creates a line plot
 #' @param color_var the name of the color variable
+#' @export
 line_plot_highcharts <- function(df,
                                  x_var,
                                  y_var,
@@ -92,7 +94,8 @@ line_plot_highcharts <- function(df,
   return(out)
 
 }
-
+#' @describeIn plot_highcharts creates a line plot
+#' @export
 box_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,

@@ -21,7 +21,11 @@ plot_highcharts(
   other_vars,
   horizontal = FALSE,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  arrange_by = NULL,
+  arrange_desc = TRUE,
+  arrange_by_group_var = NULL,
+  group_var_order = NULL
 )
 
 add_y_axis(
@@ -49,7 +53,8 @@ make_series(
   colors = NULL,
   other_vars = NULL,
   proportion = FALSE,
-  scale_percentage = TRUE
+  scale_percentage = TRUE,
+  group_var_order = NULL
 )
 }
 \arguments{

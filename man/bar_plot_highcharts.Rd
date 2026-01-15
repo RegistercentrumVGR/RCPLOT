@@ -18,7 +18,11 @@ bar_plot_highcharts(
   scale_percentage = TRUE,
   other_vars = NULL,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  arrange_by = NULL,
+  arrange_desc = TRUE,
+  arrange_by_fill = NULL,
+  fill_var_order = NULL
 )
 }
 \arguments{

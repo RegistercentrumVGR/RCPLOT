@@ -16,7 +16,8 @@ line_plot_highcharts(
   scale_percentage = TRUE,
   other_vars = NULL,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  color_var_order = NULL
 )
 }
 \arguments{

@@ -34,7 +34,11 @@ bar_plot_highcharts <- function(df,
                                 scale_percentage = TRUE,
                                 other_vars = NULL,
                                 x_lab = NULL,
-                                y_lab = NULL) {
+                                y_lab = NULL,
+                                arrange_by = NULL,
+                                arrange_desc = TRUE,
+                                arrange_by_fill = NULL,
+                                fill_var_order = NULL) {
 
   type <- "column"
 
@@ -52,7 +56,11 @@ bar_plot_highcharts <- function(df,
     other_vars = other_vars,
     horizontal = horizontal,
     x_lab = x_lab,
-    y_lab = y_lab
+    y_lab = y_lab,
+    arrange_by = arrange_by,
+    arrange_desc = arrange_desc,
+    arrange_by_group_var = arrange_by_fill,
+    group_var_order = fill_var_order
   )
 
   stacking <- switch(
@@ -107,7 +115,8 @@ line_plot_highcharts <- function(df,
                                  scale_percentage = TRUE,
                                  other_vars = NULL,
                                  x_lab = NULL,
-                                 y_lab = NULL) {
+                                 y_lab = NULL,
+                                 color_var_order = NULL) {
 
   out <- plot_highcharts(
     df = df,
@@ -122,7 +131,8 @@ line_plot_highcharts <- function(df,
     type = "line",
     other_vars = other_vars,
     x_lab = x_lab,
-    y_lab = y_lab
+    y_lab = y_lab,
+    group_var_order = color_var_order
   )
 
   return(out)
@@ -229,7 +239,11 @@ plot_highcharts <- function(df,
                             other_vars,
                             horizontal = FALSE,
                             x_lab = NULL,
-                            y_lab = NULL) {
+                            y_lab = NULL,
+                            arrange_by = NULL,
+                            arrange_desc = TRUE,
+                            arrange_by_group_var = NULL,
+                            group_var_order = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -242,6 +256,18 @@ plot_highcharts <- function(df,
 
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
+
+  if ("obfuscated_reason" %in% names(df) && type %in% c("column", "boxplot")) {
+    df <- df |>
+      dplyr::mutate(
+        dplyr::across(
+          x_var,
+          ~ dplyr::if_else(.data$obfuscated_reason == "N < 15",
+                           paste0(.x, "*"),
+                           paste0(.x))
+          )
+        )
+  }
 
   if (horizontal) {
     chart <- list(
@@ -263,6 +289,31 @@ plot_highcharts <- function(df,
     )
   }
 
+  if (!is.null(arrange_by)) {
+    checkmate::assert_choice(arrange_by, names(df))
+    if (arrange_desc) {
+      df <- df |>
+        dplyr::arrange(dplyr::desc(.data[[arrange_by]]))
+    } else {
+      df <- df |>
+        dplyr::arrange(.data[[arrange_by]])
+    }
+
+    if (!is.null(arrange_by_group_var)) {
+      df <- df |>
+        dplyr::mutate(order = dplyr::if_else(
+          .data[[group_vars]] == arrange_by_group_var,
+          dplyr::row_number(),
+          NA
+        )) |>
+        dplyr::group_by(.data[[x_var]]) |>
+        dplyr::mutate(order = order[!is.na(order)][1]) |>
+        dplyr::ungroup() |>
+        dplyr::arrange(order) |>
+        dplyr::select(-dplyr::all_of("order"))
+    }
+  }
+
   out <- list(
     title = list(
       text = title
@@ -276,10 +327,18 @@ plot_highcharts <- function(df,
         group_vars = group_vars,
         other_vars = other_vars,
         proportion = proportion,
-        scale_percentage = scale_percentage
+        scale_percentage = scale_percentage,
+        group_var_order = group_var_order
       )
     )
   )
+
+  for (s in seq_along(out$series)) {
+    out$series[[s]]$data <- lapply(out$series[[s]]$data, function(x) {
+      if (is.na(x)) NULL else x
+    })
+  }
+
 
   if (is.null(group_vars)) {
     out <- c(
@@ -434,7 +493,8 @@ make_series <- function(df,
                         colors = NULL,
                         other_vars = NULL,
                         proportion = FALSE,
-                        scale_percentage = TRUE) {
+                        scale_percentage = TRUE,
+                        group_var_order = NULL) {
 
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
@@ -466,10 +526,18 @@ make_series <- function(df,
       dplyr::mutate(y = .data$y * 100)
   }
 
+  if (!is.null(group_var_order)) {
+    tmp <- tmp |>
+      dplyr::mutate(dplyr::across(series_var,
+                                  ~ factor(.x, levels = group_var_order)))
+  }
+
   tmp <- tmp |>
     dplyr::group_by(.data$series_var) |>
     dplyr::mutate(color = colors[dplyr::cur_group_id()]) |>
     dplyr::group_by(.data$series_var, .data$color)
+
+  temp <<- tmp
 
   if (length(vars) == 1 && is.null(other_vars)) {
     tmp |>

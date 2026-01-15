@@ -38,7 +38,8 @@ bar_plot_highcharts <- function(df,
                                 arrange_by = NULL,
                                 arrange_desc = TRUE,
                                 arrange_by_fill = NULL,
-                                fill_var_order = NULL) {
+                                fill_var_order = NULL,
+                                color_x_value = NULL) {
 
   type <- "column"
 
@@ -78,6 +79,26 @@ bar_plot_highcharts <- function(df,
         plotOptions = stats::setNames(list(stack), type)
       )
     )
+  }
+
+
+
+  if (!is.null(color_x_value) & is.null(fill_var)) {
+    checkmate::assert_list(color_x_value)
+
+    data <- out$series[[1]]$data
+
+    out$series[[1]]$data <-
+      lapply(seq_along(data), function(i) {
+        key <- as.character(i)
+
+        if (key %in% names(color_x_value)) {
+          list(y = data[[i]], color = color_x_value[[key]])
+        } else {
+          data[[i]]
+        }
+      })
+
   }
 
 
@@ -345,6 +366,11 @@ plot_highcharts <- function(df,
       out,
       list(legend = list(enabled = FALSE))
     )
+  } else {
+    out <- c(
+      out,
+      list(legend = list(reversed = TRUE))
+    )
   }
 
   out <- out |>
@@ -537,8 +563,6 @@ make_series <- function(df,
     dplyr::mutate(color = colors[dplyr::cur_group_id()]) |>
     dplyr::group_by(.data$series_var, .data$color)
 
-  temp <<- tmp
-
   if (length(vars) == 1 && is.null(other_vars)) {
     tmp |>
       dplyr::group_map(
@@ -565,6 +589,5 @@ make_series <- function(df,
         )
       )
   }
-
 
 }

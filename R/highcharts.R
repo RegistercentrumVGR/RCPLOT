@@ -39,7 +39,8 @@ bar_plot_highcharts <- function(df,
                                 arrange_desc = TRUE,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
-                                color_x_value = NULL) {
+                                color_x_value = NULL,
+                                bar_size = NULL) {
 
   type <- "column"
 
@@ -61,7 +62,8 @@ bar_plot_highcharts <- function(df,
     arrange_by = arrange_by,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
-    group_var_order = fill_var_order
+    group_var_order = fill_var_order,
+    size = bar_size
   )
 
   stacking <- switch(
@@ -81,26 +83,20 @@ bar_plot_highcharts <- function(df,
     )
   }
 
-
-
-  if (!is.null(color_x_value) & is.null(fill_var)) {
-    checkmate::assert_list(color_x_value)
-
-    data <- out$series[[1]]$data
-
-    out$series[[1]]$data <-
-      lapply(seq_along(data), function(i) {
-        key <- as.character(i)
-
-        if (key %in% names(color_x_value)) {
-          list(y = data[[i]], color = color_x_value[[key]])
-        } else {
-          data[[i]]
-        }
-      })
-
+  if (!is.null(color_x_value) && is.null(fill_var)) {
+    for (key in names(color_x_value)) {
+      idx <- match(key, out$xAxis$categories)
+      vals <- out$series[[1]]$data
+      if (!is.na(idx)) {
+        checkmate::assert_choice(color_x_value[[key]], colors_rc_3(12))
+        vals[[idx]] <- list(
+          y = vals[[idx]],
+          color = color_x_value[[key]]
+        )
+      }
+    }
+    out$series[[1]]$data <- vals
   }
-
 
   return(out)
 }
@@ -137,7 +133,8 @@ line_plot_highcharts <- function(df,
                                  other_vars = NULL,
                                  x_lab = NULL,
                                  y_lab = NULL,
-                                 color_var_order = NULL) {
+                                 color_var_order = NULL,
+                                 line_size = NULL) {
 
   out <- plot_highcharts(
     df = df,
@@ -153,7 +150,8 @@ line_plot_highcharts <- function(df,
     other_vars = other_vars,
     x_lab = x_lab,
     y_lab = y_lab,
-    group_var_order = color_var_order
+    group_var_order = color_var_order,
+    size = line_size
   )
 
   return(out)
@@ -264,7 +262,8 @@ plot_highcharts <- function(df,
                             arrange_by = NULL,
                             arrange_desc = TRUE,
                             arrange_by_group_var = NULL,
-                            group_var_order = NULL) {
+                            group_var_order = NULL,
+                            size = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -282,33 +281,35 @@ plot_highcharts <- function(df,
     df <- df |>
       dplyr::mutate(
         dplyr::across(
-          x_var,
-          ~ dplyr::if_else(.data$obfuscated_reason == "N < 15",
-                           paste0(.x, "*"),
-                           paste0(.x))
+          dplyr::all_of(x_var),
+          ~ dplyr::if_else(
+            .data$obfuscated_reason == "N < 15",
+            paste0(as.character(.x), "*"),
+            as.character(.x),
+            missing = as.character(.x)
           )
         )
-  }
+      )
 
-  if (horizontal) {
-    chart <- list(
-      type = type,
-      inverted = TRUE
-    )
-  } else {
-    chart <- list(type = type)
-  }
-
-  x_axis <- list(
-    categories = I(as.character(unique(df[[x_var]])))
-  )
-
-  if (!is.null(x_lab)) {
-    x_axis <- c(
-      x_axis,
-      list(title = list(text = x_lab))
-    )
-  }
+    if (any(!is.na(df$obfuscated_reason))) {
+      caption = list(
+        text = paste0("* Indikerar att data inte kan visas pga risk för röjande",
+                      "\neller för lite data."),
+        align = "left",
+        style = list(
+          fontSize = "12px"
+        )
+      )
+    } else {
+      caption = list(
+        text = paste0(" "),
+        align = "left",
+        style = list(
+          fontSize = "12px"
+        )
+      )
+    }
+   }
 
   if (!is.null(arrange_by)) {
     checkmate::assert_choice(arrange_by, names(df))
@@ -335,11 +336,50 @@ plot_highcharts <- function(df,
     }
   }
 
+  if (horizontal) {
+    chart <- list(
+      type = type,
+      inverted = TRUE
+    )
+  } else {
+    chart <- list(
+      type = type,
+      inverted = FALSE
+    )
+  }
+
+  x_axis <- list(
+    categories = I(as.character(unique(df[[x_var]])))
+  )
+
+  if (!is.null(x_lab)) {
+    x_axis <- c(
+      x_axis,
+      list(title = list(text = x_lab))
+    )
+  }
+
+  if (!is.null(size)) {
+    plot_options <- list(
+      series = list(
+        pointWidth = size
+      )
+    )
+  } else {
+    plot_options <- list(
+      series = list(
+        pointWidth = 8
+      )
+    )
+  }
+
   out <- list(
     title = list(
       text = title
     ),
+    plotOptions = plot_options,
     chart = chart,
+    caption = caption,
     xAxis = x_axis,
     series = I(
       make_series(
@@ -509,9 +549,9 @@ add_tooltip <- function(out,
 
 #' @describeIn plot_highcharts converts a data.frame to a highcharts series
 #' representation
-#' @param palette_type passed to [colors_rc_2()]
-#' @param colors an optional subset of [colors_rc_2()] with
-#' `palette_type = "qualitative"` and `n = 9` used to manually set colors
+#' @param palette_type passed to [colors_rc_3()]
+#' @param colors an optional subset of [colors_rc_3()] with
+#' `palette_type = "qualitative"` and `n = 12` used to manually set colors
 make_series <- function(df,
                         vars,
                         group_vars = NULL,
@@ -542,9 +582,9 @@ make_series <- function(df,
     dplyr::rename(unlist(vars))
 
   if (!is.null(colors) && palette_type == "qualitative") {
-    checkmate::assert_subset(colors, colors_rc_2(9))
+    checkmate::assert_subset(colors, colors_rc_3(12))
   } else {
-    colors <- colors_rc_2(dplyr::n_distinct(tmp$series_var), palette_type)
+    colors <- colors_rc_3(dplyr::n_distinct(tmp$series_var), palette_type)
   }
 
   if (proportion && scale_percentage) {
@@ -554,7 +594,7 @@ make_series <- function(df,
 
   if (!is.null(group_var_order)) {
     tmp <- tmp |>
-      dplyr::mutate(dplyr::across(series_var,
+      dplyr::mutate(dplyr::across(.data$series_var,
                                   ~ factor(.x, levels = group_var_order)))
   }
 

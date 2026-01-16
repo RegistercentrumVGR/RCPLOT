@@ -89,10 +89,10 @@ named list where the name will be the key in the tooltip}
 
 \item{out}{intermediate config}
 
-\item{palette_type}{passed to \code{\link[=colors_rc_2]{colors_rc_2()}}}
+\item{palette_type}{passed to \code{\link[=colors_rc_3]{colors_rc_3()}}}
 
-\item{colors}{an optional subset of \code{\link[=colors_rc_2]{colors_rc_2()}} with
-\code{palette_type = "qualitative"} and \code{n = 9} used to manually set colors}
+\item{colors}{an optional subset of \code{\link[=colors_rc_3]{colors_rc_3()}} with
+\code{palette_type = "qualitative"} and \code{n = 12} used to manually set colors}
 }
 \value{
 highcharts config

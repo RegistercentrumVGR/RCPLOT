@@ -22,7 +22,8 @@ bar_plot_highcharts(
   arrange_by = NULL,
   arrange_desc = TRUE,
   arrange_by_fill = NULL,
-  fill_var_order = NULL
+  fill_var_order = NULL,
+  color_x_value = NULL
 )
 }
 \arguments{

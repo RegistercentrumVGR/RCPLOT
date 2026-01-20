@@ -23,7 +23,8 @@ bar_plot_highcharts(
   arrange_desc = TRUE,
   arrange_by_fill = NULL,
   fill_var_order = NULL,
-  color_x_value = NULL
+  color_x_value = NULL,
+  bar_size = 10
 )
 }
 \arguments{
@@ -56,6 +57,18 @@ named list where the name will be the key in the tooltip}
 \item{x_lab}{labels on x axis}
 
 \item{y_lab}{labels on y axis}
+
+\item{arrange_by}{column to sort by}
+
+\item{arrange_desc}{to arrange descending}
+
+\item{arrange_by_fill}{what value in \link{fill_var} that sort be sorted by}
+
+\item{fill_var_order}{what order of \link{fill_Var}}
+
+\item{color_x_value}{columns that should be different color, input as list.}
+
+\item{bar_size}{width of bars}
 }
 \value{
 highcharts config

@@ -87,6 +87,14 @@ named list where the name will be the key in the tooltip}
 
 \item{y_lab}{the title of the y axis}
 
+\item{arrange_by}{column to sort by}
+
+\item{arrange_desc}{if sort is descending}
+
+\item{arrange_by_group_var}{value in \link{group_var} to sort by}
+
+\item{group_var_order}{order of group var}
+
 \item{out}{intermediate config}
 
 \item{palette_type}{passed to \code{\link[=colors_rc_3]{colors_rc_3()}}}

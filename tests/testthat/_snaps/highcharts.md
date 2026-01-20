@@ -13,6 +13,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -22,36 +25,65 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 4 7
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 4
+      
+      [[3]]
+      [1] 7
+      
       
       [[1]]$name
       [1] "A4"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-      [1] 2 5 8
+      [[1]]
+      [1] 2
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 8
+      
       
       [[2]]$name
       [1] "B5"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
       
       [[3]]
       [[3]]$data
-      [1] 3 6 9
+      [[1]]
+      [1] 3
+      
+      [[2]]
+      [1] 6
+      
+      [[3]]
+      [1] 9
+      
       
       [[3]]$name
       [1] "C6"
       
       [[3]]$color
-      [1] "#CC79A7"
+      [1] "#6F45BB"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -78,6 +110,22 @@
       [1] "normal"
       
       
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
       
 
 ---
@@ -95,6 +143,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -104,36 +155,65 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 4 7
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 4
+      
+      [[3]]
+      [1] 7
+      
       
       [[1]]$name
       [1] "A4"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-      [1] 2 5 8
+      [[1]]
+      [1] 2
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 8
+      
       
       [[2]]$name
       [1] "B5"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
       
       [[3]]
       [[3]]$data
-      [1] 3 6 9
+      [[1]]
+      [1] 3
+      
+      [[2]]
+      [1] 6
+      
+      [[3]]
+      [1] 9
+      
       
       [[3]]$name
       [1] "C6"
       
       [[3]]$color
-      [1] "#CC79A7"
+      [1] "#6F45BB"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -151,6 +231,24 @@
       [1] "{series.name}: <b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
+      
 
 ---
 
@@ -166,6 +264,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -175,13 +276,21 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 2 3
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -202,6 +311,24 @@
       [1] "<b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
+      
 
 ---
 
@@ -218,6 +345,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -227,13 +357,27 @@
       $series
       [[1]]
       [[1]]$data
-      [1]   0  25  50  75 100
+      [[1]]
+      [1] 0
+      
+      [[2]]
+      [1] 25
+      
+      [[3]]
+      [1] 50
+      
+      [[4]]
+      [1] 75
+      
+      [[5]]
+      [1] 100
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -254,6 +398,24 @@
       [1] "<b>{point.y}%</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
+      
 
 ---
 
@@ -269,6 +431,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -279,25 +444,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -310,6 +574,24 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
       
       
 
@@ -342,25 +624,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -381,6 +762,24 @@
       [1] "{series.name}: <b>{point.y}%</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
+      
 
 ---
 
@@ -396,6 +795,9 @@
       $chart
       $chart$type
       [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -433,7 +835,7 @@
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -454,6 +856,24 @@
       [1] "<b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
+      
+      
 
 ---
 
@@ -470,6 +890,9 @@
       $chart
       $chart$type
       [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -512,7 +935,7 @@
       [1] "2023"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
@@ -544,8 +967,13 @@
       [1] "2024"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -558,6 +986,24 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption.text
+      [1] " "
+      
+      $caption.align
+      [1] "left"
+      
+      $caption.style
+      $caption.style$fontSize
+      [1] "12px"
       
       
 
@@ -575,6 +1021,9 @@
       $chart$type
       [1] "line"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -585,13 +1034,60 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -612,6 +1108,13 @@
       [1] "<b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
 
 ---
 
@@ -627,6 +1130,9 @@
       $chart$type
       [1] "line"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -637,25 +1143,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -668,6 +1273,13 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
       
       
 
@@ -685,6 +1297,9 @@
       $chart
       $chart$type
       [1] "boxplot"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -734,7 +1349,7 @@
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -809,7 +1424,7 @@
       [1] "a"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
@@ -839,8 +1454,13 @@
       [1] "b"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis

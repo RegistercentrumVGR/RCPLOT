@@ -17,7 +17,8 @@ line_plot_highcharts(
   other_vars = NULL,
   x_lab = NULL,
   y_lab = NULL,
-  color_var_order = NULL
+  color_var_order = NULL,
+  line_size = 8
 )
 }
 \arguments{
@@ -45,6 +46,10 @@ named list where the name will be the key in the tooltip}
 \item{x_lab}{labels on x axis}
 
 \item{y_lab}{labels on y axis}
+
+\item{color_var_order}{order of color vars}
+
+\item{line_size}{size of lines}
 }
 \value{
 highcharts config

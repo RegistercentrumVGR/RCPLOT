@@ -18,6 +18,12 @@
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
+#' @param arrange_by column to sort by
+#' @param arrange_desc to arrange descending
+#' @param arrange_by_fill what value in fill_var that sort be sorted by
+#' @param fill_var_order what order of fill_Var
+#' @param color_x_value columns that should be different color, input as list.
+#' @param bar_size width of bars
 #'
 #' @return highcharts config
 #' @export
@@ -40,9 +46,44 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = NULL) {
+                                bar_size = 10) {
 
   type <- "column"
+
+  caption <- list(
+    text = paste0(" "),
+    align = "left",
+    style = list(
+      fontSize = "12px"
+    )
+  )
+
+  if ("obfuscated_reason" %in% names(df)) {
+    df <- df |>
+      dplyr::mutate(
+        dplyr::across(
+          dplyr::all_of(x_var),
+          ~ dplyr::if_else(
+            .data$obfuscated_reason == "N < 15",
+            paste0(as.character(.x), "*"),
+            as.character(.x),
+            missing = as.character(.x)
+          )
+        )
+      )
+
+    if (any(!is.na(df$obfuscated_reason))) {
+      caption <- list(
+        text = paste0("* Indikerar att data inte ",
+                      "kan visas pga risk f\u00F6r r\u00F6jande",
+                      "\neller f\u00F6r lite data."),
+        align = "left",
+        style = list(
+          fontSize = "12px"
+        )
+      )
+    }
+  }
 
   out <- plot_highcharts(
     df = df,
@@ -62,8 +103,7 @@ bar_plot_highcharts <- function(df,
     arrange_by = arrange_by,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
-    group_var_order = fill_var_order,
-    size = bar_size
+    group_var_order = fill_var_order
   )
 
   stacking <- switch(
@@ -73,30 +113,28 @@ bar_plot_highcharts <- function(df,
   )
 
   if (!is.null(stacking)) {
-    stack <- list(stacking = stacking)
-
     out <- c(
       out,
       list(
-        plotOptions = stats::setNames(list(stack), type)
+        plotOptions = list(
+          column = list(stacking = stacking),
+          series = list(pointWidth = bar_size)
+        )
+      )
+    )
+  } else {
+    out <- c(
+      out,
+      list(
+        plotOptions = list(
+          series = list(pointWidth = bar_size)
+        )
       )
     )
   }
 
-  if (!is.null(color_x_value) && is.null(fill_var)) {
-    for (key in names(color_x_value)) {
-      idx <- match(key, out$xAxis$categories)
-      vals <- out$series[[1]]$data
-      if (!is.na(idx)) {
-        checkmate::assert_choice(color_x_value[[key]], colors_rc_3(12))
-        vals[[idx]] <- list(
-          y = vals[[idx]],
-          color = color_x_value[[key]]
-        )
-      }
-    }
-    out$series[[1]]$data <- vals
-  }
+  out <- c(out,
+           caption = caption)
 
   return(out)
 }
@@ -118,6 +156,8 @@ bar_plot_highcharts <- function(df,
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
+#' @param color_var_order order of color vars
+#' @param line_size size of lines
 #'
 #' @return highcharts config
 #' @export
@@ -134,7 +174,7 @@ line_plot_highcharts <- function(df,
                                  x_lab = NULL,
                                  y_lab = NULL,
                                  color_var_order = NULL,
-                                 line_size = NULL) {
+                                 line_size = 8) {
 
   out <- plot_highcharts(
     df = df,
@@ -150,8 +190,16 @@ line_plot_highcharts <- function(df,
     other_vars = other_vars,
     x_lab = x_lab,
     y_lab = y_lab,
-    group_var_order = color_var_order,
-    size = line_size
+    group_var_order = color_var_order
+  )
+
+  out <- c(
+    out,
+    list(
+      plotOptions = list(
+        series = list(pointWidth = line_size)
+      )
+    )
   )
 
   return(out)
@@ -242,6 +290,10 @@ box_plot_highcharts <- function(df,
 #' @param horizontal if plot should be horizontal
 #' @param x_lab the title of the x axis
 #' @param y_lab the title of the y axis
+#' @param arrange_by column to sort by
+#' @param arrange_desc if sort is descending
+#' @param arrange_by_group_var value in group_var to sort by
+#' @param group_var_order order of group var
 #'
 #' @return highcharts config
 #' @export
@@ -262,8 +314,7 @@ plot_highcharts <- function(df,
                             arrange_by = NULL,
                             arrange_desc = TRUE,
                             arrange_by_group_var = NULL,
-                            group_var_order = NULL,
-                            size = NULL) {
+                            group_var_order = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -276,40 +327,6 @@ plot_highcharts <- function(df,
 
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
-
-  if ("obfuscated_reason" %in% names(df) && type %in% c("column", "boxplot")) {
-    df <- df |>
-      dplyr::mutate(
-        dplyr::across(
-          dplyr::all_of(x_var),
-          ~ dplyr::if_else(
-            .data$obfuscated_reason == "N < 15",
-            paste0(as.character(.x), "*"),
-            as.character(.x),
-            missing = as.character(.x)
-          )
-        )
-      )
-
-    if (any(!is.na(df$obfuscated_reason))) {
-      caption = list(
-        text = paste0("* Indikerar att data inte kan visas pga risk för röjande",
-                      "\neller för lite data."),
-        align = "left",
-        style = list(
-          fontSize = "12px"
-        )
-      )
-    } else {
-      caption = list(
-        text = paste0(" "),
-        align = "left",
-        style = list(
-          fontSize = "12px"
-        )
-      )
-    }
-   }
 
   if (!is.null(arrange_by)) {
     checkmate::assert_choice(arrange_by, names(df))
@@ -359,27 +376,11 @@ plot_highcharts <- function(df,
     )
   }
 
-  if (!is.null(size)) {
-    plot_options <- list(
-      series = list(
-        pointWidth = size
-      )
-    )
-  } else {
-    plot_options <- list(
-      series = list(
-        pointWidth = 8
-      )
-    )
-  }
-
   out <- list(
     title = list(
       text = title
     ),
-    plotOptions = plot_options,
     chart = chart,
-    caption = caption,
     xAxis = x_axis,
     series = I(
       make_series(
@@ -393,13 +394,6 @@ plot_highcharts <- function(df,
       )
     )
   )
-
-  for (s in seq_along(out$series)) {
-    out$series[[s]]$data <- lapply(out$series[[s]]$data, function(x) {
-      if (is.na(x)) NULL else x
-    })
-  }
-
 
   if (is.null(group_vars)) {
     out <- c(
@@ -608,7 +602,7 @@ make_series <- function(df,
       dplyr::group_map(
         ~ c(
           list(
-            data = I(.x$y),
+            data = I(lapply(.x$y, function(v) if (is.na(v)) NULL else v)),
             name = .y$series_var,
             color = .y$color
           )
@@ -621,7 +615,11 @@ make_series <- function(df,
           list(
             data = purrr::pmap(
               .x[c(names(vars), unlist(other_vars))],
-              \(...) list(...)
+              \(...) {
+                vals <- list(...)
+                vals <- lapply(vals, function(v) if (is.na(v)) NULL else v)
+                vals
+              }
             ),
             name = .y$series_var,
             color = .y$color

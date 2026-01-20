@@ -4,7 +4,7 @@
 \alias{colors_rc_3}
 \title{Registercentrum standard colors}
 \usage{
-colors_rc_3(n, type = "categorical")
+colors_rc_3(n, type = "qualitative")
 }
 \arguments{
 \item{n}{the number of colors desired}

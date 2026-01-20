@@ -91,7 +91,7 @@ named list where the name will be the key in the tooltip}
 
 \item{arrange_desc}{if sort is descending}
 
-\item{arrange_by_group_var}{value in \link{group_var} to sort by}
+\item{arrange_by_group_var}{value in group_var to sort by}
 
 \item{group_var_order}{order of group var}
 

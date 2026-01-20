@@ -62,9 +62,9 @@ named list where the name will be the key in the tooltip}
 
 \item{arrange_desc}{to arrange descending}
 
-\item{arrange_by_fill}{what value in \link{fill_var} that sort be sorted by}
+\item{arrange_by_fill}{what value in fill_var that sort be sorted by}
 
-\item{fill_var_order}{what order of \link{fill_Var}}
+\item{fill_var_order}{what order of fill_Var}
 
 \item{color_x_value}{columns that should be different color, input as list.}
 

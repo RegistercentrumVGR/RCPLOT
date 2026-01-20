@@ -57,7 +57,7 @@ df <- df[6:nrow(df), ]
 names(df) <- c("Code", "Name")
 
 # Split code into Region and municipality code
-codes <- df %>%
+codes <- df |>
   dplyr::mutate(
     Code = stringr::str_pad(
       as.character(Code),
@@ -82,7 +82,7 @@ codes <- df %>%
     RegionID = RegionID_tmp,
     Name = gsub("(s län| län)", "", Name),
     Name = stringi::stri_escape_unicode(stringi::stri_enc_toutf8(Name))
-  ) %>%
+  ) |>
   dplyr::select(-RegionID_tmp, -Code)
 
 # Separate data into county and municipality

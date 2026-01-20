@@ -50,14 +50,6 @@ bar_plot_highcharts <- function(df,
 
   type <- "column"
 
-  caption <- list(
-    text = paste0(" "),
-    align = "left",
-    style = list(
-      fontSize = "12px"
-    )
-  )
-
   if ("obfuscated_reason" %in% names(df)) {
     df <- df |>
       dplyr::mutate(
@@ -83,6 +75,14 @@ bar_plot_highcharts <- function(df,
         )
       )
     }
+  } else {
+    caption <- list(
+      text = paste0(" "),
+      align = "left",
+      style = list(
+        fontSize = "12px"
+      )
+    )
   }
 
   out <- plot_highcharts(

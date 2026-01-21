@@ -1,3 +1,155 @@
+test_that("make_series works", {
+  df <- data.frame(
+    year = 2015:2024,
+    n = 1:10,
+    county = "VGR"
+  )
+
+  make_series(df, list(y = "n")) |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(1:10)),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  make_series(df, list(y = "n"), "county") |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(1:10)),
+          name = "VGR",
+          color = "#116875"
+        )
+      )
+    )
+
+  df <- data.frame(
+    year = 2015:2024,
+    n = 1:20,
+    county = rep(c("VGR", "Stockholm"), each = 10)
+  )
+
+  make_series(df, list(y = "n"), "county") |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(11:20)),
+          name = "Stockholm",
+          color = "#116875"
+        ),
+        list(
+          data = I(as.list(1:10)),
+          name = "VGR",
+          color = "#FC5930"
+        )
+      )
+    )
+
+  df <- data.frame(
+    value = 1:4,
+    county = c("VGR", "Stockholm"),
+    type = rep(c("value 1", "value 2"), each = 2)
+  )
+
+  make_series(df, list(y = "value"), c("county", "type")) |>
+    expect_equal(
+      list(
+        list(data = I(as.list(2)),
+             name = "Stockholm, value 1",
+             color = "#116875"),
+        list(data = I(as.list(4)),
+             name = "Stockholm, value 2",
+             color = "#FC5930"),
+        list(data = I(as.list(1)),
+             name = "VGR, value 1",
+             color = "#6F45BB"),
+        list(data = I(as.list(3)),
+             name = "VGR, value 2",
+             color = "#89163B")
+      )
+    )
+
+  df <- data.frame(
+    year = 2023:2024,
+    y = 100
+  )
+
+  make_series(df, list(y = "y"), "year", palette_type = "sequential_1") |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(100)),
+          name = "2023",
+          color = "#37863A"
+        ),
+        list(
+          data = I(as.list(100)),
+          name = "2024",
+          color = "#AC641C"
+        )
+      )
+    )
+
+  df <- data.frame(
+    year = 2023:2024,
+    prop = c(0.5, 1),
+    n = c(50, 100),
+    total = 100
+  )
+
+  make_series(
+    df,
+    list(y = "prop"),
+    other_vars = list(Täljare = "n", Nämnare = "total")
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = list(
+            list(y = 0.5, n = 50, total = 100),
+            list(y = 1, n = 100, total = 100)
+          ),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  make_series(
+    df,
+    list(y = "prop"),
+    proportion = TRUE,
+    scale_percentage = TRUE
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(c(50, 100))),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  make_series(df, list(y = "prop"), colors = "#6F45BB") |>
+    expect_equal(
+      list(
+        list(
+          data = I(as.list(c(0.5, 1))),
+          name = "",
+          color = "#6F45BB"
+        )
+      )
+    )
+
+})
+
+
+
 test_that("add_y_axis works", {
 
   add_y_axis(list(chart = list(type = "line"))) |>
@@ -241,6 +393,55 @@ test_that("bar_plot_highcharts works", {
       x_lab = "Hello World!"
     ) |>
     expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "county",
+      y_var = "prop",
+      fill_var = "year",
+      other_vars = list(
+        Nämnare = "total",
+        Täljare = "n"
+      ),
+      proportion = TRUE,
+      scale_percentage = TRUE,
+      fill_var_order = c(2023, 2024)
+    ) |>
+    expect_snapshot()
+
+  df <- data.frame(
+    "enhet" = paste0("Enhet ", 1:10),
+    "y" = stats::runif(10)
+  )
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y"
+    ) |>
+    expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y",
+      arrange_desc = FALSE
+    ) |>
+    expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y",
+      arrange_desc = FALSE,
+      horizontal = TRUE,
+      color_x_value = list("Enhet 3" = "#6F45BB")
+    ) |>
+    expect_snapshot()
+
 
 })
 

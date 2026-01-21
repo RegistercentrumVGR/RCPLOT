@@ -44,6 +44,9 @@ colors_rc <- function(n = 3, type = "default") {
 #'
 #' @export
 colors_rc_2 <- function(n, type = "qualitative") {
+  lifecycle::deprecate_soft(
+    when = "1.6.0", what = "colors_rc_2()", with = "colors_rc_3()"
+  )
 
   checkmate::assert_integerish(n, lower = 1, len = 1, any.missing = FALSE)
   checkmate::assert_choice(type, c("qualitative", "sequential", "diverging"))
@@ -75,8 +78,8 @@ colors_rc_2 <- function(n, type = "qualitative") {
 #'
 #'
 #' @param n the number of colors desired
-#' @param type the type of palette, one of "categorical", "sequential", and
-#' "diverging"
+#' @param type the type of palette, one of "qualitative", "sequential_1", and
+#' "sequential_2"
 #'
 #' @export
 colors_rc_3 <- function(n, type = "qualitative") {

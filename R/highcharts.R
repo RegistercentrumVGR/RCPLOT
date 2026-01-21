@@ -67,8 +67,8 @@ bar_plot_highcharts <- function(df,
     if (any(!is.na(df$obfuscated_reason))) {
       caption <- list(
         text = paste0("* Indikerar att data inte ",
-                      "kan visas pga risk f\u00F6r r\u00F6jande",
-                      "\neller f\u00F6r lite data."),
+                      "kan visas p.g.a. risk f\u00F6r r\u00F6jande",
+                      "<br/>eller f\u00F6r lite data."),
         align = "left",
         style = list(
           fontSize = "12px"
@@ -106,6 +106,28 @@ bar_plot_highcharts <- function(df,
     group_var_order = fill_var_order
   )
 
+  if (!(is.null(color_x_value)) && is.null(fill_var)) {
+    checkmate::assert_list(color_x_value)
+    cats <- out$xAxis$categories
+    vals <- out$series[[1]]$data
+
+    for (nm in names(color_x_value)) {
+      idx <- match(nm, cats)
+
+      if (!is.na(idx)) {
+        checkmate::assert_choice(color_x_value[[nm]],
+                                 c(colors_rc_3(15),
+                                   colors_rc_3(15, type = "sequential_1"),
+                                   colors_rc_3(15, type = "sequential_2")))
+        vals[[idx]] <- list(
+          y = vals[[idx]],
+          color = color_x_value[[nm]]
+        )
+      }
+    }
+    out$series[[1]]$data <- vals
+  }
+
   stacking <- switch(
     position,
     "dodge" = NULL,
@@ -133,8 +155,7 @@ bar_plot_highcharts <- function(df,
     )
   }
 
-  out <- c(out,
-           caption = caption)
+  out <- c(out, list(caption = caption))
 
   return(out)
 }

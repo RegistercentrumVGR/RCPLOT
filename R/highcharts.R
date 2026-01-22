@@ -24,6 +24,9 @@
 #' @param fill_var_order what order of fill_Var
 #' @param color_x_value columns that should be different color, input as list.
 #' @param bar_size width of bars
+#' @param normalize_prop if _prop variable should be normalized, only valid
+#' for stacked bar plot.
+#' @param break_x_var_names if line breaks should be done for x_var
 #'
 #' @return highcharts config
 #' @export
@@ -46,9 +49,53 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = 10) {
+                                bar_size = 10,
+                                normalize_prop = FALSE,
+                                break_x_var_names = FALSE) {
 
   type <- "column"
+
+  if (break_x_var_names) {
+    df <- df |>
+      dplyr::rowwise() |>
+      dplyr::mutate(
+        enhet = dplyr::if_else(
+          stringr::str_length(.data[[x_var]]) > 20 &
+            stringr::str_detect(.data[[x_var]], " "),
+          {
+            spaces <- stringr::str_locate_all(.data[[x_var]], " ")[[1]][, 1]
+            mid <- stringr::str_length(.data[[x_var]]) / 2
+            split_at <- spaces[which.min(abs(spaces - mid))]
+            paste0(
+              stringr::str_sub(.data[[x_var]], 1, split_at - 1),
+              "<br/>",
+              stringr::str_sub(.data[[x_var]], split_at + 1)
+            )
+          },
+          .data[[x_var]]
+        )
+      ) |>
+      dplyr::ungroup()
+  }
+
+  if (normalize_prop && !is.null(fill_var) && position == "stack") {
+    df <- df |>
+      dplyr::group_by(.data[[x_var]]) |>
+      dplyr::mutate(prop_norm = .data[[y_var]] / sum(.data[[y_var]])) |>
+      dplyr::ungroup() |>
+      dplyr::mutate(
+        temp = .data[[y_var]],
+        !!y_var := .data[["prop_norm"]],
+        !!"prop_norm" := 100 * .data[["temp"]]
+      ) |>
+      dplyr::select(-dplyr::all_of("temp"))
+
+    if (!is.null(other_vars)) {
+      other_vars$Andel <- "prop_norm"
+    } else {
+      other_vars <- list("Andel" = "prop_norm")
+    }
+  }
 
   if ("obfuscated_reason" %in% names(df)) {
     df <- df |>
@@ -153,6 +200,12 @@ bar_plot_highcharts <- function(df,
         )
       )
     )
+  }
+
+  if (normalize_prop) {
+    out$tooltip$pointFormat <- gsub("\\{point\\.y\\}%</b><br>",
+                                    "",
+                                    out$tooltip$pointFormat)
   }
 
   out <- c(out, list(caption = caption))

@@ -46,7 +46,8 @@ Imports:
     fmsb,
     tibble,
     prismatic,
-    purrr
+    purrr,
+    stringr
 Suggests:
     survival,
     roxygen2,

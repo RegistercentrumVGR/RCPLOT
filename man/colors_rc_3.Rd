@@ -9,8 +9,8 @@ colors_rc_3(n, type = "qualitative")
 \arguments{
 \item{n}{the number of colors desired}
 
-\item{type}{the type of palette, one of "categorical", "sequential", and
-"diverging"}
+\item{type}{the type of palette, one of "qualitative", "sequential_1", and
+"sequential_2"}
 }
 \description{
 Color palettes used as a standard in Registercentrum.

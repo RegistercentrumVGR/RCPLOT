@@ -24,7 +24,9 @@ bar_plot_highcharts(
   arrange_by_fill = NULL,
   fill_var_order = NULL,
   color_x_value = NULL,
-  bar_size = 10
+  bar_size = 10,
+  normalize_prop = FALSE,
+  break_x_var_names = FALSE
 )
 }
 \arguments{
@@ -69,6 +71,11 @@ named list where the name will be the key in the tooltip}
 \item{color_x_value}{columns that should be different color, input as list.}
 
 \item{bar_size}{width of bars}
+
+\item{normalize_prop}{if _prop variable should be normalized, only valid
+for stacked bar plot.}
+
+\item{break_x_var_names}{if line breaks should be done for x_var}
 }
 \value{
 highcharts config

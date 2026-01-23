@@ -121,6 +121,14 @@ bar_plot_highcharts <- function(df,
           fontSize = "12px"
         )
       )
+    } else {
+      caption <- list(
+        text = paste0(" "),
+        align = "left",
+        style = list(
+          fontSize = "12px"
+        )
+      )
     }
   } else {
     caption <- list(

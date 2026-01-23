@@ -442,6 +442,23 @@ test_that("bar_plot_highcharts works", {
     ) |>
     expect_snapshot()
 
+  df <- data.frame(
+    x = rep(letters[1:3], each = 3),
+    y = 1:9
+  ) |>
+    dplyr::mutate(obfuscated_reason = dplyr::if_else(x == "b" & y == 5,
+                                                     "N < 15",
+                                                     NA),
+                  y = dplyr::if_else(x == "b" & y == 5, NA, y))
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y"
+    ) |>
+    expect_snapshot()
+
+
 
 })
 

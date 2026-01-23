@@ -1480,6 +1480,106 @@
       
       
 
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "x", y_var = "y")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "a"  "b"  "b*" "c" 
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
+      [[4]]
+      [1] 4
+      
+      [[5]]
+      NULL
+      
+      [[6]]
+      [1] 6
+      
+      [[7]]
+      [1] 7
+      
+      [[8]]
+      [1] 8
+      
+      [[9]]
+      [1] 9
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] "* Indikerar att data inte kan visas p.g.a. risk för röjande<br/>eller för lite data."
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
 # line_plot_highcharts works
 
     Code

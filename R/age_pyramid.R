@@ -79,15 +79,15 @@ age_pyramid <-
     # Data transformation -----------------------------------------------------
 
     df <-
-      df %>%
+      df |>
       dplyr::mutate(
         {{ age_var }} :=
           cut(.data[[age_var]], breaks = age_breaks, labels = age_labels)
-      ) %>%
-      dplyr::group_by(.data[[fill_var]], .data[[age_var]]) %>%
-      dplyr::summarise(Population = dplyr::n()) %>%
-      stats::na.omit(df) %>%
-      dplyr::add_tally(.data$Population) %>%
+      ) |>
+      dplyr::group_by(.data[[fill_var]], .data[[age_var]]) |>
+      dplyr::summarise(Population = dplyr::n()) |>
+      stats::na.omit(df) |>
+      dplyr::add_tally(.data$Population) |>
       dplyr::mutate(
         Population = replace(
           .data$Population,

@@ -95,13 +95,13 @@ bar_plot <-
 
         if (group_by_x_var) {
           df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[x_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         } else {
           df <-
-            df %>%
-            dplyr::group_by(.data[[fill_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[fill_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         }
       }
@@ -112,8 +112,8 @@ bar_plot <-
         fill_var <- "fill_var"
         show_legend <- FALSE
         df <-
-          df %>%
-          dplyr::group_by(.data[[x_var]]) %>%
+          df |>
+          dplyr::group_by(.data[[x_var]]) |>
           dplyr::summarise(y = dplyr::n())
         df$y2 <- 1
       } else {
@@ -121,17 +121,17 @@ bar_plot <-
 
         if (group_by_x_var) {
           df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[x_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) |>
+            dplyr::summarise(y = dplyr::n()) |>
+            dplyr::group_by(.data[[x_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         } else {
           df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[fill_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[x_var]], .data[[fill_var]]) |>
+            dplyr::summarise(y = dplyr::n()) |>
+            dplyr::group_by(.data[[fill_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         }
       }

@@ -21,7 +21,11 @@ plot_highcharts(
   other_vars,
   horizontal = FALSE,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  arrange_by = NULL,
+  arrange_desc = TRUE,
+  arrange_by_group_var = NULL,
+  group_var_order = NULL
 )
 
 add_y_axis(
@@ -49,7 +53,8 @@ make_series(
   colors = NULL,
   other_vars = NULL,
   proportion = FALSE,
-  scale_percentage = TRUE
+  scale_percentage = TRUE,
+  group_var_order = NULL
 )
 }
 \arguments{
@@ -82,12 +87,20 @@ named list where the name will be the key in the tooltip}
 
 \item{y_lab}{the title of the y axis}
 
+\item{arrange_by}{column to sort by}
+
+\item{arrange_desc}{if sort is descending}
+
+\item{arrange_by_group_var}{value in group_var to sort by}
+
+\item{group_var_order}{order of group var}
+
 \item{out}{intermediate config}
 
-\item{palette_type}{passed to \code{\link[=colors_rc_2]{colors_rc_2()}}}
+\item{palette_type}{passed to \code{\link[=colors_rc_3]{colors_rc_3()}}}
 
-\item{colors}{an optional subset of \code{\link[=colors_rc_2]{colors_rc_2()}} with
-\code{palette_type = "qualitative"} and \code{n = 9} used to manually set colors}
+\item{colors}{an optional subset of \code{\link[=colors_rc_3]{colors_rc_3()}} with
+\code{palette_type = "qualitative"} and \code{n = 12} used to manually set colors}
 }
 \value{
 highcharts config

@@ -128,14 +128,14 @@ km_plot <- function(
           strata  = strata,
           n.risk  = sf$n.risk,
           n.event = sf$n.event
-        ) %>%
-        dplyr::filter(.data$n.risk >= n_risk_break) %>%
-        dplyr::group_by(strata) %>%
+        ) |>
+        dplyr::filter(.data$n.risk >= n_risk_break) |>
+        dplyr::group_by(strata) |>
         dplyr::filter(
           .data$n.event != 0 |
             .data$n.risk == min(.data$n.risk) |
             .data$year == 0
-        ) %>%
+        ) |>
         dplyr::ungroup()
     } else {
       # Creates data frame for ggplot
@@ -150,16 +150,16 @@ km_plot <- function(
           strata  = strata,
           n.event = sf$n.event,
           n.risk  = sf$n.risk
-        ) %>%
+        ) |>
         # removes points where number at risk are less than break
-        dplyr::filter(.data$n.risk >= n_risk_break) %>%
-        dplyr::group_by(strata) %>%
+        dplyr::filter(.data$n.risk >= n_risk_break) |>
+        dplyr::group_by(strata) |>
         # removes all points where there are no events
         dplyr::filter(
           .data$n.event != 0 |
             .data$n.risk == min(.data$n.risk) |
             .data$year == 0
-        ) %>%
+        ) |>
         # but adds the last point for each curve
         dplyr::ungroup()
     }
@@ -170,12 +170,12 @@ km_plot <- function(
     # make step function data by adding all points from data but
     # with all the next values in year
     df2 <-
-      dplyr::group_by(df, strata) %>%
-      dplyr::mutate(year = dplyr::lead(.data$year)) %>%
-      dplyr::ungroup() %>%
+      dplyr::group_by(df, strata) |>
+      dplyr::mutate(year = dplyr::lead(.data$year)) |>
+      dplyr::ungroup() |>
       dplyr::filter(!is.na(.data$year))
 
-    df <- rbind(df, df2) %>%
+    df <- rbind(df, df2) |>
       # bind together with original data
       dplyr::arrange(
         .data$strata,
@@ -187,8 +187,8 @@ km_plot <- function(
     # remove ugly strata=level and only keep level in legend
 
     if (!is.null(levels(df$strata))) {
-      strata <- strsplit(levels(df$strata), ", ") %>%
-        lapply(gsub, pattern = ".*=", replacement = "") %>%
+      strata <- strsplit(levels(df$strata), ", ") |>
+        lapply(gsub, pattern = ".*=", replacement = "") |>
         lapply(paste0, collapse = ", ")
 
       df$strata <- factor(
@@ -212,20 +212,20 @@ km_plot <- function(
       )
 
       df <-
-        dplyr::bind_rows(df, df2) %>%
+        dplyr::bind_rows(df, df2) |>
         dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
 
-      df2 <- dplyr::group_by(df, strata) %>%
-        dplyr::mutate(year = dplyr::lead(.data$year)) %>%
-        dplyr::ungroup() %>%
+      df2 <- dplyr::group_by(df, strata) |>
+        dplyr::mutate(year = dplyr::lead(.data$year)) |>
+        dplyr::ungroup() |>
         dplyr::filter(!is.na(.data$year))
 
       if (first_point == 1) {
-        df <- rbind(df, df2) %>%
+        df <- rbind(df, df2) |>
           # bind together with original data
           dplyr::arrange(.data$strata, .data$year, dplyr::desc(.data$surv))
       } else {
-        df <- rbind(df, df2) %>%
+        df <- rbind(df, df2) |>
           # bind together with original data
           dplyr::arrange(.data$strata, .data$year, .data$surv)
       }

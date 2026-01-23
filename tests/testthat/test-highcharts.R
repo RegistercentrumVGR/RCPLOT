@@ -9,9 +9,9 @@ test_that("make_series works", {
     expect_equal(
       list(
         list(
-          data = 1:10,
+          data = I(as.list(1:10)),
           name = "",
-          color = "#0072B2"
+          color = "#116875"
         )
       )
     )
@@ -20,9 +20,9 @@ test_that("make_series works", {
     expect_equal(
       list(
         list(
-          data = 1:10,
+          data = I(as.list(1:10)),
           name = "VGR",
-          color = "#0072B2"
+          color = "#116875"
         )
       )
     )
@@ -37,14 +37,14 @@ test_that("make_series works", {
     expect_equal(
       list(
         list(
-          data = 11:20,
+          data = I(as.list(11:20)),
           name = "Stockholm",
-          color = "#0072B2"
+          color = "#116875"
         ),
         list(
-          data = 1:10,
+          data = I(as.list(1:10)),
           name = "VGR",
-          color = "#D55E00"
+          color = "#FC5930"
         )
       )
     )
@@ -58,10 +58,18 @@ test_that("make_series works", {
   make_series(df, list(y = "value"), c("county", "type")) |>
     expect_equal(
       list(
-        list(data = 2, name = "Stockholm, value 1", color = "#0072B2"),
-        list(data = 4, name = "Stockholm, value 2", color = "#D55E00"),
-        list(data = 1, name = "VGR, value 1", color = "#CC79A7"),
-        list(data = 3, name = "VGR, value 2", color = "#56B4E9")
+        list(data = I(as.list(2)),
+             name = "Stockholm, value 1",
+             color = "#116875"),
+        list(data = I(as.list(4)),
+             name = "Stockholm, value 2",
+             color = "#FC5930"),
+        list(data = I(as.list(1)),
+             name = "VGR, value 1",
+             color = "#6F45BB"),
+        list(data = I(as.list(3)),
+             name = "VGR, value 2",
+             color = "#89163B")
       )
     )
 
@@ -70,18 +78,18 @@ test_that("make_series works", {
     y = 100
   )
 
-  make_series(df, list(y = "y"), "year", palette_type = "sequential") |>
+  make_series(df, list(y = "y"), "year", palette_type = "sequential_1") |>
     expect_equal(
       list(
         list(
-          data = 100,
+          data = I(as.list(100)),
           name = "2023",
-          color = "#4B0055"
+          color = "#37863A"
         ),
         list(
-          data = 100,
+          data = I(as.list(100)),
           name = "2024",
-          color = "#FDE333"
+          color = "#AC641C"
         )
       )
     )
@@ -106,7 +114,7 @@ test_that("make_series works", {
             list(y = 1, n = 100, total = 100)
           ),
           name = "",
-          color = "#0072B2"
+          color = "#116875"
         )
       )
     )
@@ -120,25 +128,27 @@ test_that("make_series works", {
     expect_equal(
       list(
         list(
-          data = c(50, 100),
+          data = I(as.list(c(50, 100))),
           name = "",
-          color = "#0072B2"
+          color = "#116875"
         )
       )
     )
 
-  make_series(df, list(y = "prop"), colors = "#E69F00") |>
+  make_series(df, list(y = "prop"), colors = "#6F45BB") |>
     expect_equal(
       list(
         list(
-          data = c(0.5, 1),
+          data = I(as.list(c(0.5, 1))),
           name = "",
-          color = "#E69F00"
+          color = "#6F45BB"
         )
       )
     )
 
 })
+
+
 
 test_that("add_y_axis works", {
 
@@ -251,9 +261,9 @@ test_that("plot_highcharts works", {
       paste0(
         "{",
         '"title":{"text":""},',
-        '"chart":{"type":"column"},',
+        '"chart":{"type":"column","inverted":false},',
         '"xAxis":{"categories":["a"]},',
-        '"series":[{"data":[1],"name":"","color":"#0072B2"}],',
+        '"series":[{"data":[1],"name":"","color":"#116875"}],',
         '"legend":{"enabled":false},',
         '"yAxis":{"labels":{"format":"{value}"}},',
         '"tooltip":{"pointFormat":"<b>{point.y}<\\/b>"}',
@@ -383,6 +393,55 @@ test_that("bar_plot_highcharts works", {
       x_lab = "Hello World!"
     ) |>
     expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "county",
+      y_var = "prop",
+      fill_var = "year",
+      other_vars = list(
+        Nämnare = "total",
+        Täljare = "n"
+      ),
+      proportion = TRUE,
+      scale_percentage = TRUE,
+      fill_var_order = c(2023, 2024)
+    ) |>
+    expect_snapshot()
+
+  df <- data.frame(
+    "enhet" = paste0("Enhet ", 1:10),
+    "y" = stats::runif(10)
+  )
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y"
+    ) |>
+    expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y",
+      arrange_desc = FALSE
+    ) |>
+    expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "enhet",
+      y_var = "y",
+      arrange_by = "y",
+      arrange_desc = FALSE,
+      horizontal = TRUE,
+      color_x_value = list("Enhet 3" = "#6F45BB")
+    ) |>
+    expect_snapshot()
+
 
 })
 

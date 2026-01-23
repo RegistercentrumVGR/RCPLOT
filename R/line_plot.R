@@ -86,26 +86,26 @@ line_plot <-
         color_var <- "color_var"
         show_legend <- FALSE
         df <-
-          df %>%
-          dplyr::group_by(.data[[x_var]]) %>%
-          dplyr::summarise(y = dplyr::n()) %>%
+          df |>
+          dplyr::group_by(.data[[x_var]]) |>
+          dplyr::summarise(y = dplyr::n()) |>
           dplyr::mutate(y2 = sum(.data$y))
       } else {
         # Data transformations ------------------------------------------------
 
         if (group_by_x_var) {
           df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[color_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[x_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[x_var]], .data[[color_var]]) |>
+            dplyr::summarise(y = dplyr::n()) |>
+            dplyr::group_by(.data[[x_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         } else {
           df <-
-            df %>%
-            dplyr::group_by(.data[[x_var]], .data[[color_var]]) %>%
-            dplyr::summarise(y = dplyr::n()) %>%
-            dplyr::group_by(.data[[color_var]]) %>%
+            df |>
+            dplyr::group_by(.data[[x_var]], .data[[color_var]]) |>
+            dplyr::summarise(y = dplyr::n()) |>
+            dplyr::group_by(.data[[color_var]]) |>
             dplyr::mutate(y2 = sum(.data$y))
         }
       }

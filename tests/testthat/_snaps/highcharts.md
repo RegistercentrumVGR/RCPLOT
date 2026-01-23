@@ -13,6 +13,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -22,36 +25,65 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 4 7
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 4
+      
+      [[3]]
+      [1] 7
+      
       
       [[1]]$name
       [1] "A4"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-      [1] 2 5 8
+      [[1]]
+      [1] 2
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 8
+      
       
       [[2]]$name
       [1] "B5"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
       
       [[3]]
       [[3]]$data
-      [1] 3 6 9
+      [[1]]
+      [1] 3
+      
+      [[2]]
+      [1] 6
+      
+      [[3]]
+      [1] 9
+      
       
       [[3]]$name
       [1] "C6"
       
       [[3]]$color
-      [1] "#CC79A7"
+      [1] "#6F45BB"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -78,6 +110,24 @@
       [1] "normal"
       
       
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
       
 
 ---
@@ -95,6 +145,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -104,36 +157,65 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 4 7
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 4
+      
+      [[3]]
+      [1] 7
+      
       
       [[1]]$name
       [1] "A4"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-      [1] 2 5 8
+      [[1]]
+      [1] 2
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 8
+      
       
       [[2]]$name
       [1] "B5"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
       
       [[3]]
       [[3]]$data
-      [1] 3 6 9
+      [[1]]
+      [1] 3
+      
+      [[2]]
+      [1] 6
+      
+      [[3]]
+      [1] 9
+      
       
       [[3]]$name
       [1] "C6"
       
       [[3]]$color
-      [1] "#CC79A7"
+      [1] "#6F45BB"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -151,6 +233,26 @@
       [1] "{series.name}: <b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
 ---
 
@@ -166,6 +268,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -175,13 +280,21 @@
       $series
       [[1]]
       [[1]]$data
-      [1] 1 2 3
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -202,6 +315,26 @@
       [1] "<b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
 ---
 
@@ -218,6 +351,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -227,13 +363,27 @@
       $series
       [[1]]
       [[1]]$data
-      [1]   0  25  50  75 100
+      [[1]]
+      [1] 0
+      
+      [[2]]
+      [1] 25
+      
+      [[3]]
+      [1] 50
+      
+      [[4]]
+      [1] 75
+      
+      [[5]]
+      [1] 100
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -254,6 +404,26 @@
       [1] "<b>{point.y}%</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
 ---
 
@@ -269,6 +439,9 @@
       $chart$type
       [1] "column"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -279,25 +452,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -310,6 +582,26 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
       
       
 
@@ -342,25 +634,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -381,6 +772,26 @@
       [1] "{series.name}: <b>{point.y}%</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
 ---
 
@@ -396,6 +807,9 @@
       $chart
       $chart$type
       [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -433,7 +847,7 @@
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -454,6 +868,26 @@
       [1] "<b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
 ---
 
@@ -470,6 +904,9 @@
       $chart
       $chart$type
       [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -512,7 +949,7 @@
       [1] "2023"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
@@ -544,8 +981,13 @@
       [1] "2024"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -560,11 +1002,40 @@
       [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
 
-# line_plot_highcharts works
+---
 
     Code
-      line_plot_highcharts(df, x_var = "year", y_var = "y")
+      bar_plot_highcharts(df, x_var = "county", y_var = "prop", fill_var = "year",
+        other_vars = list(Nämnare = "total", Täljare = "n"), proportion = TRUE,
+        scale_percentage = TRUE, fill_var_order = c(2023, 2024))
+    Condition
+      Warning:
+      There was 1 warning in `dplyr::mutate()`.
+      i In argument: `dplyr::across(.data$series_var, ~factor(.x, levels = group_var_order))`.
+      Caused by warning:
+      ! Use of .data in tidyselect expressions was deprecated in tidyselect 1.2.0.
+      i Please use `"series_var"` instead of `.data$series_var`
     Output
       $title
       $title$text
@@ -573,25 +1044,186 @@
       
       $chart
       $chart$type
-      [1] "line"
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
       $xAxis$categories
-       [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
-      [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      [1] "a" "b"
       
       
       $series
       [[1]]
       [[1]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$y
+      [1] 50
+      
+      [[1]]$data[[1]]$total
+      [1] 10
+      
+      [[1]]$data[[1]]$n
+      [1] 5
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$y
+      [1] 100
+      
+      [[1]]$data[[2]]$total
+      [1] 10
+      
+      [[1]]$data[[2]]$n
+      [1] 10
+      
+      
+      
+      [[1]]$name
+      [1] 2023
+      Levels: 2023 2024
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 50
+      
+      [[2]]$data[[1]]$total
+      [1] 10
+      
+      [[2]]$data[[1]]$n
+      [1] 5
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 100
+      
+      [[2]]$data[[2]]$total
+      [1] 10
+      
+      [[2]]$data[[2]]$n
+      [1] 10
+      
+      
+      
+      [[2]]$name
+      [1] 2024
+      Levels: 2023 2024
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}%"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "enhet", y_var = "y", arrange_by = "y")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "Enhet 4"  "Enhet 2"  "Enhet 6"  "Enhet 3"  "Enhet 10" "Enhet 9" 
+       [7] "Enhet 8"  "Enhet 5"  "Enhet 1"  "Enhet 7" 
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.8791722
+      
+      [[2]]
+      [1] 0.8483343
+      
+      [[3]]
+      [1] 0.8290505
+      
+      [[4]]
+      [1] 0.6211575
+      
+      [[5]]
+      [1] 0.5951198
+      
+      [[6]]
+      [1] 0.5889116
+      
+      [[7]]
+      [1] 0.5277068
+      
+      [[8]]
+      [1] 0.4946749
+      
+      [[9]]
+      [1] 0.4119534
+      
+      [[10]]
+      [1] 0.2508035
+      
       
       [[1]]$name
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -612,6 +1244,350 @@
       [1] "<b>{point.y}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "enhet", y_var = "y", arrange_by = "y",
+        arrange_desc = FALSE)
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "Enhet 7"  "Enhet 1"  "Enhet 5"  "Enhet 8"  "Enhet 9"  "Enhet 10"
+       [7] "Enhet 3"  "Enhet 6"  "Enhet 2"  "Enhet 4" 
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.2508035
+      
+      [[2]]
+      [1] 0.4119534
+      
+      [[3]]
+      [1] 0.4946749
+      
+      [[4]]
+      [1] 0.5277068
+      
+      [[5]]
+      [1] 0.5889116
+      
+      [[6]]
+      [1] 0.5951198
+      
+      [[7]]
+      [1] 0.6211575
+      
+      [[8]]
+      [1] 0.8290505
+      
+      [[9]]
+      [1] 0.8483343
+      
+      [[10]]
+      [1] 0.8791722
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "enhet", y_var = "y", arrange_by = "y",
+        arrange_desc = FALSE, horizontal = TRUE, color_x_value = list(`Enhet 3` = "#6F45BB"))
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "Enhet 7"  "Enhet 1"  "Enhet 5"  "Enhet 8"  "Enhet 9"  "Enhet 10"
+       [7] "Enhet 3"  "Enhet 6"  "Enhet 2"  "Enhet 4" 
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.2508035
+      
+      [[2]]
+      [1] 0.4119534
+      
+      [[3]]
+      [1] 0.4946749
+      
+      [[4]]
+      [1] 0.5277068
+      
+      [[5]]
+      [1] 0.5889116
+      
+      [[6]]
+      [1] 0.5951198
+      
+      [[7]]
+      [[7]]$y
+      [1] 0.6211575
+      
+      [[7]]$color
+      [1] "#6F45BB"
+      
+      
+      [[8]]
+      [1] 0.8290505
+      
+      [[9]]
+      [1] 0.8483343
+      
+      [[10]]
+      [1] 0.8791722
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 10
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+# line_plot_highcharts works
+
+    Code
+      line_plot_highcharts(df, x_var = "year", y_var = "y")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "line"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
 
 ---
 
@@ -627,6 +1603,9 @@
       $chart$type
       [1] "line"
       
+      $chart$inverted
+      [1] FALSE
+      
       
       $xAxis
       $xAxis$categories
@@ -637,25 +1616,124 @@
       $series
       [[1]]
       [[1]]$data
-       [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
+      [[1]]
+      [1] 10
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      [1] 10
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 10
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
       
       [[1]]$name
       [1] "Stockholm"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
       [[2]]$data
-       [1] 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
       
       [[2]]$name
       [1] "VGR"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis
@@ -668,6 +1746,13 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
       
       
 
@@ -685,6 +1770,9 @@
       $chart
       $chart$type
       [1] "boxplot"
+      
+      $chart$inverted
+      [1] FALSE
       
       
       $xAxis
@@ -734,7 +1822,7 @@
       [1] ""
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       
@@ -809,7 +1897,7 @@
       [1] "a"
       
       [[1]]$color
-      [1] "#0072B2"
+      [1] "#116875"
       
       
       [[2]]
@@ -839,8 +1927,13 @@
       [1] "b"
       
       [[2]]$color
-      [1] "#D55E00"
+      [1] "#FC5930"
       
+      
+      
+      $legend
+      $legend$reversed
+      [1] TRUE
       
       
       $yAxis

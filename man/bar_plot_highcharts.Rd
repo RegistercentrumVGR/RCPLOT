@@ -18,7 +18,15 @@ bar_plot_highcharts(
   scale_percentage = TRUE,
   other_vars = NULL,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  arrange_by = NULL,
+  arrange_desc = TRUE,
+  arrange_by_fill = NULL,
+  fill_var_order = NULL,
+  color_x_value = NULL,
+  bar_size = 10,
+  normalize_prop = FALSE,
+  break_x_var_names = FALSE
 )
 }
 \arguments{
@@ -51,6 +59,23 @@ named list where the name will be the key in the tooltip}
 \item{x_lab}{labels on x axis}
 
 \item{y_lab}{labels on y axis}
+
+\item{arrange_by}{column to sort by}
+
+\item{arrange_desc}{to arrange descending}
+
+\item{arrange_by_fill}{what value in fill_var that sort be sorted by}
+
+\item{fill_var_order}{what order of fill_Var}
+
+\item{color_x_value}{columns that should be different color, input as list.}
+
+\item{bar_size}{width of bars}
+
+\item{normalize_prop}{if _prop variable should be normalized, only valid
+for stacked bar plot.}
+
+\item{break_x_var_names}{if line breaks should be done for x_var}
 }
 \value{
 highcharts config

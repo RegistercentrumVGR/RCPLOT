@@ -547,7 +547,10 @@ bar_plot_2 <- function(df,
     checkmate::check_choice(fill_var, names(df))
     checkmate::assert_choice(
       arrange_by_fill,
-      unique(df |> dplyr::pull(!!fill_var))
+      df |>
+        dplyr::pull(fill_var) |>
+        as.character() |>
+        unique()
     )
 
     df_order <- df |>

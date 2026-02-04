@@ -27,6 +27,8 @@
 #' @param normalize_prop if _prop variable should be normalized, only valid
 #' for stacked bar plot.
 #' @param break_x_var_names if line breaks should be done for x_var
+#' @param plot_height height of plot, value is in percentages
+#' @param group_color color of fill vars
 #'
 #' @return highcharts config
 #' @export
@@ -49,9 +51,11 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = 10,
+                                bar_size = 15,
                                 normalize_prop = FALSE,
-                                break_x_var_names = FALSE) {
+                                break_x_var_names = FALSE,
+                                plot_height = 1,
+                                group_color = NULL) {
 
   type <- "column"
 
@@ -158,7 +162,9 @@ bar_plot_highcharts <- function(df,
     arrange_by = arrange_by,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
-    group_var_order = fill_var_order
+    group_var_order = fill_var_order,
+    plot_height = plot_height,
+    group_color = group_color
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -376,6 +382,8 @@ box_plot_highcharts <- function(df,
 #' @param arrange_desc if sort is descending
 #' @param arrange_by_group_var value in group_var to sort by
 #' @param group_var_order order of group var
+#' @param plot_height height of plot
+#' @param group_color color of group variabel
 #'
 #' @return highcharts config
 #' @export
@@ -396,7 +404,9 @@ plot_highcharts <- function(df,
                             arrange_by = NULL,
                             arrange_desc = TRUE,
                             arrange_by_group_var = NULL,
-                            group_var_order = NULL) {
+                            group_var_order = NULL,
+                            plot_height = 0.8,
+                            group_color = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -438,12 +448,14 @@ plot_highcharts <- function(df,
   if (horizontal) {
     chart <- list(
       type = type,
-      inverted = TRUE
+      inverted = TRUE,
+      height = paste0(100 * plot_height, "%")
     )
   } else {
     chart <- list(
       type = type,
-      inverted = FALSE
+      inverted = FALSE,
+      height = paste0(100 * plot_height, "%")
     )
   }
 
@@ -472,7 +484,8 @@ plot_highcharts <- function(df,
         other_vars = other_vars,
         proportion = proportion,
         scale_percentage = scale_percentage,
-        group_var_order = group_var_order
+        group_var_order = group_var_order,
+        colors = group_color
       )
     )
   )

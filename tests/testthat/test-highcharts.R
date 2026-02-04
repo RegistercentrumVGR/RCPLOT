@@ -261,7 +261,7 @@ test_that("plot_highcharts works", {
       paste0(
         "{",
         '"title":{"text":""},',
-        '"chart":{"type":"column","inverted":false},',
+        '"chart":{"type":"column","inverted":false,"height":"80%"},',
         '"xAxis":{"categories":["a"]},',
         '"series":[{"data":[1],"name":"","color":"#116875"}],',
         '"legend":{"enabled":false},',
@@ -411,7 +411,7 @@ test_that("bar_plot_highcharts works", {
 
   df <- data.frame(
     "enhet" = paste0("Enhet ", 1:10),
-    "y" = stats::runif(10)
+    "y" = 1:10
   )
 
   df |>

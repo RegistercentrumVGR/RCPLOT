@@ -25,7 +25,9 @@ plot_highcharts(
   arrange_by = NULL,
   arrange_desc = TRUE,
   arrange_by_group_var = NULL,
-  group_var_order = NULL
+  group_var_order = NULL,
+  plot_height = 0.8,
+  group_color = NULL
 )
 
 add_y_axis(
@@ -94,6 +96,10 @@ named list where the name will be the key in the tooltip}
 \item{arrange_by_group_var}{value in group_var to sort by}
 
 \item{group_var_order}{order of group var}
+
+\item{plot_height}{height of plot}
+
+\item{group_color}{color of group variabel}
 
 \item{out}{intermediate config}
 

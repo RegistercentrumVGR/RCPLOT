@@ -16,6 +16,9 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] "100%"
+      
       
       $xAxis
       $xAxis$categories
@@ -112,7 +115,7 @@
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -147,6 +150,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -236,7 +242,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -270,6 +276,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -318,7 +327,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -353,6 +362,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -407,7 +419,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -441,6 +453,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -587,7 +602,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -623,6 +638,9 @@
       
       $chart$inverted
       [1] TRUE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -775,7 +793,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -810,6 +828,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -871,7 +892,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -907,6 +928,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -1005,7 +1029,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1048,6 +1072,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -1143,7 +1170,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1178,45 +1205,48 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] "100%"
+      
       
       $xAxis
       $xAxis$categories
-       [1] "Enhet 4"  "Enhet 2"  "Enhet 6"  "Enhet 3"  "Enhet 10" "Enhet 9" 
-       [7] "Enhet 8"  "Enhet 5"  "Enhet 1"  "Enhet 7" 
+       [1] "Enhet 10" "Enhet 9"  "Enhet 8"  "Enhet 7"  "Enhet 6"  "Enhet 5" 
+       [7] "Enhet 4"  "Enhet 3"  "Enhet 2"  "Enhet 1" 
       
       
       $series
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.8791722
+      [1] 10
       
       [[2]]
-      [1] 0.8483343
+      [1] 9
       
       [[3]]
-      [1] 0.8290505
+      [1] 8
       
       [[4]]
-      [1] 0.6211575
+      [1] 7
       
       [[5]]
-      [1] 0.5951198
+      [1] 6
       
       [[6]]
-      [1] 0.5889116
+      [1] 5
       
       [[7]]
-      [1] 0.5277068
+      [1] 4
       
       [[8]]
-      [1] 0.4946749
+      [1] 3
       
       [[9]]
-      [1] 0.4119534
+      [1] 2
       
       [[10]]
-      [1] 0.2508035
+      [1] 1
       
       
       [[1]]$name
@@ -1247,7 +1277,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1283,45 +1313,48 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] "100%"
+      
       
       $xAxis
       $xAxis$categories
-       [1] "Enhet 7"  "Enhet 1"  "Enhet 5"  "Enhet 8"  "Enhet 9"  "Enhet 10"
-       [7] "Enhet 3"  "Enhet 6"  "Enhet 2"  "Enhet 4" 
+       [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
+       [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
       
       
       $series
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.2508035
+      [1] 1
       
       [[2]]
-      [1] 0.4119534
+      [1] 2
       
       [[3]]
-      [1] 0.4946749
+      [1] 3
       
       [[4]]
-      [1] 0.5277068
+      [1] 4
       
       [[5]]
-      [1] 0.5889116
+      [1] 5
       
       [[6]]
-      [1] 0.5951198
+      [1] 6
       
       [[7]]
-      [1] 0.6211575
+      [1] 7
       
       [[8]]
-      [1] 0.8290505
+      [1] 8
       
       [[9]]
-      [1] 0.8483343
+      [1] 9
       
       [[10]]
-      [1] 0.8791722
+      [1] 10
       
       
       [[1]]$name
@@ -1352,7 +1385,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1388,50 +1421,53 @@
       $chart$inverted
       [1] TRUE
       
+      $chart$height
+      [1] "100%"
+      
       
       $xAxis
       $xAxis$categories
-       [1] "Enhet 7"  "Enhet 1"  "Enhet 5"  "Enhet 8"  "Enhet 9"  "Enhet 10"
-       [7] "Enhet 3"  "Enhet 6"  "Enhet 2"  "Enhet 4" 
+       [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
+       [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
       
       
       $series
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.2508035
+      [1] 1
       
       [[2]]
-      [1] 0.4119534
+      [1] 2
       
       [[3]]
-      [1] 0.4946749
+      [[3]]$y
+      [1] 3
       
-      [[4]]
-      [1] 0.5277068
-      
-      [[5]]
-      [1] 0.5889116
-      
-      [[6]]
-      [1] 0.5951198
-      
-      [[7]]
-      [[7]]$y
-      [1] 0.6211575
-      
-      [[7]]$color
+      [[3]]$color
       [1] "#6F45BB"
       
       
+      [[4]]
+      [1] 4
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 6
+      
+      [[7]]
+      [1] 7
+      
       [[8]]
-      [1] 0.8290505
+      [1] 8
       
       [[9]]
-      [1] 0.8483343
+      [1] 9
       
       [[10]]
-      [1] 0.8791722
+      [1] 10
       
       
       [[1]]$name
@@ -1462,7 +1498,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1496,6 +1532,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "100%"
       
       
       $xAxis
@@ -1562,7 +1601,7 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 10
+      [1] 15
       
       
       
@@ -1596,6 +1635,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "80%"
       
       
       $xAxis
@@ -1705,6 +1747,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] "80%"
       
       
       $xAxis
@@ -1874,6 +1919,9 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] "80%"
+      
       
       $xAxis
       $xAxis$categories
@@ -1962,6 +2010,9 @@
       
       $chart$inverted
       [1] TRUE
+      
+      $chart$height
+      [1] "80%"
       
       
       $xAxis

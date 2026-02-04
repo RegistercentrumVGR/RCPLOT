@@ -51,10 +51,10 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = 10,
+                                bar_size = 15,
                                 normalize_prop = FALSE,
                                 break_x_var_names = FALSE,
-                                plot_height = 0.8,
+                                plot_height = 1,
                                 group_color = NULL) {
 
   type <- "column"

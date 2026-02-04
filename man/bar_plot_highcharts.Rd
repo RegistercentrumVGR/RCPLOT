@@ -26,7 +26,9 @@ bar_plot_highcharts(
   color_x_value = NULL,
   bar_size = 10,
   normalize_prop = FALSE,
-  break_x_var_names = FALSE
+  break_x_var_names = FALSE,
+  plot_height = 0.8,
+  group_color = NULL
 )
 }
 \arguments{
@@ -76,6 +78,10 @@ named list where the name will be the key in the tooltip}
 for stacked bar plot.}
 
 \item{break_x_var_names}{if line breaks should be done for x_var}
+
+\item{plot_height}{height of plot, value is in percentages}
+
+\item{group_color}{color of fill vars}
 }
 \value{
 highcharts config

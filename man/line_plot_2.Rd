@@ -34,7 +34,8 @@ line_plot_2(
   colors = NULL,
   remove_grid = TRUE,
   remove_legend = FALSE,
-  text_size = 7
+  text_size = 7,
+  color_var_order = NULL
 )
 }
 \arguments{
@@ -102,6 +103,8 @@ the points if \code{point} is \code{TRUE}}
 \item{remove_legend}{if all legends should be removed}
 
 \item{text_size}{passed to \code{\link[=theme_rc]{theme_rc()}}}
+
+\item{color_var_order}{the order of the color variable}
 }
 \description{
 Produces a line plot according to Registercentrum graphical standards.

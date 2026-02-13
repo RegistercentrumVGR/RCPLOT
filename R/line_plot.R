@@ -212,6 +212,7 @@ line_plot <-
 #' `colors_rc_2(9, "qualitative")`
 #' @param remove_grid if gridlines should be removed
 #' @param remove_legend if all legends should be removed
+#' @param color_var_order the order of the color variable
 #' @template plot
 #' @example man/examples/line_plot_2.R
 #'
@@ -245,7 +246,8 @@ line_plot_2 <- function(df,
                         colors = NULL,
                         remove_grid = TRUE,
                         remove_legend = FALSE,
-                        text_size = 7) {
+                        text_size = 7,
+                        color_var_order = NULL) {
   checkmate::assert_data_frame(
     df,
     min.rows = 1, min.cols = 1
@@ -272,6 +274,10 @@ line_plot_2 <- function(df,
     checkmate::check_choice(point_shape_var, names(df)),
     checkmate::check_null(point_shape_var)
   )
+  checkmate::assert(
+    checkmate::check_null(color_var_order),
+    checkmate::check_character(color_var_order)
+  )
 
   n <- ifelse(is.null(color_var), 1, length(unique(df[[color_var]])))
 
@@ -289,6 +295,11 @@ line_plot_2 <- function(df,
   # an ugly solution. This solution also means we don't have to specify "name"
   # in the scale_*_*-functions to change the legend titles.
   if (!is.null(color_var)) {
+    df <- dplyr::mutate(
+      df,
+      !!color_var := as.factor(.data[[color_var]]),
+      !!color_var := forcats::fct_relevel(.data[[color_var]], color_var_order)
+    )
     if (!is.null(color_title)) {
       df <- dplyr::rename(df, !!color_title := color_var)
 

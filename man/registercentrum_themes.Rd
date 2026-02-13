@@ -39,7 +39,7 @@ title and subtitle}
 \item{remove_legend}{If legends should be removed}
 }
 \value{
-Modified version of \code{\link[=theme_classic]{theme_classic()}}
+Modified version of \code{\link[ggplot2:ggtheme]{ggplot2::theme_classic()}}
 }
 \description{
 Implementation of graphical profile used in package by

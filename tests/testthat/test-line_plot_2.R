@@ -59,4 +59,27 @@ test_that("line_plot_2 works", {
   ) |>
     expect_no_error()
 
+  df <- data.frame(
+    year = rep(2010:2012, each = 4),
+    y = 10,
+    quarter = 1:4
+  )
+
+  line_plot_2(
+    df = df,
+    x_var = "year",
+    color_var = "quarter",
+    y_var = "y"
+  ) |>
+    vdiffr::expect_doppelganger(title = "continuous color")
+
+  line_plot_2(
+    df = df,
+    x_var = "year",
+    color_var = "quarter",
+    y_var = "y",
+    color_var_order = c("2", "3", "4", "1")
+  ) |>
+    vdiffr::expect_doppelganger(title = "color order")
+
 })

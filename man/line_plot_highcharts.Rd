@@ -47,7 +47,9 @@ named list where the name will be the key in the tooltip}
 
 \item{y_lab}{labels on y axis}
 
-\item{color_var_order}{order of color vars}
+\item{color_var_order}{what order \verb{_varcolor} should be displayed in, can
+alternatively be \code{auto_character} or \code{auto_numeric} to automatically sort
+the levels}
 
 \item{line_size}{size of lines}
 }

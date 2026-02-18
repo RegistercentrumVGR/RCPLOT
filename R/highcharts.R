@@ -20,8 +20,10 @@
 #' @param y_lab labels on y axis
 #' @param arrange_by column to sort by
 #' @param arrange_desc to arrange descending
-#' @param arrange_by_fill what value in fill_var that sort be sorted by
-#' @param fill_var_order what order of fill_Var
+#' @param arrange_by_fill what value in `fill_var` that sort be sorted by
+#' @param fill_var_order what order `fill_var` should be displayed in, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
 #' @param color_x_value columns that should be different color, input as list.
 #' @param bar_size width of bars
 #' @param normalize_prop if _prop variable should be normalized, only valid
@@ -244,7 +246,9 @@ bar_plot_highcharts <- function(df,
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
-#' @param color_var_order order of color vars
+#' @param color_var_order what order `_varcolor` should be displayed in, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
 #' @param line_size size of lines
 #'
 #' @return highcharts config
@@ -381,9 +385,12 @@ box_plot_highcharts <- function(df,
 #' @param arrange_by column to sort by
 #' @param arrange_desc if sort is descending
 #' @param arrange_by_group_var value in group_var to sort by
-#' @param group_var_order order of group var
+#' @param group_var_order order of group var, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
 #' @param plot_height height of plot
 #' @param group_color color of group variabel
+#' @param legend_title title of the legend
 #'
 #' @return highcharts config
 #' @export
@@ -406,7 +413,8 @@ plot_highcharts <- function(df,
                             arrange_by_group_var = NULL,
                             group_var_order = NULL,
                             plot_height = 0.8,
-                            group_color = NULL) {
+                            group_color = NULL,
+                            legend_title = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -499,6 +507,16 @@ plot_highcharts <- function(df,
     out <- c(
       out,
       list(legend = list(reversed = TRUE))
+    )
+  }
+
+  if (!is.null(legend_title)) {
+    checkmate::assert_string(legend_title)
+    out <- purrr::modify_at(
+      out,
+      "legend",
+      c,
+      list(title = list(text = legend_title))
     )
   }
 
@@ -636,6 +654,28 @@ add_tooltip <- function(out,
 
 }
 
+#' Sort a character vector
+#'
+#' For the numeric sort, all numbers in each string is extracted and we then
+#' sort by the mean of these numbers
+#'
+#' @param x vector of values
+#'
+#' @return sorted vector
+sort_character <- function(x) {
+  stringr::str_order(x, locale = "sv")
+}
+
+#' @describeIn sort_character sort a numeric vector
+sort_numeric <- function(x) {
+  order <- stringr::str_extract_all(x, "\\d+(\\.\\d+)?") |>
+    purrr::map(as.numeric) |>
+    purrr::map(mean) |>
+    unlist() |>
+    order()
+  x[order]
+}
+
 #' @describeIn plot_highcharts converts a data.frame to a highcharts series
 #' representation
 #' @param palette_type passed to [colors_rc_3()]
@@ -682,9 +722,22 @@ make_series <- function(df,
   }
 
   if (!is.null(group_var_order)) {
+
+    if (group_var_order %in% c("auto_numeric", "auto_character")) {
+      group_var_order <- switch(
+        group_var_order,
+        "auto_numeric" = sort_numeric,
+        "auto_character" = sort_character
+      )
+    }
+
     tmp <- tmp |>
-      dplyr::mutate(dplyr::across(.data$series_var,
-                                  ~ factor(.x, levels = group_var_order)))
+      dplyr::mutate(
+        dplyr::across(
+          .data$series_var,
+          ~ forcats::fct_relevel(.x, group_var_order)
+        )
+      )
   }
 
   tmp <- tmp |>

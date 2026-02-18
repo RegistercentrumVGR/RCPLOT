@@ -27,7 +27,8 @@ plot_highcharts(
   arrange_by_group_var = NULL,
   group_var_order = NULL,
   plot_height = 0.8,
-  group_color = NULL
+  group_color = NULL,
+  legend_title = NULL
 )
 
 add_y_axis(
@@ -95,11 +96,15 @@ named list where the name will be the key in the tooltip}
 
 \item{arrange_by_group_var}{value in group_var to sort by}
 
-\item{group_var_order}{order of group var}
+\item{group_var_order}{order of group var, can
+alternatively be \code{auto_character} or \code{auto_numeric} to automatically sort
+the levels}
 
 \item{plot_height}{height of plot}
 
 \item{group_color}{color of group variabel}
+
+\item{legend_title}{title of the legend}
 
 \item{out}{intermediate config}
 

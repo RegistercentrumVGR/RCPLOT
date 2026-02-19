@@ -583,12 +583,26 @@ test_that("box_plot_highcharts work", {
 
 })
 
-test_that("sort_numeric works", {
+test_that("sorting works", {
 
   c("18.5-29.1", "39.1", "<1-2") |>
     sort_numeric() |>
     expect_equal(
       c("<1-2", "18.5-29.1", "39.1")
+    )
+
+  letters[1:3] |>
+    sort_numeric() |>
+    expect_equal(letters[1:3])
+
+  letters[3:1] |>
+    sort_character() |>
+    expect_equal(letters[1:3])
+
+  c("a", "b", "å") |>
+    sort_character() |>
+    expect_equal(
+      c("a", "b", "å")
     )
 
 })

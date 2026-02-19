@@ -673,7 +673,7 @@ add_tooltip <- function(out,
 #'
 #' @return sorted vector
 sort_character <- function(x) {
-  stringr::str_order(x, locale = "sv")
+  stringr::str_sort(x, locale = "sv")
 }
 
 #' @describeIn sort_character sort a numeric vector

@@ -47,7 +47,8 @@ ggplot2 semantics}
 
 \item{title}{title of the graph}
 
-\item{y_lim}{limits of y-axis}
+\item{y_lim}{limits of y-axis, if \code{NULL} and \code{proportion} is \code{TRUE}, will be
+set to \code{c(0, 100)}}
 
 \item{y_breaks}{breaks of y_axis}
 

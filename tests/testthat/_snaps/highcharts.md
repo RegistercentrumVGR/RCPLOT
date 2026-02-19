@@ -405,6 +405,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -878,6 +884,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1015,6 +1027,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1149,6 +1167,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"

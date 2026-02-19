@@ -10,7 +10,8 @@
 #' @param position whether or not to make the bars stack or dodge according to
 #' ggplot2 semantics
 #' @param title title of the graph
-#' @param y_lim limits of y-axis
+#' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
+#' set to `c(0, 100)`
 #' @param y_breaks breaks of y_axis
 #' @param proportion if the values are percentages
 #' @param scale_percentage if percentages should the scaled
@@ -144,6 +145,10 @@ bar_plot_highcharts <- function(df,
         fontSize = "12px"
       )
     )
+  }
+
+  if (is.null(y_lim) && proportion) {
+    y_lim <- c(0, 100)
   }
 
   out <- plot_highcharts(

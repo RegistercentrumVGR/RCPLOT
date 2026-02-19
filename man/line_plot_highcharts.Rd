@@ -32,13 +32,14 @@ line_plot_highcharts(
 
 \item{title}{title of the graph}
 
-\item{y_lim}{limits of y-axis}
+\item{y_lim}{limits of y-axis, if \code{NULL} and \code{proportion} is \code{TRUE}, will be
+set to \code{c(0, 100)}}
 
 \item{y_breaks}{breaks of y_axis}
 
-\item{proportion}{if the values are percentages}
+\item{proportion}{if the values are proportions or percentages}
 
-\item{scale_percentage}{if percentages should the scaled}
+\item{scale_percentage}{if proportions should be re-scaled to be percentages}
 
 \item{other_vars}{other variables to include in the tooltip, should be a
 named list where the name will be the key in the tooltip}
@@ -47,7 +48,7 @@ named list where the name will be the key in the tooltip}
 
 \item{y_lab}{labels on y axis}
 
-\item{color_var_order}{what order \verb{_varcolor} should be displayed in, can
+\item{color_var_order}{what order \code{color_var} should be displayed in, can
 alternatively be \code{auto_character} or \code{auto_numeric} to automatically sort
 the levels}
 

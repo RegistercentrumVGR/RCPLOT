@@ -238,15 +238,16 @@ bar_plot_highcharts <- function(df,
 #' @param y_var y_axis variabel
 #' @param color_var the name of the color variable
 #' @param title title of the graph
-#' @param y_lim limits of y-axis
+#' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
+#' set to `c(0, 100)`
 #' @param y_breaks breaks of y_axis
-#' @param proportion if the values are percentages
-#' @param scale_percentage if percentages should the scaled
+#' @param proportion if the values are proportions or percentages
+#' @param scale_percentage if proportions should be re-scaled to be percentages
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
-#' @param color_var_order what order `_varcolor` should be displayed in, can
+#' @param color_var_order what order `color_var` should be displayed in, can
 #' alternatively be `auto_character` or `auto_numeric` to automatically sort
 #' the levels
 #' @param line_size size of lines
@@ -267,6 +268,10 @@ line_plot_highcharts <- function(df,
                                  y_lab = NULL,
                                  color_var_order = NULL,
                                  line_size = 8) {
+
+  if (is.null(y_lim) && proportion) {
+    y_lim <- c(0, 100)
+  }
 
   out <- plot_highcharts(
     df = df,
@@ -506,7 +511,7 @@ plot_highcharts <- function(df,
   } else {
     out <- c(
       out,
-      list(legend = list(reversed = TRUE))
+      list(legend = list(reversed = FALSE))
     )
   }
 
@@ -723,18 +728,22 @@ make_series <- function(df,
 
   if (!is.null(group_var_order)) {
 
-    if (group_var_order %in% c("auto_numeric", "auto_character")) {
-      group_var_order <- switch(
-        group_var_order,
-        "auto_numeric" = sort_numeric,
-        "auto_character" = sort_character
-      )
+    if (rlang::is_string(group_var_order)) {
+      if (group_var_order %in% c("auto_numeric", "auto_character")) {
+        group_var_order <- switch(
+          group_var_order,
+          "auto_numeric" = sort_numeric,
+          "auto_character" = sort_character
+        )
+      }
+    } else {
+      group_var_order <- as.character(group_var_order)
     }
 
     tmp <- tmp |>
       dplyr::mutate(
         dplyr::across(
-          .data$series_var,
+          "series_var",
           ~ forcats::fct_relevel(.x, group_var_order)
         )
       )

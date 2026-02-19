@@ -146,6 +146,42 @@ test_that("make_series works", {
       )
     )
 
+  df <- tidyr::expand_grid(
+    y = 1,
+    year = 2020:2023,
+    bmi_group = c("<18.5", "18.5-29")
+  )
+
+  make_series(
+    df,
+    vars = list(y = "y"),
+    group_vars = "bmi_group",
+    group_var_order = "auto_numeric"
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = structure(list(1, 1, 1, 1), class = "AsIs"),
+          name = structure(
+            1L,
+            levels = c("<18.5", "18.5-29"),
+            class = "factor"
+          ),
+          color = "#116875"
+        ),
+        list(
+          data = structure(list(1, 1, 1, 1), class = "AsIs"),
+          name = structure(
+            2L,
+            levels = c("<18.5", "18.5-29"),
+            class = "factor"
+          ),
+          color = "#FC5930"
+        )
+      )
+    )
+
+
 })
 
 
@@ -253,21 +289,37 @@ test_that("plot_highcharts works", {
     y_lim = NULL,
     y_breaks = NULL,
     type = "column",
-    other_vars = NULL
+    other_vars = NULL,
+    legend_title = "abc"
   ) |>
-    jsonlite::toJSON(auto_unbox = TRUE) |>
-    as.character() |>
     expect_equal(
-      paste0(
-        "{",
-        '"title":{"text":""},',
-        '"chart":{"type":"column","inverted":false,"height":"80%"},',
-        '"xAxis":{"categories":["a"]},',
-        '"series":[{"data":[1],"name":"","color":"#116875"}],',
-        '"legend":{"enabled":false},',
-        '"yAxis":{"labels":{"format":"{value}"}},',
-        '"tooltip":{"pointFormat":"<b>{point.y}<\\/b>"}',
-        "}"
+      list(
+        title = list(text = ""),
+        chart = list(
+          type = "column",
+          inverted = FALSE,
+          height = "80%"
+        ),
+        xAxis = list(categories = structure("a", class = "AsIs")),
+        series = structure(
+          list(
+            list(
+              data = structure(
+                list(1),
+                class = "AsIs"
+              ),
+              name = "",
+              color = "#116875"
+            )
+          ),
+          class = "AsIs"
+        ),
+        legend = list(
+          enabled = FALSE,
+          title = list(text = "abc")
+        ),
+        yAxis = list(labels = list(format = "{value}")),
+        tooltip = list(pointFormat = "<b>{point.y}</b>")
       )
     )
 
@@ -528,5 +580,29 @@ test_that("box_plot_highcharts work", {
     horizontal = TRUE
   ) |>
     expect_snapshot()
+
+})
+
+test_that("sorting works", {
+
+  c("18.5-29.1", "39.1", "<1-2") |>
+    sort_numeric() |>
+    expect_equal(
+      c("<1-2", "18.5-29.1", "39.1")
+    )
+
+  letters[1:3] |>
+    sort_numeric() |>
+    expect_equal(letters[1:3])
+
+  letters[3:1] |>
+    sort_character() |>
+    expect_equal(letters[1:3])
+
+  c("a", "b", "å") |>
+    sort_character() |>
+    expect_equal(
+      c("a", "b", "å")
+    )
 
 })

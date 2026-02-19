@@ -86,7 +86,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
@@ -221,7 +221,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
@@ -405,6 +405,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -584,7 +590,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
@@ -769,7 +775,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
@@ -878,6 +884,12 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1011,10 +1023,16 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1053,13 +1071,6 @@
       bar_plot_highcharts(df, x_var = "county", y_var = "prop", fill_var = "year",
         other_vars = list(Nämnare = "total", Täljare = "n"), proportion = TRUE,
         scale_percentage = TRUE, fill_var_order = c(2023, 2024))
-    Condition
-      Warning:
-      There was 1 warning in `dplyr::mutate()`.
-      i In argument: `dplyr::across(.data$series_var, ~factor(.x, levels = group_var_order))`.
-      Caused by warning:
-      ! Use of .data in tidyselect expressions was deprecated in tidyselect 1.2.0.
-      i Please use `"series_var"` instead of `.data$series_var`
     Output
       $title
       $title$text
@@ -1152,10 +1163,16 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1878,7 +1895,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis
@@ -2084,7 +2101,7 @@
       
       $legend
       $legend$reversed
-      [1] TRUE
+      [1] FALSE
       
       
       $yAxis

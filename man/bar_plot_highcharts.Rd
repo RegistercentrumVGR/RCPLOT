@@ -47,7 +47,8 @@ ggplot2 semantics}
 
 \item{title}{title of the graph}
 
-\item{y_lim}{limits of y-axis}
+\item{y_lim}{limits of y-axis, if \code{NULL} and \code{proportion} is \code{TRUE}, will be
+set to \code{c(0, 100)}}
 
 \item{y_breaks}{breaks of y_axis}
 
@@ -66,9 +67,11 @@ named list where the name will be the key in the tooltip}
 
 \item{arrange_desc}{to arrange descending}
 
-\item{arrange_by_fill}{what value in fill_var that sort be sorted by}
+\item{arrange_by_fill}{what value in \code{fill_var} that sort be sorted by}
 
-\item{fill_var_order}{what order of fill_Var}
+\item{fill_var_order}{what order \code{fill_var} should be displayed in, can
+alternatively be \code{auto_character} or \code{auto_numeric} to automatically sort
+the levels}
 
 \item{color_x_value}{columns that should be different color, input as list.}
 

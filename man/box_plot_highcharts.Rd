@@ -20,7 +20,8 @@ box_plot_highcharts(
   y_breaks = NULL,
   other_vars = NULL,
   x_lab = NULL,
-  y_lab = NULL
+  y_lab = NULL,
+  legend_title = NULL
 )
 }
 \arguments{
@@ -57,6 +58,8 @@ named list where the name will be the key in the tooltip}
 \item{x_lab}{labels on x axis}
 
 \item{y_lab}{labels on y axis}
+
+\item{legend_title}{title of the legend}
 }
 \value{
 highcharts config

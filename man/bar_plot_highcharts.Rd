@@ -28,7 +28,8 @@ bar_plot_highcharts(
   normalize_prop = FALSE,
   break_x_var_names = FALSE,
   plot_height = 1,
-  group_color = NULL
+  group_color = NULL,
+  legend_title = NULL
 )
 }
 \arguments{
@@ -85,6 +86,8 @@ for stacked bar plot.}
 \item{plot_height}{height of plot, value is in percentages}
 
 \item{group_color}{color of fill vars}
+
+\item{legend_title}{title of the legend}
 }
 \value{
 highcharts config

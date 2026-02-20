@@ -32,6 +32,7 @@
 #' @param break_x_var_names if line breaks should be done for x_var
 #' @param plot_height height of plot, value is in percentages
 #' @param group_color color of fill vars
+#' @param legend_title title of the legend
 #'
 #' @return highcharts config
 #' @export
@@ -58,7 +59,8 @@ bar_plot_highcharts <- function(df,
                                 normalize_prop = FALSE,
                                 break_x_var_names = FALSE,
                                 plot_height = 1,
-                                group_color = NULL) {
+                                group_color = NULL,
+                                legend_title = NULL) {
 
   type <- "column"
 
@@ -171,7 +173,8 @@ bar_plot_highcharts <- function(df,
     arrange_by_group_var = arrange_by_fill,
     group_var_order = fill_var_order,
     plot_height = plot_height,
-    group_color = group_color
+    group_color = group_color,
+    legend_title = legend_title
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -256,6 +259,7 @@ bar_plot_highcharts <- function(df,
 #' alternatively be `auto_character` or `auto_numeric` to automatically sort
 #' the levels
 #' @param line_size size of lines
+#' @param legend_title title of the legend
 #'
 #' @return highcharts config
 #' @export
@@ -272,7 +276,8 @@ line_plot_highcharts <- function(df,
                                  x_lab = NULL,
                                  y_lab = NULL,
                                  color_var_order = NULL,
-                                 line_size = 8) {
+                                 line_size = 8,
+                                 legend_title = NULL) {
 
   if (is.null(y_lim) && proportion) {
     y_lim <- c(0, 100)
@@ -292,7 +297,8 @@ line_plot_highcharts <- function(df,
     other_vars = other_vars,
     x_lab = x_lab,
     y_lab = y_lab,
-    group_var_order = color_var_order
+    group_var_order = color_var_order,
+    legend_title = legend_title
   )
 
   out <- c(
@@ -329,6 +335,7 @@ line_plot_highcharts <- function(df,
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
+#' @param legend_title title of the legend
 #'
 #'
 #' @return highcharts config
@@ -348,7 +355,8 @@ box_plot_highcharts <- function(df,
                                 y_breaks = NULL,
                                 other_vars = NULL,
                                 x_lab = NULL,
-                                y_lab = NULL) {
+                                y_lab = NULL,
+                                legend_title = NULL) {
 
   out <- plot_highcharts(
     df = df,
@@ -368,7 +376,8 @@ box_plot_highcharts <- function(df,
     other_vars = other_vars,
     horizontal = horizontal,
     x_lab = x_lab,
-    y_lab = y_lab
+    y_lab = y_lab,
+    legend_title = legend_title
   )
 
   return(out)

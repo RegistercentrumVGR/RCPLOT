@@ -18,7 +18,8 @@ line_plot_highcharts(
   x_lab = NULL,
   y_lab = NULL,
   color_var_order = NULL,
-  line_size = 8
+  line_size = 8,
+  legend_title = NULL
 )
 }
 \arguments{
@@ -53,6 +54,8 @@ alternatively be \code{auto_character} or \code{auto_numeric} to automatically s
 the levels}
 
 \item{line_size}{size of lines}
+
+\item{legend_title}{title of the legend}
 }
 \value{
 highcharts config

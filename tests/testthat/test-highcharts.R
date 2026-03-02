@@ -510,7 +510,17 @@ test_that("bar_plot_highcharts works", {
     ) |>
     expect_snapshot()
 
-
+  data.frame(
+    x = c("a", "b", "b"),
+    y = 10,
+    color = c(1, 1, 2)
+  ) |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "color"
+    ) |>
+    expect_snapshot()
 
 })
 
@@ -539,6 +549,25 @@ test_that("line_plot_highcharts works", {
       x_var = "year",
       y_var = "y",
       color_var = "county"
+    ) |>
+    expect_snapshot()
+
+  data.frame(
+    y = sample(1:3, 10, T),
+    color = 1,
+    year = 2010:2019
+  ) |>
+    dplyr::bind_rows(
+      data.frame(
+        y = sample(1:3, 8, T),
+        color = 2,
+        year = 2011:2018
+      )
+    ) |>
+    line_plot_highcharts(
+      x_var = "year",
+      y_var = "y",
+      color_var = "color"
     ) |>
     expect_snapshot()
 

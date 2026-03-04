@@ -9,7 +9,7 @@ Lint package:
   variables:
     LINTR_ERROR_ON_LINT: true
   tags:
-    - rc-rdemo
+    - rc-r
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
@@ -27,7 +27,7 @@ Check package:
   parallel:
     matrix:
       - RUNNER_TAGS:
-        - rc-rdemo
+        - rc-r
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS

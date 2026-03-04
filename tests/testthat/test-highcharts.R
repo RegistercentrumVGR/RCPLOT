@@ -553,13 +553,13 @@ test_that("line_plot_highcharts works", {
     expect_snapshot()
 
   data.frame(
-    y = sample(1:3, 10, T),
+    y = sample(1:3, 10, TRUE),
     color = 1,
     year = 2010:2019
   ) |>
     dplyr::bind_rows(
       data.frame(
-        y = sample(1:3, 8, T),
+        y = sample(1:3, 8, TRUE),
         color = 2,
         year = 2011:2018
       )

@@ -1,3 +1,7 @@
-linters: linters_with_defaults(
-		return_linter = NULL
-  )
+linters: {
+    if ("cyclocomp_linter" %in% names(linters_with_defaults())) {
+      linters_with_defaults(cyclocomp_linter = NULL)
+    } else {
+      linters_with_defaults()
+    }
+  }

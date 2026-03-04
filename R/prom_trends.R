@@ -113,7 +113,7 @@ prom_trends <-
         top <- ((range_size / 2 + 2 * y_break) %/% y_break) * y_break
         bottom <- ((range_size / 2 - y_break) %/% y_break) * y_break
       }
-      return(c(bottom, top))
+      c(bottom, top)
     }
 
     # Ggplots -----------------------------------------------------------------

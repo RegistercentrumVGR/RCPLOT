@@ -73,5 +73,5 @@ plotly_to_html <- function(plt) {
     "</html>"
   )
 
-  return(html)
+  html
 }

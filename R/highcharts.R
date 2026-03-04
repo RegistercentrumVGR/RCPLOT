@@ -447,6 +447,15 @@ plot_highcharts <- function(df,
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
 
+  if (!is.null(group_vars) && !all(group_vars == x_var)) {
+    df <- df |>
+      tidyr::complete(
+        .data[[x_var]],
+        .data[[group_vars]],
+        fill = purrr::set_names(as.list(rep(NA, length(vars))), vars)
+      )
+  }
+
   if (!is.null(arrange_by)) {
     checkmate::assert_choice(arrange_by, names(df))
     if (arrange_desc) {

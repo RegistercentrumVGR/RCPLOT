@@ -450,8 +450,7 @@ plot_highcharts <- function(df,
   if (!is.null(group_vars) && !all(group_vars == x_var)) {
     df <- df |>
       tidyr::complete(
-        .data[[x_var]],
-        .data[[group_vars]],
+        !!!rlang::syms(c(x_var, group_vars)),
         fill = purrr::set_names(as.list(rep(NA, length(vars))), vars)
       )
   }

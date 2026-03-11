@@ -552,6 +552,8 @@ test_that("line_plot_highcharts works", {
     ) |>
     expect_snapshot()
 
+  withr::local_seed(1)
+
   data.frame(
     y = sample(1:3, 10, TRUE),
     color = 1,
@@ -568,6 +570,27 @@ test_that("line_plot_highcharts works", {
       x_var = "year",
       y_var = "y",
       color_var = "color"
+    ) |>
+    expect_snapshot()
+
+  data.frame(
+    year = 2020,
+    county = 1:2,
+    group = "a",
+    prop = 0.5
+  ) |>
+    dplyr::bind_rows(
+      data.frame(
+        year = 2020,
+        county = 1:2,
+        group = "b",
+        prop = 0.75
+      )
+    ) |>
+    line_plot_highcharts(
+      x_var = "year",
+      y_var = "prop",
+      color_var = c("county", "group")
     ) |>
     expect_snapshot()
 

@@ -2164,9 +2164,9 @@
 ---
 
     Code
-      line_plot_highcharts(dplyr::bind_rows(data.frame(y = sample(1:3, 10, T), color = 1,
-      year = 2010:2019), data.frame(y = sample(1:3, 8, T), color = 2, year = 2011:
-      2018)), x_var = "year", y_var = "y", color_var = "color")
+      line_plot_highcharts(dplyr::bind_rows(data.frame(y = sample(1:3, 10, TRUE),
+      color = 1, year = 2010:2019), data.frame(y = sample(1:3, 8, TRUE), color = 2,
+      year = 2011:2018)), x_var = "year", y_var = "y", color_var = "color")
     Output
       $title
       $title$text
@@ -2193,10 +2193,10 @@
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 2
+      [1] 1
       
       [[2]]
-      [1] 1
+      [1] 3
       
       [[3]]
       [1] 1
@@ -2208,7 +2208,7 @@
       [1] 1
       
       [[6]]
-      [1] 1
+      [1] 3
       
       [[7]]
       [1] 3
@@ -2217,10 +2217,10 @@
       [1] 2
       
       [[9]]
-      [1] 3
+      [1] 2
       
       [[10]]
-      [1] 1
+      [1] 3
       
       
       [[1]]$name
@@ -2236,19 +2236,19 @@
       NULL
       
       [[2]]
-      [1] 1
+      [1] 3
       
       [[3]]
-      [1] 2
+      [1] 1
       
       [[4]]
-      [1] 3
+      [1] 1
       
       [[5]]
-      [1] 3
+      [1] 1
       
       [[6]]
-      [1] 3
+      [1] 2
       
       [[7]]
       [1] 2
@@ -2268,6 +2268,113 @@
       
       [[2]]$color
       [1] "#FC5930"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+
+---
+
+    Code
+      line_plot_highcharts(dplyr::bind_rows(data.frame(year = 2020, county = 1:2,
+      group = "a", prop = 0.5), data.frame(year = 2020, county = 1:2, group = "b",
+      prop = 0.75)), x_var = "year", y_var = "prop", color_var = c("county", "group"))
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "line"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "2020"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.5
+      
+      
+      [[1]]$name
+      [1] "1, a"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[1]]
+      [1] 0.75
+      
+      
+      [[2]]$name
+      [1] "1, b"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      [[3]]
+      [[3]]$data
+      [[1]]
+      [1] 0.5
+      
+      
+      [[3]]$name
+      [1] "2, a"
+      
+      [[3]]$color
+      [1] "#6F45BB"
+      
+      
+      [[4]]
+      [[4]]$data
+      [[1]]
+      [1] 0.75
+      
+      
+      [[4]]$name
+      [1] "2, b"
+      
+      [[4]]$color
+      [1] "#89163B"
       
       
       

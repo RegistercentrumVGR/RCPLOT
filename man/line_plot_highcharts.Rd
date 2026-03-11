@@ -19,7 +19,8 @@ line_plot_highcharts(
   y_lab = NULL,
   color_var_order = NULL,
   line_size = 8,
-  legend_title = NULL
+  legend_title = NULL,
+  facet_by = NULL
 )
 }
 \arguments{
@@ -56,9 +57,12 @@ the levels}
 \item{line_size}{size of lines}
 
 \item{legend_title}{title of the legend}
+
+\item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
+if supplied the return value is a named list of plots, one per facet level}
 }
 \value{
-highcharts config
+highcharts config, or a named list of configs when \code{facet_by} is set
 }
 \description{
 creates a line plot in highchart, outputs config for highchart

@@ -21,7 +21,8 @@ box_plot_highcharts(
   other_vars = NULL,
   x_lab = NULL,
   y_lab = NULL,
-  legend_title = NULL
+  legend_title = NULL,
+  facet_by = NULL
 )
 }
 \arguments{
@@ -60,9 +61,12 @@ named list where the name will be the key in the tooltip}
 \item{y_lab}{labels on y axis}
 
 \item{legend_title}{title of the legend}
+
+\item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
+if supplied the return value is a named list of plots, one per facet level}
 }
 \value{
-highcharts config
+highcharts config, or a named list of configs when \code{facet_by} is set
 }
 \description{
 creates highchart box plot, outputs highchart config

@@ -2602,3 +2602,195 @@
       
       
 
+# facet_by works
+
+    Code
+      res
+    Output
+      [[1]]
+      [[1]]$title
+      [[1]]$title$text
+      [1] 1
+      
+      
+      [[1]]$chart
+      [[1]]$chart$type
+      [1] "line"
+      
+      [[1]]$chart$inverted
+      [1] FALSE
+      
+      [[1]]$chart$height
+      [1] "80%"
+      
+      
+      [[1]]$xAxis
+      [[1]]$xAxis$categories
+       [1] "2010" "2012" "2014" "2016" "2018" "2020" "2011" "2013" "2015" "2017"
+      [11] "2019"
+      
+      
+      [[1]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.9
+      
+      [[2]]
+      [1] 0.7
+      
+      [[3]]
+      [1] 0.2
+      
+      [[4]]
+      [1] 0.2
+      
+      [[5]]
+      [1] 0.1
+      
+      [[6]]
+      [1] 0.5
+      
+      [[7]]
+      [1] 0.6
+      
+      [[8]]
+      [1] 0.7
+      
+      [[9]]
+      [1] 0.5
+      
+      [[10]]
+      [1] 0.9
+      
+      [[11]]
+      [1] 0.5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      [[1]]$legend
+      [[1]]$legend$enabled
+      [1] FALSE
+      
+      
+      [[1]]$yAxis
+      [[1]]$yAxis$labels
+      [[1]]$yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      [[1]]$tooltip
+      [[1]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      [[1]]$plotOptions
+      [[1]]$plotOptions$series
+      [[1]]$plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+      
+      [[2]]
+      [[2]]$title
+      [[2]]$title$text
+      [1] 2
+      
+      
+      [[2]]$chart
+      [[2]]$chart$type
+      [1] "line"
+      
+      [[2]]$chart$inverted
+      [1] FALSE
+      
+      [[2]]$chart$height
+      [1] "80%"
+      
+      
+      [[2]]$xAxis
+      [[2]]$xAxis$categories
+       [1] "2011" "2013" "2015" "2017" "2019" "2010" "2012" "2014" "2016" "2018"
+      [11] "2020"
+      
+      
+      [[2]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.4
+      
+      [[2]]
+      [1] 0.1
+      
+      [[3]]
+      [1] 0.7
+      
+      [[4]]
+      [1] 0.3
+      
+      [[5]]
+      [1] 0.5
+      
+      [[6]]
+      [1] 1
+      
+      [[7]]
+      [1] 1
+      
+      [[8]]
+      [1] 0.9
+      
+      [[9]]
+      [1] 0.5
+      
+      [[10]]
+      [1] 0.9
+      
+      [[11]]
+      [1] 0.5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      [[2]]$legend
+      [[2]]$legend$enabled
+      [1] FALSE
+      
+      
+      [[2]]$yAxis
+      [[2]]$yAxis$labels
+      [[2]]$yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      [[2]]$tooltip
+      [[2]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      [[2]]$plotOptions
+      [[2]]$plotOptions$series
+      [[2]]$plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+      
+

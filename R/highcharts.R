@@ -33,8 +33,10 @@
 #' @param plot_height height of plot, value is in percentages
 #' @param group_color color of fill vars
 #' @param legend_title title of the legend
+#' @param facet_by variable in `df` with at most 2 unique values to facet by;
+#' if supplied the return value is a named list of plots, one per facet level
 #'
-#' @return highcharts config
+#' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
 bar_plot_highcharts <- function(df,
                                 x_var,
@@ -60,7 +62,44 @@ bar_plot_highcharts <- function(df,
                                 break_x_var_names = FALSE,
                                 plot_height = 1,
                                 group_color = NULL,
-                                legend_title = NULL) {
+                                legend_title = NULL,
+                                facet_by = NULL) {
+
+  if (!is.null(facet_by)) {
+    checkmate::assert_choice(facet_by, names(df))
+    facet_vals <- unique(df[[facet_by]])
+    checkmate::assert_true(length(facet_vals) <= 2)
+    return(purrr::map(
+      facet_vals,
+      ~ bar_plot_highcharts(
+        df = dplyr::filter(df, .data[[facet_by]] == .x),
+        x_var = x_var,
+        y_var = y_var,
+        horizontal = horizontal,
+        fill_var = fill_var,
+        position = position,
+        title = facet_title(title, .x),
+        y_lim = y_lim,
+        y_breaks = y_breaks,
+        proportion = proportion,
+        scale_percentage = scale_percentage,
+        other_vars = other_vars,
+        x_lab = x_lab,
+        y_lab = y_lab,
+        arrange_by = arrange_by,
+        arrange_desc = arrange_desc,
+        arrange_by_fill = arrange_by_fill,
+        fill_var_order = fill_var_order,
+        color_x_value = color_x_value,
+        bar_size = bar_size,
+        normalize_prop = normalize_prop,
+        break_x_var_names = break_x_var_names,
+        plot_height = plot_height,
+        group_color = group_color,
+        legend_title = legend_title
+      )
+    ))
+  }
 
   type <- "column"
 
@@ -260,8 +299,10 @@ bar_plot_highcharts <- function(df,
 #' the levels
 #' @param line_size size of lines
 #' @param legend_title title of the legend
+#' @param facet_by variable in `df` with at most 2 unique values to facet by;
+#' if supplied the return value is a named list of plots, one per facet level
 #'
-#' @return highcharts config
+#' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
 line_plot_highcharts <- function(df,
                                  x_var,
@@ -277,7 +318,34 @@ line_plot_highcharts <- function(df,
                                  y_lab = NULL,
                                  color_var_order = NULL,
                                  line_size = 8,
-                                 legend_title = NULL) {
+                                 legend_title = NULL,
+                                 facet_by = NULL) {
+
+  if (!is.null(facet_by)) {
+    checkmate::assert_choice(facet_by, names(df))
+    facet_vals <- unique(df[[facet_by]])
+    checkmate::assert_true(length(facet_vals) <= 2)
+    return(purrr::map(
+      facet_vals,
+      ~ line_plot_highcharts(
+        df = dplyr::filter(df, .data[[facet_by]] == .x),
+        x_var = x_var,
+        y_var = y_var,
+        color_var = color_var,
+        title = facet_title(title, .x),
+        y_lim = y_lim,
+        y_breaks = y_breaks,
+        proportion = proportion,
+        scale_percentage = scale_percentage,
+        other_vars = other_vars,
+        x_lab = x_lab,
+        y_lab = y_lab,
+        color_var_order = color_var_order,
+        line_size = line_size,
+        legend_title = legend_title
+      )
+    ))
+  }
 
   if (is.null(y_lim) && proportion) {
     y_lim <- c(0, 100)
@@ -336,9 +404,11 @@ line_plot_highcharts <- function(df,
 #' @param x_lab labels on x axis
 #' @param y_lab labels on y axis
 #' @param legend_title title of the legend
+#' @param facet_by variable in `df` with at most 2 unique values to facet by;
+#' if supplied the return value is a named list of plots, one per facet level
 #'
 #'
-#' @return highcharts config
+#' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
 box_plot_highcharts <- function(df,
                                 x_var,
@@ -356,7 +426,36 @@ box_plot_highcharts <- function(df,
                                 other_vars = NULL,
                                 x_lab = NULL,
                                 y_lab = NULL,
-                                legend_title = NULL) {
+                                legend_title = NULL,
+                                facet_by = NULL) {
+
+  if (!is.null(facet_by)) {
+    checkmate::assert_choice(facet_by, names(df))
+    facet_vals <- unique(df[[facet_by]])
+    checkmate::assert_true(length(facet_vals) <= 2)
+    return(purrr::map(
+      facet_vals,
+      ~ box_plot_highcharts(
+        df = dplyr::filter(df, .data[[facet_by]] == .x),
+        x_var = x_var,
+        y_var = y_var,
+        y_lower = y_lower,
+        y_upper = y_upper,
+        y_min = y_min,
+        y_max = y_max,
+        horizontal = horizontal,
+        fill_var = fill_var,
+        position = position,
+        title = facet_title(title, .x),
+        y_lim = y_lim,
+        y_breaks = y_breaks,
+        other_vars = other_vars,
+        x_lab = x_lab,
+        y_lab = y_lab,
+        legend_title = legend_title
+      )
+    ))
+  }
 
   out <- plot_highcharts(
     df = df,
@@ -806,5 +905,12 @@ make_series <- function(df,
         )
       )
   }
+
+}
+
+facet_title <- function(title, val) {
+  if (is.null(title) || title == "") return(as.character(val))
+
+  paste0(c(title, val), collapse = ", ")
 
 }

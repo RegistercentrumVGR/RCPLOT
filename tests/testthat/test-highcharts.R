@@ -658,3 +658,24 @@ test_that("sorting works", {
     )
 
 })
+
+test_that("facet_by works", {
+
+  withr::local_seed(1)
+
+  df <- data.frame(
+    type = 1:2,
+    x = 2010:2020,
+    prop = sample(1:10, 22, TRUE) / 10
+  )
+
+  res <- line_plot_highcharts(
+    df,
+    x_var = "x",
+    y_var = "prop",
+    facet_by = "type"
+  )
+
+  expect_snapshot(res)
+
+})

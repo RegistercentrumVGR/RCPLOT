@@ -29,7 +29,8 @@ bar_plot_highcharts(
   break_x_var_names = FALSE,
   plot_height = 1,
   group_color = NULL,
-  legend_title = NULL
+  legend_title = NULL,
+  facet_by = NULL
 )
 }
 \arguments{
@@ -88,9 +89,12 @@ for stacked bar plot.}
 \item{group_color}{color of fill vars}
 
 \item{legend_title}{title of the legend}
+
+\item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
+if supplied the return value is a named list of plots, one per facet level}
 }
 \value{
-highcharts config
+highcharts config, or a named list of configs when \code{facet_by} is set
 }
 \description{
 creates a bar plot in highchart, outputs the config file

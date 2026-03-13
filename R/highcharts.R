@@ -541,7 +541,7 @@ plot_highcharts <- function(df,
         dplyr::arrange(dplyr::desc(.data[[arrange_by]]))
     } else {
       df <- df |>
-        dplyr::arrange(.data[[arrange_by]])
+        dplyr::arrange(!is.na(.data[[arrange_by]]), .data[[arrange_by]])
     }
 
     if (!is.null(arrange_by_group_var)) {

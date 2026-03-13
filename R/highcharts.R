@@ -59,7 +59,7 @@ bar_plot_highcharts <- function(df,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
                                 bar_size = 15,
-                                normalize_prop = FALSE,
+                                normalize_prop = TRUE,
                                 break_x_var_names = FALSE,
                                 plot_height = 1,
                                 group_color = NULL,
@@ -127,25 +127,6 @@ bar_plot_highcharts <- function(df,
         )
       ) |>
       dplyr::ungroup()
-  }
-
-  if (normalize_prop && !is.null(fill_var) && position == "stack") {
-    df <- df |>
-      dplyr::group_by(.data[[x_var]]) |>
-      dplyr::mutate(prop_norm = .data[[y_var]] / sum(.data[[y_var]])) |>
-      dplyr::ungroup() |>
-      dplyr::mutate(
-        temp = .data[[y_var]],
-        !!y_var := .data[["prop_norm"]],
-        !!"prop_norm" := 100 * .data[["temp"]]
-      ) |>
-      dplyr::select(-dplyr::all_of("temp"))
-
-    if (!is.null(other_vars)) {
-      other_vars$Andel <- "prop_norm"
-    } else {
-      other_vars <- list("Andel" = "prop_norm")
-    }
   }
 
   if ("obfuscated_reason" %in% names(df)) {
@@ -242,13 +223,12 @@ bar_plot_highcharts <- function(df,
     out$series[[1]]$data <- vals
   }
 
-  stacking <- switch(
-    position,
-    "dodge" = NULL,
-    "stack" = "normal"
-  )
-
-  if (!is.null(stacking)) {
+  if (position == "stack") {
+    if (normalize_prop && !is.null(fill_var) && proportion) {
+      stacking <- "percent"
+    } else {
+      stacking <- "normal"
+    }
     out <- c(
       out,
       list(
@@ -269,11 +249,11 @@ bar_plot_highcharts <- function(df,
     )
   }
 
-  if (normalize_prop) {
-    out$tooltip$pointFormat <- gsub("\\{point\\.y\\}%</b><br>",
-                                    "",
-                                    out$tooltip$pointFormat)
-  }
+  # if (normalize_prop) {
+  #   out$tooltip$pointFormat <- gsub("\\{point\\.y\\}%</b><br>",
+  #                                   "",
+  #                                   out$tooltip$pointFormat)
+  # }
 
   out <- c(out, list(caption = caption))
 

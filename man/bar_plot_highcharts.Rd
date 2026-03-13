@@ -25,7 +25,7 @@ bar_plot_highcharts(
   fill_var_order = NULL,
   color_x_value = NULL,
   bar_size = 15,
-  normalize_prop = FALSE,
+  normalize_prop = TRUE,
   break_x_var_names = FALSE,
   plot_height = 1,
   group_color = NULL,

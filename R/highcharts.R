@@ -35,6 +35,7 @@
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
+#' @param reversed_stacks should stacks be reversed?
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -58,12 +59,13 @@ bar_plot_highcharts <- function(df,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
                                 bar_size = 15,
-                                normalize_prop = FALSE,
+                                normalize_prop = TRUE,
                                 break_x_var_names = FALSE,
                                 plot_height = 1,
                                 group_color = NULL,
                                 legend_title = NULL,
-                                facet_by = NULL) {
+                                facet_by = NULL,
+                                reversed_stacks = FALSE) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -96,7 +98,8 @@ bar_plot_highcharts <- function(df,
         break_x_var_names = break_x_var_names,
         plot_height = plot_height,
         group_color = group_color,
-        legend_title = legend_title
+        legend_title = legend_title,
+        reversed_stacks = reversed_stacks
       )
     ))
   }
@@ -124,25 +127,6 @@ bar_plot_highcharts <- function(df,
         )
       ) |>
       dplyr::ungroup()
-  }
-
-  if (normalize_prop && !is.null(fill_var) && position == "stack") {
-    df <- df |>
-      dplyr::group_by(.data[[x_var]]) |>
-      dplyr::mutate(prop_norm = .data[[y_var]] / sum(.data[[y_var]])) |>
-      dplyr::ungroup() |>
-      dplyr::mutate(
-        temp = .data[[y_var]],
-        !!y_var := .data[["prop_norm"]],
-        !!"prop_norm" := 100 * .data[["temp"]]
-      ) |>
-      dplyr::select(-dplyr::all_of("temp"))
-
-    if (!is.null(other_vars)) {
-      other_vars$Andel <- "prop_norm"
-    } else {
-      other_vars <- list("Andel" = "prop_norm")
-    }
   }
 
   if ("obfuscated_reason" %in% names(df)) {
@@ -213,7 +197,8 @@ bar_plot_highcharts <- function(df,
     group_var_order = fill_var_order,
     plot_height = plot_height,
     group_color = group_color,
-    legend_title = legend_title
+    legend_title = legend_title,
+    reversed_stacks = reversed_stacks
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -238,13 +223,12 @@ bar_plot_highcharts <- function(df,
     out$series[[1]]$data <- vals
   }
 
-  stacking <- switch(
-    position,
-    "dodge" = NULL,
-    "stack" = "normal"
-  )
-
-  if (!is.null(stacking)) {
+  if (position == "stack") {
+    if (normalize_prop && !is.null(fill_var) && proportion) {
+      stacking <- "percent"
+    } else {
+      stacking <- "normal"
+    }
     out <- c(
       out,
       list(
@@ -263,12 +247,6 @@ bar_plot_highcharts <- function(df,
         )
       )
     )
-  }
-
-  if (normalize_prop) {
-    out$tooltip$pointFormat <- gsub("\\{point\\.y\\}%</b><br>",
-                                    "",
-                                    out$tooltip$pointFormat)
   }
 
   out <- c(out, list(caption = caption))
@@ -509,6 +487,7 @@ box_plot_highcharts <- function(df,
 #' @param plot_height height of plot
 #' @param group_color color of group variabel
 #' @param legend_title title of the legend
+#' @param reversed_stacks should stacks be reversed?
 #'
 #' @return highcharts config
 #' @export
@@ -532,7 +511,8 @@ plot_highcharts <- function(df,
                             group_var_order = NULL,
                             plot_height = 0.8,
                             group_color = NULL,
-                            legend_title = NULL) {
+                            legend_title = NULL,
+                            reversed_stacks = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -647,7 +627,13 @@ plot_highcharts <- function(df,
   }
 
   out <- out |>
-    add_y_axis(y_lim, y_breaks, proportion, y_lab) |>
+    add_y_axis(
+      y_lim = y_lim,
+      y_breaks = y_breaks,
+      proportion = proportion,
+      y_lab = y_lab,
+      reversed_stacks = reversed_stacks
+    ) |>
     add_tooltip(
       proportion = proportion,
       group_vars = group_vars,
@@ -664,7 +650,8 @@ add_y_axis <- function(out,
                        y_lim = NULL,
                        y_breaks = NULL,
                        proportion = FALSE,
-                       y_lab = NULL) {
+                       y_lab = NULL,
+                       reversed_stacks = NULL) {
   y_axis <- c()
 
   if (!is.null(y_lim)) {
@@ -696,6 +683,16 @@ add_y_axis <- function(out,
     suffix <- "%"
   } else {
     suffix <- ""
+  }
+
+  if (!is.null(reversed_stacks)) {
+    checkmate::assert_logical(reversed_stacks, len = 1)
+    y_axis <- c(
+      y_axis,
+      list(
+        reversedStacks = reversed_stacks
+      )
+    )
   }
 
   labels <- list(

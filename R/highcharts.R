@@ -249,12 +249,6 @@ bar_plot_highcharts <- function(df,
     )
   }
 
-  # if (normalize_prop) {
-  #   out$tooltip$pointFormat <- gsub("\\{point\\.y\\}%</b><br>",
-  #                                   "",
-  #                                   out$tooltip$pointFormat)
-  # }
-
   out <- c(out, list(caption = caption))
 
   return(out)

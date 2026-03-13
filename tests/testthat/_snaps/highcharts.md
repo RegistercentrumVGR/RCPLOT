@@ -96,6 +96,9 @@
       $yAxis$max
       [1] 50
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -228,6 +231,9 @@
       $yAxis$tickPositions
       [1]  0 10 50
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -313,6 +319,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -410,6 +419,9 @@
       
       $yAxis$max
       [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
       
       $yAxis$labels
       $yAxis$labels$format
@@ -642,6 +654,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -881,6 +896,9 @@
       $yAxis$max
       [1] 10
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -985,6 +1003,9 @@
       
       $yAxis$max
       [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
       
       $yAxis$labels
       $yAxis$labels$format
@@ -1129,6 +1150,9 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1269,6 +1293,9 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1376,6 +1403,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1484,6 +1514,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1597,6 +1630,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1700,6 +1736,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1799,6 +1838,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -2610,7 +2652,7 @@
       [[1]]
       [[1]]$title
       [[1]]$title$text
-      [1] 1
+      [1] "1"
       
       
       [[1]]$chart
@@ -2703,7 +2745,7 @@
       [[2]]
       [[2]]$title
       [[2]]$title$text
-      [1] 2
+      [1] "2"
       
       
       [[2]]$chart

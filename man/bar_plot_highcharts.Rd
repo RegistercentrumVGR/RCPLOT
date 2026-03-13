@@ -30,7 +30,8 @@ bar_plot_highcharts(
   plot_height = 1,
   group_color = NULL,
   legend_title = NULL,
-  facet_by = NULL
+  facet_by = NULL,
+  reversed_stacks = FALSE
 )
 }
 \arguments{
@@ -92,6 +93,8 @@ for stacked bar plot.}
 
 \item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
 if supplied the return value is a named list of plots, one per facet level}
+
+\item{reversed_stacks}{should stacks be reversed?}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

@@ -28,7 +28,8 @@ plot_highcharts(
   group_var_order = NULL,
   plot_height = 0.8,
   group_color = NULL,
-  legend_title = NULL
+  legend_title = NULL,
+  reversed_stacks = NULL
 )
 
 add_y_axis(
@@ -36,7 +37,8 @@ add_y_axis(
   y_lim = NULL,
   y_breaks = NULL,
   proportion = FALSE,
-  y_lab = NULL
+  y_lab = NULL,
+  reversed_stacks = NULL
 )
 
 add_tooltip(
@@ -105,6 +107,8 @@ the levels}
 \item{group_color}{color of group variabel}
 
 \item{legend_title}{title of the legend}
+
+\item{reversed_stacks}{should stacks be reversed?}
 
 \item{out}{intermediate config}
 

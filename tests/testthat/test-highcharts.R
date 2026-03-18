@@ -522,6 +522,36 @@ test_that("bar_plot_highcharts works", {
     ) |>
     expect_snapshot()
 
+  data.frame(
+    unit = "x",
+    prop = c(0.25, 0.25, 0.49),
+    fill = 1:3
+  ) |>
+    bar_plot_highcharts(
+      x_var = "unit",
+      y_var = "prop",
+      fill_var = "fill",
+      position = "stack",
+      proportion = TRUE,
+      normalize_prop = TRUE
+    ) |>
+    expect_snapshot()
+
+  data.frame(
+    unit = "x",
+    prop = c(0.25, 0.25, 0.49),
+    fill = 1:3
+  ) |>
+    bar_plot_highcharts(
+      x_var = "unit",
+      y_var = "prop",
+      fill_var = "fill",
+      position = "stack",
+      proportion = TRUE,
+      normalize_prop = FALSE
+    ) |>
+    expect_snapshot()
+
 })
 
 test_that("line_plot_highcharts works", {
@@ -656,5 +686,26 @@ test_that("sorting works", {
     expect_equal(
       c("a", "b", "å")
     )
+
+})
+
+test_that("facet_by works", {
+
+  withr::local_seed(1)
+
+  df <- data.frame(
+    type = 1:2,
+    x = 2010:2020,
+    prop = sample(1:10, 22, TRUE) / 10
+  )
+
+  res <- line_plot_highcharts(
+    df,
+    x_var = "x",
+    y_var = "prop",
+    facet_by = "type"
+  )
+
+  expect_snapshot(res)
 
 })

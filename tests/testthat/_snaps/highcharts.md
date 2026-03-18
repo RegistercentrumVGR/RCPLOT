@@ -96,6 +96,9 @@
       $yAxis$max
       [1] 50
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -228,6 +231,9 @@
       $yAxis$tickPositions
       [1]  0 10 50
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -313,6 +319,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -410,6 +419,9 @@
       
       $yAxis$max
       [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
       
       $yAxis$labels
       $yAxis$labels$format
@@ -642,6 +654,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -881,6 +896,9 @@
       $yAxis$max
       [1] 10
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -985,6 +1003,9 @@
       
       $yAxis$max
       [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
       
       $yAxis$labels
       $yAxis$labels$format
@@ -1129,6 +1150,9 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1269,6 +1293,9 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -1376,6 +1403,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1484,6 +1514,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1597,6 +1630,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1700,6 +1736,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1799,6 +1838,9 @@
       
       
       $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
@@ -1811,6 +1853,248 @@
       
       
       $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 15
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(data.frame(unit = "x", prop = c(0.25, 0.25, 0.49), fill = 1:
+        3), x_var = "unit", y_var = "prop", fill_var = "fill", position = "stack",
+      proportion = TRUE, normalize_prop = TRUE)
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "100%"
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "x"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 25
+      
+      
+      [[1]]$name
+      [1] "1"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[1]]
+      [1] 25
+      
+      
+      [[2]]$name
+      [1] "2"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      [[3]]
+      [[3]]$data
+      [[1]]
+      [1] 49
+      
+      
+      [[3]]$name
+      [1] "3"
+      
+      [[3]]$color
+      [1] "#6F45BB"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}%"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}%</b>"
+      
+      
+      $plotOptions
+      $plotOptions$column
+      $plotOptions$column$stacking
+      [1] "percent"
+      
+      
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 15
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(data.frame(unit = "x", prop = c(0.25, 0.25, 0.49), fill = 1:
+        3), x_var = "unit", y_var = "prop", fill_var = "fill", position = "stack",
+      proportion = TRUE, normalize_prop = FALSE)
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "100%"
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "x"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 25
+      
+      
+      [[1]]$name
+      [1] "1"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[1]]
+      [1] 25
+      
+      
+      [[2]]$name
+      [1] "2"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      [[3]]
+      [[3]]$data
+      [[1]]
+      [1] 49
+      
+      
+      [[3]]$name
+      [1] "3"
+      
+      [[3]]$color
+      [1] "#6F45BB"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}%"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}%</b>"
+      
+      
+      $plotOptions
+      $plotOptions$column
+      $plotOptions$column$stacking
+      [1] "normal"
+      
+      
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
@@ -2599,6 +2883,198 @@
       $tooltip
       $tooltip$pointFormat
       [1] "{series.name}<br>\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
+      
+      
+
+# facet_by works
+
+    Code
+      res
+    Output
+      [[1]]
+      [[1]]$title
+      [[1]]$title$text
+      [1] "1"
+      
+      
+      [[1]]$chart
+      [[1]]$chart$type
+      [1] "line"
+      
+      [[1]]$chart$inverted
+      [1] FALSE
+      
+      [[1]]$chart$height
+      [1] "80%"
+      
+      
+      [[1]]$xAxis
+      [[1]]$xAxis$categories
+       [1] "2010" "2012" "2014" "2016" "2018" "2020" "2011" "2013" "2015" "2017"
+      [11] "2019"
+      
+      
+      [[1]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.9
+      
+      [[2]]
+      [1] 0.7
+      
+      [[3]]
+      [1] 0.2
+      
+      [[4]]
+      [1] 0.2
+      
+      [[5]]
+      [1] 0.1
+      
+      [[6]]
+      [1] 0.5
+      
+      [[7]]
+      [1] 0.6
+      
+      [[8]]
+      [1] 0.7
+      
+      [[9]]
+      [1] 0.5
+      
+      [[10]]
+      [1] 0.9
+      
+      [[11]]
+      [1] 0.5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      [[1]]$legend
+      [[1]]$legend$enabled
+      [1] FALSE
+      
+      
+      [[1]]$yAxis
+      [[1]]$yAxis$labels
+      [[1]]$yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      [[1]]$tooltip
+      [[1]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      [[1]]$plotOptions
+      [[1]]$plotOptions$series
+      [[1]]$plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+      
+      [[2]]
+      [[2]]$title
+      [[2]]$title$text
+      [1] "2"
+      
+      
+      [[2]]$chart
+      [[2]]$chart$type
+      [1] "line"
+      
+      [[2]]$chart$inverted
+      [1] FALSE
+      
+      [[2]]$chart$height
+      [1] "80%"
+      
+      
+      [[2]]$xAxis
+      [[2]]$xAxis$categories
+       [1] "2011" "2013" "2015" "2017" "2019" "2010" "2012" "2014" "2016" "2018"
+      [11] "2020"
+      
+      
+      [[2]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0.4
+      
+      [[2]]
+      [1] 0.1
+      
+      [[3]]
+      [1] 0.7
+      
+      [[4]]
+      [1] 0.3
+      
+      [[5]]
+      [1] 0.5
+      
+      [[6]]
+      [1] 1
+      
+      [[7]]
+      [1] 1
+      
+      [[8]]
+      [1] 0.9
+      
+      [[9]]
+      [1] 0.5
+      
+      [[10]]
+      [1] 0.9
+      
+      [[11]]
+      [1] 0.5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      [[2]]$legend
+      [[2]]$legend$enabled
+      [1] FALSE
+      
+      
+      [[2]]$yAxis
+      [[2]]$yAxis$labels
+      [[2]]$yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      [[2]]$tooltip
+      [[2]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      [[2]]$plotOptions
+      [[2]]$plotOptions$series
+      [[2]]$plotOptions$series$pointWidth
+      [1] 8
+      
+      
       
       
 

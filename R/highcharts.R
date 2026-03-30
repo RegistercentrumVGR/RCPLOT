@@ -461,6 +461,103 @@ box_plot_highcharts <- function(df,
 
 }
 
+#' Highchart Area Spline plot
+#'
+#' creates an area spline plot in highchart, outputs config for highchart
+#'
+#' @param df data
+#' @param x_var x-axis variable
+#' @param y_var y_axis variable
+#' @param color_var the name of the color variable
+#' @param title title of the graph
+#' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
+#' set to `c(0, 100)`
+#' @param y_breaks breaks of y_axis
+#' @param proportion if the values are proportions or percentages
+#' @param scale_percentage if proportions should be re-scaled to be percentages
+#' @param other_vars other variables to include in the tooltip, should be a
+#' named list where the name will be the key in the tooltip
+#' @param x_lab labels on x axis
+#' @param y_lab labels on y axis
+#' @param color_var_order what order `color_var` should be displayed in, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
+#' @param stacking stacking mode, one of `NULL` (no stacking), `"normal"`,
+#' or `"percent"`
+#' @param fill_opacity opacity of the area fill, value between 0 and 1
+#' @param line_size size of the spline border
+#' @param group_color color of color vars
+#' @param legend_title title of the legend
+#'
+#' @return highcharts config
+#' @export
+areaspline_highcharts <- function(df,
+                                  x_var,
+                                  y_var,
+                                  color_var = NULL,
+                                  title = "",
+                                  y_lim = NULL,
+                                  y_breaks = NULL,
+                                  proportion = FALSE,
+                                  scale_percentage = TRUE,
+                                  other_vars = NULL,
+                                  x_lab = NULL,
+                                  y_lab = NULL,
+                                  color_var_order = NULL,
+                                  stacking = NULL,
+                                  fill_opacity = 0.5,
+                                  line_size = 8,
+                                  group_color = NULL,
+                                  legend_title = NULL) {
+
+  checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
+
+  if (!is.null(stacking)) {
+    checkmate::assert_choice(stacking, c("normal", "percent"))
+  }
+
+  if (is.null(y_lim) && proportion) {
+    y_lim <- c(0, 100)
+  }
+
+  out <- plot_highcharts(
+    df = df,
+    x_var = x_var,
+    vars = list(y = y_var),
+    title = title,
+    group_vars = color_var,
+    y_lim = y_lim,
+    y_breaks = y_breaks,
+    proportion = proportion,
+    scale_percentage = scale_percentage,
+    type = "areaspline",
+    other_vars = other_vars,
+    x_lab = x_lab,
+    y_lab = y_lab,
+    group_var_order = color_var_order,
+    group_color = group_color,
+    legend_title = legend_title
+  )
+
+  plot_options <- list(
+    areaspline = list(
+      fillOpacity = fill_opacity
+    ),
+    series = list(pointWidth = line_size)
+  )
+
+  if (!is.null(stacking)) {
+    plot_options$areaspline$stacking <- stacking
+  }
+
+  out <- c(
+    out,
+    list(plotOptions = plot_options)
+  )
+
+  return(out)
+}
+
 #' Create a config for a highchart plot
 #'
 #' @param df the data.frame to plot
@@ -909,5 +1006,28 @@ facet_title <- function(title, val) {
   if (is.null(title) || title == "") return(as.character(val))
 
   paste0(c(title, val), collapse = ", ")
+}
 
+#' Export a highcharts config
+#'
+#' Converts a highcharts config to a JSON ready to paste in the highcharts
+#' sandbox
+#'
+#' @param cfg highcharts config
+#' @param write_clip should result be saved to clipboard
+#'
+#' @return the resulting JSON character, invisibly if write_clip is TRUE
+#' @export
+export_highcharts <- function(cfg, write_clip = TRUE) {
+  res <- cfg |>
+    list() |>
+    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE)
+
+  if (write_clip) {
+    clipr::write_clip(res)
+    cli::cli_alert_success("Saved highcharts config to clipboard!")
+    return(invisible(res))
+  }
+
+  res
 }

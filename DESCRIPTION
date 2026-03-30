@@ -47,7 +47,9 @@ Imports:
     tibble,
     prismatic,
     purrr,
-    stringr
+    stringr,
+    cli,
+    clipr
 Suggests:
     survival,
     roxygen2,

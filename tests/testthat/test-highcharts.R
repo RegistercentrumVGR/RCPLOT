@@ -707,5 +707,151 @@ test_that("facet_by works", {
   )
 
   expect_snapshot(res)
+})
+
+test_that("areaspline_highcharts works", {
+
+  # Basic case, no grouping
+  df <- data.frame(
+    year = 2010:2025,
+    y = 5
+  )
+
+  df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y"
+    ) |>
+    expect_snapshot()
+
+  # With color_var
+  df <- data.frame(
+    year = rep(2010:2025, each = 2),
+    y = rep(c(5, 10), each = 2),
+    county = rep(c("VGR", "Stockholm"), each = 2)
+  )
+
+  df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      color_var = "county"
+    ) |>
+    expect_snapshot()
+
+  # Proportion with y_lim auto-set
+  df <- data.frame(
+    year = 2020:2024,
+    y = seq(0, 1, 0.25)
+  )
+
+  df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      proportion = TRUE,
+      scale_percentage = TRUE
+    ) |>
+    expect_snapshot()
+
+  # Custom fill_opacity
+  df <- data.frame(
+    year = 2020:2024,
+    y = 1:5
+  )
+
+  res <- df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      fill_opacity = 0.3
+    )
+
+  expect_equal(res$plotOptions$areaspline$fillOpacity, 0.3)
+  expect_equal(res$chart$type, "areaspline")
+
+  # Default fill_opacity is 0.5
+  res_default <- df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y"
+    )
+
+  expect_equal(res_default$plotOptions$areaspline$fillOpacity, 0.5)
+
+  # Stacking
+  df <- data.frame(
+    year = rep(2020:2024, each = 2),
+    y = 1:10,
+    group = rep(c("A", "B"), 5)
+  )
+
+  res_stacked <- df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      color_var = "group",
+      stacking = "normal"
+    )
+
+  expect_equal(res_stacked$plotOptions$areaspline$stacking, "normal")
+
+  res_pct <- df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      color_var = "group",
+      stacking = "percent"
+    )
+
+  expect_equal(res_pct$plotOptions$areaspline$stacking, "percent")
+
+  # No stacking by default
+  res_no_stack <- df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "y",
+      color_var = "group"
+    )
+
+  expect_null(res_no_stack$plotOptions$areaspline$stacking)
+
+  # With other_vars and tooltip
+  df <- data.frame(
+    year = 2020:2024,
+    prop = seq(0.1, 0.5, 0.1),
+    n = c(10, 20, 30, 40, 50),
+    total = 100
+  )
+
+  df |>
+    areaspline_highcharts(
+      x_var = "year",
+      y_var = "prop",
+      other_vars = list(
+        "Täljare" = "n",
+        "Nämnare" = "total"
+      ),
+      proportion = TRUE,
+      scale_percentage = TRUE
+    ) |>
+    expect_snapshot()
+
+  # Input validation: fill_opacity out of range
+  expect_error(
+    areaspline_highcharts(df, x_var = "year", y_var = "prop",
+                          fill_opacity = 1.5)
+  )
+
+  expect_error(
+    areaspline_highcharts(df, x_var = "year", y_var = "prop",
+                          fill_opacity = -0.1)
+  )
+
+  # Input validation: invalid stacking value
+  expect_error(
+    areaspline_highcharts(df, x_var = "year", y_var = "prop",
+                          stacking = "invalid")
+  )
 
 })

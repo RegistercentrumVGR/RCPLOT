@@ -20,7 +20,8 @@ line_plot_highcharts(
   color_var_order = NULL,
   line_size = 8,
   legend_title = NULL,
-  facet_by = NULL
+  facet_by = NULL,
+  group_color = NULL
 )
 }
 \arguments{
@@ -60,6 +61,8 @@ the levels}
 
 \item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
 if supplied the return value is a named list of plots, one per facet level}
+
+\item{group_color}{optional colors}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

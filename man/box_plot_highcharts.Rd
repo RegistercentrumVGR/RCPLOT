@@ -22,7 +22,8 @@ box_plot_highcharts(
   x_lab = NULL,
   y_lab = NULL,
   legend_title = NULL,
-  facet_by = NULL
+  facet_by = NULL,
+  group_color = NULL
 )
 }
 \arguments{
@@ -64,6 +65,8 @@ named list where the name will be the key in the tooltip}
 
 \item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
 if supplied the return value is a named list of plots, one per facet level}
+
+\item{group_color}{optional colors}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

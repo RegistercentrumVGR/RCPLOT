@@ -279,6 +279,7 @@ bar_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
+#' @param group_color optional colors
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -297,7 +298,8 @@ line_plot_highcharts <- function(df,
                                  color_var_order = NULL,
                                  line_size = 8,
                                  legend_title = NULL,
-                                 facet_by = NULL) {
+                                 facet_by = NULL,
+                                 group_color = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -320,7 +322,8 @@ line_plot_highcharts <- function(df,
         y_lab = y_lab,
         color_var_order = color_var_order,
         line_size = line_size,
-        legend_title = legend_title
+        legend_title = legend_title,
+        group_color = group_color
       )
     ))
   }
@@ -344,7 +347,8 @@ line_plot_highcharts <- function(df,
     x_lab = x_lab,
     y_lab = y_lab,
     group_var_order = color_var_order,
-    legend_title = legend_title
+    legend_title = legend_title,
+    group_color = group_color
   )
 
   out <- c(
@@ -384,7 +388,7 @@ line_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
-#'
+#' @param group_color optional colors
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -405,7 +409,8 @@ box_plot_highcharts <- function(df,
                                 x_lab = NULL,
                                 y_lab = NULL,
                                 legend_title = NULL,
-                                facet_by = NULL) {
+                                facet_by = NULL,
+                                group_color = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -430,7 +435,8 @@ box_plot_highcharts <- function(df,
         other_vars = other_vars,
         x_lab = x_lab,
         y_lab = y_lab,
-        legend_title = legend_title
+        legend_title = legend_title,
+        group_color = group_color
       )
     ))
   }
@@ -454,7 +460,8 @@ box_plot_highcharts <- function(df,
     horizontal = horizontal,
     x_lab = x_lab,
     y_lab = y_lab,
-    legend_title = legend_title
+    legend_title = legend_title,
+    group_color = group_color
   )
 
   return(out)
@@ -931,6 +938,7 @@ make_series <- function(df,
     dplyr::rename(unlist(vars))
 
   if (!is.null(colors) && palette_type == "qualitative") {
+    colors <- unlist(colors)
     checkmate::assert_subset(colors, colors_rc_3(12))
   } else {
     colors <- colors_rc_3(dplyr::n_distinct(tmp$series_var), palette_type)

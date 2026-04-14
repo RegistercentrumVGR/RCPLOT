@@ -279,7 +279,7 @@ bar_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
-#' @param group_colors optional colors
+#' @param group_color optional colors
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -388,7 +388,7 @@ line_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
-#' @param group_colors optional colors
+#' @param group_color optional colors
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export

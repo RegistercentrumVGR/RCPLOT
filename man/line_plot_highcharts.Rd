@@ -62,7 +62,7 @@ the levels}
 \item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
 if supplied the return value is a named list of plots, one per facet level}
 
-\item{group_colors}{optional colors}
+\item{group_color}{optional colors}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

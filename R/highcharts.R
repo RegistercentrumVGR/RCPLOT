@@ -931,6 +931,7 @@ make_series <- function(df,
     dplyr::rename(unlist(vars))
 
   if (!is.null(colors) && palette_type == "qualitative") {
+    colors <- unlist(colors)
     checkmate::assert_subset(colors, colors_rc_3(12))
   } else {
     colors <- colors_rc_3(dplyr::n_distinct(tmp$series_var), palette_type)

@@ -36,6 +36,7 @@
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param reversed_stacks should stacks be reversed?
+#' @param group_padding distance between bars when using a dodge bar
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -65,7 +66,8 @@ bar_plot_highcharts <- function(df,
                                 group_color = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
-                                reversed_stacks = FALSE) {
+                                reversed_stacks = FALSE,
+                                group_padding = 0.1) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -243,7 +245,10 @@ bar_plot_highcharts <- function(df,
       out,
       list(
         plotOptions = list(
-          series = list(pointWidth = bar_size)
+          series = list(pointWidth = bar_size),
+          column = list(groupPadding = group_padding,
+                        pointPadding = 0,
+                        borderWidth = 0)
         )
       )
     )

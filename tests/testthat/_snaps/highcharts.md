@@ -251,6 +251,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -337,6 +348,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -438,6 +460,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -672,6 +705,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -916,6 +960,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -1022,6 +1077,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -1170,6 +1236,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -1313,6 +1390,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -1421,6 +1509,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -1532,6 +1631,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -1650,6 +1760,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -1756,6 +1877,17 @@
       [1] 15
       
       
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
       
       $caption
       $caption$text
@@ -1856,6 +1988,17 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 15
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.1
+      
+      $plotOptions$column$pointPadding
+      [1] 0
+      
+      $plotOptions$column$borderWidth
+      [1] 0
       
       
       
@@ -3074,6 +3217,566 @@
       [[2]]$plotOptions$series$pointWidth
       [1] 8
       
+      
+      
+      
+
+# areaspline_highcharts works
+
+    Code
+      areaspline_highcharts(df, x_var = "year", y_var = "y")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "areaspline"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 5
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      [1] 5
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 5
+      
+      [[16]]
+      [1] 5
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$areaspline
+      $plotOptions$areaspline$fillOpacity
+      [1] 0.5
+      
+      
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+
+---
+
+    Code
+      areaspline_highcharts(df, x_var = "year", y_var = "y", color_var = "county")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "areaspline"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      NULL
+      
+      [[2]]
+      [1] 10
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      NULL
+      
+      [[5]]
+      [1] 10
+      
+      [[6]]
+      [1] 10
+      
+      [[7]]
+      NULL
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 10
+      
+      [[10]]
+      NULL
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      NULL
+      
+      [[14]]
+      [1] 10
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      NULL
+      
+      [[17]]
+      [1] 10
+      
+      [[18]]
+      [1] 10
+      
+      [[19]]
+      NULL
+      
+      [[20]]
+      [1] 10
+      
+      [[21]]
+      [1] 10
+      
+      [[22]]
+      NULL
+      
+      [[23]]
+      [1] 10
+      
+      [[24]]
+      [1] 10
+      
+      
+      [[1]]$name
+      [1] "Stockholm"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      NULL
+      
+      [[4]]
+      [1] 5
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      NULL
+      
+      [[7]]
+      [1] 5
+      
+      [[8]]
+      [1] 5
+      
+      [[9]]
+      NULL
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 5
+      
+      [[12]]
+      NULL
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      NULL
+      
+      [[16]]
+      [1] 5
+      
+      [[17]]
+      [1] 5
+      
+      [[18]]
+      NULL
+      
+      [[19]]
+      [1] 5
+      
+      [[20]]
+      [1] 5
+      
+      [[21]]
+      NULL
+      
+      [[22]]
+      [1] 5
+      
+      [[23]]
+      [1] 5
+      
+      [[24]]
+      NULL
+      
+      
+      [[2]]$name
+      [1] "VGR"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$areaspline
+      $plotOptions$areaspline$fillOpacity
+      [1] 0.5
+      
+      
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+
+---
+
+    Code
+      areaspline_highcharts(df, x_var = "year", y_var = "y", proportion = TRUE,
+        scale_percentage = TRUE)
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "areaspline"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "2020" "2021" "2022" "2023" "2024"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 0
+      
+      [[2]]
+      [1] 25
+      
+      [[3]]
+      [1] 50
+      
+      [[4]]
+      [1] 75
+      
+      [[5]]
+      [1] 100
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}%"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}%</b>"
+      
+      
+      $plotOptions
+      $plotOptions$areaspline
+      $plotOptions$areaspline$fillOpacity
+      [1] 0.5
+      
+      
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+
+---
+
+    Code
+      areaspline_highcharts(df, x_var = "year", y_var = "prop", other_vars = list(
+        Täljare = "n", Nämnare = "total"), proportion = TRUE, scale_percentage = TRUE)
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "areaspline"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "2020" "2021" "2022" "2023" "2024"
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$y
+      [1] 10
+      
+      [[1]]$data[[1]]$n
+      [1] 10
+      
+      [[1]]$data[[1]]$total
+      [1] 100
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$y
+      [1] 20
+      
+      [[1]]$data[[2]]$n
+      [1] 20
+      
+      [[1]]$data[[2]]$total
+      [1] 100
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$y
+      [1] 30
+      
+      [[1]]$data[[3]]$n
+      [1] 30
+      
+      [[1]]$data[[3]]$total
+      [1] 100
+      
+      
+      [[1]]$data[[4]]
+      [[1]]$data[[4]]$y
+      [1] 40
+      
+      [[1]]$data[[4]]$n
+      [1] 40
+      
+      [[1]]$data[[4]]$total
+      [1] 100
+      
+      
+      [[1]]$data[[5]]
+      [[1]]$data[[5]]$y
+      [1] 50
+      
+      [[1]]$data[[5]]$n
+      [1] 50
+      
+      [[1]]$data[[5]]$total
+      [1] 100
+      
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}%"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}%</b><br>Täljare: <b>{point.n}</b><br>Nämnare: <b>{point.total}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$areaspline
+      $plotOptions$areaspline$fillOpacity
+      [1] 0.5
+      
+      
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
       
       
       

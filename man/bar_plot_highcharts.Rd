@@ -31,7 +31,8 @@ bar_plot_highcharts(
   group_color = NULL,
   legend_title = NULL,
   facet_by = NULL,
-  reversed_stacks = FALSE
+  reversed_stacks = FALSE,
+  group_padding = 0.1
 )
 }
 \arguments{
@@ -95,6 +96,8 @@ for stacked bar plot.}
 if supplied the return value is a named list of plots, one per facet level}
 
 \item{reversed_stacks}{should stacks be reversed?}
+
+\item{group_padding}{distance between bars when using a dodge bar}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

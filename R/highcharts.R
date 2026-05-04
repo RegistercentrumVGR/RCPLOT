@@ -645,6 +645,32 @@ plot_highcharts <- function(df,
 
   if (!is.null(arrange_by)) {
     checkmate::assert_choice(arrange_by, names(df))
+
+    if (!is.null(group_vars)) {
+      if (is.null(arrange_by_group_var)) {
+        df <- df |>
+          dplyr::group_by(.data[[x_var]]) |>
+          dplyr::mutate(arrange_tmp = mean(.data[[arrange_by]])) |>
+          dplyr::ungroup()
+      } else {
+        df <- df |>
+          dplyr::group_by(.data[[x_var]]) |>
+          dplyr::mutate(
+            arrange_tmp = dplyr::case_when(
+              dplyr::n() == 0 ~ NA,
+              arrange_by_group_var %in% .data[[group_vars]] ~
+                .data[[arrange_by]][
+                  .data[[group_vars]] == arrange_by_group_var
+                ],
+              .default = NA
+            )
+          ) |>
+          dplyr::ungroup()
+      }
+      arrange_by <- "arrange_tmp"
+
+    }
+
     if (arrange_desc) {
       df <- df |>
         dplyr::arrange(dplyr::desc(.data[[arrange_by]]))
@@ -653,19 +679,8 @@ plot_highcharts <- function(df,
         dplyr::arrange(!is.na(.data[[arrange_by]]), .data[[arrange_by]])
     }
 
-    if (!is.null(arrange_by_group_var)) {
-      df <- df |>
-        dplyr::mutate(order = dplyr::if_else(
-          .data[[group_vars]] == arrange_by_group_var,
-          dplyr::row_number(),
-          NA
-        )) |>
-        dplyr::group_by(.data[[x_var]]) |>
-        dplyr::mutate(order = order[!is.na(order)][1]) |>
-        dplyr::ungroup() |>
-        dplyr::arrange(order) |>
-        dplyr::select(-dplyr::all_of("order"))
-    }
+    df <- df |>
+      dplyr::select(-dplyr::any_of("arrange_tmp"))
   }
 
   if (horizontal) {

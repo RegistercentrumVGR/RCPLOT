@@ -58,18 +58,26 @@ test_that("make_series works", {
   make_series(df, list(y = "value"), c("county", "type")) |>
     expect_equal(
       list(
-        list(data = I(as.list(2)),
-             name = "Stockholm, value 1",
-             color = "#116875"),
-        list(data = I(as.list(4)),
-             name = "Stockholm, value 2",
-             color = "#FC5930"),
-        list(data = I(as.list(1)),
-             name = "VGR, value 1",
-             color = "#6F45BB"),
-        list(data = I(as.list(3)),
-             name = "VGR, value 2",
-             color = "#89163B")
+        list(
+          data = I(as.list(2)),
+          name = "Stockholm, value 1",
+          color = "#116875"
+        ),
+        list(
+          data = I(as.list(4)),
+          name = "Stockholm, value 2",
+          color = "#FC5930"
+        ),
+        list(
+          data = I(as.list(1)),
+          name = "VGR, value 1",
+          color = "#6F45BB"
+        ),
+        list(
+          data = I(as.list(3)),
+          name = "VGR, value 2",
+          color = "#89163B"
+        )
       )
     )
 
@@ -180,14 +188,10 @@ test_that("make_series works", {
         )
       )
     )
-
-
 })
 
 
-
 test_that("add_y_axis works", {
-
   add_y_axis(list(chart = list(type = "line"))) |>
     jsonlite::toJSON(auto_unbox = TRUE) |>
     as.character() |>
@@ -269,11 +273,9 @@ test_that("add_y_axis works", {
         )
       )
     )
-
 })
 
 test_that("plot_highcharts works", {
-
   df <- data.frame(
     x = "a",
     y = 1
@@ -322,11 +324,9 @@ test_that("plot_highcharts works", {
         tooltip = list(pointFormat = "<b>{point.y}</b>")
       )
     )
-
 })
 
 test_that("bar_plot_highcharts works", {
-
   df <- data.frame(
     x = rep(letters[1:3], each = 3),
     y = 1:9,
@@ -498,10 +498,14 @@ test_that("bar_plot_highcharts works", {
     x = rep(letters[1:3], each = 3),
     y = 1:9
   ) |>
-    dplyr::mutate(obfuscated_reason = dplyr::if_else(x == "b" & y == 5,
-                                                     "N < 15",
-                                                     NA),
-                  y = dplyr::if_else(x == "b" & y == 5, NA, y))
+    dplyr::mutate(
+      obfuscated_reason = dplyr::if_else(
+        x == "b" & y == 5,
+        "N < 15",
+        NA
+      ),
+      y = dplyr::if_else(x == "b" & y == 5, NA, y)
+    )
 
   df |>
     bar_plot_highcharts(
@@ -551,11 +555,9 @@ test_that("bar_plot_highcharts works", {
       normalize_prop = FALSE
     ) |>
     expect_snapshot()
-
 })
 
 test_that("line_plot_highcharts works", {
-
   df <- data.frame(
     year = 2010:2025,
     y = 5
@@ -623,11 +625,9 @@ test_that("line_plot_highcharts works", {
       color_var = c("county", "group")
     ) |>
     expect_snapshot()
-
 })
 
 test_that("box_plot_highcharts work", {
-
   df <- data.frame(
     x = c("a", "b"),
     median = 3,
@@ -662,11 +662,9 @@ test_that("box_plot_highcharts work", {
     horizontal = TRUE
   ) |>
     expect_snapshot()
-
 })
 
 test_that("sorting works", {
-
   c("18.5-29.1", "39.1", "<1-2") |>
     sort_numeric() |>
     expect_equal(
@@ -686,11 +684,9 @@ test_that("sorting works", {
     expect_equal(
       c("a", "b", "å")
     )
-
 })
 
 test_that("facet_by works", {
-
   withr::local_seed(1)
 
   df <- data.frame(
@@ -710,7 +706,6 @@ test_that("facet_by works", {
 })
 
 test_that("areaspline_highcharts works", {
-
   # Basic case, no grouping
   df <- data.frame(
     year = 2010:2025,
@@ -839,19 +834,127 @@ test_that("areaspline_highcharts works", {
 
   # Input validation: fill_opacity out of range
   expect_error(
-    areaspline_highcharts(df, x_var = "year", y_var = "prop",
-                          fill_opacity = 1.5)
+    areaspline_highcharts(
+      df,
+      x_var = "year", y_var = "prop",
+      fill_opacity = 1.5
+    )
   )
 
   expect_error(
-    areaspline_highcharts(df, x_var = "year", y_var = "prop",
-                          fill_opacity = -0.1)
+    areaspline_highcharts(
+      df,
+      x_var = "year", y_var = "prop",
+      fill_opacity = -0.1
+    )
   )
 
   # Input validation: invalid stacking value
   expect_error(
-    areaspline_highcharts(df, x_var = "year", y_var = "prop",
-                          stacking = "invalid")
+    areaspline_highcharts(
+      df,
+      x_var = "year", y_var = "prop",
+      stacking = "invalid"
+    )
+  )
+})
+
+test_that("arrange_by works correctly", {
+  df <- tibble::tribble(
+    ~category, ~value,
+    "A", 20,
+    "B", 30,
+    "C", 10
   )
 
+  out <- bar_plot_highcharts(
+    df = df,
+    x_var = "category",
+    y_var = "value",
+    arrange_by = "value",
+    arrange_desc = TRUE
+  )
+
+  expect_equal(out$xAxis$categories, I(c("B", "A", "C")))
+
+  # Single series, data should follow category order
+  series_data <- unlist(out$series[[1]]$data)
+  expect_equal(series_data, c(30, 20, 10))
+
+  df <- tibble::tribble(
+    ~category, ~fill, ~value,
+    "A", "x", 10,
+    "A", "y", 20,
+    "B", "x", 40,
+    "B", "y", 60,
+    "C", "x", 5,
+    "C", "y", 15
+  )
+
+  out <- bar_plot_highcharts(
+    df = df,
+    x_var = "category",
+    y_var = "value",
+    fill_var = "fill",
+    arrange_by = "value",
+    arrange_desc = TRUE
+  )
+
+  expect_equal(out$xAxis$categories, I(c("B", "A", "C")))
+
+  series_by_name <- purrr::set_names(
+    out$series, purrr::map_chr(out$series, "name")
+  )
+
+  expect_equal(unlist(series_by_name[["x"]]$data), c(40, 10, 5))
+  expect_equal(unlist(series_by_name[["y"]]$data), c(60, 20, 15))
+
+  # Sanity: arrange_tmp should not leak into output
+  expect_false("arrange_tmp" %in% names(df))
+
+  df <- tibble::tribble(
+    ~category, ~fill, ~value,
+    "A", "x", 100,
+    "A", "y", 20,
+    "B", "x", 1,
+    "B", "y", 60,
+    "C", "x", 50,
+    "C", "y", 15
+  )
+
+  out <- bar_plot_highcharts(
+    df = df,
+    x_var = "category",
+    y_var = "value",
+    fill_var = "fill",
+    arrange_by = "value",
+    arrange_by_fill = "y",
+    arrange_desc = TRUE
+  )
+
+  # Sorted by value where fill is "y"
+  expect_equal(out$xAxis$categories, I(c("B", "A", "C")))
+
+  series_by_name <- purrr::set_names(
+    out$series, purrr::map_chr(out$series, "name")
+  )
+  expect_equal(unlist(series_by_name[["y"]]$data), c(60, 20, 15))
+  expect_equal(unlist(series_by_name[["x"]]$data), c(1, 100, 50))
+
+  df <- tibble::tribble(
+    ~category, ~value,
+    "A", 20,
+    "B", NA_real_,
+    "C", 10
+  )
+
+  out <- bar_plot_highcharts(
+    df = df,
+    x_var = "category",
+    y_var = "value",
+    arrange_by = "value",
+    arrange_desc = FALSE
+  )
+
+  expect_equal(out$xAxis$categories, I(c("B", "C", "A")))
 })

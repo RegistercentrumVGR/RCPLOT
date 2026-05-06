@@ -18,6 +18,7 @@ box_plot_highcharts(
   title = "",
   y_lim = NULL,
   y_breaks = NULL,
+  x_breaks = NULL,
   other_vars = NULL,
   x_lab = NULL,
   y_lab = NULL,
@@ -53,6 +54,8 @@ ggplot2 semantics}
 \item{y_lim}{limits of y-axis}
 
 \item{y_breaks}{breaks of y_axis}
+
+\item{x_breaks}{breaks of x-axis}
 
 \item{other_vars}{other variables to include in the tooltip, should be a
 named list where the name will be the key in the tooltip}

@@ -14,6 +14,7 @@ bar_plot_highcharts(
   title = "",
   y_lim = NULL,
   y_breaks = NULL,
+  x_breaks = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
   other_vars = NULL,
@@ -55,6 +56,8 @@ ggplot2 semantics}
 set to \code{c(0, 100)}}
 
 \item{y_breaks}{breaks of y_axis}
+
+\item{x_breaks}{breaks of x-axis}
 
 \item{proportion}{if the values are percentages}
 

@@ -15,6 +15,7 @@ plot_highcharts(
   group_vars,
   y_lim,
   y_breaks,
+  x_breaks = NULL,
   proportion = FALSE,
   scale_percentage = FALSE,
   type,
@@ -76,6 +77,8 @@ make_series(
 \item{y_lim}{limits for the y-axis}
 
 \item{y_breaks}{vector of breaks for y-axis}
+
+\item{x_breaks}{vector of breaks for x-axis}
 
 \item{proportion}{whether the y variable is a proportion}
 

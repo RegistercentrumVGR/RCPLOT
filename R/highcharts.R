@@ -13,6 +13,7 @@
 #' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
 #' set to `c(0, 100)`
 #' @param y_breaks breaks of y_axis
+#' @param x_breaks breaks of x-axis
 #' @param proportion if the values are percentages
 #' @param scale_percentage if percentages should the scaled
 #' @param other_vars other variables to include in the tooltip, should be a
@@ -49,6 +50,7 @@ bar_plot_highcharts <- function(df,
                                 title = "",
                                 y_lim = NULL,
                                 y_breaks = NULL,
+                                x_breaks = NULL,
                                 proportion = FALSE,
                                 scale_percentage = TRUE,
                                 other_vars = NULL,
@@ -85,6 +87,7 @@ bar_plot_highcharts <- function(df,
         title = facet_title(title, .x),
         y_lim = y_lim,
         y_breaks = y_breaks,
+        x_breaks = x_breaks,
         proportion = proportion,
         scale_percentage = scale_percentage,
         other_vars = other_vars,
@@ -271,6 +274,7 @@ bar_plot_highcharts <- function(df,
 #' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
 #' set to `c(0, 100)`
 #' @param y_breaks breaks of y_axis
+#' @param x_breaks breaks of x-axis
 #' @param proportion if the values are proportions or percentages
 #' @param scale_percentage if proportions should be re-scaled to be percentages
 #' @param other_vars other variables to include in the tooltip, should be a
@@ -295,6 +299,7 @@ line_plot_highcharts <- function(df,
                                  title = "",
                                  y_lim = NULL,
                                  y_breaks = NULL,
+                                 x_breaks = NULL,
                                  proportion = FALSE,
                                  scale_percentage = TRUE,
                                  other_vars = NULL,
@@ -320,6 +325,7 @@ line_plot_highcharts <- function(df,
         title = facet_title(title, .x),
         y_lim = y_lim,
         y_breaks = y_breaks,
+        x_breaks = x_breaks,
         proportion = proportion,
         scale_percentage = scale_percentage,
         other_vars = other_vars,
@@ -345,6 +351,7 @@ line_plot_highcharts <- function(df,
     group_vars = color_var,
     y_lim = y_lim,
     y_breaks = y_breaks,
+    x_breaks = x_breaks,
     proportion = proportion,
     scale_percentage = scale_percentage,
     type = "line",
@@ -386,6 +393,7 @@ line_plot_highcharts <- function(df,
 #' @param title title of the graph
 #' @param y_lim limits of y-axis
 #' @param y_breaks breaks of y_axis
+#' @param x_breaks breaks of x-axis
 #' @param other_vars other variables to include in the tooltip, should be a
 #' named list where the name will be the key in the tooltip
 #' @param x_lab labels on x axis
@@ -410,6 +418,7 @@ box_plot_highcharts <- function(df,
                                 title = "",
                                 y_lim = NULL,
                                 y_breaks = NULL,
+                                x_breaks = NULL,
                                 other_vars = NULL,
                                 x_lab = NULL,
                                 y_lab = NULL,
@@ -437,6 +446,7 @@ box_plot_highcharts <- function(df,
         title = facet_title(title, .x),
         y_lim = y_lim,
         y_breaks = y_breaks,
+        x_breaks = x_breaks,
         other_vars = other_vars,
         x_lab = x_lab,
         y_lab = y_lab,
@@ -579,6 +589,7 @@ areaspline_highcharts <- function(df,
 #' @param group_vars the variables indicating a series to plot
 #' @param y_lim limits for the y-axis
 #' @param y_breaks vector of breaks for y-axis
+#' @param x_breaks vector of breaks for x-axis
 #' @param proportion whether the y variable is a proportion
 #' @param scale_percentage whether or not to scale the y-variable by 100
 #' @param type the type of graph
@@ -607,6 +618,7 @@ plot_highcharts <- function(df,
                             group_vars,
                             y_lim,
                             y_breaks,
+                            x_breaks = NULL,
                             proportion = FALSE,
                             scale_percentage = FALSE,
                             type,
@@ -705,6 +717,16 @@ plot_highcharts <- function(df,
     x_axis <- c(
       x_axis,
       list(title = list(text = x_lab))
+    )
+  }
+
+  if (!is.null(x_breaks)) {
+    pos_x_breaks <- which(
+      as.character(unique(df[[x_var]])) %in% as.character(x_breaks)
+    )
+    x_axis <- c(
+      x_axis,
+      list(tickPositions = pos_x_breaks - 1)
     )
   }
 

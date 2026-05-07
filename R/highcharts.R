@@ -351,6 +351,7 @@ line_plot_highcharts <- function(df,
     group_vars = color_var,
     y_lim = y_lim,
     y_breaks = y_breaks,
+    x_breaks = x_breaks,
     proportion = proportion,
     scale_percentage = scale_percentage,
     type = "line",
@@ -721,11 +722,11 @@ plot_highcharts <- function(df,
 
   if (!is.null(x_breaks)) {
     pos_x_breaks <- which(
-      as.character(x_breaks) == as.character(unique(df[[x_var]]))
-      )
+      as.character(unique(df[[x_var]])) %in% as.character(x_breaks)
+    )
     x_axis <- c(
       x_axis,
-      list(tickPositions = pos_breaks)
+      list(tickPositions = pos_x_breaks - 1)
     )
   }
 

@@ -584,6 +584,14 @@ test_that("line_plot_highcharts works", {
     ) |>
     expect_snapshot()
 
+  df |>
+    line_plot_highcharts(
+      x_var = "year",
+      y_var = "y",
+      x_breaks = c(2010, 2018, 2025)
+    ) |>
+    expect_snapshot()
+
   withr::local_seed(1)
 
   data.frame(

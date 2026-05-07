@@ -2591,6 +2591,170 @@
 ---
 
     Code
+      line_plot_highcharts(df, x_var = "year", y_var = "y", x_breaks = c(2010, 2018,
+        2025))
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "line"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] "80%"
+      
+      
+      $xAxis
+      $xAxis$categories
+       [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$tickPositions
+      [1]  0  8 15
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 5
+      
+      [[2]]
+      [1] 5
+      
+      [[3]]
+      [1] 10
+      
+      [[4]]
+      [1] 10
+      
+      [[5]]
+      [1] 5
+      
+      [[6]]
+      [1] 5
+      
+      [[7]]
+      [1] 10
+      
+      [[8]]
+      [1] 10
+      
+      [[9]]
+      [1] 5
+      
+      [[10]]
+      [1] 5
+      
+      [[11]]
+      [1] 10
+      
+      [[12]]
+      [1] 10
+      
+      [[13]]
+      [1] 5
+      
+      [[14]]
+      [1] 5
+      
+      [[15]]
+      [1] 10
+      
+      [[16]]
+      [1] 10
+      
+      [[17]]
+      [1] 5
+      
+      [[18]]
+      [1] 5
+      
+      [[19]]
+      [1] 10
+      
+      [[20]]
+      [1] 10
+      
+      [[21]]
+      [1] 5
+      
+      [[22]]
+      [1] 5
+      
+      [[23]]
+      [1] 10
+      
+      [[24]]
+      [1] 10
+      
+      [[25]]
+      [1] 5
+      
+      [[26]]
+      [1] 5
+      
+      [[27]]
+      [1] 10
+      
+      [[28]]
+      [1] 10
+      
+      [[29]]
+      [1] 5
+      
+      [[30]]
+      [1] 5
+      
+      [[31]]
+      [1] 10
+      
+      [[32]]
+      [1] 10
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      
+
+---
+
+    Code
       line_plot_highcharts(dplyr::bind_rows(data.frame(y = sample(1:3, 10, TRUE),
       color = 1, year = 2010:2019), data.frame(y = sample(1:3, 8, TRUE), color = 2,
       year = 2011:2018)), x_var = "year", y_var = "y", color_var = "color")

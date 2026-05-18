@@ -188,6 +188,23 @@ test_that("make_series works", {
         )
       )
     )
+
+  # Decimals are rounded
+  make_series(
+    data.frame(
+      y = c(70.51, 70)
+    ),
+    vars = list(y = "y")
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(list(70.5, 70)),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
 })
 
 
@@ -324,6 +341,68 @@ test_that("plot_highcharts works", {
         tooltip = list(pointFormat = "<b>{point.y}</b>")
       )
     )
+
+  df <- data.frame(
+    x = letters[1:3],
+    y_1 = c(NA, 1, NA),
+    y_2 = c(1, 2, NA),
+    y_3 = c(NA, 3, NA)
+  )
+
+  # NA is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = NA
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(I(list(1)))
+
+  # Nothing is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = 2
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(I(list(NULL, 1, NULL)))
+
+  # Last row is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1", y2 = "y_2", y3 = "y_3"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = NA
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(
+      list(
+        list(y = NULL, y2 = 1, y3 = NULL),
+        list(y = 1, y2 = 2, y3 = 3)
+      )
+    )
+
+
 })
 
 test_that("bar_plot_highcharts works", {

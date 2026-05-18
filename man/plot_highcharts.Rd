@@ -30,7 +30,8 @@ plot_highcharts(
   plot_height = 0.8,
   group_color = NULL,
   legend_title = NULL,
-  reversed_stacks = NULL
+  reversed_stacks = NULL,
+  remove_value = NULL
 )
 
 add_y_axis(
@@ -68,7 +69,8 @@ make_series(
 
 \item{x_var}{the name of the x variable'}
 
-\item{vars}{a named list used to rename variables to proper highcharts keys}
+\item{vars}{a named list used to rename variables to proper highcharts keys,
+typically \code{list(y = y_var)}}
 
 \item{title}{the title of plot}
 
@@ -112,6 +114,9 @@ the levels}
 \item{legend_title}{title of the legend}
 
 \item{reversed_stacks}{should stacks be reversed?}
+
+\item{remove_value}{value to remove, useful for removing obfuscated
+observations}
 
 \item{out}{intermediate config}
 

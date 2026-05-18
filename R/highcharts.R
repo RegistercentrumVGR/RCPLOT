@@ -38,6 +38,8 @@
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param reversed_stacks should stacks be reversed?
 #' @param group_padding distance between bars when using a dodge bar
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -69,7 +71,8 @@ bar_plot_highcharts <- function(df,
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 reversed_stacks = FALSE,
-                                group_padding = 0.1) {
+                                group_padding = 0.1,
+                                remove_value = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -104,7 +107,8 @@ bar_plot_highcharts <- function(df,
         plot_height = plot_height,
         group_color = group_color,
         legend_title = legend_title,
-        reversed_stacks = reversed_stacks
+        reversed_stacks = reversed_stacks,
+        remove_value = remove_value
       )
     ))
   }
@@ -203,7 +207,8 @@ bar_plot_highcharts <- function(df,
     plot_height = plot_height,
     group_color = group_color,
     legend_title = legend_title,
-    reversed_stacks = reversed_stacks
+    reversed_stacks = reversed_stacks,
+    remove_value = remove_value
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -402,6 +407,8 @@ line_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -424,7 +431,8 @@ box_plot_highcharts <- function(df,
                                 y_lab = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
-                                group_color = NULL) {
+                                group_color = NULL,
+                                remove_value = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -451,7 +459,8 @@ box_plot_highcharts <- function(df,
         x_lab = x_lab,
         y_lab = y_lab,
         legend_title = legend_title,
-        group_color = group_color
+        group_color = group_color,
+        remove_value = remove_value
       )
     ))
   }
@@ -476,7 +485,8 @@ box_plot_highcharts <- function(df,
     x_lab = x_lab,
     y_lab = y_lab,
     legend_title = legend_title,
-    group_color = group_color
+    group_color = group_color,
+    remove_value = remove_value
   )
 
   return(out)
@@ -584,7 +594,8 @@ areaspline_highcharts <- function(df,
 #'
 #' @param df the data.frame to plot
 #' @param x_var the name of the x variable'
-#' @param vars a named list used to rename variables to proper highcharts keys
+#' @param vars a named list used to rename variables to proper highcharts keys,
+#' typically `list(y = y_var)`
 #' @param title the title of plot
 #' @param group_vars the variables indicating a series to plot
 #' @param y_lim limits for the y-axis
@@ -608,6 +619,8 @@ areaspline_highcharts <- function(df,
 #' @param group_color color of group variabel
 #' @param legend_title title of the legend
 #' @param reversed_stacks should stacks be reversed?
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
 #'
 #' @return highcharts config
 #' @export
@@ -633,7 +646,8 @@ plot_highcharts <- function(df,
                             plot_height = 0.8,
                             group_color = NULL,
                             legend_title = NULL,
-                            reversed_stacks = NULL) {
+                            reversed_stacks = NULL,
+                            remove_value = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -647,7 +661,29 @@ plot_highcharts <- function(df,
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
 
+  if (!is.null(remove_value)) {
+    # When NA is specified in a .yml file it is parsed as "NA"
+    if (!is.na(remove_value) && remove_value == "NA") remove_value <- NA
+    checkmate::assert(
+      checkmate::test_numeric(remove_value, len = 1),
+      checkmate::test_scalar_na(remove_value)
+    )
+    df <- df |>
+      dplyr::filter(
+        !dplyr::if_all(
+          unlist(vars),
+          \(x) x %in% remove_value
+        )
+      )
+  }
+
   if (!is.null(group_vars) && !all(group_vars == x_var)) {
+
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(!!x_var := forcats::fct_drop(.data[[x_var]]))
+    }
+
     df <- df |>
       tidyr::complete(
         !!!rlang::syms(c(x_var, group_vars)),
@@ -990,6 +1026,16 @@ make_series <- function(df,
     tmp <- tmp |>
       dplyr::mutate(y = .data$y * 100)
   }
+
+  # No handling for proportion and/or scale_percentage at the moment
+  # Shouldn't be necessary?
+  tmp <- tmp |>
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::where(~ is.numeric(.x) & !rlang::is_integerish(.x)),
+        ~ round(.x, 1)
+      )
+    )
 
   if (!is.null(group_var_order)) {
 

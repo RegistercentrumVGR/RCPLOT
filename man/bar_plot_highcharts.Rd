@@ -25,15 +25,18 @@ bar_plot_highcharts(
   arrange_by_fill = NULL,
   fill_var_order = NULL,
   color_x_value = NULL,
-  bar_size = 15,
+  bar_size = NULL,
   normalize_prop = TRUE,
   break_x_var_names = FALSE,
-  plot_height = 1,
+  plot_height = NULL,
   group_color = NULL,
   legend_title = NULL,
   facet_by = NULL,
   reversed_stacks = FALSE,
-  group_padding = 0.1
+  group_padding = NULL,
+  add_total = FALSE,
+  total_var = "total",
+  multi_total_choice = NULL
 )
 }
 \arguments{
@@ -101,6 +104,13 @@ if supplied the return value is a named list of plots, one per facet level}
 \item{reversed_stacks}{should stacks be reversed?}
 
 \item{group_padding}{distance between bars when using a dodge bar}
+
+\item{add_total}{if total should be added to x-axis}
+
+\item{total_var}{name of column that contains total}
+
+\item{multi_total_choice}{if multiple total values exist for each value in
+x_var what value should be picked. choices are min, max, and sum.}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

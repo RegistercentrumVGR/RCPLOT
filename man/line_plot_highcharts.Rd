@@ -22,7 +22,10 @@ line_plot_highcharts(
   line_size = 8,
   legend_title = NULL,
   facet_by = NULL,
-  group_color = NULL
+  group_color = NULL,
+  plot_height = NULL,
+  add_total = FALSE,
+  total_var = "total"
 )
 }
 \arguments{
@@ -66,6 +69,10 @@ the levels}
 if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
+
+\item{add_total}{if total should be added to x-axis}
+
+\item{total_var}{name of column that contains total}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

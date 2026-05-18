@@ -38,6 +38,10 @@
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param reversed_stacks should stacks be reversed?
 #' @param group_padding distance between bars when using a dodge bar
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
+#' @param multi_total_choice if multiple total values exist for each value in
+#' x_var what value should be picked. choices are min, max, and sum.
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -61,15 +65,18 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = 15,
+                                bar_size = NULL,
                                 normalize_prop = TRUE,
                                 break_x_var_names = FALSE,
-                                plot_height = 1,
+                                plot_height = NULL,
                                 group_color = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 reversed_stacks = FALSE,
-                                group_padding = 0.1) {
+                                group_padding = NULL,
+                                add_total = FALSE,
+                                total_var = "total",
+                                multi_total_choice = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -101,7 +108,6 @@ bar_plot_highcharts <- function(df,
         bar_size = bar_size,
         normalize_prop = normalize_prop,
         break_x_var_names = break_x_var_names,
-        plot_height = plot_height,
         group_color = group_color,
         legend_title = legend_title,
         reversed_stacks = reversed_stacks
@@ -110,6 +116,26 @@ bar_plot_highcharts <- function(df,
   }
 
   type <- "column"
+
+  if (add_total) {
+    if (horizontal) {
+      df <- df |>
+        add_total_label(
+          x_var = x_var,
+          total_var = total_var,
+          multi_total_choice = multi_total_choice,
+          break_total = FALSE
+        )
+    } else {
+      df <- df |>
+        add_total_label(
+          x_var = x_var,
+          total_var = total_var,
+          multi_total_choice = multi_total_choice,
+          break_total = TRUE
+        )
+    }
+  }
 
   if (break_x_var_names) {
     df <- df |>
@@ -200,7 +226,6 @@ bar_plot_highcharts <- function(df,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
     group_var_order = fill_var_order,
-    plot_height = plot_height,
     group_color = group_color,
     legend_title = legend_title,
     reversed_stacks = reversed_stacks
@@ -259,6 +284,20 @@ bar_plot_highcharts <- function(df,
 
   out <- c(out, list(caption = caption))
 
+  out <- get_size_params(out, position = position)
+
+  if (!is.null(bar_size)) {
+    out$plotOptions$series$pointWidth <- bar_size
+  }
+
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  }
+
+  if (!is.null(group_padding)) {
+    out$plotOptions$column$groupPadding <- group_padding
+  }
+
   return(out)
 }
 
@@ -289,6 +328,8 @@ bar_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -309,7 +350,10 @@ line_plot_highcharts <- function(df,
                                  line_size = 8,
                                  legend_title = NULL,
                                  facet_by = NULL,
-                                 group_color = NULL) {
+                                 group_color = NULL,
+                                 plot_height = NULL,
+                                 add_total = FALSE,
+                                 total_var = "total") {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -337,6 +381,15 @@ line_plot_highcharts <- function(df,
         group_color = group_color
       )
     ))
+  }
+
+  if (add_total) {
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        break_total = TRUE
+      )
   }
 
   if (is.null(y_lim) && proportion) {
@@ -372,6 +425,12 @@ line_plot_highcharts <- function(df,
     )
   )
 
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  } else {
+    out$chart$height <- 600
+  }
+
   return(out)
 
 }
@@ -402,6 +461,11 @@ line_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param bar_size width of bars
+#' @param plot_height height of plot, value is in percentages
+#' @param group_padding distance between bars when using a dodge bar
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -424,7 +488,12 @@ box_plot_highcharts <- function(df,
                                 y_lab = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
-                                group_color = NULL) {
+                                group_color = NULL,
+                                plot_height = NULL,
+                                bar_size = NULL,
+                                group_padding = NULL,
+                                add_total = FALSE,
+                                total_var = "total") {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -456,6 +525,25 @@ box_plot_highcharts <- function(df,
     ))
   }
 
+
+  if (add_total) {
+    if (horizontal) {
+      df <- df |>
+        add_total_label(
+          x_var = x_var,
+          total_var = total_var,
+          break_total = FALSE
+        )
+    } else {
+      df <- df |>
+        add_total_label(
+          x_var = x_var,
+          total_var = total_var,
+          break_total = TRUE
+        )
+    }
+  }
+
   out <- plot_highcharts(
     df = df,
     x_var = x_var,
@@ -478,6 +566,20 @@ box_plot_highcharts <- function(df,
     legend_title = legend_title,
     group_color = group_color
   )
+
+  out <- get_size_params(out, position = position)
+
+  if (!is.null(bar_size)) {
+    out$plotOptions$series$pointWidth <- bar_size
+  }
+
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  }
+
+  if (!is.null(group_padding)) {
+    out$plotOptions$column$groupPadding <- group_padding
+  }
 
   return(out)
 
@@ -1081,3 +1183,195 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 
   res
 }
+
+#' Create parameters for sizing and padding for bar plot.
+#'
+#' Function for getting the values of the bar height, bar width,
+#' group padding etc.
+#'
+#' @param out config
+#' @param position if bar should be stacked or dodge
+get_size_params <- function(
+    out,
+    position) {
+
+  # Antal värden på x-axeln
+  n_x_axis <- length(out$xAxis$categories)
+
+  # Antal kategorier
+  if (position == "dodge") {
+    n_categories <- length(out$series)
+  } else if (position == "stack") {
+    n_categories <- 1
+  }
+
+  if (isTRUE(out$chart$inverted)) {
+
+    #Beräkningar
+    row_height <-
+      if (n_x_axis <= 6) {
+        40
+      } else if (n_x_axis <= 20) {
+        28 + n_categories * 4
+      } else {
+        24 + n_categories * 3
+      }
+
+    row_height <- max(28, min(60, row_height))
+
+    point_width <-
+      floor(row_height / (n_categories + 1))
+
+    point_width <- max(8, min(20, point_width))
+
+    chart_height <- 120 + n_x_axis * row_height
+
+    group_padding <-
+      max(
+        0.06,
+        min(
+          0.14,
+          0.10 - n_categories * 0.005
+        )
+      )
+
+    point_padding <-
+      max(
+        0.01,
+        min(
+          0.08,
+          0.02 + n_categories * 0.003
+        )
+      )
+
+    # Applicera
+    out$chart$height <- chart_height
+    out$plotOptions$series$pointWidth <- point_width
+    out$plotOptions$column$groupPadding <- group_padding
+    out$plotOptions$column$pointPadding <- point_padding
+
+  } else if (!isTRUE(out$chart$inverted)) {
+
+    #Beräkningar
+    usable_width <- 900 - 120
+
+    space_per_category <-
+      usable_width / max(1, n_x_axis)
+
+    point_width <-
+      floor(
+        (space_per_category * 0.8) /
+          max(1, n_categories)
+      )
+
+    point_width <- max(4, min(32, point_width))
+
+    group_padding <-
+      max(
+        0.02,
+        min(
+          0.20,
+          0.18 - n_x_axis * 0.004
+        )
+      )
+
+    point_padding <-
+      max(
+        0.01,
+        min(
+          0.10,
+          0.05 - n_categories * 0.004
+        )
+      )
+
+
+    #Applicera
+    out$plotOptions$series$pointWidth <-
+      point_width
+
+    out$plotOptions$column$groupPadding <-
+      group_padding
+
+    out$plotOptions$column$pointPadding <-
+      point_padding
+
+    out$chart$height <- 650
+  }
+
+  out
+}
+
+#' Add total to x-axis
+#'
+#' @param df data
+#' @param total_var variable that contains the total
+#' @param x_var the variable in the x-axis
+#' @param break_total if there should be a break for the total
+#' @param multi_total_choice if multiple total values exist for each value in
+#' x_var what value should be picked. choices are min, max, and sum.
+add_total_label <- function(
+    df,
+    total_var = "total",
+    x_var = NULL,
+    break_total = FALSE,
+    multi_total_choice = NULL) {
+  checkmate::assert_choice(total_var, colnames(df))
+  checkmate::assert_choice(x_var, colnames(df))
+
+  if (break_total) {
+    char_var <- "<br/>(N="
+  } else {
+    char_var <- " (N="
+  }
+
+  if (is.null(multi_total_choice)) {
+    df <- df |>
+      dplyr::mutate(
+        dplyr::across(
+          dplyr::all_of(x_var),
+          ~ paste0(.x, char_var, .data[[total_var]], ")")
+        )
+      )
+  } else if (!is.null(multi_total_choice)) {
+    checkmate::assert_choice(multi_total_choice, c("min", "max", "sum"))
+    if (multi_total_choice == "min") {
+      df <- df |>
+        dplyr::group_by(.data[[x_var]]) |>
+        dplyr::mutate(
+          !!x_var := paste0(
+            .data[[x_var]],
+            char_var,
+            min(.data[[total_var]], na.rm = TRUE),
+            ")"
+          )
+        ) |> dplyr::ungroup()
+    } else if (multi_total_choice == "max") {
+      df <- df |>
+        dplyr::group_by(.data[[x_var]]) |>
+        dplyr::mutate(
+          !!x_var := paste0(
+            .data[[x_var]],
+            char_var,
+            max(.data[[total_var]], na.rm = TRUE),
+            ")"
+          )
+        ) |> dplyr::ungroup()
+    } else if (multi_total_choice == "sum") {
+      df <- df |>
+        dplyr::group_by(.data[[x_var]]) |>
+        dplyr::mutate(
+          !!x_var := paste0(
+            .data[[x_var]],
+            char_var,
+            sum(.data[[total_var]], na.rm = TRUE),
+            ")"
+          )
+        ) |> dplyr::ungroup()
+    }
+  }
+
+  df
+
+}
+
+

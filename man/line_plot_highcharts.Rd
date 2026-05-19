@@ -25,7 +25,8 @@ line_plot_highcharts(
   group_color = NULL,
   plot_height = NULL,
   add_total = FALSE,
-  total_var = "total"
+  total_var = "total",
+  text_size = NULL
 )
 }
 \arguments{
@@ -70,9 +71,13 @@ if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
 
+\item{plot_height}{height of plot}
+
 \item{add_total}{if total should be added to x-axis}
 
 \item{total_var}{name of column that contains total}
+
+\item{text_size}{size of text, will be interperted as pixels}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

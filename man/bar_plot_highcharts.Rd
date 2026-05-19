@@ -36,7 +36,8 @@ bar_plot_highcharts(
   group_padding = NULL,
   add_total = FALSE,
   total_var = "total",
-  multi_total_choice = NULL
+  multi_total_choice = NULL,
+  text_size = NULL
 )
 }
 \arguments{
@@ -111,6 +112,8 @@ if supplied the return value is a named list of plots, one per facet level}
 
 \item{multi_total_choice}{if multiple total values exist for each value in
 x_var what value should be picked. choices are min, max, and sum.}
+
+\item{text_size}{size of text, will be interperted as pixels}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

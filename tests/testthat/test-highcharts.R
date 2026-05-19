@@ -302,7 +302,15 @@ test_that("plot_highcharts works", {
           inverted = FALSE,
           height = "80%"
         ),
-        xAxis = list(categories = structure("a", class = "AsIs")),
+        xAxis = list(categories = structure("a", class = "AsIs"),
+                     labels = list(
+                       style = list(
+                         fontSize = "14px"
+                       )
+                      ),
+                     title = list(
+                       style = list(fontSize = "16px")
+                     )),
         series = structure(
           list(
             list(
@@ -318,9 +326,12 @@ test_that("plot_highcharts works", {
         ),
         legend = list(
           enabled = FALSE,
-          title = list(text = "abc")
+          title = list(text = "abc"),
+          itemStyle = list(fontSize = "14px")
         ),
-        yAxis = list(labels = list(format = "{value}")),
+        yAxis = list(labels = list(format = "{value}",
+                                   style = list(fontSize = "14px")),
+                     title = list(style = list(fontSize = "16px"))),
         tooltip = list(pointFormat = "<b>{point.y}</b>")
       )
     )

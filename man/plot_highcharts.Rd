@@ -30,7 +30,8 @@ plot_highcharts(
   plot_height = 0.8,
   group_color = NULL,
   legend_title = NULL,
-  reversed_stacks = NULL
+  reversed_stacks = NULL,
+  text_size = NULL
 )
 
 add_y_axis(
@@ -112,6 +113,8 @@ the levels}
 \item{legend_title}{title of the legend}
 
 \item{reversed_stacks}{should stacks be reversed?}
+
+\item{text_size}{size of text, will be interperted as pixels}
 
 \item{out}{intermediate config}
 

@@ -24,6 +24,20 @@
       $xAxis$categories
       [1] "a" "b" "c"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -88,6 +102,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -102,6 +121,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -168,6 +199,20 @@
       $xAxis$categories
       [1] "a" "b" "c"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -232,6 +277,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$tickPositions
@@ -243,6 +293,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -308,6 +370,20 @@
       $xAxis$categories
       [1] "a" "b" "c"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -334,6 +410,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -342,6 +423,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -408,6 +501,20 @@
       $xAxis$categories
       [1] "a" "b" "c" "d" "e"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -440,6 +547,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -454,6 +566,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -519,6 +643,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -691,6 +829,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -699,6 +842,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -767,6 +922,20 @@
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -938,6 +1107,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -952,6 +1126,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1018,6 +1204,20 @@
       $xAxis$categories
       [1] "a" "b"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1057,6 +1257,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1071,6 +1276,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1141,6 +1358,18 @@
       $xAxis$title
       $xAxis$title$text
       [1] "Hello World!"
+      
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
       
       
       
@@ -1214,6 +1443,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1228,6 +1462,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1294,6 +1540,20 @@
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1368,6 +1628,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1382,6 +1647,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1448,6 +1725,20 @@
        [1] "Enhet 10" "Enhet 9"  "Enhet 8"  "Enhet 7"  "Enhet 6"  "Enhet 5" 
        [7] "Enhet 4"  "Enhet 3"  "Enhet 2"  "Enhet 1" 
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1495,6 +1786,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1503,6 +1799,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1570,6 +1878,20 @@
        [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
        [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1617,6 +1939,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1625,6 +1952,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1692,6 +2031,20 @@
        [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
        [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1744,6 +2097,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1752,6 +2110,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1817,6 +2187,20 @@
       $xAxis$categories
       [1] "a"  "b"  "b*" "c" 
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1861,6 +2245,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1869,6 +2258,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1935,6 +2336,20 @@
       $xAxis$categories
       [1] "a" "b"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -1974,6 +2389,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1982,6 +2402,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2049,6 +2481,20 @@
       $xAxis$categories
       [1] "x"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -2095,6 +2541,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -2109,6 +2560,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2176,6 +2639,20 @@
       $xAxis$categories
       [1] "x"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -2222,6 +2699,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -2236,6 +2718,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2302,6 +2796,20 @@
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -2367,11 +2875,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2413,6 +2938,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2585,11 +3124,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2635,6 +3191,20 @@
       
       $xAxis$tickPositions
       [1]  0  8 15
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2749,11 +3319,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2796,6 +3383,20 @@
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2884,11 +3485,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2931,6 +3549,20 @@
       $xAxis
       $xAxis$categories
       [1] "2020"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2991,11 +3623,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3037,6 +3686,20 @@
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3089,11 +3752,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3144,6 +3824,20 @@
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3212,11 +3906,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3268,6 +3979,20 @@
        [1] "2010" "2012" "2014" "2016" "2018" "2020" "2011" "2013" "2015" "2017"
       [11] "2019"
       
+      [[1]]$xAxis$labels
+      [[1]]$xAxis$labels$style
+      [[1]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$xAxis$title
+      [[1]]$xAxis$title$style
+      [[1]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       [[1]]$series
       [[1]]
@@ -3318,11 +4043,28 @@
       [[1]]$legend$enabled
       [1] FALSE
       
+      [[1]]$legend$itemStyle
+      [[1]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       [[1]]$yAxis
       [[1]]$yAxis$labels
       [[1]]$yAxis$labels$format
       [1] "{value}"
+      
+      [[1]]$yAxis$labels$style
+      [[1]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$yAxis$title
+      [[1]]$yAxis$title$style
+      [[1]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3360,6 +4102,20 @@
       [[2]]$xAxis$categories
        [1] "2011" "2013" "2015" "2017" "2019" "2010" "2012" "2014" "2016" "2018"
       [11] "2020"
+      
+      [[2]]$xAxis$labels
+      [[2]]$xAxis$labels$style
+      [[2]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$xAxis$title
+      [[2]]$xAxis$title$style
+      [[2]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       [[2]]$series
@@ -3411,11 +4167,28 @@
       [[2]]$legend$enabled
       [1] FALSE
       
+      [[2]]$legend$itemStyle
+      [[2]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       [[2]]$yAxis
       [[2]]$yAxis$labels
       [[2]]$yAxis$labels$format
       [1] "{value}"
+      
+      [[2]]$yAxis$labels$style
+      [[2]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$yAxis$title
+      [[2]]$yAxis$title$style
+      [[2]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3458,6 +4231,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3524,11 +4311,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3575,6 +4379,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3747,11 +4565,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3799,6 +4634,20 @@
       $xAxis$categories
       [1] "2020" "2021" "2022" "2023" "2024"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -3831,6 +4680,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -3842,6 +4696,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3888,6 +4754,20 @@
       $xAxis
       $xAxis$categories
       [1] "2020" "2021" "2022" "2023" "2024"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3961,6 +4841,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -3972,6 +4857,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       

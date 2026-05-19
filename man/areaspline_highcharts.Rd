@@ -22,7 +22,8 @@ areaspline_highcharts(
   fill_opacity = 0.5,
   line_size = 8,
   group_color = NULL,
-  legend_title = NULL
+  legend_title = NULL,
+  text_size = NULL
 )
 }
 \arguments{
@@ -66,6 +67,8 @@ or \code{"percent"}}
 \item{group_color}{color of color vars}
 
 \item{legend_title}{title of the legend}
+
+\item{text_size}{size of text, will be interperted as pixels}
 }
 \value{
 highcharts config

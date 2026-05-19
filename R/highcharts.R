@@ -42,6 +42,7 @@
 #' @param total_var name of column that contains total
 #' @param multi_total_choice if multiple total values exist for each value in
 #' x_var what value should be picked. choices are min, max, and sum.
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -76,7 +77,8 @@ bar_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
-                                multi_total_choice = NULL) {
+                                multi_total_choice = NULL,
+                                text_size = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -110,7 +112,8 @@ bar_plot_highcharts <- function(df,
         break_x_var_names = break_x_var_names,
         group_color = group_color,
         legend_title = legend_title,
-        reversed_stacks = reversed_stacks
+        reversed_stacks = reversed_stacks,
+        text_size = text_size
       )
     ))
   }
@@ -228,7 +231,8 @@ bar_plot_highcharts <- function(df,
     group_var_order = fill_var_order,
     group_color = group_color,
     legend_title = legend_title,
-    reversed_stacks = reversed_stacks
+    reversed_stacks = reversed_stacks,
+    text_size = text_size
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -330,6 +334,8 @@ bar_plot_highcharts <- function(df,
 #' @param group_color optional colors
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
+#' @param plot_height height of plot
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -353,7 +359,8 @@ line_plot_highcharts <- function(df,
                                  group_color = NULL,
                                  plot_height = NULL,
                                  add_total = FALSE,
-                                 total_var = "total") {
+                                 total_var = "total",
+                                 text_size = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -378,7 +385,8 @@ line_plot_highcharts <- function(df,
         color_var_order = color_var_order,
         line_size = line_size,
         legend_title = legend_title,
-        group_color = group_color
+        group_color = group_color,
+        text_size = text_size
       )
     ))
   }
@@ -413,7 +421,8 @@ line_plot_highcharts <- function(df,
     y_lab = y_lab,
     group_var_order = color_var_order,
     legend_title = legend_title,
-    group_color = group_color
+    group_color = group_color,
+    text_size = text_size
   )
 
   out <- c(
@@ -466,6 +475,7 @@ line_plot_highcharts <- function(df,
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -493,7 +503,8 @@ box_plot_highcharts <- function(df,
                                 bar_size = NULL,
                                 group_padding = NULL,
                                 add_total = FALSE,
-                                total_var = "total") {
+                                total_var = "total",
+                                text_size = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -520,7 +531,8 @@ box_plot_highcharts <- function(df,
         x_lab = x_lab,
         y_lab = y_lab,
         legend_title = legend_title,
-        group_color = group_color
+        group_color = group_color,
+        text_size = text_size
       )
     ))
   }
@@ -564,7 +576,8 @@ box_plot_highcharts <- function(df,
     x_lab = x_lab,
     y_lab = y_lab,
     legend_title = legend_title,
-    group_color = group_color
+    group_color = group_color,
+    text_size = text_size
   )
 
   out <- get_size_params(out, position = position)
@@ -612,6 +625,7 @@ box_plot_highcharts <- function(df,
 #' @param line_size size of the spline border
 #' @param group_color color of color vars
 #' @param legend_title title of the legend
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config
 #' @export
@@ -632,7 +646,8 @@ areaspline_highcharts <- function(df,
                                   fill_opacity = 0.5,
                                   line_size = 8,
                                   group_color = NULL,
-                                  legend_title = NULL) {
+                                  legend_title = NULL,
+                                  text_size = NULL) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
 
@@ -660,7 +675,8 @@ areaspline_highcharts <- function(df,
     y_lab = y_lab,
     group_var_order = color_var_order,
     group_color = group_color,
-    legend_title = legend_title
+    legend_title = legend_title,
+    text_size = text_size
   )
 
   plot_options <- list(
@@ -710,6 +726,7 @@ areaspline_highcharts <- function(df,
 #' @param group_color color of group variabel
 #' @param legend_title title of the legend
 #' @param reversed_stacks should stacks be reversed?
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config
 #' @export
@@ -735,7 +752,8 @@ plot_highcharts <- function(df,
                             plot_height = 0.8,
                             group_color = NULL,
                             legend_title = NULL,
-                            reversed_stacks = NULL) {
+                            reversed_stacks = NULL,
+                            text_size = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -888,6 +906,8 @@ plot_highcharts <- function(df,
       other_vars = other_vars,
       type = type
     )
+
+  out <- get_text_size(out, text_size = text_size)
 
   return(out)
 }
@@ -1374,5 +1394,35 @@ add_total_label <- function(
   }
 
   df
+
+}
+
+#' Get text size param for plots
+#'
+#' @param out config
+#' @param text_size size of text, will be interperted as pixel
+get_text_size <- function(
+    out,
+    text_size = NULL) {
+
+  if (is.null(text_size)) {
+    text_size <- 14
+  }
+
+  text_size_px <- paste0(text_size, "px")
+  title_size_px <- paste0(text_size + 2, "px")
+
+  #Applicera x axeln
+  out$xAxis$labels$style$fontSize <- text_size_px
+  out$xAxis$title$style$fontSize <- title_size_px
+
+  #Applicera y axeln
+  out$yAxis$labels$style$fontSize <- text_size_px
+  out$yAxis$title$style$fontSize <- title_size_px
+
+  #Applicera legend
+  out$legend$itemStyle$fontSize <- text_size_px
+
+  out
 
 }

@@ -4,7 +4,7 @@
 \alias{get_text_size}
 \title{Get text size param for plots}
 \usage{
-get_text_size(out, text_size = 14)
+get_text_size(out, text_size = NULL)
 }
 \arguments{
 \item{out}{config}

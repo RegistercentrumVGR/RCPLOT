@@ -17,7 +17,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -115,10 +115,16 @@
       $plotOptions$column$stacking
       [1] "normal"
       
+      $plotOptions$column$groupPadding
+      [1] 0.168
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -155,7 +161,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -248,15 +254,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.168
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.038
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -295,7 +301,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -347,15 +353,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.168
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -395,7 +401,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -459,15 +465,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.16
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -506,7 +512,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -704,15 +710,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 19
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.116
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -753,7 +759,7 @@
       [1] TRUE
       
       $chart$height
-      [1] "100%"
+      [1] 696
       
       
       $xAxis
@@ -957,15 +963,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 12
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.09
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.026
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1005,7 +1011,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1076,15 +1082,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1125,7 +1131,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1233,15 +1239,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1282,7 +1288,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1387,15 +1393,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1434,7 +1440,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1508,15 +1514,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.14
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1556,7 +1562,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1630,15 +1636,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.14
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1678,7 +1684,7 @@
       [1] TRUE
       
       $chart$height
-      [1] "100%"
+      [1] 440
       
       
       $xAxis
@@ -1757,15 +1763,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 16
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.095
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.023
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1804,7 +1810,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1874,15 +1880,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.164
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1922,7 +1928,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1987,15 +1993,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -2036,7 +2042,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -2116,10 +2122,16 @@
       $plotOptions$column$stacking
       [1] "percent"
       
+      $plotOptions$column$groupPadding
+      [1] 0.176
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -2157,7 +2169,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -2237,10 +2249,16 @@
       $plotOptions$column$stacking
       [1] "normal"
       
+      $plotOptions$column$groupPadding
+      [1] 0.176
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -2276,7 +2294,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -2388,7 +2406,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -2607,7 +2625,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -2772,7 +2790,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -2907,7 +2925,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -3013,7 +3031,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 650
       
       
       $xAxis
@@ -3084,6 +3102,21 @@
       [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 32
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.172
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
+      
+      
 
 ---
 
@@ -3105,7 +3138,7 @@
       [1] TRUE
       
       $chart$height
-      [1] "80%"
+      [1] 200
       
       
       $xAxis
@@ -3192,6 +3225,21 @@
       [1] "{series.name}<br>\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
       
       
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 13
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.09
+      
+      $plotOptions$column$pointPadding
+      [1] 0.026
+      
+      
+      
 
 # facet_by works
 
@@ -3212,7 +3260,7 @@
       [1] FALSE
       
       [[1]]$chart$height
-      [1] "80%"
+      [1] 600
       
       
       [[1]]$xAxis
@@ -3305,7 +3353,7 @@
       [1] FALSE
       
       [[2]]$chart$height
-      [1] "80%"
+      [1] 600
       
       
       [[2]]$xAxis

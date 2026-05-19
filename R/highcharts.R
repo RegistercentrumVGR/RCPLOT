@@ -1344,7 +1344,8 @@ add_total_label <- function(
             min(.data[[total_var]], na.rm = TRUE),
             ")"
           )
-        ) |> dplyr::ungroup()
+        ) |>
+        dplyr::ungroup()
     } else if (multi_total_choice == "max") {
       df <- df |>
         dplyr::group_by(.data[[x_var]]) |>
@@ -1355,7 +1356,8 @@ add_total_label <- function(
             max(.data[[total_var]], na.rm = TRUE),
             ")"
           )
-        ) |> dplyr::ungroup()
+        ) |>
+        dplyr::ungroup()
     } else if (multi_total_choice == "sum") {
       df <- df |>
         dplyr::group_by(.data[[x_var]]) |>
@@ -1366,12 +1368,11 @@ add_total_label <- function(
             sum(.data[[total_var]], na.rm = TRUE),
             ")"
           )
-        ) |> dplyr::ungroup()
+        ) |>
+        dplyr::ungroup()
     }
   }
 
   df
 
 }
-
-

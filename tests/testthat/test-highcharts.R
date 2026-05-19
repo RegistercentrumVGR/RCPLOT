@@ -307,7 +307,7 @@ test_that("plot_highcharts works", {
                        style = list(
                          fontSize = "14px"
                        )
-                      ),
+                     ),
                      title = list(
                        style = list(fontSize = "16px")
                      )),

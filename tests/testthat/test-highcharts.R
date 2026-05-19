@@ -5,7 +5,7 @@ test_that("make_series works", {
     county = "VGR"
   )
 
-  make_series(df, list(y = "n")) |>
+  make_series(df, list(y = "n"), x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -16,7 +16,7 @@ test_that("make_series works", {
       )
     )
 
-  make_series(df, list(y = "n"), "county") |>
+  make_series(df, list(y = "n"), "county", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -33,7 +33,7 @@ test_that("make_series works", {
     county = rep(c("VGR", "Stockholm"), each = 10)
   )
 
-  make_series(df, list(y = "n"), "county") |>
+  make_series(df, list(y = "n"), "county", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -55,7 +55,7 @@ test_that("make_series works", {
     type = rep(c("value 1", "value 2"), each = 2)
   )
 
-  make_series(df, list(y = "value"), c("county", "type")) |>
+  make_series(df, list(y = "value"), c("county", "type"), x_var = "county") |>
     expect_equal(
       list(
         list(
@@ -83,10 +83,17 @@ test_that("make_series works", {
 
   df <- data.frame(
     year = 2023:2024,
-    y = 100
+    y = 100,
+    x = 1
   )
 
-  make_series(df, list(y = "y"), "year", palette_type = "sequential_1") |>
+  make_series(
+    df,
+    list(y = "y"),
+    "year",
+    palette_type = "sequential_1",
+    x_var = "x"
+  ) |>
     expect_equal(
       list(
         list(
@@ -112,7 +119,8 @@ test_that("make_series works", {
   make_series(
     df,
     list(y = "prop"),
-    other_vars = list(Täljare = "n", Nämnare = "total")
+    other_vars = list(Täljare = "n", Nämnare = "total"),
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -131,7 +139,8 @@ test_that("make_series works", {
     df,
     list(y = "prop"),
     proportion = TRUE,
-    scale_percentage = TRUE
+    scale_percentage = TRUE,
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -143,7 +152,7 @@ test_that("make_series works", {
       )
     )
 
-  make_series(df, list(y = "prop"), colors = "#6F45BB") |>
+  make_series(df, list(y = "prop"), colors = "#6F45BB", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -164,7 +173,8 @@ test_that("make_series works", {
     df,
     vars = list(y = "y"),
     group_vars = "bmi_group",
-    group_var_order = "auto_numeric"
+    group_var_order = "auto_numeric",
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -192,9 +202,11 @@ test_that("make_series works", {
   # Decimals are rounded
   make_series(
     data.frame(
-      y = c(70.51, 70)
+      y = c(70.51, 70),
+      x = 1:2
     ),
-    vars = list(y = "y")
+    vars = list(y = "y"),
+    x_var = "x"
   ) |>
     expect_equal(
       list(
@@ -205,6 +217,65 @@ test_that("make_series works", {
         )
       )
     )
+
+  df <- data.frame(
+    gender = letters[1:2],
+    y = 10
+  )
+
+  make_series(
+    df = df,
+    vars = list(y = "y"),
+    group_vars = "gender",
+    x_var = "gender"
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(
+            list(
+              list(
+                y = 10,
+                color = "#116875"
+              ),
+              list(
+                y = 10,
+                color = "#FC5930"
+              )
+            )
+          ),
+          name = ""
+        )
+      )
+    )
+
+  make_series(
+    df = df,
+    vars = list(y = "y"),
+    group_vars = "gender",
+    x_var = "gender",
+    color = c("#1A9FB3", "#051F23")
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(
+            list(
+              list(
+                y = 10,
+                color = "#1A9FB3"
+              ),
+              list(
+                y = 10,
+                color = "#051F23"
+              )
+            )
+          ),
+          name = ""
+        )
+      )
+    )
+
 })
 
 

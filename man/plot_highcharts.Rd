@@ -49,7 +49,8 @@ add_tooltip(
   group_vars = NULL,
   other_vars = NULL,
   proportion = FALSE,
-  type
+  type,
+  x_var
 )
 
 make_series(
@@ -61,13 +62,14 @@ make_series(
   other_vars = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
-  group_var_order = NULL
+  group_var_order = NULL,
+  x_var
 )
 }
 \arguments{
 \item{df}{the data.frame to plot}
 
-\item{x_var}{the name of the x variable'}
+\item{x_var}{x variable}
 
 \item{vars}{a named list used to rename variables to proper highcharts keys,
 typically \code{list(y = y_var)}}

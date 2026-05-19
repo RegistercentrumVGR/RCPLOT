@@ -781,12 +781,13 @@ plot_highcharts <- function(df,
         proportion = proportion,
         scale_percentage = scale_percentage,
         group_var_order = group_var_order,
-        colors = group_color
+        colors = group_color,
+        x_var = x_var
       )
     )
   )
 
-  if (is.null(group_vars)) {
+  if (is.null(group_vars) || identical(group_vars, x_var)) {
     out <- c(
       out,
       list(legend = list(enabled = FALSE))
@@ -820,7 +821,8 @@ plot_highcharts <- function(df,
       proportion = proportion,
       group_vars = group_vars,
       other_vars = other_vars,
-      type = type
+      type = type,
+      x_var = x_var
     )
 
   return(out)
@@ -902,9 +904,10 @@ add_tooltip <- function(out,
                         group_vars = NULL,
                         other_vars = NULL,
                         proportion = FALSE,
-                        type) {
+                        type,
+                        x_var) {
 
-  if (is.null(group_vars)) {
+  if (is.null(group_vars) || identical(group_vars, x_var)) {
     prefix <- ""
   } else {
     prefix <- "{series.name}"
@@ -986,6 +989,7 @@ sort_numeric <- function(x) {
 #' @param palette_type passed to [colors_rc_3()]
 #' @param colors an optional subset of [colors_rc_3()] with
 #' `palette_type = "qualitative"` and `n = 12` used to manually set colors
+#' @param x_var x variable
 make_series <- function(df,
                         vars,
                         group_vars = NULL,
@@ -994,7 +998,8 @@ make_series <- function(df,
                         other_vars = NULL,
                         proportion = FALSE,
                         scale_percentage = TRUE,
-                        group_var_order = NULL) {
+                        group_var_order = NULL,
+                        x_var) {
 
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
@@ -1065,7 +1070,22 @@ make_series <- function(df,
     dplyr::mutate(color = colors[dplyr::cur_group_id()]) |>
     dplyr::group_by(.data$series_var, .data$color)
 
-  if (length(vars) == 1 && is.null(other_vars)) {
+  if (identical(group_vars, x_var)) {
+    list(
+      list(
+        data = I(
+          dplyr::group_map(
+            tmp,
+            ~ c(
+              as.list(.x[c(names(vars), unlist(other_vars))]),
+              color = .y$color
+            )
+          )
+        ),
+        name = ""
+      )
+    )
+  } else if (length(vars) == 1 && is.null(other_vars)) {
     tmp |>
       dplyr::group_map(
         ~ c(

@@ -5,7 +5,7 @@ test_that("make_series works", {
     county = "VGR"
   )
 
-  make_series(df, list(y = "n")) |>
+  make_series(df, list(y = "n"), x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -16,7 +16,7 @@ test_that("make_series works", {
       )
     )
 
-  make_series(df, list(y = "n"), "county") |>
+  make_series(df, list(y = "n"), "county", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -33,7 +33,7 @@ test_that("make_series works", {
     county = rep(c("VGR", "Stockholm"), each = 10)
   )
 
-  make_series(df, list(y = "n"), "county") |>
+  make_series(df, list(y = "n"), "county", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -55,7 +55,7 @@ test_that("make_series works", {
     type = rep(c("value 1", "value 2"), each = 2)
   )
 
-  make_series(df, list(y = "value"), c("county", "type")) |>
+  make_series(df, list(y = "value"), c("county", "type"), x_var = "county") |>
     expect_equal(
       list(
         list(
@@ -83,10 +83,17 @@ test_that("make_series works", {
 
   df <- data.frame(
     year = 2023:2024,
-    y = 100
+    y = 100,
+    x = 1
   )
 
-  make_series(df, list(y = "y"), "year", palette_type = "sequential_1") |>
+  make_series(
+    df,
+    list(y = "y"),
+    "year",
+    palette_type = "sequential_1",
+    x_var = "x"
+  ) |>
     expect_equal(
       list(
         list(
@@ -112,7 +119,8 @@ test_that("make_series works", {
   make_series(
     df,
     list(y = "prop"),
-    other_vars = list(Täljare = "n", Nämnare = "total")
+    other_vars = list(Täljare = "n", Nämnare = "total"),
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -131,7 +139,8 @@ test_that("make_series works", {
     df,
     list(y = "prop"),
     proportion = TRUE,
-    scale_percentage = TRUE
+    scale_percentage = TRUE,
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -143,7 +152,7 @@ test_that("make_series works", {
       )
     )
 
-  make_series(df, list(y = "prop"), colors = "#6F45BB") |>
+  make_series(df, list(y = "prop"), colors = "#6F45BB", x_var = "year") |>
     expect_equal(
       list(
         list(
@@ -164,7 +173,8 @@ test_that("make_series works", {
     df,
     vars = list(y = "y"),
     group_vars = "bmi_group",
-    group_var_order = "auto_numeric"
+    group_var_order = "auto_numeric",
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -188,6 +198,84 @@ test_that("make_series works", {
         )
       )
     )
+
+  # Decimals are rounded
+  make_series(
+    data.frame(
+      y = c(70.51, 70),
+      x = 1:2
+    ),
+    vars = list(y = "y"),
+    x_var = "x"
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(list(70.5, 70)),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  df <- data.frame(
+    gender = letters[1:2],
+    y = 10
+  )
+
+  make_series(
+    df = df,
+    vars = list(y = "y"),
+    group_vars = "gender",
+    x_var = "gender"
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(
+            list(
+              list(
+                y = 10,
+                color = "#116875"
+              ),
+              list(
+                y = 10,
+                color = "#FC5930"
+              )
+            )
+          ),
+          name = ""
+        )
+      )
+    )
+
+  make_series(
+    df = df,
+    vars = list(y = "y"),
+    group_vars = "gender",
+    x_var = "gender",
+    color = c("#1A9FB3", "#051F23")
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(
+            list(
+              list(
+                y = 10,
+                color = "#1A9FB3"
+              ),
+              list(
+                y = 10,
+                color = "#051F23"
+              )
+            )
+          ),
+          name = ""
+        )
+      )
+    )
+
 })
 
 
@@ -324,6 +412,68 @@ test_that("plot_highcharts works", {
         tooltip = list(pointFormat = "<b>{point.y}</b>")
       )
     )
+
+  df <- data.frame(
+    x = letters[1:3],
+    y_1 = c(NA, 1, NA),
+    y_2 = c(1, 2, NA),
+    y_3 = c(NA, 3, NA)
+  )
+
+  # NA is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = NA
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(I(list(1)))
+
+  # Nothing is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = 2
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(I(list(NULL, 1, NULL)))
+
+  # Last row is removed
+  plot_highcharts(
+    df = df,
+    x_var = "x",
+    vars = list(y = "y_1", y2 = "y_2", y3 = "y_3"),
+    other_vars = NULL,
+    group_vars = NULL,
+    type = "column",
+    title = "test",
+    y_lim = NULL,
+    y_breaks = NULL,
+    remove_value = NA
+  ) |>
+    purrr::pluck("series", 1, "data") |>
+    expect_equal(
+      list(
+        list(y = NULL, y2 = 1, y3 = NULL),
+        list(y = 1, y2 = 2, y3 = 3)
+      )
+    )
+
+
 })
 
 test_that("bar_plot_highcharts works", {

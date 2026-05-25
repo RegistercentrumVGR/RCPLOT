@@ -4,13 +4,7 @@
 \alias{add_total_label}
 \title{Add total to x-axis}
 \usage{
-add_total_label(
-  df,
-  total_var = "total",
-  x_var = NULL,
-  break_total = FALSE,
-  multi_total_choice = NULL
-)
+add_total_label(df, total_var = "total", x_var = NULL, break_total = FALSE)
 }
 \arguments{
 \item{df}{data}
@@ -20,9 +14,6 @@ add_total_label(
 \item{x_var}{the variable in the x-axis}
 
 \item{break_total}{if there should be a break for the total}
-
-\item{multi_total_choice}{if multiple total values exist for each value in
-x_var what value should be picked. choices are min, max, and sum.}
 }
 \description{
 Add total to x-axis

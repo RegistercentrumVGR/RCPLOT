@@ -30,7 +30,6 @@ box_plot_highcharts(
   group_padding = NULL,
   add_total = FALSE,
   total_var = "total",
-  multi_total_choice = NULL,
   text_size = NULL
 )
 }
@@ -87,9 +86,6 @@ if supplied the return value is a named list of plots, one per facet level}
 \item{add_total}{if total should be added to x-axis}
 
 \item{total_var}{name of column that contains total}
-
-\item{multi_total_choice}{if multiple total values exist for each value in
-x_var what value should be picked. choices are min, max, and sum.}
 
 \item{text_size}{size of text, will be interperted as pixels}
 }

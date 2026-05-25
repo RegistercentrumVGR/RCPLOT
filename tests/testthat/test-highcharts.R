@@ -1006,22 +1006,6 @@ test_that("add_total works", {
     ) |>
     expect_snapshot()
 
-  df <- data.frame(
-    x = c("A", "B", "A", "B"),
-    y = c(1, 2, 3, 4),
-    fill_var = c("Group 1", "Group 1", "Group 2", "group 2"),
-    total = c(10, 20, 30, 40)
-  ) |>
-    bar_plot_highcharts(
-      x_var = "x",
-      y_var = "y",
-      fill_var = "fill_var",
-      horizontal = FALSE,
-      add_total = TRUE,
-      total_var = "total",
-      multi_total_choice = "max"
-    ) |>
-    expect_snapshot()
 
 })
 

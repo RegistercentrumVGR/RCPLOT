@@ -40,8 +40,6 @@
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
-#' @param multi_total_choice if multiple total values exist for each value in
-#' x_var what value should be picked. choices are min, max, and sum.
 #' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
@@ -77,7 +75,6 @@ bar_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
-                                multi_total_choice = NULL,
                                 text_size = NULL) {
 
   if (!is.null(facet_by)) {
@@ -125,7 +122,6 @@ bar_plot_highcharts <- function(df,
       add_total_label(
         x_var = x_var,
         total_var = total_var,
-        multi_total_choice = multi_total_choice,
         break_total = !horizontal
       )
   }
@@ -317,8 +313,6 @@ bar_plot_highcharts <- function(df,
 #' @param group_color optional colors
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
-#' @param multi_total_choice if multiple total values exist for each value in
-#' x_var what value should be picked. choices are min, max, and sum.
 #' @param plot_height height of plot
 #' @param text_size size of text, will be interperted as pixels
 #'
@@ -345,7 +339,6 @@ line_plot_highcharts <- function(df,
                                  plot_height = NULL,
                                  add_total = FALSE,
                                  total_var = "total",
-                                 multi_total_choice = NULL,
                                  text_size = NULL) {
 
   if (!is.null(facet_by)) {
@@ -382,7 +375,6 @@ line_plot_highcharts <- function(df,
       add_total_label(
         x_var = x_var,
         total_var = total_var,
-        multi_total_choice = multi_total_choice,
         break_total = TRUE
       )
   }
@@ -462,8 +454,6 @@ line_plot_highcharts <- function(df,
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
-#' @param multi_total_choice if multiple total values exist for each value in
-#' x_var what value should be picked. choices are min, max, and sum.
 #' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
@@ -493,7 +483,6 @@ box_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
-                                multi_total_choice = NULL,
                                 text_size = NULL) {
 
   if (!is.null(facet_by)) {
@@ -533,7 +522,6 @@ box_plot_highcharts <- function(df,
       add_total_label(
         x_var = x_var,
         total_var = total_var,
-        multi_total_choice = multi_total_choice,
         break_total = !horizontal
       )
   }
@@ -1328,14 +1316,11 @@ set_size_params <- function(
 #' @param total_var variable that contains the total
 #' @param x_var the variable in the x-axis
 #' @param break_total if there should be a break for the total
-#' @param multi_total_choice if multiple total values exist for each value in
-#' x_var what value should be picked. choices are min, max, and sum.
 add_total_label <- function(
     df,
     total_var = "total",
     x_var = NULL,
-    break_total = FALSE,
-    multi_total_choice = NULL) {
+    break_total = FALSE) {
   checkmate::assert_choice(total_var, colnames(df))
   checkmate::assert_choice(x_var, colnames(df))
 
@@ -1345,36 +1330,13 @@ add_total_label <- function(
     char_var <- " (N="
   }
 
-  if (is.null(multi_total_choice)) {
-    df <- df |>
-      dplyr::mutate(
-        dplyr::across(
-          dplyr::all_of(x_var),
-          ~ paste0(.x, char_var, .data[[total_var]], ")")
-        )
+  df <- df |>
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(x_var),
+        ~ paste0(.x, char_var, .data[[total_var]], ")")
       )
-  } else if (!is.null(multi_total_choice)) {
-    checkmate::assert_choice(multi_total_choice, c("min", "max", "sum"))
-
-    summary_fun <- switch(
-      multi_total_choice,
-      min = min,
-      max = max,
-      sum = sum
     )
-
-    df <- df |>
-      dplyr::group_by(.data[[x_var]]) |>
-      dplyr::mutate(
-        !!x_var := paste0(
-          .data[[x_var]],
-          char_var,
-          summary_fun(.data[[total_var]], na.rm = TRUE),
-          ")"
-        )
-      ) |>
-      dplyr::ungroup()
-  }
 
   df
 

@@ -16,6 +16,12 @@ set_size_params(
 \item{out}{config}
 
 \item{position}{if bar should be stacked or dodge}
+
+\item{bar_size}{size of bars}
+
+\item{plot_height}{height of plot}
+
+\item{group_padding}{padding between bars}
 }
 \description{
 This function dynamically calculates bar width, chart height, and padding to

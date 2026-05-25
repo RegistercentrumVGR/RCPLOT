@@ -4890,3 +4890,427 @@
       
       
 
+# add_total works
+
+    Code
+      bar_plot_highcharts(df, x_var = "x", y_var = "y", horizontal = FALSE,
+        add_total = TRUE, total_var = "total")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] 650
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A<br/>(N=10)" "B<br/>(N=20)" "C<br/>(N=30)"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 32
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.168
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "x", y_var = "y", horizontal = TRUE, add_total = TRUE,
+        total_var = "total")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      $chart$height
+      [1] 240
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A (N=10)" "B (N=20)" "C (N=30)"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 20
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.095
+      
+      $plotOptions$column$pointPadding
+      [1] 0.023
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(data.frame(x = c("A", "B", "A", "B"), y = c(1, 2, 3, 4),
+      fill_var = c("Group 1", "Group 1", "Group 2", "group 2"), total = c(10, 20, 30,
+        40)), x_var = "x", y_var = "y", fill_var = "fill_var", horizontal = FALSE,
+      add_total = TRUE, total_var = "total", multi_total_choice = "max")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] 650
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A<br/>(N=30)" "B<br/>(N=40)"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      
+      [[1]]$name
+      [1] "Group 1"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      [[2]]
+      [[2]]$data
+      [[1]]
+      [1] 3
+      
+      [[2]]
+      NULL
+      
+      
+      [[2]]$name
+      [1] "Group 2"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      
+      [[3]]
+      [[3]]$data
+      [[1]]
+      NULL
+      
+      [[2]]
+      [1] 4
+      
+      
+      [[3]]$name
+      [1] "group 2"
+      
+      [[3]]$color
+      [1] "#6F45BB"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 32
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.172
+      
+      $plotOptions$column$pointPadding
+      [1] 0.038
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+

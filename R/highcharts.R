@@ -1194,6 +1194,9 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 #'
 #' @param out config
 #' @param position if bar should be stacked or dodge
+#' @param bar_size size of bars
+#' @param plot_height height of plot
+#' @param group_padding padding between bars
 set_size_params <- function(
     out,
     position,

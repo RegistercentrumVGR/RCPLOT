@@ -977,3 +977,71 @@ test_that("arrange_by works correctly", {
 
   expect_equal(out$xAxis$categories, I(c("B", "C", "A")))
 })
+
+test_that("add_total works", {
+  df <- data.frame(
+    x = c("A", "B", "C"),
+    y = c(1, 2, 3),
+    total = c(10, 20, 30)
+  )
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      horizontal = FALSE,
+      add_total = TRUE,
+      total_var = "total"
+    ) |>
+    expect_snapshot()
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      horizontal = TRUE,
+      add_total = TRUE,
+      total_var = "total"
+    ) |>
+    expect_snapshot()
+
+  df <- data.frame(
+    x = c("A", "B", "A", "B"),
+    y = c(1, 2, 3, 4),
+    fill_var = c("Group 1", "Group 1", "Group 2", "group 2"),
+    total = c(10, 20, 30, 40)
+  ) |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "fill_var",
+      horizontal = FALSE,
+      add_total = TRUE,
+      total_var = "total",
+      multi_total_choice = "max"
+    ) |>
+    expect_snapshot()
+
+})
+
+test_that("set_size_params works", {
+
+  df <- data.frame(
+    x = c("A", "B", "A", "B"),
+    y = c(1, 2, 3, 4),
+    fill_var = c("Group 1", "Group 1", "Group 2", "group 2"),
+    total = c(10, 20, 30, 40)
+  )
+
+  plt <- df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "fill_var"
+    )
+
+  expect_equal(plt$plotOptions$column$groupPadding, 0.172)
+  expect_equal(plt$plotOptions$column$pointPadding, 0.038)
+  expect_equal(plt$plotOptions$series$pointWidth, 32)
+  expect_equal(plt$chart$height, 650)
+})

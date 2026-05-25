@@ -121,23 +121,13 @@ bar_plot_highcharts <- function(df,
   type <- "column"
 
   if (add_total) {
-    if (horizontal) {
-      df <- df |>
-        add_total_label(
-          x_var = x_var,
-          total_var = total_var,
-          multi_total_choice = multi_total_choice,
-          break_total = FALSE
-        )
-    } else {
-      df <- df |>
-        add_total_label(
-          x_var = x_var,
-          total_var = total_var,
-          multi_total_choice = multi_total_choice,
-          break_total = TRUE
-        )
-    }
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        multi_total_choice = multi_total_choice,
+        break_total = !horizontal
+      )
   }
 
   if (break_x_var_names) {
@@ -288,19 +278,12 @@ bar_plot_highcharts <- function(df,
 
   out <- c(out, list(caption = caption))
 
-  out <- get_size_params(out, position = position)
+  out <- set_size_params(out,
+                         position = position,
+                         bar_size = bar_size,
+                         plot_height = plot_height,
+                         group_padding = group_padding)
 
-  if (!is.null(bar_size)) {
-    out$plotOptions$series$pointWidth <- bar_size
-  }
-
-  if (!is.null(plot_height)) {
-    out$chart$height <- plot_height
-  }
-
-  if (!is.null(group_padding)) {
-    out$plotOptions$column$groupPadding <- group_padding
-  }
 
   return(out)
 }
@@ -334,6 +317,8 @@ bar_plot_highcharts <- function(df,
 #' @param group_color optional colors
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
+#' @param multi_total_choice if multiple total values exist for each value in
+#' x_var what value should be picked. choices are min, max, and sum.
 #' @param plot_height height of plot
 #' @param text_size size of text, will be interperted as pixels
 #'
@@ -360,6 +345,7 @@ line_plot_highcharts <- function(df,
                                  plot_height = NULL,
                                  add_total = FALSE,
                                  total_var = "total",
+                                 multi_total_choice = NULL,
                                  text_size = NULL) {
 
   if (!is.null(facet_by)) {
@@ -396,6 +382,7 @@ line_plot_highcharts <- function(df,
       add_total_label(
         x_var = x_var,
         total_var = total_var,
+        multi_total_choice = multi_total_choice,
         break_total = TRUE
       )
   }
@@ -475,6 +462,8 @@ line_plot_highcharts <- function(df,
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
+#' @param multi_total_choice if multiple total values exist for each value in
+#' x_var what value should be picked. choices are min, max, and sum.
 #' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
@@ -504,6 +493,7 @@ box_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
+                                multi_total_choice = NULL,
                                 text_size = NULL) {
 
   if (!is.null(facet_by)) {
@@ -539,21 +529,13 @@ box_plot_highcharts <- function(df,
 
 
   if (add_total) {
-    if (horizontal) {
-      df <- df |>
-        add_total_label(
-          x_var = x_var,
-          total_var = total_var,
-          break_total = FALSE
-        )
-    } else {
-      df <- df |>
-        add_total_label(
-          x_var = x_var,
-          total_var = total_var,
-          break_total = TRUE
-        )
-    }
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        multi_total_choice = multi_total_choice,
+        break_total = !horizontal
+      )
   }
 
   out <- plot_highcharts(
@@ -580,19 +562,11 @@ box_plot_highcharts <- function(df,
     text_size = text_size
   )
 
-  out <- get_size_params(out, position = position)
-
-  if (!is.null(bar_size)) {
-    out$plotOptions$series$pointWidth <- bar_size
-  }
-
-  if (!is.null(plot_height)) {
-    out$chart$height <- plot_height
-  }
-
-  if (!is.null(group_padding)) {
-    out$plotOptions$column$groupPadding <- group_padding
-  }
+  out <- set_size_params(out,
+                         position = position,
+                         bar_size = bar_size,
+                         plot_height = plot_height,
+                         group_padding = group_padding)
 
   return(out)
 
@@ -907,7 +881,7 @@ plot_highcharts <- function(df,
       type = type
     )
 
-  out <- get_text_size(out, text_size = text_size)
+  out <- set_text_size(out, text_size = text_size)
 
   return(out)
 }
@@ -1206,14 +1180,26 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 
 #' Create parameters for sizing and padding for bar plot.
 #'
-#' Function for getting the values of the bar height, bar width,
-#' group padding etc.
+#' This function dynamically calculates bar width, chart height, and padding to
+#' improve readability for both horizontal and vertical plots, while also
+#' allowing manual overrides for bar size, plot height, and group padding.
+#'
+#' The parameters take into account if it is a stacked or dodge plot and for
+#' data with many categories it tries to adjust the group padding in such a way
+#' that the bars dont overlap.
+#'
+#' An important thing is to keep the distance between the bars inside the
+#' x-values smaller than the distance between the grouped bars between the
+#' x_values.
 #'
 #' @param out config
 #' @param position if bar should be stacked or dodge
-get_size_params <- function(
+set_size_params <- function(
     out,
-    position) {
+    position,
+    bar_size = NULL,
+    plot_height = NULL,
+    group_padding = NULL) {
 
   # Antal värden på x-axeln
   n_x_axis <- length(out$xAxis$categories)
@@ -1318,6 +1304,18 @@ get_size_params <- function(
     out$chart$height <- 650
   }
 
+  if (!is.null(bar_size)) {
+    out$plotOptions$series$pointWidth <- bar_size
+  }
+
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  }
+
+  if (!is.null(group_padding)) {
+    out$plotOptions$column$groupPadding <- group_padding
+  }
+
   out
 }
 
@@ -1354,43 +1352,25 @@ add_total_label <- function(
       )
   } else if (!is.null(multi_total_choice)) {
     checkmate::assert_choice(multi_total_choice, c("min", "max", "sum"))
-    if (multi_total_choice == "min") {
-      df <- df |>
-        dplyr::group_by(.data[[x_var]]) |>
-        dplyr::mutate(
-          !!x_var := paste0(
-            .data[[x_var]],
-            char_var,
-            min(.data[[total_var]], na.rm = TRUE),
-            ")"
-          )
-        ) |>
-        dplyr::ungroup()
-    } else if (multi_total_choice == "max") {
-      df <- df |>
-        dplyr::group_by(.data[[x_var]]) |>
-        dplyr::mutate(
-          !!x_var := paste0(
-            .data[[x_var]],
-            char_var,
-            max(.data[[total_var]], na.rm = TRUE),
-            ")"
-          )
-        ) |>
-        dplyr::ungroup()
-    } else if (multi_total_choice == "sum") {
-      df <- df |>
-        dplyr::group_by(.data[[x_var]]) |>
-        dplyr::mutate(
-          !!x_var := paste0(
-            .data[[x_var]],
-            char_var,
-            sum(.data[[total_var]], na.rm = TRUE),
-            ")"
-          )
-        ) |>
-        dplyr::ungroup()
-    }
+
+    summary_fun <- switch(
+      multi_total_choice,
+      min = min,
+      max = max,
+      sum = sum
+    )
+
+    df <- df |>
+      dplyr::group_by(.data[[x_var]]) |>
+      dplyr::mutate(
+        !!x_var := paste0(
+          .data[[x_var]],
+          char_var,
+          summary_fun(.data[[total_var]], na.rm = TRUE),
+          ")"
+        )
+      ) |>
+      dplyr::ungroup()
   }
 
   df
@@ -1401,7 +1381,7 @@ add_total_label <- function(
 #'
 #' @param out config
 #' @param text_size size of text, will be interperted as pixel
-get_text_size <- function(
+set_text_size <- function(
     out,
     text_size = NULL) {
 

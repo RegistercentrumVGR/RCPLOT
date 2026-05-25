@@ -326,7 +326,8 @@ test_that("plot_highcharts works", {
         ),
         legend = list(
           enabled = FALSE,
-          title = list(text = "abc"),
+          title = list(text = "abc",
+                       style = list(fontSize = "16px")),
           itemStyle = list(fontSize = "14px")
         ),
         yAxis = list(labels = list(format = "{value}",

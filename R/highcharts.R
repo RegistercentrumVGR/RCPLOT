@@ -1405,6 +1405,9 @@ set_text_size <- function(
 
   #Applicera legend
   out$legend$itemStyle$fontSize <- text_size_px
+  if ("title" %in% names(out$legend)) {
+    out$legend$title$style$fontSize <- title_size_px
+  }
 
   out
 

@@ -110,6 +110,9 @@ bar_plot_highcharts <- function(df,
         group_color = group_color,
         legend_title = legend_title,
         reversed_stacks = reversed_stacks,
+        group_padding = group_padding,
+        add_total = add_total,
+        total_var = total_var,
         text_size = text_size
       )
     ))
@@ -365,6 +368,9 @@ line_plot_highcharts <- function(df,
         line_size = line_size,
         legend_title = legend_title,
         group_color = group_color,
+        plot_height = plot_height,
+        add_total = add_total,
+        total_var = total_var,
         text_size = text_size
       )
     ))
@@ -511,6 +517,11 @@ box_plot_highcharts <- function(df,
         y_lab = y_lab,
         legend_title = legend_title,
         group_color = group_color,
+        plot_height = plot_height,
+        bar_size = bar_size,
+        group_padding = group_padding,
+        add_total = add_total,
+        total_var = total_var,
         text_size = text_size
       )
     ))
@@ -1324,17 +1335,16 @@ add_total_label <- function(
   checkmate::assert_choice(total_var, colnames(df))
   checkmate::assert_choice(x_var, colnames(df))
 
-  if (break_total) {
-    char_var <- "<br/>(N="
-  } else {
-    char_var <- " (N="
-  }
-
   df <- df |>
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(x_var),
-        ~ paste0(.x, char_var, .data[[total_var]], ")")
+        ~ paste0(
+          .x,
+          if (break_total) "<br/>(N=" else " (N=",
+          .data[[total_var]],
+          ")"
+        )
       )
     )
 

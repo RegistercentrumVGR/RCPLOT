@@ -17,12 +17,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b" "c"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -88,6 +102,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -103,6 +122,18 @@
       $yAxis$labels$format
       [1] "{value}"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -115,10 +146,16 @@
       $plotOptions$column$stacking
       [1] "normal"
       
+      $plotOptions$column$groupPadding
+      [1] 0.168
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -155,12 +192,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b" "c"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -226,6 +277,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$tickPositions
@@ -238,6 +294,18 @@
       $yAxis$labels$format
       [1] "{value}"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -248,15 +316,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.168
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.038
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -295,12 +363,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b" "c"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -328,6 +410,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -336,6 +423,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -347,15 +446,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.168
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -395,12 +494,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b" "c" "d" "e"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -434,6 +547,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -449,6 +567,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -459,15 +589,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.16
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -506,13 +636,27 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -685,6 +829,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -693,6 +842,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -704,15 +865,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 19
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.116
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -753,13 +914,27 @@
       [1] TRUE
       
       $chart$height
-      [1] "100%"
+      [1] 696
       
       
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -932,6 +1107,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -947,6 +1127,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -957,15 +1149,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 12
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.09
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.026
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1005,12 +1197,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1051,6 +1257,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1066,6 +1277,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -1076,15 +1299,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1125,7 +1348,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
@@ -1135,6 +1358,18 @@
       $xAxis$title
       $xAxis$title$text
       [1] "Hello World!"
+      
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
       
       
       
@@ -1208,6 +1443,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1223,6 +1463,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -1233,15 +1485,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1282,12 +1534,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1362,6 +1628,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -1377,6 +1648,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -1387,15 +1670,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1434,13 +1717,27 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
        [1] "Enhet 10" "Enhet 9"  "Enhet 8"  "Enhet 7"  "Enhet 6"  "Enhet 5" 
        [7] "Enhet 4"  "Enhet 3"  "Enhet 2"  "Enhet 1" 
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1489,6 +1786,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1497,6 +1799,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1508,15 +1822,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.14
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1556,13 +1870,27 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
        [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
        [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1611,6 +1939,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1619,6 +1952,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1630,15 +1975,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.14
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1678,13 +2023,27 @@
       [1] TRUE
       
       $chart$height
-      [1] "100%"
+      [1] 440
       
       
       $xAxis
       $xAxis$categories
        [1] "Enhet 1"  "Enhet 2"  "Enhet 3"  "Enhet 4"  "Enhet 5"  "Enhet 6" 
        [7] "Enhet 7"  "Enhet 8"  "Enhet 9"  "Enhet 10"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1738,6 +2097,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1746,6 +2110,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1757,15 +2133,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 16
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.095
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.023
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1804,12 +2180,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a"  "b"  "b*" "c" 
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1855,6 +2245,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1863,6 +2258,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1874,15 +2281,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.164
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.046
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -1922,12 +2329,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -1968,6 +2389,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$reversedStacks
@@ -1976,6 +2402,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -1987,15 +2425,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.1
+      [1] 0.172
       
       $plotOptions$column$pointPadding
-      [1] 0
+      [1] 0.042
       
       $plotOptions$column$borderWidth
       [1] 0
@@ -2036,12 +2474,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "x"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2089,6 +2541,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -2104,6 +2561,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -2116,10 +2585,16 @@
       $plotOptions$column$stacking
       [1] "percent"
       
+      $plotOptions$column$groupPadding
+      [1] 0.176
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -2157,12 +2632,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "100%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "x"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2210,6 +2699,11 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -2225,6 +2719,18 @@
       $yAxis$labels$format
       [1] "{value}%"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
@@ -2237,10 +2743,16 @@
       $plotOptions$column$stacking
       [1] "normal"
       
+      $plotOptions$column$groupPadding
+      [1] 0.176
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 15
+      [1] 32
       
       
       
@@ -2276,13 +2788,27 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2349,11 +2875,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2388,13 +2931,27 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2567,11 +3124,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2607,7 +3181,7 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
@@ -2617,6 +3191,20 @@
       
       $xAxis$tickPositions
       [1]  0  8 15
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2731,11 +3319,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2772,12 +3377,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2866,11 +3485,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -2907,12 +3543,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 600
       
       
       $xAxis
       $xAxis$categories
       [1] "2020"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -2973,11 +3623,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3013,12 +3680,26 @@
       [1] FALSE
       
       $chart$height
-      [1] "80%"
+      [1] 650
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3071,17 +3752,49 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
       $tooltip$pointFormat
       [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 32
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.172
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
       
       
 
@@ -3105,12 +3818,26 @@
       [1] TRUE
       
       $chart$height
-      [1] "80%"
+      [1] 200
       
       
       $xAxis
       $xAxis$categories
       [1] "a" "b"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3172,17 +3899,49 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
       
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $tooltip
       $tooltip$pointFormat
       [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 13
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.09
+      
+      $plotOptions$column$pointPadding
+      [1] 0.026
+      
       
       
 
@@ -3205,13 +3964,27 @@
       [1] FALSE
       
       [[1]]$chart$height
-      [1] "80%"
+      [1] 600
       
       
       [[1]]$xAxis
       [[1]]$xAxis$categories
        [1] "2010" "2012" "2014" "2016" "2018" "2020" "2011" "2013" "2015" "2017"
       [11] "2019"
+      
+      [[1]]$xAxis$labels
+      [[1]]$xAxis$labels$style
+      [[1]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$xAxis$title
+      [[1]]$xAxis$title$style
+      [[1]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       [[1]]$series
@@ -3263,11 +4036,28 @@
       [[1]]$legend$enabled
       [1] FALSE
       
+      [[1]]$legend$itemStyle
+      [[1]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       [[1]]$yAxis
       [[1]]$yAxis$labels
       [[1]]$yAxis$labels$format
       [1] "{value}"
+      
+      [[1]]$yAxis$labels$style
+      [[1]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$yAxis$title
+      [[1]]$yAxis$title$style
+      [[1]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3298,13 +4088,27 @@
       [1] FALSE
       
       [[2]]$chart$height
-      [1] "80%"
+      [1] 600
       
       
       [[2]]$xAxis
       [[2]]$xAxis$categories
        [1] "2011" "2013" "2015" "2017" "2019" "2010" "2012" "2014" "2016" "2018"
       [11] "2020"
+      
+      [[2]]$xAxis$labels
+      [[2]]$xAxis$labels$style
+      [[2]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$xAxis$title
+      [[2]]$xAxis$title$style
+      [[2]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       [[2]]$series
@@ -3356,11 +4160,28 @@
       [[2]]$legend$enabled
       [1] FALSE
       
+      [[2]]$legend$itemStyle
+      [[2]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       [[2]]$yAxis
       [[2]]$yAxis$labels
       [[2]]$yAxis$labels$format
       [1] "{value}"
+      
+      [[2]]$yAxis$labels$style
+      [[2]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$yAxis$title
+      [[2]]$yAxis$title$style
+      [[2]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3403,6 +4224,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3469,11 +4304,28 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3520,6 +4372,20 @@
       $xAxis$categories
        [1] "2010" "2011" "2012" "2013" "2014" "2015" "2016" "2017" "2018" "2019"
       [11] "2020" "2021" "2022" "2023" "2024" "2025"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3692,11 +4558,28 @@
       $legend$reversed
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3744,6 +4627,20 @@
       $xAxis$categories
       [1] "2020" "2021" "2022" "2023" "2024"
       
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       
       $series
       [[1]]
@@ -3776,6 +4673,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -3787,6 +4689,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3833,6 +4747,20 @@
       $xAxis
       $xAxis$categories
       [1] "2020" "2021" "2022" "2023" "2024"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
       
       
       $series
@@ -3906,6 +4834,11 @@
       $legend$enabled
       [1] FALSE
       
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
       
       $yAxis
       $yAxis$min
@@ -3917,6 +4850,18 @@
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
       
       
       
@@ -3934,6 +4879,268 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 8
+      
+      
+      
+
+# add_total works
+
+    Code
+      bar_plot_highcharts(df, x_var = "x", y_var = "y", horizontal = FALSE,
+        add_total = TRUE, total_var = "total")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] 650
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A<br/>(N=10)" "B<br/>(N=20)" "C<br/>(N=30)"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 32
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.168
+      
+      $plotOptions$column$pointPadding
+      [1] 0.046
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
+
+---
+
+    Code
+      bar_plot_highcharts(df, x_var = "x", y_var = "y", horizontal = TRUE, add_total = TRUE,
+        total_var = "total")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "column"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      $chart$height
+      [1] 240
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A (N=10)" "B (N=20)" "C (N=30)"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]
+      [1] 1
+      
+      [[2]]
+      [1] 2
+      
+      [[3]]
+      [1] 3
+      
+      
+      [[1]]$name
+      [1] ""
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$reversedStacks
+      [1] FALSE
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 20
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.095
+      
+      $plotOptions$column$pointPadding
+      [1] 0.023
+      
+      $plotOptions$column$borderWidth
+      [1] 0
+      
+      
+      
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
       
       
       

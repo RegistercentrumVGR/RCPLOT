@@ -38,6 +38,9 @@
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param reversed_stacks should stacks be reversed?
 #' @param group_padding distance between bars when using a dodge bar
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
+#' @param text_size size of text, will be interperted as pixels
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
@@ -64,15 +67,18 @@ bar_plot_highcharts <- function(df,
                                 arrange_by_fill = NULL,
                                 fill_var_order = NULL,
                                 color_x_value = NULL,
-                                bar_size = 15,
+                                bar_size = NULL,
                                 normalize_prop = TRUE,
                                 break_x_var_names = FALSE,
-                                plot_height = 1,
+                                plot_height = NULL,
                                 group_color = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 reversed_stacks = FALSE,
-                                group_padding = 0.1,
+                                group_padding = NULL,
+                                add_total = FALSE,
+                                total_var = "total",
+                                text_size = NULL,
                                 remove_value = NULL,
                                 horizontal_line = NULL) {
 
@@ -106,10 +112,13 @@ bar_plot_highcharts <- function(df,
         bar_size = bar_size,
         normalize_prop = normalize_prop,
         break_x_var_names = break_x_var_names,
-        plot_height = plot_height,
         group_color = group_color,
         legend_title = legend_title,
         reversed_stacks = reversed_stacks,
+        group_padding = group_padding,
+        add_total = add_total,
+        total_var = total_var,
+        text_size = text_size,
         remove_value = remove_value,
         horizontal_line = horizontal_line
       )
@@ -117,6 +126,15 @@ bar_plot_highcharts <- function(df,
   }
 
   type <- "column"
+
+  if (add_total) {
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        break_total = !horizontal
+      )
+  }
 
   if (break_x_var_names) {
     df <- df |>
@@ -207,10 +225,10 @@ bar_plot_highcharts <- function(df,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
     group_var_order = fill_var_order,
-    plot_height = plot_height,
     group_color = group_color,
     legend_title = legend_title,
     reversed_stacks = reversed_stacks,
+    text_size = text_size,
     remove_value = remove_value,
     horizontal_line = horizontal_line
   )
@@ -268,6 +286,13 @@ bar_plot_highcharts <- function(df,
 
   out <- c(out, list(caption = caption))
 
+  out <- set_size_params(out,
+                         position = position,
+                         bar_size = bar_size,
+                         plot_height = plot_height,
+                         group_padding = group_padding)
+
+
   return(out)
 }
 
@@ -298,6 +323,10 @@ bar_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
+#' @param plot_height height of plot
+#' @param text_size size of text, will be interperted as pixels
 #' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
@@ -320,6 +349,10 @@ line_plot_highcharts <- function(df,
                                  legend_title = NULL,
                                  facet_by = NULL,
                                  group_color = NULL,
+                                 plot_height = NULL,
+                                 add_total = FALSE,
+                                 total_var = "total",
+                                 text_size = NULL,
                                  horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
@@ -346,9 +379,22 @@ line_plot_highcharts <- function(df,
         line_size = line_size,
         legend_title = legend_title,
         group_color = group_color,
+        plot_height = plot_height,
+        add_total = add_total,
+        total_var = total_var,
+        text_size = text_size,
         horizontal_line = horizontal_line
       )
     ))
+  }
+
+  if (add_total) {
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        break_total = TRUE
+      )
   }
 
   if (is.null(y_lim) && proportion) {
@@ -373,6 +419,7 @@ line_plot_highcharts <- function(df,
     group_var_order = color_var_order,
     legend_title = legend_title,
     group_color = group_color,
+    text_size = text_size,
     horizontal_line = horizontal_line
   )
 
@@ -384,6 +431,12 @@ line_plot_highcharts <- function(df,
       )
     )
   )
+
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  } else {
+    out$chart$height <- 600
+  }
 
   return(out)
 
@@ -415,6 +468,12 @@ line_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param bar_size width of bars
+#' @param plot_height height of plot, value is in percentages
+#' @param group_padding distance between bars when using a dodge bar
+#' @param add_total if total should be added to x-axis
+#' @param total_var name of column that contains total
+#' @param text_size size of text, will be interperted as pixels
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
@@ -441,6 +500,12 @@ box_plot_highcharts <- function(df,
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 group_color = NULL,
+                                plot_height = NULL,
+                                bar_size = NULL,
+                                group_padding = NULL,
+                                add_total = FALSE,
+                                total_var = "total",
+                                text_size = NULL,
                                 remove_value = NULL,
                                 horizontal_line = NULL) {
 
@@ -470,10 +535,26 @@ box_plot_highcharts <- function(df,
         y_lab = y_lab,
         legend_title = legend_title,
         group_color = group_color,
+        plot_height = plot_height,
+        bar_size = bar_size,
+        group_padding = group_padding,
+        add_total = add_total,
+        total_var = total_var,
+        text_size = text_size,
         remove_value = remove_value,
         horizontal_line = horizontal_line
       )
     ))
+  }
+
+
+  if (add_total) {
+    df <- df |>
+      add_total_label(
+        x_var = x_var,
+        total_var = total_var,
+        break_total = !horizontal
+      )
   }
 
   out <- plot_highcharts(
@@ -497,9 +578,16 @@ box_plot_highcharts <- function(df,
     y_lab = y_lab,
     legend_title = legend_title,
     group_color = group_color,
+    text_size = text_size,
     remove_value = remove_value,
     horizontal_line = horizontal_line
   )
+
+  out <- set_size_params(out,
+                         position = position,
+                         bar_size = bar_size,
+                         plot_height = plot_height,
+                         group_padding = group_padding)
 
   return(out)
 
@@ -532,6 +620,7 @@ box_plot_highcharts <- function(df,
 #' @param line_size size of the spline border
 #' @param group_color color of color vars
 #' @param legend_title title of the legend
+#' @param text_size size of text, will be interperted as pixels
 #'
 #' @return highcharts config
 #' @export
@@ -552,7 +641,8 @@ areaspline_highcharts <- function(df,
                                   fill_opacity = 0.5,
                                   line_size = 8,
                                   group_color = NULL,
-                                  legend_title = NULL) {
+                                  legend_title = NULL,
+                                  text_size = NULL) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
 
@@ -580,7 +670,8 @@ areaspline_highcharts <- function(df,
     y_lab = y_lab,
     group_var_order = color_var_order,
     group_color = group_color,
-    legend_title = legend_title
+    legend_title = legend_title,
+    text_size = text_size
   )
 
   plot_options <- list(
@@ -631,6 +722,7 @@ areaspline_highcharts <- function(df,
 #' @param group_color color of group variabel
 #' @param legend_title title of the legend
 #' @param reversed_stacks should stacks be reversed?
+#' @param text_size size of text, will be interperted as pixels
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
@@ -660,6 +752,7 @@ plot_highcharts <- function(df,
                             group_color = NULL,
                             legend_title = NULL,
                             reversed_stacks = NULL,
+                            text_size = NULL,
                             remove_value = NULL,
                             horizontal_line = NULL) {
 
@@ -840,6 +933,8 @@ plot_highcharts <- function(df,
       type = type,
       x_var = x_var
     )
+
+  out <- set_text_size(out, text_size = text_size)
 
   return(out)
 }
@@ -1183,4 +1278,212 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
   }
 
   res
+}
+
+#' Create parameters for sizing and padding for bar plot.
+#'
+#' This function dynamically calculates bar width, chart height, and padding to
+#' improve readability for both horizontal and vertical plots, while also
+#' allowing manual overrides for bar size, plot height, and group padding.
+#'
+#' The parameters take into account if it is a stacked or dodge plot and for
+#' data with many categories it tries to adjust the group padding in such a way
+#' that the bars dont overlap.
+#'
+#' An important thing is to keep the distance between the bars inside the
+#' x-values smaller than the distance between the grouped bars between the
+#' x_values.
+#'
+#' @param out config
+#' @param position if bar should be stacked or dodge
+#' @param bar_size size of bars
+#' @param plot_height height of plot
+#' @param group_padding padding between bars
+set_size_params <- function(
+    out,
+    position,
+    bar_size = NULL,
+    plot_height = NULL,
+    group_padding = NULL) {
+
+  # Antal värden på x-axeln
+  n_x_axis <- length(out$xAxis$categories)
+
+  # Antal kategorier
+  if (position == "dodge") {
+    n_categories <- length(out$series)
+  } else if (position == "stack") {
+    n_categories <- 1
+  }
+
+  if (isTRUE(out$chart$inverted)) {
+
+    #Beräkningar
+    row_height <-
+      if (n_x_axis <= 6) {
+        40
+      } else if (n_x_axis <= 20) {
+        28 + n_categories * 4
+      } else {
+        24 + n_categories * 3
+      }
+
+    row_height <- max(28, min(60, row_height))
+
+    point_width <-
+      floor(row_height / (n_categories + 1))
+
+    point_width <- max(8, min(20, point_width))
+
+    chart_height <- 120 + n_x_axis * row_height
+
+    group_padding <-
+      max(
+        0.06,
+        min(
+          0.14,
+          0.10 - n_categories * 0.005
+        )
+      )
+
+    point_padding <-
+      max(
+        0.01,
+        min(
+          0.08,
+          0.02 + n_categories * 0.003
+        )
+      )
+
+    # Applicera
+    out$chart$height <- chart_height
+    out$plotOptions$series$pointWidth <- point_width
+    out$plotOptions$column$groupPadding <- group_padding
+    out$plotOptions$column$pointPadding <- point_padding
+
+  } else if (!isTRUE(out$chart$inverted)) {
+
+    #Beräkningar
+    usable_width <- 900 - 120
+
+    space_per_category <-
+      usable_width / max(1, n_x_axis)
+
+    point_width <-
+      floor(
+        (space_per_category * 0.8) /
+          max(1, n_categories)
+      )
+
+    point_width <- max(4, min(32, point_width))
+
+    group_padding <-
+      max(
+        0.02,
+        min(
+          0.20,
+          0.18 - n_x_axis * 0.004
+        )
+      )
+
+    point_padding <-
+      max(
+        0.01,
+        min(
+          0.10,
+          0.05 - n_categories * 0.004
+        )
+      )
+
+
+    #Applicera
+    out$plotOptions$series$pointWidth <-
+      point_width
+
+    out$plotOptions$column$groupPadding <-
+      group_padding
+
+    out$plotOptions$column$pointPadding <-
+      point_padding
+
+    out$chart$height <- 650
+  }
+
+  if (!is.null(bar_size)) {
+    out$plotOptions$series$pointWidth <- bar_size
+  }
+
+  if (!is.null(plot_height)) {
+    out$chart$height <- plot_height
+  }
+
+  if (!is.null(group_padding)) {
+    out$plotOptions$column$groupPadding <- group_padding
+  }
+
+  out
+}
+
+#' Add total to x-axis
+#'
+#' @param df data
+#' @param total_var variable that contains the total
+#' @param x_var the variable in the x-axis
+#' @param break_total if there should be a break for the total
+add_total_label <- function(
+    df,
+    total_var = "total",
+    x_var = NULL,
+    break_total = FALSE) {
+  checkmate::assert_choice(total_var, colnames(df))
+  checkmate::assert_choice(x_var, colnames(df))
+
+  df <- df |>
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(x_var),
+        ~ paste0(
+          .x,
+          if (break_total) "<br/>(N=" else " (N=",
+          .data[[total_var]],
+          ")"
+        )
+      )
+    )
+
+  df
+
+}
+
+#' Get text size param for plots
+#'
+#' @param out config
+#' @param text_size size of text, will be interperted as pixel
+set_text_size <- function(
+    out,
+    text_size = NULL) {
+
+  if (is.null(text_size)) {
+    text_size <- 14
+  }
+
+  text_size_px <- paste0(text_size, "px")
+  title_size_px <- paste0(text_size + 2, "px")
+
+  #Applicera x axeln
+  out$xAxis$labels$style$fontSize <- text_size_px
+  out$xAxis$title$style$fontSize <- title_size_px
+
+  #Applicera y axeln
+  out$yAxis$labels$style$fontSize <- text_size_px
+  out$yAxis$title$style$fontSize <- title_size_px
+
+  #Applicera legend
+  out$legend$itemStyle$fontSize <- text_size_px
+  if ("title" %in% names(out$legend)) {
+    out$legend$title$style$fontSize <- title_size_px
+  }
+
+  out
+
 }

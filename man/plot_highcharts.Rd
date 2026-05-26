@@ -31,6 +31,7 @@ plot_highcharts(
   group_color = NULL,
   legend_title = NULL,
   reversed_stacks = NULL,
+  text_size = NULL,
   remove_value = NULL,
   horizontal_line = NULL
 )
@@ -119,6 +120,8 @@ the levels}
 \item{legend_title}{title of the legend}
 
 \item{reversed_stacks}{should stacks be reversed?}
+
+\item{text_size}{size of text, will be interperted as pixels}
 
 \item{remove_value}{value to remove, useful for removing obfuscated
 observations}

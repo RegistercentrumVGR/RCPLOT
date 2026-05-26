@@ -23,6 +23,10 @@ line_plot_highcharts(
   legend_title = NULL,
   facet_by = NULL,
   group_color = NULL,
+  plot_height = NULL,
+  add_total = FALSE,
+  total_var = "total",
+  text_size = NULL,
   horizontal_line = NULL
 )
 }
@@ -67,6 +71,14 @@ the levels}
 if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
+
+\item{plot_height}{height of plot}
+
+\item{add_total}{if total should be added to x-axis}
+
+\item{total_var}{name of column that contains total}
+
+\item{text_size}{size of text, will be interperted as pixels}
 
 \item{horizontal_line}{horizontal reference line}
 }

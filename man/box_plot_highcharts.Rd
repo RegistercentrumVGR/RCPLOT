@@ -25,6 +25,12 @@ box_plot_highcharts(
   legend_title = NULL,
   facet_by = NULL,
   group_color = NULL,
+  plot_height = NULL,
+  bar_size = NULL,
+  group_padding = NULL,
+  add_total = FALSE,
+  total_var = "total",
+  text_size = NULL,
   remove_value = NULL,
   horizontal_line = NULL
 )
@@ -72,6 +78,18 @@ named list where the name will be the key in the tooltip}
 if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
+
+\item{plot_height}{height of plot, value is in percentages}
+
+\item{bar_size}{width of bars}
+
+\item{group_padding}{distance between bars when using a dodge bar}
+
+\item{add_total}{if total should be added to x-axis}
+
+\item{total_var}{name of column that contains total}
+
+\item{text_size}{size of text, will be interperted as pixels}
 
 \item{remove_value}{value to remove, useful for removing obfuscated
 observations}

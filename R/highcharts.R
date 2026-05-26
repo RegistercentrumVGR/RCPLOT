@@ -40,6 +40,7 @@
 #' @param group_padding distance between bars when using a dodge bar
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -72,7 +73,8 @@ bar_plot_highcharts <- function(df,
                                 facet_by = NULL,
                                 reversed_stacks = FALSE,
                                 group_padding = 0.1,
-                                remove_value = NULL) {
+                                remove_value = NULL,
+                                horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -108,7 +110,8 @@ bar_plot_highcharts <- function(df,
         group_color = group_color,
         legend_title = legend_title,
         reversed_stacks = reversed_stacks,
-        remove_value = remove_value
+        remove_value = remove_value,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -208,7 +211,8 @@ bar_plot_highcharts <- function(df,
     group_color = group_color,
     legend_title = legend_title,
     reversed_stacks = reversed_stacks,
-    remove_value = remove_value
+    remove_value = remove_value,
+    horizontal_line = horizontal_line
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -294,6 +298,7 @@ bar_plot_highcharts <- function(df,
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -314,7 +319,8 @@ line_plot_highcharts <- function(df,
                                  line_size = 8,
                                  legend_title = NULL,
                                  facet_by = NULL,
-                                 group_color = NULL) {
+                                 group_color = NULL,
+                                 horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -339,7 +345,8 @@ line_plot_highcharts <- function(df,
         color_var_order = color_var_order,
         line_size = line_size,
         legend_title = legend_title,
-        group_color = group_color
+        group_color = group_color,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -365,7 +372,8 @@ line_plot_highcharts <- function(df,
     y_lab = y_lab,
     group_var_order = color_var_order,
     legend_title = legend_title,
-    group_color = group_color
+    group_color = group_color,
+    horizontal_line = horizontal_line
   )
 
   out <- c(
@@ -409,6 +417,7 @@ line_plot_highcharts <- function(df,
 #' @param group_color optional colors
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -432,7 +441,8 @@ box_plot_highcharts <- function(df,
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 group_color = NULL,
-                                remove_value = NULL) {
+                                remove_value = NULL,
+                                horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -460,7 +470,8 @@ box_plot_highcharts <- function(df,
         y_lab = y_lab,
         legend_title = legend_title,
         group_color = group_color,
-        remove_value = remove_value
+        remove_value = remove_value,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -486,7 +497,8 @@ box_plot_highcharts <- function(df,
     y_lab = y_lab,
     legend_title = legend_title,
     group_color = group_color,
-    remove_value = remove_value
+    remove_value = remove_value,
+    horizontal_line = horizontal_line
   )
 
   return(out)
@@ -621,6 +633,7 @@ areaspline_highcharts <- function(df,
 #' @param reversed_stacks should stacks be reversed?
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config
 #' @export
@@ -647,7 +660,8 @@ plot_highcharts <- function(df,
                             group_color = NULL,
                             legend_title = NULL,
                             reversed_stacks = NULL,
-                            remove_value = NULL) {
+                            remove_value = NULL,
+                            horizontal_line = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -815,7 +829,9 @@ plot_highcharts <- function(df,
       y_breaks = y_breaks,
       proportion = proportion,
       y_lab = y_lab,
-      reversed_stacks = reversed_stacks
+      reversed_stacks = reversed_stacks,
+      horizontal_line = horizontal_line,
+      scale_percentage = scale_percentage
     ) |>
     add_tooltip(
       proportion = proportion,
@@ -835,7 +851,9 @@ add_y_axis <- function(out,
                        y_breaks = NULL,
                        proportion = FALSE,
                        y_lab = NULL,
-                       reversed_stacks = NULL) {
+                       reversed_stacks = NULL,
+                       horizontal_line = NULL,
+                       scale_percentage = TRUE) {
   y_axis <- c()
 
   if (!is.null(y_lim)) {
@@ -875,6 +893,25 @@ add_y_axis <- function(out,
       y_axis,
       list(
         reversedStacks = reversed_stacks
+      )
+    )
+  }
+
+  if (!is.null(horizontal_line)) {
+    checkmate::assert_numeric(horizontal_line, len = 1)
+    if (proportion && scale_percentage) {
+      horizontal_line <- horizontal_line * 100
+    }
+    y_axis <- c(
+      y_axis,
+      list(
+        plotLines = list(
+          list(
+            value = horizontal_line,
+            width = 2,
+            dashStyle = "Dash"
+          )
+        )
       )
     )
   }

@@ -25,7 +25,8 @@ box_plot_highcharts(
   legend_title = NULL,
   facet_by = NULL,
   group_color = NULL,
-  remove_value = NULL
+  remove_value = NULL,
+  horizontal_line = NULL
 )
 }
 \arguments{
@@ -74,6 +75,8 @@ if supplied the return value is a named list of plots, one per facet level}
 
 \item{remove_value}{value to remove, useful for removing obfuscated
 observations}
+
+\item{horizontal_line}{horizontal reference line}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

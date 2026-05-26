@@ -361,6 +361,50 @@ test_that("add_y_axis works", {
         )
       )
     )
+
+  add_y_axis(
+    list(),
+    horizontal_line = 50
+  ) |>
+    expect_equal(
+      list(
+        yAxis = list(
+          plotLines = list(
+            list(
+              value = 50,
+              width = 2,
+              dashStyle = "Dash"
+            )
+          ),
+          labels = list(
+            format = "{value}"
+          )
+        )
+      )
+    )
+
+  add_y_axis(
+    list(),
+    horizontal_line = 0.5,
+    proportion = TRUE,
+    scale_percentage = TRUE
+  ) |>
+    expect_equal(
+      list(
+        yAxis = list(
+          plotLines = list(
+            list(
+              value = 50,
+              width = 2,
+              dashStyle = "Dash"
+            )
+          ),
+          labels = list(
+            format = "{value}%"
+          )
+        )
+      )
+    )
 })
 
 test_that("plot_highcharts works", {

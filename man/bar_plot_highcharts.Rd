@@ -36,7 +36,9 @@ bar_plot_highcharts(
   group_padding = NULL,
   add_total = FALSE,
   total_var = "total",
-  text_size = NULL
+  text_size = NULL,
+  remove_value = NULL,
+  horizontal_line = NULL
 )
 }
 \arguments{
@@ -110,6 +112,11 @@ if supplied the return value is a named list of plots, one per facet level}
 \item{total_var}{name of column that contains total}
 
 \item{text_size}{size of text, will be interperted as pixels}
+
+\item{remove_value}{value to remove, useful for removing obfuscated
+observations}
+
+\item{horizontal_line}{horizontal reference line}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

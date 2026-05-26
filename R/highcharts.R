@@ -41,6 +41,9 @@
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
 #' @param text_size size of text, will be interperted as pixels
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -75,7 +78,9 @@ bar_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
-                                text_size = NULL) {
+                                text_size = NULL,
+                                remove_value = NULL,
+                                horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -113,7 +118,9 @@ bar_plot_highcharts <- function(df,
         group_padding = group_padding,
         add_total = add_total,
         total_var = total_var,
-        text_size = text_size
+        text_size = text_size,
+        remove_value = remove_value,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -221,7 +228,9 @@ bar_plot_highcharts <- function(df,
     group_color = group_color,
     legend_title = legend_title,
     reversed_stacks = reversed_stacks,
-    text_size = text_size
+    text_size = text_size,
+    remove_value = remove_value,
+    horizontal_line = horizontal_line
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -318,6 +327,7 @@ bar_plot_highcharts <- function(df,
 #' @param total_var name of column that contains total
 #' @param plot_height height of plot
 #' @param text_size size of text, will be interperted as pixels
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -342,7 +352,8 @@ line_plot_highcharts <- function(df,
                                  plot_height = NULL,
                                  add_total = FALSE,
                                  total_var = "total",
-                                 text_size = NULL) {
+                                 text_size = NULL,
+                                 horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -371,7 +382,8 @@ line_plot_highcharts <- function(df,
         plot_height = plot_height,
         add_total = add_total,
         total_var = total_var,
-        text_size = text_size
+        text_size = text_size,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -407,7 +419,8 @@ line_plot_highcharts <- function(df,
     group_var_order = color_var_order,
     legend_title = legend_title,
     group_color = group_color,
-    text_size = text_size
+    text_size = text_size,
+    horizontal_line = horizontal_line
   )
 
   out <- c(
@@ -461,6 +474,9 @@ line_plot_highcharts <- function(df,
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
 #' @param text_size size of text, will be interperted as pixels
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -489,7 +505,9 @@ box_plot_highcharts <- function(df,
                                 group_padding = NULL,
                                 add_total = FALSE,
                                 total_var = "total",
-                                text_size = NULL) {
+                                text_size = NULL,
+                                remove_value = NULL,
+                                horizontal_line = NULL) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -522,7 +540,9 @@ box_plot_highcharts <- function(df,
         group_padding = group_padding,
         add_total = add_total,
         total_var = total_var,
-        text_size = text_size
+        text_size = text_size,
+        remove_value = remove_value,
+        horizontal_line = horizontal_line
       )
     ))
   }
@@ -558,7 +578,9 @@ box_plot_highcharts <- function(df,
     y_lab = y_lab,
     legend_title = legend_title,
     group_color = group_color,
-    text_size = text_size
+    text_size = text_size,
+    remove_value = remove_value,
+    horizontal_line = horizontal_line
   )
 
   out <- set_size_params(out,
@@ -675,7 +697,8 @@ areaspline_highcharts <- function(df,
 #'
 #' @param df the data.frame to plot
 #' @param x_var the name of the x variable'
-#' @param vars a named list used to rename variables to proper highcharts keys
+#' @param vars a named list used to rename variables to proper highcharts keys,
+#' typically `list(y = y_var)`
 #' @param title the title of plot
 #' @param group_vars the variables indicating a series to plot
 #' @param y_lim limits for the y-axis
@@ -700,6 +723,9 @@ areaspline_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param reversed_stacks should stacks be reversed?
 #' @param text_size size of text, will be interperted as pixels
+#' @param remove_value value to remove, useful for removing obfuscated
+#' observations
+#' @param horizontal_line horizontal reference line
 #'
 #' @return highcharts config
 #' @export
@@ -726,7 +752,9 @@ plot_highcharts <- function(df,
                             group_color = NULL,
                             legend_title = NULL,
                             reversed_stacks = NULL,
-                            text_size = NULL) {
+                            text_size = NULL,
+                            remove_value = NULL,
+                            horizontal_line = NULL) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -740,7 +768,29 @@ plot_highcharts <- function(df,
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
 
+  if (!is.null(remove_value)) {
+    # When NA is specified in a .yml file it is parsed as "NA"
+    if (!is.na(remove_value) && remove_value == "NA") remove_value <- NA
+    checkmate::assert(
+      checkmate::test_numeric(remove_value, len = 1),
+      checkmate::test_scalar_na(remove_value)
+    )
+    df <- df |>
+      dplyr::filter(
+        !dplyr::if_all(
+          unlist(vars),
+          \(x) x %in% remove_value
+        )
+      )
+  }
+
   if (!is.null(group_vars) && !all(group_vars == x_var)) {
+
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(!!x_var := forcats::fct_drop(.data[[x_var]]))
+    }
+
     df <- df |>
       tidyr::complete(
         !!!rlang::syms(c(x_var, group_vars)),
@@ -838,12 +888,13 @@ plot_highcharts <- function(df,
         proportion = proportion,
         scale_percentage = scale_percentage,
         group_var_order = group_var_order,
-        colors = group_color
+        colors = group_color,
+        x_var = x_var
       )
     )
   )
 
-  if (is.null(group_vars)) {
+  if (is.null(group_vars) || identical(group_vars, x_var)) {
     out <- c(
       out,
       list(legend = list(enabled = FALSE))
@@ -871,13 +922,16 @@ plot_highcharts <- function(df,
       y_breaks = y_breaks,
       proportion = proportion,
       y_lab = y_lab,
-      reversed_stacks = reversed_stacks
+      reversed_stacks = reversed_stacks,
+      horizontal_line = horizontal_line,
+      scale_percentage = scale_percentage
     ) |>
     add_tooltip(
       proportion = proportion,
       group_vars = group_vars,
       other_vars = other_vars,
-      type = type
+      type = type,
+      x_var = x_var
     )
 
   out <- set_text_size(out, text_size = text_size)
@@ -892,7 +946,9 @@ add_y_axis <- function(out,
                        y_breaks = NULL,
                        proportion = FALSE,
                        y_lab = NULL,
-                       reversed_stacks = NULL) {
+                       reversed_stacks = NULL,
+                       horizontal_line = NULL,
+                       scale_percentage = TRUE) {
   y_axis <- c()
 
   if (!is.null(y_lim)) {
@@ -936,6 +992,25 @@ add_y_axis <- function(out,
     )
   }
 
+  if (!is.null(horizontal_line)) {
+    checkmate::assert_numeric(horizontal_line, len = 1)
+    if (proportion && scale_percentage) {
+      horizontal_line <- horizontal_line * 100
+    }
+    y_axis <- c(
+      y_axis,
+      list(
+        plotLines = list(
+          list(
+            value = horizontal_line,
+            width = 2,
+            dashStyle = "Dash"
+          )
+        )
+      )
+    )
+  }
+
   labels <- list(
     labels = list(
       format = sprintf("{value}%s", suffix)
@@ -961,9 +1036,10 @@ add_tooltip <- function(out,
                         group_vars = NULL,
                         other_vars = NULL,
                         proportion = FALSE,
-                        type) {
+                        type,
+                        x_var) {
 
-  if (is.null(group_vars)) {
+  if (is.null(group_vars) || identical(group_vars, x_var)) {
     prefix <- ""
   } else {
     prefix <- "{series.name}"
@@ -1045,6 +1121,7 @@ sort_numeric <- function(x) {
 #' @param palette_type passed to [colors_rc_3()]
 #' @param colors an optional subset of [colors_rc_3()] with
 #' `palette_type = "qualitative"` and `n = 12` used to manually set colors
+#' @param x_var x variable
 make_series <- function(df,
                         vars,
                         group_vars = NULL,
@@ -1053,7 +1130,8 @@ make_series <- function(df,
                         other_vars = NULL,
                         proportion = FALSE,
                         scale_percentage = TRUE,
-                        group_var_order = NULL) {
+                        group_var_order = NULL,
+                        x_var) {
 
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
@@ -1086,6 +1164,16 @@ make_series <- function(df,
       dplyr::mutate(y = .data$y * 100)
   }
 
+  # No handling for proportion and/or scale_percentage at the moment
+  # Shouldn't be necessary?
+  tmp <- tmp |>
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::where(~ is.numeric(.x) & !rlang::is_integerish(.x)),
+        ~ round(.x, 1)
+      )
+    )
+
   if (!is.null(group_var_order)) {
 
     if (rlang::is_string(group_var_order)) {
@@ -1114,7 +1202,22 @@ make_series <- function(df,
     dplyr::mutate(color = colors[dplyr::cur_group_id()]) |>
     dplyr::group_by(.data$series_var, .data$color)
 
-  if (length(vars) == 1 && is.null(other_vars)) {
+  if (identical(group_vars, x_var)) {
+    list(
+      list(
+        data = I(
+          dplyr::group_map(
+            tmp,
+            ~ c(
+              as.list(.x[c(names(vars), unlist(other_vars))]),
+              color = .y$color
+            )
+          )
+        ),
+        name = ""
+      )
+    )
+  } else if (length(vars) == 1 && is.null(other_vars)) {
     tmp |>
       dplyr::group_map(
         ~ c(

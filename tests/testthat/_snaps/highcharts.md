@@ -3582,7 +3582,7 @@
       [[2]]
       [[2]]$data
       [[1]]
-      [1] 0.75
+      [1] 0.8
       
       
       [[2]]$name
@@ -3608,7 +3608,7 @@
       [[4]]
       [[4]]$data
       [[1]]
-      [1] 0.75
+      [1] 0.8
       
       
       [[4]]$name
@@ -3843,67 +3843,60 @@
       $series
       [[1]]
       [[1]]$data
-      [[1]]$data[[1]]
-      [[1]]$data[[1]]$median
+      [[1]]
+      [[1]]$median
       [1] 3
       
-      [[1]]$data[[1]]$low
+      [[1]]$low
       [1] 1
       
-      [[1]]$data[[1]]$q1
+      [[1]]$q1
       [1] 2
       
-      [[1]]$data[[1]]$q3
+      [[1]]$q3
       [1] 4
       
-      [[1]]$data[[1]]$high
+      [[1]]$high
       [1] 5
       
-      [[1]]$data[[1]]$total
+      [[1]]$total
       [1] 10
-      
-      
-      
-      [[1]]$name
-      [1] "a"
       
       [[1]]$color
       [1] "#116875"
       
       
       [[2]]
-      [[2]]$data
-      [[2]]$data[[1]]
-      [[2]]$data[[1]]$median
+      [[2]]$median
       [1] 3
       
-      [[2]]$data[[1]]$low
+      [[2]]$low
       [1] 1
       
-      [[2]]$data[[1]]$q1
+      [[2]]$q1
       [1] 2
       
-      [[2]]$data[[1]]$q3
+      [[2]]$q3
       [1] 4
       
-      [[2]]$data[[1]]$high
+      [[2]]$high
       [1] 5
       
-      [[2]]$data[[1]]$total
+      [[2]]$total
       [1] 10
-      
-      
-      
-      [[2]]$name
-      [1] "b"
       
       [[2]]$color
       [1] "#FC5930"
       
       
       
+      [[1]]$name
+      [1] ""
+      
+      
+      
       $legend
-      $legend$reversed
+      $legend$enabled
       [1] FALSE
       
       $legend$itemStyle
@@ -3933,7 +3926,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "{series.name}<br>\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
+      [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
       
       
       $plotOptions

@@ -22,7 +22,8 @@ line_plot_highcharts(
   line_size = 8,
   legend_title = NULL,
   facet_by = NULL,
-  group_color = NULL
+  group_color = NULL,
+  horizontal_line = NULL
 )
 }
 \arguments{
@@ -66,6 +67,8 @@ the levels}
 if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
+
+\item{horizontal_line}{horizontal reference line}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

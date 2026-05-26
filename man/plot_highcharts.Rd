@@ -31,7 +31,8 @@ plot_highcharts(
   group_color = NULL,
   legend_title = NULL,
   reversed_stacks = NULL,
-  remove_value = NULL
+  remove_value = NULL,
+  horizontal_line = NULL
 )
 
 add_y_axis(
@@ -40,7 +41,9 @@ add_y_axis(
   y_breaks = NULL,
   proportion = FALSE,
   y_lab = NULL,
-  reversed_stacks = NULL
+  reversed_stacks = NULL,
+  horizontal_line = NULL,
+  scale_percentage = TRUE
 )
 
 add_tooltip(
@@ -119,6 +122,8 @@ the levels}
 
 \item{remove_value}{value to remove, useful for removing obfuscated
 observations}
+
+\item{horizontal_line}{horizontal reference line}
 
 \item{out}{intermediate config}
 

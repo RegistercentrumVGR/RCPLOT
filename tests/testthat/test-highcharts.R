@@ -127,8 +127,8 @@ test_that("make_series works", {
       list(
         list(
           data = list(
-            list(y = 0.5, n = 50, total = 100),
-            list(y = 1, n = 100, total = 100)
+            list(y = 50, n = 50, total = 100),
+            list(y = 100, n = 100, total = 100)
           ),
           name = "",
           color = "#116875"
@@ -141,8 +141,7 @@ test_that("make_series works", {
     list(y = "prop"),
     proportion = TRUE,
     scale_percentage = TRUE,
-    x_var = "year",
-    proportion = TRUE
+    x_var = "year"
   ) |>
     expect_equal(
       list(
@@ -164,7 +163,7 @@ test_that("make_series works", {
     expect_equal(
       list(
         list(
-          data = I(as.list(c(0.5, 1))),
+          data = I(as.list(c(50, 100))),
           name = "",
           color = "#6F45BB"
         )
@@ -371,6 +370,9 @@ test_that("add_y_axis works", {
     expect_equal(
       list(
         yAxis = list(
+          title = list(
+            text = "Andel"
+          ),
           labels = list(
             format = "{value}%"
           )
@@ -439,6 +441,9 @@ test_that("add_y_axis works", {
     expect_equal(
       list(
         yAxis = list(
+          title = list(
+            text = "Andel"
+          ),
           plotLines = list(
             list(
               value = 50,

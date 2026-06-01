@@ -27,7 +27,8 @@ line_plot_highcharts(
   add_total = FALSE,
   total_var = "total",
   text_size = NULL,
-  horizontal_line = NULL
+  horizontal_line = NULL,
+  n_decimals = 0
 )
 }
 \arguments{
@@ -81,6 +82,8 @@ if supplied the return value is a named list of plots, one per facet level}
 \item{text_size}{size of text, will be interperted as pixels}
 
 \item{horizontal_line}{horizontal reference line}
+
+\item{n_decimals}{number of decimals to round numbers to}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

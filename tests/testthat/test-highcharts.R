@@ -120,7 +120,8 @@ test_that("make_series works", {
     df,
     list(y = "prop"),
     other_vars = list(Täljare = "n", Nämnare = "total"),
-    x_var = "year"
+    x_var = "year",
+    proportion = TRUE
   ) |>
     expect_equal(
       list(
@@ -140,7 +141,8 @@ test_that("make_series works", {
     list(y = "prop"),
     proportion = TRUE,
     scale_percentage = TRUE,
-    x_var = "year"
+    x_var = "year",
+    proportion = TRUE
   ) |>
     expect_equal(
       list(
@@ -152,7 +154,13 @@ test_that("make_series works", {
       )
     )
 
-  make_series(df, list(y = "prop"), colors = "#6F45BB", x_var = "year") |>
+  make_series(
+    df,
+    list(y = "prop"),
+    colors = "#6F45BB",
+    x_var = "year",
+    proportion = TRUE
+  ) |>
     expect_equal(
       list(
         list(
@@ -206,12 +214,51 @@ test_that("make_series works", {
       x = 1:2
     ),
     vars = list(y = "y"),
-    x_var = "x"
+    x_var = "x",
+    n_decimals = 1
   ) |>
     expect_equal(
       list(
         list(
           data = I(list(70.5, 70)),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  make_series(
+    data.frame(
+      y = c(70.51, 70),
+      x = 1:2
+    ),
+    vars = list(y = "y"),
+    x_var = "x",
+    n_decimals = 0
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(list(71, 70)),
+          name = "",
+          color = "#116875"
+        )
+      )
+    )
+
+  make_series(
+    data.frame(
+      y = c(70.51, 70),
+      x = 1:2
+    ),
+    vars = list(y = "y"),
+    x_var = "x",
+    n_decimals = NULL
+  ) |>
+    expect_equal(
+      list(
+        list(
+          data = I(list(70.51, 70)),
           name = "",
           color = "#116875"
         )
@@ -836,7 +883,8 @@ test_that("line_plot_highcharts works", {
     line_plot_highcharts(
       x_var = "year",
       y_var = "prop",
-      color_var = c("county", "group")
+      color_var = c("county", "group"),
+      proportion = TRUE
     ) |>
     expect_snapshot()
 })
@@ -913,7 +961,8 @@ test_that("facet_by works", {
     df,
     x_var = "x",
     y_var = "prop",
-    facet_by = "type"
+    facet_by = "type",
+    proportion = TRUE
   )
 
   expect_snapshot(res)

@@ -560,6 +560,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -570,13 +580,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -1120,6 +1123,16 @@
       $yAxis$max
       [1] 10
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -1130,13 +1143,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -1270,6 +1276,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -1280,13 +1296,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -1456,6 +1465,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -1466,13 +1485,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -1641,6 +1653,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -1651,13 +1673,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -2554,6 +2569,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -2564,13 +2589,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -2712,6 +2730,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$reversedStacks
       [1] FALSE
       
@@ -2722,13 +2750,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -3528,7 +3549,8 @@
     Code
       line_plot_highcharts(dplyr::bind_rows(data.frame(year = 2020, county = 1:2,
       group = "a", prop = 0.5), data.frame(year = 2020, county = 1:2, group = "b",
-      prop = 0.75)), x_var = "year", y_var = "prop", color_var = c("county", "group"))
+      prop = 0.75)), x_var = "year", y_var = "prop", color_var = c("county", "group"),
+      proportion = TRUE)
     Output
       $title
       $title$text
@@ -3569,7 +3591,7 @@
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.5
+      [1] 50
       
       
       [[1]]$name
@@ -3582,7 +3604,7 @@
       [[2]]
       [[2]]$data
       [[1]]
-      [1] 0.8
+      [1] 75
       
       
       [[2]]$name
@@ -3595,7 +3617,7 @@
       [[3]]
       [[3]]$data
       [[1]]
-      [1] 0.5
+      [1] 50
       
       
       [[3]]$name
@@ -3608,7 +3630,7 @@
       [[4]]
       [[4]]$data
       [[1]]
-      [1] 0.8
+      [1] 75
       
       
       [[4]]$name
@@ -3630,9 +3652,25 @@
       
       
       $yAxis
+      $yAxis$min
+      [1] 0
+      
+      $yAxis$max
+      [1] 100
+      
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$labels
       $yAxis$labels$format
-      [1] "{value}"
+      [1] "{value}%"
       
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
@@ -3640,17 +3678,10 @@
       
       
       
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
-      
-      
-      
       
       $tooltip
       $tooltip$pointFormat
-      [1] "{series.name}: <b>{point.y}</b>"
+      [1] "{series.name}: <b>{point.y}%</b>"
       
       
       $plotOptions
@@ -3932,15 +3963,15 @@
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
-      [1] 13
+      [1] 20
       
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.09
+      [1] 0.095
       
       $plotOptions$column$pointPadding
-      [1] 0.026
+      [1] 0.023
       
       
       
@@ -3991,37 +4022,37 @@
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.9
+      [1] 90
       
       [[2]]
-      [1] 0.7
+      [1] 70
       
       [[3]]
-      [1] 0.2
+      [1] 20
       
       [[4]]
-      [1] 0.2
+      [1] 20
       
       [[5]]
-      [1] 0.1
+      [1] 10
       
       [[6]]
-      [1] 0.5
+      [1] 50
       
       [[7]]
-      [1] 0.6
+      [1] 60
       
       [[8]]
-      [1] 0.7
+      [1] 70
       
       [[9]]
-      [1] 0.5
+      [1] 50
       
       [[10]]
-      [1] 0.9
+      [1] 90
       
       [[11]]
-      [1] 0.5
+      [1] 50
       
       
       [[1]]$name
@@ -4043,9 +4074,25 @@
       
       
       [[1]]$yAxis
+      [[1]]$yAxis$min
+      [1] 0
+      
+      [[1]]$yAxis$max
+      [1] 100
+      
+      [[1]]$yAxis$title
+      [[1]]$yAxis$title$text
+      [1] "Andel"
+      
+      [[1]]$yAxis$title$style
+      [[1]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       [[1]]$yAxis$labels
       [[1]]$yAxis$labels$format
-      [1] "{value}"
+      [1] "{value}%"
       
       [[1]]$yAxis$labels$style
       [[1]]$yAxis$labels$style$fontSize
@@ -4053,17 +4100,10 @@
       
       
       
-      [[1]]$yAxis$title
-      [[1]]$yAxis$title$style
-      [[1]]$yAxis$title$style$fontSize
-      [1] "16px"
-      
-      
-      
       
       [[1]]$tooltip
       [[1]]$tooltip$pointFormat
-      [1] "<b>{point.y}</b>"
+      [1] "<b>{point.y}%</b>"
       
       
       [[1]]$plotOptions
@@ -4115,37 +4155,37 @@
       [[1]]
       [[1]]$data
       [[1]]
-      [1] 0.4
+      [1] 40
       
       [[2]]
-      [1] 0.1
+      [1] 10
       
       [[3]]
-      [1] 0.7
+      [1] 70
       
       [[4]]
-      [1] 0.3
+      [1] 30
       
       [[5]]
-      [1] 0.5
+      [1] 50
       
       [[6]]
-      [1] 1
+      [1] 100
       
       [[7]]
-      [1] 1
+      [1] 100
       
       [[8]]
-      [1] 0.9
+      [1] 90
       
       [[9]]
-      [1] 0.5
+      [1] 50
       
       [[10]]
-      [1] 0.9
+      [1] 90
       
       [[11]]
-      [1] 0.5
+      [1] 50
       
       
       [[1]]$name
@@ -4167,9 +4207,25 @@
       
       
       [[2]]$yAxis
+      [[2]]$yAxis$min
+      [1] 0
+      
+      [[2]]$yAxis$max
+      [1] 100
+      
+      [[2]]$yAxis$title
+      [[2]]$yAxis$title$text
+      [1] "Andel"
+      
+      [[2]]$yAxis$title$style
+      [[2]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       [[2]]$yAxis$labels
       [[2]]$yAxis$labels$format
-      [1] "{value}"
+      [1] "{value}%"
       
       [[2]]$yAxis$labels$style
       [[2]]$yAxis$labels$style$fontSize
@@ -4177,17 +4233,10 @@
       
       
       
-      [[2]]$yAxis$title
-      [[2]]$yAxis$title$style
-      [[2]]$yAxis$title$style$fontSize
-      [1] "16px"
-      
-      
-      
       
       [[2]]$tooltip
       [[2]]$tooltip$pointFormat
-      [1] "<b>{point.y}</b>"
+      [1] "<b>{point.y}%</b>"
       
       
       [[2]]$plotOptions
@@ -4686,6 +4735,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -4693,13 +4752,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       
@@ -4847,6 +4899,16 @@
       $yAxis$max
       [1] 100
       
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Andel"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
       $yAxis$labels
       $yAxis$labels$format
       [1] "{value}%"
@@ -4854,13 +4916,6 @@
       $yAxis$labels$style
       $yAxis$labels$style$fontSize
       [1] "14px"
-      
-      
-      
-      $yAxis$title
-      $yAxis$title$style
-      $yAxis$title$style$fontSize
-      [1] "16px"
       
       
       

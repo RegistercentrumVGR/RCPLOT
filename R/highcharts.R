@@ -290,20 +290,7 @@ bar_plot_highcharts <- function(df,
       out,
       list(
         plotOptions = list(
-          column = list(stacking = stacking),
-          series = list(pointWidth = bar_size)
-        )
-      )
-    )
-  } else {
-    out <- c(
-      out,
-      list(
-        plotOptions = list(
-          series = list(pointWidth = bar_size),
-          column = list(groupPadding = group_padding,
-                        pointPadding = 0,
-                        borderWidth = 0)
+          column = list(stacking = stacking)
         )
       )
     )
@@ -1370,47 +1357,27 @@ set_size_params <- function(
 
   if (isTRUE(out$chart$inverted)) {
 
-    #Beräkningar
-    row_height <-
-      if (n_x_axis <= 6) {
-        40
-      } else if (n_x_axis <= 20) {
-        28 + n_categories * 4
-      } else {
-        24 + n_categories * 3
-      }
+    target_bar_height <- 24
 
-    row_height <- max(28, min(60, row_height))
+    #Padding
+    group_padding <- 0.08
+    point_padding <- 0.02
 
-    point_width <-
-      floor(row_height / (n_categories + 1))
+    pixels_per_category <-
+      (target_bar_height * n_categories) + 14
 
-    point_width <- max(8, min(20, point_width))
+    # Extra space
+    chrome_height <- 140
 
-    chart_height <- 120 + n_x_axis * row_height
+    chart_height <-
+      chrome_height +
+      1.2 * (n_x_axis * pixels_per_category)
 
-    group_padding <-
-      max(
-        0.06,
-        min(
-          0.14,
-          0.10 - n_categories * 0.005
-        )
-      )
-
-    point_padding <-
-      max(
-        0.01,
-        min(
-          0.08,
-          0.02 + n_categories * 0.003
-        )
-      )
-
-    # Applicera
+    #Applicera
     out$chart$height <- chart_height
-    out$plotOptions$series$pointWidth <- point_width
+
     out$plotOptions$column$groupPadding <- group_padding
+
     out$plotOptions$column$pointPadding <- point_padding
 
   } else if (!isTRUE(out$chart$inverted)) {

@@ -33,7 +33,8 @@ plot_highcharts(
   reversed_stacks = NULL,
   text_size = NULL,
   remove_value = NULL,
-  horizontal_line = NULL
+  horizontal_line = NULL,
+  n_decimals = 0
 )
 
 add_y_axis(
@@ -67,7 +68,8 @@ make_series(
   proportion = FALSE,
   scale_percentage = TRUE,
   group_var_order = NULL,
-  x_var
+  x_var,
+  n_decimals = 0
 )
 }
 \arguments{
@@ -127,6 +129,8 @@ the levels}
 observations}
 
 \item{horizontal_line}{horizontal reference line}
+
+\item{n_decimals}{number of decimals to round numbers to}
 
 \item{out}{intermediate config}
 

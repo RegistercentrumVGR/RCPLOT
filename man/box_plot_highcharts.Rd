@@ -32,7 +32,9 @@ box_plot_highcharts(
   total_var = "total",
   text_size = NULL,
   remove_value = NULL,
-  horizontal_line = NULL
+  horizontal_line = NULL,
+  fill_var_order = NULL,
+  n_decimals = 0
 )
 }
 \arguments{
@@ -95,6 +97,12 @@ if supplied the return value is a named list of plots, one per facet level}
 observations}
 
 \item{horizontal_line}{horizontal reference line}
+
+\item{fill_var_order}{what order \code{fill_var} should be displayed in, can
+alternatively be \code{auto_character} or \code{auto_numeric} to automatically sort
+the levels}
+
+\item{n_decimals}{number of decimals to round numbers to}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

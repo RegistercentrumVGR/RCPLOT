@@ -23,7 +23,8 @@ areaspline_highcharts(
   line_size = 8,
   group_color = NULL,
   legend_title = NULL,
-  text_size = NULL
+  text_size = NULL,
+  n_decimals = 0
 )
 }
 \arguments{
@@ -69,6 +70,8 @@ or \code{"percent"}}
 \item{legend_title}{title of the legend}
 
 \item{text_size}{size of text, will be interperted as pixels}
+
+\item{n_decimals}{number of decimals to round numbers to}
 }
 \value{
 highcharts config

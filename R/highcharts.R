@@ -44,6 +44,7 @@
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
+#' @param n_decimals number of decimals to round numbers to
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -80,7 +81,8 @@ bar_plot_highcharts <- function(df,
                                 total_var = "total",
                                 text_size = NULL,
                                 remove_value = NULL,
-                                horizontal_line = NULL) {
+                                horizontal_line = NULL,
+                                n_decimals = 0) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -120,7 +122,8 @@ bar_plot_highcharts <- function(df,
         total_var = total_var,
         text_size = text_size,
         remove_value = remove_value,
-        horizontal_line = horizontal_line
+        horizontal_line = horizontal_line,
+        n_decimals = n_decimals
       )
     ))
   }
@@ -230,7 +233,8 @@ bar_plot_highcharts <- function(df,
     reversed_stacks = reversed_stacks,
     text_size = text_size,
     remove_value = remove_value,
-    horizontal_line = horizontal_line
+    horizontal_line = horizontal_line,
+    n_decimals = n_decimals
   )
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
@@ -328,6 +332,7 @@ bar_plot_highcharts <- function(df,
 #' @param plot_height height of plot
 #' @param text_size size of text, will be interperted as pixels
 #' @param horizontal_line horizontal reference line
+#' @param n_decimals number of decimals to round numbers to
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -353,7 +358,8 @@ line_plot_highcharts <- function(df,
                                  add_total = FALSE,
                                  total_var = "total",
                                  text_size = NULL,
-                                 horizontal_line = NULL) {
+                                 horizontal_line = NULL,
+                                 n_decimals = 0) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -383,7 +389,8 @@ line_plot_highcharts <- function(df,
         add_total = add_total,
         total_var = total_var,
         text_size = text_size,
-        horizontal_line = horizontal_line
+        horizontal_line = horizontal_line,
+        n_decimals = n_decimals
       )
     ))
   }
@@ -420,7 +427,8 @@ line_plot_highcharts <- function(df,
     legend_title = legend_title,
     group_color = group_color,
     text_size = text_size,
-    horizontal_line = horizontal_line
+    horizontal_line = horizontal_line,
+    n_decimals = n_decimals
   )
 
   out <- c(
@@ -477,6 +485,10 @@ line_plot_highcharts <- function(df,
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
+#' @param fill_var_order what order `fill_var` should be displayed in, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
+#' @param n_decimals number of decimals to round numbers to
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -507,7 +519,9 @@ box_plot_highcharts <- function(df,
                                 total_var = "total",
                                 text_size = NULL,
                                 remove_value = NULL,
-                                horizontal_line = NULL) {
+                                horizontal_line = NULL,
+                                fill_var_order = NULL,
+                                n_decimals = 0) {
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -542,7 +556,9 @@ box_plot_highcharts <- function(df,
         total_var = total_var,
         text_size = text_size,
         remove_value = remove_value,
-        horizontal_line = horizontal_line
+        horizontal_line = horizontal_line,
+        fill_var_order = fill_var_order,
+        n_decimals = n_decimals
       )
     ))
   }
@@ -580,7 +596,9 @@ box_plot_highcharts <- function(df,
     group_color = group_color,
     text_size = text_size,
     remove_value = remove_value,
-    horizontal_line = horizontal_line
+    horizontal_line = horizontal_line,
+    group_var_order = fill_var_order,
+    n_decimals = n_decimals
   )
 
   out <- set_size_params(out,
@@ -621,6 +639,7 @@ box_plot_highcharts <- function(df,
 #' @param group_color color of color vars
 #' @param legend_title title of the legend
 #' @param text_size size of text, will be interperted as pixels
+#' @param n_decimals number of decimals to round numbers to
 #'
 #' @return highcharts config
 #' @export
@@ -642,7 +661,8 @@ areaspline_highcharts <- function(df,
                                   line_size = 8,
                                   group_color = NULL,
                                   legend_title = NULL,
-                                  text_size = NULL) {
+                                  text_size = NULL,
+                                  n_decimals = 0) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
 
@@ -671,7 +691,8 @@ areaspline_highcharts <- function(df,
     group_var_order = color_var_order,
     group_color = group_color,
     legend_title = legend_title,
-    text_size = text_size
+    text_size = text_size,
+    n_decimals = n_decimals
   )
 
   plot_options <- list(
@@ -726,6 +747,7 @@ areaspline_highcharts <- function(df,
 #' @param remove_value value to remove, useful for removing obfuscated
 #' observations
 #' @param horizontal_line horizontal reference line
+#' @param n_decimals number of decimals to round numbers to
 #'
 #' @return highcharts config
 #' @export
@@ -754,7 +776,8 @@ plot_highcharts <- function(df,
                             reversed_stacks = NULL,
                             text_size = NULL,
                             remove_value = NULL,
-                            horizontal_line = NULL) {
+                            horizontal_line = NULL,
+                            n_decimals = 0) {
 
   if (!is.null(other_vars)) {
     checkmate::assert_list(other_vars, names = "named")
@@ -889,7 +912,8 @@ plot_highcharts <- function(df,
         scale_percentage = scale_percentage,
         group_var_order = group_var_order,
         colors = group_color,
-        x_var = x_var
+        x_var = x_var,
+        n_decimals = n_decimals
       )
     )
   )
@@ -965,6 +989,10 @@ add_y_axis <- function(out,
         tickPositions = y_breaks
       )
     )
+  }
+
+  if (is.null(y_lab) && proportion) {
+    y_lab <- "Andel"
   }
 
   if (!is.null(y_lab)) {
@@ -1131,7 +1159,8 @@ make_series <- function(df,
                         proportion = FALSE,
                         scale_percentage = TRUE,
                         group_var_order = NULL,
-                        x_var) {
+                        x_var,
+                        n_decimals = 0) {
 
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
@@ -1166,13 +1195,15 @@ make_series <- function(df,
 
   # No handling for proportion and/or scale_percentage at the moment
   # Shouldn't be necessary?
-  tmp <- tmp |>
-    dplyr::mutate(
-      dplyr::across(
-        dplyr::where(~ is.numeric(.x) & !rlang::is_integerish(.x)),
-        ~ round(.x, 1)
+  if (!is.null(n_decimals)) {
+    tmp <- tmp |>
+      dplyr::mutate(
+        dplyr::across(
+          dplyr::where(~ is.numeric(.x) & !rlang::is_integerish(.x)),
+          ~ round(.x, n_decimals)
+        )
       )
-    )
+  }
 
   if (!is.null(group_var_order)) {
 

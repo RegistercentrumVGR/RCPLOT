@@ -1433,12 +1433,7 @@ set_size_params <- function(
   }
 
   if (!is.null(plot_height)) {
-    if (plot_height <= 4) {
-      #Antar att den är i procent
-      out$chart$height <- plot_height * 800
-    } else {
-      out$chart$height <- plot_height
-    }
+    out$chart$height <- plot_height
   }
 
   if (!is.null(group_padding)) {

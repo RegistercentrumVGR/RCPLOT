@@ -163,18 +163,39 @@ bar_plot_highcharts <- function(df,
   }
 
   if ("obfuscated_reason" %in% names(df)) {
-    df <- df |>
-      dplyr::mutate(
-        dplyr::across(
-          dplyr::all_of(x_var),
-          ~ dplyr::if_else(
-            .data$obfuscated_reason == "N < 15",
-            paste0(as.character(.x), "*"),
-            as.character(.x),
-            missing = as.character(.x)
+
+    if (is.factor(df[[x_var]])) {
+      # nolint start
+      obfuscated <- df |>
+        dplyr::filter(.data$obfuscated_reason == "N < 15") |>
+        dplyr::distinct(.data[[x_var]]) |>
+        dplyr::pull()
+
+      df <- df |>
+        dplyr::mutate(
+          !!x_var := forcats::fct_relabel(
+            .data[[x_var]],
+            ~ dplyr::case_when(
+              .x %in% obfuscated ~ paste0(.x, "*"),
+              .default = .x
+            )
           )
         )
-      )
+    # nolint end
+    } else {
+      df <- df |>
+        dplyr::mutate(
+          dplyr::across(
+            dplyr::all_of(x_var),
+            ~ dplyr::if_else(
+              .data$obfuscated_reason == "N < 15",
+              paste0(as.character(.x), "*"),
+              as.character(.x),
+              missing = as.character(.x)
+            )
+          )
+        )
+    }
 
     if (any(!is.na(df$obfuscated_reason))) {
       caption <- list(

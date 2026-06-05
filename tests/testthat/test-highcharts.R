@@ -813,6 +813,25 @@ test_that("bar_plot_highcharts works", {
       normalize_prop = FALSE
     ) |>
     expect_snapshot()
+
+  df <- data.frame(
+    x = forcats::fct(
+      rep(letters[c(2, 3, 1)], each = 2)
+    ),
+    obfuscated_reason = rep(c(NA, "N < 15", NA), each = 2),
+    fill = 1:2,
+    y = rep(1:3, each = 2)
+  )
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "fill"
+    ) |>
+    purrr::pluck("xAxis", "categories") |>
+    expect_equal(I(c("b", "c*", "a")))
+
 })
 
 test_that("line_plot_highcharts works", {

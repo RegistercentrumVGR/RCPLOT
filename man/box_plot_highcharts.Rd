@@ -81,7 +81,7 @@ if supplied the return value is a named list of plots, one per facet level}
 
 \item{group_color}{optional colors}
 
-\item{plot_height}{height of plot, value is in percentages}
+\item{plot_height}{height of plot, value is in pixels}
 
 \item{bar_size}{width of bars}
 

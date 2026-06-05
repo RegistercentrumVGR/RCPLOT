@@ -31,7 +31,7 @@
 #' @param normalize_prop if _prop variable should be normalized, only valid
 #' for stacked bar plot.
 #' @param break_x_var_names if line breaks should be done for x_var
-#' @param plot_height height of plot, value is in percentages or pixels
+#' @param plot_height height of plot, value is in pixels
 #' @param group_color color of fill vars
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
@@ -485,7 +485,7 @@ line_plot_highcharts <- function(df,
 #' if supplied the return value is a named list of plots, one per facet level
 #' @param group_color optional colors
 #' @param bar_size width of bars
-#' @param plot_height height of plot, value is in percentages or pixels
+#' @param plot_height height of plot, value is in pixels
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total

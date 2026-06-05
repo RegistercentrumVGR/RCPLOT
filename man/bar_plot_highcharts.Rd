@@ -95,7 +95,7 @@ for stacked bar plot.}
 
 \item{break_x_var_names}{if line breaks should be done for x_var}
 
-\item{plot_height}{height of plot, value is in percentages}
+\item{plot_height}{height of plot, value is in pixels}
 
 \item{group_color}{color of fill vars}
 

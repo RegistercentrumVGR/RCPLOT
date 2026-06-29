@@ -872,14 +872,12 @@ plot_highcharts <- function(df,
   if (horizontal) {
     chart <- list(
       type = type,
-      inverted = TRUE,
-      height = paste0(100 * plot_height, "%")
+      inverted = TRUE
     )
   } else {
     chart <- list(
       type = type,
-      inverted = FALSE,
-      height = paste0(100 * plot_height, "%")
+      inverted = FALSE
     )
   }
 

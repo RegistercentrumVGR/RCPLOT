@@ -24,7 +24,7 @@ box_plot_highcharts(
   y_lab = NULL,
   legend_title = NULL,
   facet_by = NULL,
-  group_color = NULL,
+  group_color = lifecycle::deprecated(),
   plot_height = NULL,
   bar_size = NULL,
   group_padding = NULL,
@@ -79,7 +79,7 @@ named list where the name will be the key in the tooltip}
 \item{facet_by}{variable in \code{df} with at most 2 unique values to facet by;
 if supplied the return value is a named list of plots, one per facet level}
 
-\item{group_color}{optional colors}
+\item{group_color}{deprecated}
 
 \item{plot_height}{height of plot, value is in pixels}
 

@@ -21,7 +21,7 @@ areaspline_highcharts(
   stacking = NULL,
   fill_opacity = 0.5,
   line_size = 8,
-  group_color = NULL,
+  group_color = lifecycle::deprecated(),
   legend_title = NULL,
   text_size = NULL,
   n_decimals = 0
@@ -65,7 +65,7 @@ or \code{"percent"}}
 
 \item{line_size}{size of the spline border}
 
-\item{group_color}{color of color vars}
+\item{group_color}{deprecated}
 
 \item{legend_title}{title of the legend}
 

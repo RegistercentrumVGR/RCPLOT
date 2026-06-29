@@ -28,7 +28,7 @@ plot_highcharts(
   arrange_by_group_var = NULL,
   group_var_order = NULL,
   plot_height = 0.8,
-  group_color = NULL,
+  group_color = lifecycle::deprecated(),
   legend_title = NULL,
   reversed_stacks = NULL,
   text_size = NULL,
@@ -63,7 +63,7 @@ make_series(
   vars,
   group_vars = NULL,
   palette_type = "qualitative",
-  colors = NULL,
+  colors = lifecycle::deprecated(),
   other_vars = NULL,
   proportion = FALSE,
   scale_percentage = TRUE,
@@ -117,7 +117,7 @@ the levels}
 
 \item{plot_height}{height of plot}
 
-\item{group_color}{color of group variabel}
+\item{group_color}{deprecated}
 
 \item{legend_title}{title of the legend}
 
@@ -136,8 +136,7 @@ observations}
 
 \item{palette_type}{passed to \code{\link[=colors_rc_3]{colors_rc_3()}}}
 
-\item{colors}{an optional subset of \code{\link[=colors_rc_3]{colors_rc_3()}} with
-\code{palette_type = "qualitative"} and \code{n = 12} used to manually set colors}
+\item{colors}{deprecated}
 }
 \value{
 highcharts config

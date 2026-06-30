@@ -313,6 +313,19 @@
       [1] "{series.name}: <b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -325,22 +338,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.038
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -443,6 +440,19 @@
       [1] "<b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -455,22 +465,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -589,6 +583,19 @@
       [1] "<b>{point.y}%</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -601,22 +608,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -865,6 +856,19 @@
       [1] "{series.name}: <b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -877,22 +881,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.042
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -917,7 +905,7 @@
       [1] TRUE
       
       $chart$height
-      [1] 696
+      [1] 1330.4
       
       
       $xAxis
@@ -1152,24 +1140,6 @@
       [1] "{series.name}: <b>{point.y}%</b>"
       
       
-      $plotOptions
-      $plotOptions$series
-      $plotOptions$series$pointWidth
-      [1] 12
-      
-      
-      $plotOptions$column
-      $plotOptions$column$groupPadding
-      [1] 0.09
-      
-      $plotOptions$column$pointPadding
-      [1] 0.026
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
       $caption
       $caption$text
       [1] " "
@@ -1180,6 +1150,16 @@
       $caption$style
       $caption$style$fontSize
       [1] "12px"
+      
+      
+      
+      $plotOptions
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
       
       
       
@@ -1305,6 +1285,19 @@
       [1] "<b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -1317,22 +1310,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -1494,6 +1471,19 @@
       [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -1506,22 +1496,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.042
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -1682,6 +1656,19 @@
       [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -1694,22 +1681,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.042
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -1834,6 +1805,19 @@
       [1] "<b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -1846,22 +1830,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -1987,6 +1955,19 @@
       [1] "<b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -1999,22 +1980,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -2038,7 +2003,7 @@
       [1] TRUE
       
       $chart$height
-      [1] 440
+      [1] 596
       
       
       $xAxis
@@ -2145,24 +2110,6 @@
       [1] "<b>{point.y}</b>"
       
       
-      $plotOptions
-      $plotOptions$series
-      $plotOptions$series$pointWidth
-      [1] 16
-      
-      
-      $plotOptions$column
-      $plotOptions$column$groupPadding
-      [1] 0.095
-      
-      $plotOptions$column$pointPadding
-      [1] 0.023
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
       $caption
       $caption$text
       [1] " "
@@ -2173,6 +2120,16 @@
       $caption$style
       $caption$style$fontSize
       [1] "12px"
+      
+      
+      
+      $plotOptions
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
       
       
       
@@ -2293,6 +2250,19 @@
       [1] "<b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] "* Indikerar att data inte kan visas p.g.a. risk för röjande<br/>eller för lite data."
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -2305,22 +2275,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] "* Indikerar att data inte kan visas p.g.a. risk för röjande<br/>eller för lite data."
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -2437,6 +2391,19 @@
       [1] "{series.name}: <b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -2449,22 +2416,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.042
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -3637,7 +3588,7 @@
       [1] "2, b"
       
       [[4]]$color
-      [1] "#89163B"
+      [1] "#A48C83"
       
       
       
@@ -3849,7 +3800,7 @@
       [1] TRUE
       
       $chart$height
-      [1] 200
+      [1] 231.2
       
       
       $xAxis
@@ -3961,17 +3912,12 @@
       
       
       $plotOptions
-      $plotOptions$series
-      $plotOptions$series$pointWidth
-      [1] 20
-      
-      
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.095
+      [1] 0.08
       
       $plotOptions$column$pointPadding
-      [1] 0.023
+      [1] 0.02
       
       
       
@@ -4265,9 +4211,6 @@
       $chart$inverted
       [1] FALSE
       
-      $chart$height
-      [1] "80%"
-      
       
       $xAxis
       $xAxis$categories
@@ -4412,9 +4355,6 @@
       
       $chart$inverted
       [1] FALSE
-      
-      $chart$height
-      [1] "80%"
       
       
       $xAxis
@@ -4668,9 +4608,6 @@
       $chart$inverted
       [1] FALSE
       
-      $chart$height
-      [1] "80%"
-      
       
       $xAxis
       $xAxis$categories
@@ -4791,9 +4728,6 @@
       
       $chart$inverted
       [1] FALSE
-      
-      $chart$height
-      [1] "80%"
       
       
       $xAxis
@@ -5037,6 +4971,19 @@
       [1] "<b>{point.y}</b>"
       
       
+      $caption
+      $caption$text
+      [1] " "
+      
+      $caption$align
+      [1] "left"
+      
+      $caption$style
+      $caption$style$fontSize
+      [1] "12px"
+      
+      
+      
       $plotOptions
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -5049,22 +4996,6 @@
       
       $plotOptions$column$pointPadding
       [1] 0.046
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
-      $caption
-      $caption$text
-      [1] " "
-      
-      $caption$align
-      [1] "left"
-      
-      $caption$style
-      $caption$style$fontSize
-      [1] "12px"
       
       
       
@@ -5088,7 +5019,7 @@
       [1] TRUE
       
       $chart$height
-      [1] 240
+      [1] 276.8
       
       
       $xAxis
@@ -5168,24 +5099,6 @@
       [1] "<b>{point.y}</b>"
       
       
-      $plotOptions
-      $plotOptions$series
-      $plotOptions$series$pointWidth
-      [1] 20
-      
-      
-      $plotOptions$column
-      $plotOptions$column$groupPadding
-      [1] 0.095
-      
-      $plotOptions$column$pointPadding
-      [1] 0.023
-      
-      $plotOptions$column$borderWidth
-      [1] 0
-      
-      
-      
       $caption
       $caption$text
       [1] " "
@@ -5196,6 +5109,16 @@
       $caption$style
       $caption$style$fontSize
       [1] "12px"
+      
+      
+      
+      $plotOptions
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
       
       
       

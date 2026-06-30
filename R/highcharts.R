@@ -31,8 +31,8 @@
 #' @param normalize_prop if _prop variable should be normalized, only valid
 #' for stacked bar plot.
 #' @param break_x_var_names if line breaks should be done for x_var
-#' @param plot_height height of plot, value is in percentages
-#' @param group_color color of fill vars
+#' @param plot_height height of plot, value is in pixels
+#' @param group_color deprecated
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
@@ -72,7 +72,7 @@ bar_plot_highcharts <- function(df,
                                 normalize_prop = TRUE,
                                 break_x_var_names = FALSE,
                                 plot_height = NULL,
-                                group_color = NULL,
+                                group_color = lifecycle::deprecated(),
                                 legend_title = NULL,
                                 facet_by = NULL,
                                 reversed_stacks = FALSE,
@@ -83,6 +83,16 @@ bar_plot_highcharts <- function(df,
                                 remove_value = NULL,
                                 horizontal_line = NULL,
                                 n_decimals = 0) {
+
+  if (lifecycle::is_present(group_color)) {
+    lifecycle::deprecate_warn(
+      when = "1.7.9",
+      what = "bar_plot_highcharts(group_color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -114,7 +124,6 @@ bar_plot_highcharts <- function(df,
         bar_size = bar_size,
         normalize_prop = normalize_prop,
         break_x_var_names = break_x_var_names,
-        group_color = group_color,
         legend_title = legend_title,
         reversed_stacks = reversed_stacks,
         group_padding = group_padding,
@@ -249,7 +258,6 @@ bar_plot_highcharts <- function(df,
     arrange_desc = arrange_desc,
     arrange_by_group_var = arrange_by_fill,
     group_var_order = fill_var_order,
-    group_color = group_color,
     legend_title = legend_title,
     reversed_stacks = reversed_stacks,
     text_size = text_size,
@@ -290,20 +298,7 @@ bar_plot_highcharts <- function(df,
       out,
       list(
         plotOptions = list(
-          column = list(stacking = stacking),
-          series = list(pointWidth = bar_size)
-        )
-      )
-    )
-  } else {
-    out <- c(
-      out,
-      list(
-        plotOptions = list(
-          series = list(pointWidth = bar_size),
-          column = list(groupPadding = group_padding,
-                        pointPadding = 0,
-                        borderWidth = 0)
+          column = list(stacking = stacking)
         )
       )
     )
@@ -347,7 +342,7 @@ bar_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
-#' @param group_color optional colors
+#' @param group_color deprecated
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
 #' @param plot_height height of plot
@@ -374,13 +369,23 @@ line_plot_highcharts <- function(df,
                                  line_size = 8,
                                  legend_title = NULL,
                                  facet_by = NULL,
-                                 group_color = NULL,
+                                 group_color = lifecycle::deprecated(),
                                  plot_height = NULL,
                                  add_total = FALSE,
                                  total_var = "total",
                                  text_size = NULL,
                                  horizontal_line = NULL,
                                  n_decimals = 0) {
+
+  if (lifecycle::is_present(group_color)) {
+    lifecycle::deprecate_warn(
+      when = "1.7.9",
+      what = "line_plot_highcharts(group_color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -405,7 +410,6 @@ line_plot_highcharts <- function(df,
         color_var_order = color_var_order,
         line_size = line_size,
         legend_title = legend_title,
-        group_color = group_color,
         plot_height = plot_height,
         add_total = add_total,
         total_var = total_var,
@@ -446,7 +450,6 @@ line_plot_highcharts <- function(df,
     y_lab = y_lab,
     group_var_order = color_var_order,
     legend_title = legend_title,
-    group_color = group_color,
     text_size = text_size,
     horizontal_line = horizontal_line,
     n_decimals = n_decimals
@@ -496,9 +499,9 @@ line_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param facet_by variable in `df` with at most 2 unique values to facet by;
 #' if supplied the return value is a named list of plots, one per facet level
-#' @param group_color optional colors
+#' @param group_color deprecated
 #' @param bar_size width of bars
-#' @param plot_height height of plot, value is in percentages
+#' @param plot_height height of plot, value is in pixels
 #' @param group_padding distance between bars when using a dodge bar
 #' @param add_total if total should be added to x-axis
 #' @param total_var name of column that contains total
@@ -532,7 +535,7 @@ box_plot_highcharts <- function(df,
                                 y_lab = NULL,
                                 legend_title = NULL,
                                 facet_by = NULL,
-                                group_color = NULL,
+                                group_color = lifecycle::deprecated(),
                                 plot_height = NULL,
                                 bar_size = NULL,
                                 group_padding = NULL,
@@ -543,6 +546,16 @@ box_plot_highcharts <- function(df,
                                 horizontal_line = NULL,
                                 fill_var_order = NULL,
                                 n_decimals = 0) {
+
+  if (lifecycle::is_present(group_color)) {
+    lifecycle::deprecate_warn(
+      when = "1.7.9",
+      what = "box_plot_highcharts(group_color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   if (!is.null(facet_by)) {
     checkmate::assert_choice(facet_by, names(df))
@@ -569,7 +582,6 @@ box_plot_highcharts <- function(df,
         x_lab = x_lab,
         y_lab = y_lab,
         legend_title = legend_title,
-        group_color = group_color,
         plot_height = plot_height,
         bar_size = bar_size,
         group_padding = group_padding,
@@ -614,7 +626,6 @@ box_plot_highcharts <- function(df,
     x_lab = x_lab,
     y_lab = y_lab,
     legend_title = legend_title,
-    group_color = group_color,
     text_size = text_size,
     remove_value = remove_value,
     horizontal_line = horizontal_line,
@@ -657,7 +668,7 @@ box_plot_highcharts <- function(df,
 #' or `"percent"`
 #' @param fill_opacity opacity of the area fill, value between 0 and 1
 #' @param line_size size of the spline border
-#' @param group_color color of color vars
+#' @param group_color deprecated
 #' @param legend_title title of the legend
 #' @param text_size size of text, will be interperted as pixels
 #' @param n_decimals number of decimals to round numbers to
@@ -680,12 +691,22 @@ areaspline_highcharts <- function(df,
                                   stacking = NULL,
                                   fill_opacity = 0.5,
                                   line_size = 8,
-                                  group_color = NULL,
+                                  group_color = lifecycle::deprecated(),
                                   legend_title = NULL,
                                   text_size = NULL,
                                   n_decimals = 0) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
+
+  if (lifecycle::is_present(group_color)) {
+    lifecycle::deprecate_warn(
+      when = "1.7.9",
+      what = "areaspline_highcharts(group_color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   if (!is.null(stacking)) {
     checkmate::assert_choice(stacking, c("normal", "percent"))
@@ -710,7 +731,6 @@ areaspline_highcharts <- function(df,
     x_lab = x_lab,
     y_lab = y_lab,
     group_var_order = color_var_order,
-    group_color = group_color,
     legend_title = legend_title,
     text_size = text_size,
     n_decimals = n_decimals
@@ -761,7 +781,7 @@ areaspline_highcharts <- function(df,
 #' alternatively be `auto_character` or `auto_numeric` to automatically sort
 #' the levels
 #' @param plot_height height of plot
-#' @param group_color color of group variabel
+#' @param group_color deprecated
 #' @param legend_title title of the legend
 #' @param reversed_stacks should stacks be reversed?
 #' @param text_size size of text, will be interperted as pixels
@@ -792,7 +812,7 @@ plot_highcharts <- function(df,
                             arrange_by_group_var = NULL,
                             group_var_order = NULL,
                             plot_height = 0.8,
-                            group_color = NULL,
+                            group_color = lifecycle::deprecated(),
                             legend_title = NULL,
                             reversed_stacks = NULL,
                             text_size = NULL,
@@ -811,6 +831,16 @@ plot_highcharts <- function(df,
 
   checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
   checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
+
+  if (lifecycle::is_present(group_color)) {
+    lifecycle::deprecate_warn(
+      when = "1.7.9",
+      what = "plot_highcharts(group_color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   if (!is.null(remove_value)) {
     # When NA is specified in a .yml file it is parsed as "NA"
@@ -885,14 +915,12 @@ plot_highcharts <- function(df,
   if (horizontal) {
     chart <- list(
       type = type,
-      inverted = TRUE,
-      height = paste0(100 * plot_height, "%")
+      inverted = TRUE
     )
   } else {
     chart <- list(
       type = type,
-      inverted = FALSE,
-      height = paste0(100 * plot_height, "%")
+      inverted = FALSE
     )
   }
 
@@ -932,7 +960,6 @@ plot_highcharts <- function(df,
         proportion = proportion,
         scale_percentage = scale_percentage,
         group_var_order = group_var_order,
-        colors = group_color,
         x_var = x_var,
         n_decimals = n_decimals
       )
@@ -1168,20 +1195,29 @@ sort_numeric <- function(x) {
 #' @describeIn plot_highcharts converts a data.frame to a highcharts series
 #' representation
 #' @param palette_type passed to [colors_rc_3()]
-#' @param colors an optional subset of [colors_rc_3()] with
-#' `palette_type = "qualitative"` and `n = 12` used to manually set colors
+#' @param colors deprecated
 #' @param x_var x variable
 make_series <- function(df,
                         vars,
                         group_vars = NULL,
                         palette_type = "qualitative",
-                        colors = NULL,
+                        colors = lifecycle::deprecated(),
                         other_vars = NULL,
                         proportion = FALSE,
                         scale_percentage = TRUE,
                         group_var_order = NULL,
                         x_var,
                         n_decimals = 0) {
+
+  if (lifecycle::is_present(colors)) {
+    lifecycle::deprecate_soft(
+      when = "1.7.9",
+      what = "make_series(color)",
+      details = paste0("This argument has been deprecated since the order of ",
+                       "qualitative palette has been chosen to guarantee ",
+                       "optimal contrasts between colors")
+    )
+  }
 
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
@@ -1202,12 +1238,7 @@ make_series <- function(df,
     dplyr::ungroup() |>
     dplyr::rename(unlist(vars))
 
-  if (!is.null(colors) && palette_type == "qualitative") {
-    colors <- unlist(colors)
-    checkmate::assert_subset(colors, colors_rc_3(12))
-  } else {
-    colors <- colors_rc_3(dplyr::n_distinct(tmp$series_var), palette_type)
-  }
+  colors <- colors_rc_3(dplyr::n_distinct(tmp$series_var), palette_type)
 
   if (proportion && scale_percentage) {
     tmp <- tmp |>
@@ -1370,47 +1401,27 @@ set_size_params <- function(
 
   if (isTRUE(out$chart$inverted)) {
 
-    #Beräkningar
-    row_height <-
-      if (n_x_axis <= 6) {
-        40
-      } else if (n_x_axis <= 20) {
-        28 + n_categories * 4
-      } else {
-        24 + n_categories * 3
-      }
+    target_bar_height <- 24
 
-    row_height <- max(28, min(60, row_height))
+    #Padding
+    group_padding <- 0.08
+    point_padding <- 0.02
 
-    point_width <-
-      floor(row_height / (n_categories + 1))
+    pixels_per_category <-
+      (target_bar_height * n_categories) + 14
 
-    point_width <- max(8, min(20, point_width))
+    # Extra space
+    extra_height <- 140
 
-    chart_height <- 120 + n_x_axis * row_height
+    chart_height <-
+      extra_height +
+      1.2 * (n_x_axis * pixels_per_category)
 
-    group_padding <-
-      max(
-        0.06,
-        min(
-          0.14,
-          0.10 - n_categories * 0.005
-        )
-      )
-
-    point_padding <-
-      max(
-        0.01,
-        min(
-          0.08,
-          0.02 + n_categories * 0.003
-        )
-      )
-
-    # Applicera
+    #Applicera
     out$chart$height <- chart_height
-    out$plotOptions$series$pointWidth <- point_width
+
     out$plotOptions$column$groupPadding <- group_padding
+
     out$plotOptions$column$pointPadding <- point_padding
 
   } else if (!isTRUE(out$chart$inverted)) {

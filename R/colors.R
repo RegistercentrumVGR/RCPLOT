@@ -89,10 +89,20 @@ colors_rc_3 <- function(n, type = "qualitative") {
                                    "sequential_2"))
 
   rc_colors <- list(
-    qualitative = c("#116875", "#FC5930", "#6F45BB",
-                    "#89163B", "#1A9FB3", "#E02460",
-                    "#3A2168", "#A48C83", "#051F23",
-                    "#9575CD", "#AC641C", "#6D3912"),
+    qualitative = c(
+      "#116875",
+      "#FC5930",
+      "#6F45BB",
+      "#A48C83",
+      "#89163B",
+      "#051F23",
+      "#9575CD",
+      "#E02460",
+      "#AC641C",
+      "#1A9FB3",
+      "#6D3912",
+      "#3A2168"
+    ),
     sequential_1 = c("#37863A", "#AC641C", "#E63C37"),
     sequential_2 = c("#1A9FB3", "#158192", "#116875",
                      "#0D4E58", "#09363C", "#051F23")

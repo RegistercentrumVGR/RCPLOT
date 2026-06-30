@@ -29,7 +29,7 @@ bar_plot_highcharts(
   normalize_prop = TRUE,
   break_x_var_names = FALSE,
   plot_height = NULL,
-  group_color = NULL,
+  group_color = lifecycle::deprecated(),
   legend_title = NULL,
   facet_by = NULL,
   reversed_stacks = FALSE,
@@ -95,9 +95,9 @@ for stacked bar plot.}
 
 \item{break_x_var_names}{if line breaks should be done for x_var}
 
-\item{plot_height}{height of plot, value is in percentages}
+\item{plot_height}{height of plot, value is in pixels}
 
-\item{group_color}{color of fill vars}
+\item{group_color}{deprecated}
 
 \item{legend_title}{title of the legend}
 

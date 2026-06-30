@@ -76,7 +76,7 @@ test_that("make_series works", {
         list(
           data = I(as.list(3)),
           name = "VGR, value 2",
-          color = "#89163B"
+          color = "#A48C83"
         )
       )
     )
@@ -149,23 +149,6 @@ test_that("make_series works", {
           data = I(as.list(c(50, 100))),
           name = "",
           color = "#116875"
-        )
-      )
-    )
-
-  make_series(
-    df,
-    list(y = "prop"),
-    colors = "#6F45BB",
-    x_var = "year",
-    proportion = TRUE
-  ) |>
-    expect_equal(
-      list(
-        list(
-          data = I(as.list(c(50, 100))),
-          name = "",
-          color = "#6F45BB"
         )
       )
     )
@@ -287,33 +270,6 @@ test_that("make_series works", {
               list(
                 y = 10,
                 color = "#FC5930"
-              )
-            )
-          ),
-          name = ""
-        )
-      )
-    )
-
-  make_series(
-    df = df,
-    vars = list(y = "y"),
-    group_vars = "gender",
-    x_var = "gender",
-    color = c("#1A9FB3", "#051F23")
-  ) |>
-    expect_equal(
-      list(
-        list(
-          data = I(
-            list(
-              list(
-                y = 10,
-                color = "#1A9FB3"
-              ),
-              list(
-                y = 10,
-                color = "#051F23"
               )
             )
           ),
@@ -483,8 +439,7 @@ test_that("plot_highcharts works", {
         title = list(text = ""),
         chart = list(
           type = "column",
-          inverted = FALSE,
-          height = "80%"
+          inverted = FALSE
         ),
         xAxis = list(categories = structure("a", class = "AsIs"),
                      labels = list(

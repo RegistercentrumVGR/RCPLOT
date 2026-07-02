@@ -1,0 +1,19 @@
+{
+  "name": "R (rocker/r-ver base)",
+  "image": "registry.gitlab.com/registercentrum/statistikenheten/r-docker-images/r42dev:main",
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/r-dependent-packages:0": {
+      "dependencyTypes": "all,Config/Needs/dev"
+    }
+  },
+  "remoteEnv": {
+    "PKG_SYSREQS": "TRUE",
+    // Personal access tokens from system env vars
+    // Set these in your (windows) account environment
+    // variables to make install from github and gitlab
+    // work
+    "GITHUB_PAT": "${localEnv:GITHUB_PAT}",
+    "GITHUB_PAT_GITLAB_COM": "${localEnv:GITHUB_PAT_GITLAB_COM}"
+  },
+  "remoteUser": "root"
+}

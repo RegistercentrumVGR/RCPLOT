@@ -14,3 +14,4 @@
 ^ci$
 man-roxygen
 PsScripts
+^\.devcontainer$

@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.7.11
+Version: 1.7.12
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -59,4 +59,5 @@ Suggests:
     jsonlite,
     withr
 Config/testthat/edition: 3
-Remotes: RegistercentrumVGR/RCStat
+Remotes: 
+    gitlab::registercentrum/statistikenheten/RCStat

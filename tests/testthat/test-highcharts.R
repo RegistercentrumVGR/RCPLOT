@@ -1228,6 +1228,21 @@ test_that("add_total works", {
     ) |>
     expect_snapshot()
 
+  df <- data.frame(
+    x = factor(1:3, labels = letters[3:1]),
+    y = 1:3
+  )
+
+  tmp <- df |>
+    add_total_label(total_var = "y", x_var = "x")
+
+  expect_type(levels(tmp$x), "character")
+
+  tmp |>
+    dplyr::pull("x") |>
+    levels() |>
+    stringr::str_remove(" \\(N=\\d+\\)") |>
+    expect_equal(letters[3:1])
 
 })
 

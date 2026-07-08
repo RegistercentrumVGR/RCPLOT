@@ -45,6 +45,7 @@
 #' observations
 #' @param horizontal_line horizontal reference line
 #' @param n_decimals number of decimals to round numbers to
+#' @param x_var_order the order the x-variable should be displayed in
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -82,7 +83,8 @@ bar_plot_highcharts <- function(df,
                                 text_size = NULL,
                                 remove_value = NULL,
                                 horizontal_line = NULL,
-                                n_decimals = 0) {
+                                n_decimals = 0,
+                                x_var_order = NULL) {
 
   if (lifecycle::is_present(group_color)) {
     lifecycle::deprecate_warn(
@@ -92,6 +94,10 @@ bar_plot_highcharts <- function(df,
                        "qualitative palette has been chosen to guarantee ",
                        "optimal contrasts between colors")
     )
+  }
+
+  if (!is.null(x_var_order)) {
+    df <- order_x_var(df, x_var, x_var_order)
   }
 
   if (!is.null(facet_by)) {
@@ -513,6 +519,7 @@ line_plot_highcharts <- function(df,
 #' alternatively be `auto_character` or `auto_numeric` to automatically sort
 #' the levels
 #' @param n_decimals number of decimals to round numbers to
+#' @param x_var_order the order the x-variable should be displayed in
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -545,7 +552,8 @@ box_plot_highcharts <- function(df,
                                 remove_value = NULL,
                                 horizontal_line = NULL,
                                 fill_var_order = NULL,
-                                n_decimals = 0) {
+                                n_decimals = 0,
+                                x_var_order = NULL) {
 
   if (lifecycle::is_present(group_color)) {
     lifecycle::deprecate_warn(
@@ -555,6 +563,10 @@ box_plot_highcharts <- function(df,
                        "qualitative palette has been chosen to guarantee ",
                        "optimal contrasts between colors")
     )
+  }
+
+  if (!is.null(x_var_order)) {
+    df <- order_x_var(df, x_var, x_var_order)
   }
 
   if (!is.null(facet_by)) {
@@ -1566,4 +1578,46 @@ set_text_size <- function(
 
   out
 
+}
+
+#' Order the x variable
+#'
+#' Converts `x_var` to a factor with levels in the supplied order
+#'
+#' @param df data.frame
+#' @param x_var the x variable
+#' @param order vector/list of values giving the desired level order
+#' @return data.frame
+order_x_var <- function(df, x_var = NULL, order = NULL) {
+  checkmate::assert_choice(x_var, colnames(df))
+  checkmate::assert_vector(order, min.len = 1)
+
+  order <- unlist(order)
+
+  present_values <- df |>
+    dplyr::pull(.data[[x_var]]) |>
+    as.character() |>
+    unique()
+
+  missing_from_order <- setdiff(present_values, as.character(order))
+  if (length(missing_from_order) > 0) {
+    cli::cli_abort(
+      paste0("{.arg order} is missing {cli::qty(missing_from_order)} ",
+             "value{?s} present in {.field {x_var}}: {missing_from_order}")
+    )
+  }
+
+  extra_in_order <- setdiff(as.character(order), present_values)
+  if (length(extra_in_order) > 0) {
+    cli::cli_warn(
+      paste0("{.arg order} contains {cli::qty(extra_in_order)} value{?s} ",
+             "not present in {.field {x_var}}: {extra_in_order}")
+    )
+  }
+
+  df |>
+    dplyr::mutate(
+      !!x_var := factor(.data[[x_var]], levels = order)
+    ) |>
+    dplyr::arrange(.data[[x_var]])
 }

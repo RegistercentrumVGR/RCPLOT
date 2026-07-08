@@ -1279,3 +1279,27 @@ test_that("set_size_params works", {
   expect_equal(plt$plotOptions$series$pointWidth, 32)
   expect_equal(plt$chart$height, 650)
 })
+
+test_that("order_x_var works", {
+  df <- data.frame(
+    x = 1:3
+  )
+
+  result <- order_x_var(df, x_var = "x", order = c(2, 3, 1))
+  expect_true(is.factor(result$x))
+  expect_equal(levels(result$x), c("2", "3", "1"))
+  expect_equal(as.character(result$x), c("2", "3", "1"))
+
+  expect_error(
+    order_x_var(df, x_var = "x", order = c(1, 2)),
+    regexp = "is missing value present in x"
+  )
+
+  expect_warning(
+    result_extra <- order_x_var(df, x_var = "x", order = c(1, 2, 3, 4)),
+    regexp = "contains value not present in x"
+  )
+  expect_true(is.factor(result_extra$x))
+  expect_equal(levels(result_extra$x), c("1", "2", "3", "4"))
+  expect_equal(as.character(result_extra$x), c("1", "2", "3"))
+})

@@ -1506,6 +1506,7 @@ add_total_label <- function(
     dplyr::summarise(.total = dplyr::first(.data[[total_var]]), .groups = "drop") |>
     tibble::deframe()
 
+  #nolint start
   pattern <- if (break_total) "%s<br/>(N=%d)" else "%s (N=%d)"
 
   if (is.factor(df[[x_var]])) {
@@ -1525,6 +1526,7 @@ add_total_label <- function(
         )
       )
   }
+  #nolint end
 
   df
 

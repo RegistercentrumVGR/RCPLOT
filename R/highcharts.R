@@ -190,7 +190,7 @@ bar_plot_highcharts <- function(df,
             )
           )
         )
-    # nolint end
+      # nolint end
     } else {
       df <- df |>
         dplyr::mutate(
@@ -1501,12 +1501,15 @@ add_total_label <- function(
   checkmate::assert_choice(total_var, colnames(df))
   checkmate::assert_choice(x_var, colnames(df))
 
+  #nolint start
   lookup <- df |>
     dplyr::group_by(.data[[x_var]]) |>
-    dplyr::summarise(.total = dplyr::first(.data[[total_var]]), .groups = "drop") |>
+    dplyr::summarise(
+      .total = dplyr::first(.data[[total_var]]),
+      .groups = "drop"
+    ) |>
     tibble::deframe()
 
-  #nolint start
   pattern <- if (break_total) "%s<br/>(N=%d)" else "%s (N=%d)"
 
   if (is.factor(df[[x_var]])) {

@@ -39,7 +39,8 @@ bar_plot_highcharts(
   text_size = NULL,
   remove_value = NULL,
   horizontal_line = NULL,
-  n_decimals = 0
+  n_decimals = 0,
+  x_var_order = NULL
 )
 }
 \arguments{
@@ -120,6 +121,8 @@ observations}
 \item{horizontal_line}{horizontal reference line}
 
 \item{n_decimals}{number of decimals to round numbers to}
+
+\item{x_var_order}{the order the x-variable should be displayed in}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

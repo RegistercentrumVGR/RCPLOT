@@ -1244,6 +1244,18 @@ test_that("add_total works", {
     stringr::str_remove(" \\(N=\\d+\\)") |>
     expect_equal(letters[3:1])
 
+  df <- data.frame(
+    x = factor(1:3, labels = letters[3:1]),
+    total = 1:3,
+    fill = rep(1:2, each = 3)
+  )
+
+  df |>
+    add_total_label(total_var = "total", x_var = "x") |>
+    dplyr::pull("x") |>
+    levels() |>
+    expect_equal(c("c (N=1)", "b (N=2)", "a (N=3)"))
+
 })
 
 test_that("set_size_params works", {

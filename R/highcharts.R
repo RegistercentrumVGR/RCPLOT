@@ -1501,32 +1501,27 @@ add_total_label <- function(
   checkmate::assert_choice(total_var, colnames(df))
   checkmate::assert_choice(x_var, colnames(df))
 
+  lookup <- df |>
+    dplyr::group_by(.data[[x_var]]) |>
+    dplyr::summarise(.total = dplyr::first(.data[[total_var]]), .groups = "drop") |>
+    tibble::deframe()
+
+  pattern <- if (break_total) "%s<br/>(N=%d)" else "%s (N=%d)"
+
   if (is.factor(df[[x_var]])) {
-    # nolint start
     df <- df |>
       dplyr::mutate(
         !!x_var := forcats::fct_relabel(
           .data[[x_var]],
-          ~ paste0(
-            .x,
-            if (break_total) "<br/>(N=" else " (N=",
-            .data[[total_var]],
-            ")"
-          )
+          ~ sprintf(pattern, .x, lookup[.x])
         )
       )
-    # nolint end
   } else {
     df <- df |>
       dplyr::mutate(
         dplyr::across(
           dplyr::all_of(x_var),
-          ~ paste0(
-            .x,
-            if (break_total) "<br/>(N=" else " (N=",
-            .data[[total_var]],
-            ")"
-          )
+          ~ sprintf(pattern, .x, lookup[as.character(.x)])
         )
       )
   }

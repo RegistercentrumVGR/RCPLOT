@@ -866,6 +866,47 @@ test_that("line_plot_highcharts works", {
       proportion = TRUE
     ) |>
     expect_snapshot()
+
+  df <- data.frame(
+    year = 2010:2020,
+    y = c(0, 1.1034, 2:10)
+  )
+
+  expect_warning(
+    res <- line_plot_highcharts(
+      df = df,
+      x_var = "year",
+      y_var = "y",
+      surv = TRUE,
+      proportion = FALSE
+    )
+  )
+
+  expect_equal(
+    res$plotOptions$line$step,
+    "right"
+  )
+
+  expect_equal(
+    unlist(res$series[[1]]$data),
+    c(0, 1.103, 2:10)
+  )
+
+  expect_no_warning(
+    res <- line_plot_highcharts(
+      df = df,
+      x_var = "year",
+      y_var = "y",
+      surv = TRUE,
+      proportion = TRUE
+    )
+  )
+
+  expect_equal(
+    unlist(res$series[[1]]$data),
+    c(0, 110.3, seq(200, 1000, by = 100))
+  )
+
 })
 
 test_that("box_plot_highcharts work", {

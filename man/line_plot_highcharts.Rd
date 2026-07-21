@@ -28,7 +28,8 @@ line_plot_highcharts(
   total_var = "total",
   text_size = NULL,
   horizontal_line = NULL,
-  n_decimals = 0
+  n_decimals = rlang::missing_arg(),
+  surv = FALSE
 )
 }
 \arguments{
@@ -83,7 +84,13 @@ if supplied the return value is a named list of plots, one per facet level}
 
 \item{horizontal_line}{horizontal reference line}
 
-\item{n_decimals}{number of decimals to round numbers to}
+\item{n_decimals}{number of decimals to round numbers to; if not supplied,
+defaults to \code{0}, unless \code{surv = TRUE}, in which case it defaults to \code{1}
+when \code{proportion = TRUE} and \code{3} when \code{proportion = FALSE}}
+
+\item{surv}{if \code{TRUE}, draws the line as a right-continuous step function
+(as for a Kaplan-Meier curve). Intended to be used together with
+\code{proportion = TRUE}; a warning is issued otherwise}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

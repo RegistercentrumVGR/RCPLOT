@@ -354,7 +354,12 @@ bar_plot_highcharts <- function(df,
 #' @param plot_height height of plot
 #' @param text_size size of text, will be interperted as pixels
 #' @param horizontal_line horizontal reference line
-#' @param n_decimals number of decimals to round numbers to
+#' @param n_decimals number of decimals to round numbers to; if not supplied,
+#' defaults to `0`, unless `surv = TRUE`, in which case it defaults to `1`
+#' when `proportion = TRUE` and `3` when `proportion = FALSE`
+#' @param surv if `TRUE`, draws the line as a right-continuous step function
+#' (as for a Kaplan-Meier curve). Intended to be used together with
+#' `proportion = TRUE`; a warning is issued otherwise
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -381,7 +386,10 @@ line_plot_highcharts <- function(df,
                                  total_var = "total",
                                  text_size = NULL,
                                  horizontal_line = NULL,
-                                 n_decimals = 0) {
+                                 n_decimals = rlang::missing_arg(),
+                                 surv = FALSE) {
+
+  checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
 
   if (lifecycle::is_present(group_color)) {
     lifecycle::deprecate_warn(
@@ -391,6 +399,27 @@ line_plot_highcharts <- function(df,
                        "qualitative palette has been chosen to guarantee ",
                        "optimal contrasts between colors")
     )
+  }
+
+  if (surv && !proportion) {
+    rlang::warn(
+      paste0(
+        "`surv` is intended to be used together with `proportion = TRUE` ",
+        "so survival probabilities are displayed as percentages; using the ",
+        "raw 0-1 scale may lose precision unless `n_decimals` is set ",
+        "explicitly."
+      )
+    )
+  }
+
+  if (rlang::is_missing(n_decimals)) {
+    if (!surv) {
+      n_decimals <- 0
+    } else if (proportion) {
+      n_decimals <- 1
+    } else {
+      n_decimals <- 3
+    }
   }
 
   if (!is.null(facet_by)) {
@@ -421,7 +450,8 @@ line_plot_highcharts <- function(df,
         total_var = total_var,
         text_size = text_size,
         horizontal_line = horizontal_line,
-        n_decimals = n_decimals
+        n_decimals = n_decimals,
+        surv = surv
       )
     ))
   }
@@ -474,6 +504,10 @@ line_plot_highcharts <- function(df,
     out$chart$height <- plot_height
   } else {
     out$chart$height <- 600
+  }
+
+  if (surv) {
+    out$plotOptions$line$step <- "right"
   }
 
   return(out)

@@ -801,6 +801,314 @@ areaspline_highcharts <- function(df,
   return(out)
 }
 
+#' Highchart Forest plot
+#'
+#' creates a forest plot in highchart, outputs config for highchart. Draws a
+#' point estimate together with a confidence interval for each level of
+#' `x_var`, useful for e.g. displaying odds ratios or hazard ratios with
+#' confidence intervals across subgroups.
+#'
+#' @param df data
+#' @param x_var the variable with the categories/subgroups to display, one
+#' point is drawn per unique value
+#' @param y_var the point estimate variable
+#' @param y_lower the lower bound of the confidence interval
+#' @param y_upper the upper bound of the confidence interval
+#' @param color_var the name of the color variable, draws a separate
+#' point/confidence interval series per level, useful for e.g. showing
+#' several models or timepoints side by side within each subgroup
+#' @param color_var_order what order `color_var` should be displayed in, can
+#' alternatively be `auto_character` or `auto_numeric` to automatically sort
+#' the levels
+#' @param legend_title title of the legend
+#' @param title title of the graph
+#' @param y_lim limits of the estimate-axis, if `NULL` and `proportion` is
+#' `TRUE`, will be set to `c(0, 100)`
+#' @param y_breaks breaks of the estimate-axis
+#' @param log_scale if the estimate-axis should be displayed on a logarithmic
+#' scale, useful for e.g. odds ratios and hazard ratios
+#' @param proportion if the estimate and confidence interval are proportions,
+#' useful for e.g. displaying proportions or survival probabilities with
+#' confidence intervals across subgroups
+#' @param scale_percentage if proportions should be re-scaled to be
+#' percentages
+#' @param reference_line reference line to draw across the estimate-axis, e.g.
+#' `1` for odds/hazard ratios or `0` for mean differences
+#' @param other_vars other variables to include in the tooltip, should be a
+#' named list where the name will be the key in the tooltip
+#' @param x_lab labels on the category-axis
+#' @param y_lab labels on the estimate-axis
+#' @param horizontal whether categories should be displayed on the vertical
+#' axis with the estimate on the horizontal axis, which is the conventional
+#' way to display a forest plot
+#' @param arrange_by column to sort `x_var` by
+#' @param arrange_desc to arrange descending
+#' @param x_var_order the order the categories should be displayed in
+#' @param marker_size size of the point estimate marker
+#' @param marker_symbol shape of the point estimate marker
+#' @param plot_height height of plot, value is in pixels
+#' @param text_size size of text, will be interperted as pixels
+#' @param n_decimals number of decimals to round numbers to
+#' @param facet_by variable in `df` with at most 2 unique values to facet by;
+#' if supplied the return value is a named list of plots, one per facet level
+#'
+#' @return highcharts config, or a named list of configs when `facet_by` is set
+#' @export
+forest_plot_highcharts <- function(df,
+                                   x_var,
+                                   y_var,
+                                   y_lower,
+                                   y_upper,
+                                   color_var = NULL,
+                                   color_var_order = NULL,
+                                   legend_title = NULL,
+                                   title = "",
+                                   y_lim = NULL,
+                                   y_breaks = NULL,
+                                   log_scale = FALSE,
+                                   proportion = FALSE,
+                                   scale_percentage = TRUE,
+                                   reference_line = NULL,
+                                   other_vars = NULL,
+                                   x_lab = NULL,
+                                   y_lab = NULL,
+                                   horizontal = TRUE,
+                                   arrange_by = NULL,
+                                   arrange_desc = TRUE,
+                                   x_var_order = NULL,
+                                   marker_size = 4,
+                                   marker_symbol = "diamond",
+                                   plot_height = NULL,
+                                   text_size = NULL,
+                                   n_decimals = 0,
+                                   facet_by = NULL) {
+
+  checkmate::assert_logical(horizontal, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(log_scale, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(proportion, len = 1, any.missing = FALSE)
+  checkmate::assert_logical(scale_percentage, len = 1, any.missing = FALSE)
+  checkmate::assert_choice(
+    marker_symbol,
+    c("circle", "square", "diamond", "triangle", "triangle-down")
+  )
+
+  if (proportion && log_scale) {
+    cli::cli_abort(
+      "{.arg proportion} and {.arg log_scale} cannot both be {.val TRUE}"
+    )
+  }
+
+  # A bug in the Zod validation means that null values for `y_var` is currently
+  # not supported, should be removed when fixed
+  if (any(is.na(df[[y_var]]))) {
+    cli::cli_alert_warning(
+      paste0(
+        "{.val NA} values detected in {.field {y_var}}, this is ",
+        "currently not supported and these observations will be removed"
+      )
+    )
+    df <- dplyr::filter(df, !is.na(.data[[y_var]]))
+  }
+
+  if (!is.null(x_var_order)) {
+    df <- order_x_var(df, x_var, x_var_order)
+  }
+
+  if (!is.null(facet_by)) {
+    checkmate::assert_choice(facet_by, names(df))
+    facet_vals <- unique(df[[facet_by]])
+    checkmate::assert_true(length(facet_vals) <= 2)
+    return(purrr::map(
+      facet_vals,
+      ~ forest_plot_highcharts(
+        df = dplyr::filter(df, .data[[facet_by]] == .x),
+        x_var = x_var,
+        y_var = y_var,
+        y_lower = y_lower,
+        y_upper = y_upper,
+        color_var = color_var,
+        color_var_order = color_var_order,
+        legend_title = legend_title,
+        title = facet_title(title, .x),
+        y_lim = y_lim,
+        y_breaks = y_breaks,
+        log_scale = log_scale,
+        proportion = proportion,
+        scale_percentage = scale_percentage,
+        reference_line = reference_line,
+        other_vars = other_vars,
+        x_lab = x_lab,
+        y_lab = y_lab,
+        horizontal = horizontal,
+        arrange_by = arrange_by,
+        arrange_desc = arrange_desc,
+        marker_size = marker_size,
+        marker_symbol = marker_symbol,
+        plot_height = plot_height,
+        text_size = text_size,
+        n_decimals = n_decimals
+      )
+    ))
+  }
+
+  # Sorted once here rather than inside plot_highcharts() so that the
+  # point-estimate series and the confidence-interval series below end up
+  # with categories in the same order
+  if (!is.null(arrange_by)) {
+    checkmate::assert_choice(arrange_by, names(df))
+    if (arrange_desc) {
+      df <- dplyr::arrange(df, dplyr::desc(.data[[arrange_by]]))
+    } else {
+      df <- dplyr::arrange(df, .data[[arrange_by]])
+    }
+  }
+
+  # Completed once here (rather than relying on plot_highcharts() to do it
+  # internally) so the same category/color_var combinations are available to
+  # both the point-estimate series below and the confidence-interval series,
+  # keeping them aligned
+  if (!is.null(color_var) && !identical(color_var, x_var)) {
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(!!x_var := forcats::fct_drop(.data[[x_var]]))
+    }
+    df <- df |>
+      tidyr::complete(!!!rlang::syms(c(x_var, color_var)))
+  }
+
+  if (is.null(y_lim) && proportion) {
+    y_lim <- c(0, 100)
+  }
+
+  # make_series() only rescales the point-estimate series (renamed to `y`
+  # below), so the CI bounds are rescaled here up front to stay consistent
+  # with the point estimate, both in the errorbar series and in the tooltip
+  if (proportion && scale_percentage) {
+    df <- df |>
+      dplyr::mutate(
+        dplyr::across(dplyr::all_of(c(y_lower, y_upper)), ~ .x * 100)
+      )
+  }
+
+  ci_vars <- list(
+    "Nedre gräns" = y_lower,
+    "Övre gräns" = y_upper
+  )
+  other_vars <- c(ci_vars, other_vars)
+
+  out <- plot_highcharts(
+    df = df,
+    x_var = x_var,
+    vars = list(y = y_var),
+    title = title,
+    group_vars = color_var,
+    y_lim = y_lim,
+    y_breaks = y_breaks,
+    proportion = proportion,
+    scale_percentage = scale_percentage,
+    type = "scatter",
+    other_vars = other_vars,
+    horizontal = horizontal,
+    x_lab = x_lab,
+    y_lab = y_lab,
+    group_var_order = color_var_order,
+    legend_title = legend_title,
+    text_size = text_size,
+    horizontal_line = reference_line,
+    n_decimals = n_decimals
+  )
+
+  ci_series_list <- make_series(
+    df = df,
+    vars = list(low = y_lower, high = y_upper),
+    group_vars = color_var,
+    group_var_order = color_var_order,
+    x_var = x_var,
+    n_decimals = n_decimals
+  )
+
+  ci_series_list <- purrr::map(ci_series_list, function(s) {
+    s$type <- "errorbar"
+    s$enableMouseTracking <- FALSE
+    s
+  })
+
+  if (is.null(color_var)) {
+    ci_series_list[[1]]$name <- "Konfidensintervall"
+    ci_series_list[[1]]$color <- "#051F23"
+  } else {
+    # Without this, each color_var group would show up twice in the legend
+    # since both its point and CI series share the group's name
+    ci_series_list <- purrr::map(ci_series_list, function(s) {
+      s$showInLegend <- FALSE
+      s
+    })
+  }
+
+  point_series_list <- purrr::map(out$series, function(s) {
+    s$type <- "scatter"
+    s
+  })
+
+  # The main type here is "scatter" which does not get automatic dodging applied
+  # since points can obviously occupy the same x-coordinate
+  n_groups <- length(point_series_list)
+  if (n_groups > 1) {
+    placements <- seq(-0.3, 0.3, length.out = n_groups)
+
+    point_series_list <- purrr::map2(
+      point_series_list,
+      placements, function(s, p) {
+        s$pointPlacement <- p
+        s
+      }
+    )
+
+    ci_series_list <- purrr::map2(
+      ci_series_list,
+      placements, function(s, p) {
+        s$pointPlacement <- p
+        s
+      }
+    )
+  }
+
+  # Kept as just the point series while sizing so set_size_params() sees one
+  # "category" per color_var group (as it would for a dodged bar plot),
+  # rather than double-counting the paired CI series
+  out$series <- I(point_series_list)
+
+  out$plotOptions <- c(
+    out$plotOptions,
+    list(
+      scatter = list(
+        marker = list(
+          symbol = marker_symbol,
+          radius = marker_size
+        )
+      ),
+      errorbar = list(
+        whiskerLength = "50%",
+        stemWidth = 2
+      )
+    )
+  )
+
+  if (log_scale) {
+    out$yAxis$type <- "logarithmic"
+  }
+
+  out <- set_size_params(
+    out,
+    position = "dodge",
+    plot_height = plot_height
+  )
+
+  out$series <- I(c(ci_series_list, point_series_list))
+
+  return(out)
+}
+
 #' Create a config for a highchart plot
 #'
 #' @param df the data.frame to plot
@@ -1398,7 +1706,7 @@ facet_title <- function(title, val) {
 export_highcharts <- function(cfg, write_clip = TRUE) {
   res <- cfg |>
     list() |>
-    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE)
+    jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE, null = "null")
 
   if (write_clip) {
     clipr::write_clip(res)

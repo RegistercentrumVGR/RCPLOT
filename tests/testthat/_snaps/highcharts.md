@@ -5123,3 +5123,1060 @@
       
       
 
+# forest_plot_highcharts works
+
+    Code
+      forest_plot_highcharts(df = df, x_var = "subgroup", y_var = "or", y_lower = "lower",
+        y_upper = "upper")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "scatter"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      $chart$height
+      [1] 276.8
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A" "B" "C"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 1
+      
+      [[1]]$data[[1]]$high
+      [1] 2
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 0
+      
+      [[1]]$data[[2]]$high
+      [1] 1
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$low
+      [1] 1
+      
+      [[1]]$data[[3]]$high
+      [1] 3
+      
+      
+      
+      [[1]]$name
+      [1] "Konfidensintervall"
+      
+      [[1]]$color
+      [1] "#051F23"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 1
+      
+      [[2]]$data[[1]]$lower
+      [1] 1
+      
+      [[2]]$data[[1]]$upper
+      [1] 2
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 1
+      
+      [[2]]$data[[2]]$lower
+      [1] 0
+      
+      [[2]]$data[[2]]$upper
+      [1] 1
+      
+      
+      [[2]]$data[[3]]
+      [[2]]$data[[3]]$y
+      [1] 2
+      
+      [[2]]$data[[3]]$lower
+      [1] 1
+      
+      [[2]]$data[[3]]$upper
+      [1] 3
+      
+      
+      
+      [[2]]$name
+      [1] ""
+      
+      [[2]]$color
+      [1] "#116875"
+      
+      [[2]]$type
+      [1] "scatter"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$scatter
+      $plotOptions$scatter$marker
+      $plotOptions$scatter$marker$symbol
+      [1] "diamond"
+      
+      $plotOptions$scatter$marker$radius
+      [1] 4
+      
+      
+      
+      $plotOptions$errorbar
+      $plotOptions$errorbar$whiskerLength
+      [1] "50%"
+      
+      $plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
+      
+      
+      
+
+---
+
+    Code
+      forest_plot_highcharts(df = df, x_var = "subgroup", y_var = "or", y_lower = "lower",
+        y_upper = "upper", reference_line = 1, log_scale = TRUE, other_vars = list(
+          Observationer = "n"), arrange_by = "or")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "scatter"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      $chart$height
+      [1] 276.8
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "C" "A" "B"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 1
+      
+      [[1]]$data[[1]]$high
+      [1] 3
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 1
+      
+      [[1]]$data[[2]]$high
+      [1] 2
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$low
+      [1] 0
+      
+      [[1]]$data[[3]]$high
+      [1] 1
+      
+      
+      
+      [[1]]$name
+      [1] "Konfidensintervall"
+      
+      [[1]]$color
+      [1] "#051F23"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 2
+      
+      [[2]]$data[[1]]$lower
+      [1] 1
+      
+      [[2]]$data[[1]]$upper
+      [1] 3
+      
+      [[2]]$data[[1]]$n
+      [1] 45
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 1
+      
+      [[2]]$data[[2]]$lower
+      [1] 1
+      
+      [[2]]$data[[2]]$upper
+      [1] 2
+      
+      [[2]]$data[[2]]$n
+      [1] 100
+      
+      
+      [[2]]$data[[3]]
+      [[2]]$data[[3]]$y
+      [1] 1
+      
+      [[2]]$data[[3]]$lower
+      [1] 0
+      
+      [[2]]$data[[3]]$upper
+      [1] 1
+      
+      [[2]]$data[[3]]$n
+      [1] 80
+      
+      
+      
+      [[2]]$name
+      [1] ""
+      
+      [[2]]$color
+      [1] "#116875"
+      
+      [[2]]$type
+      [1] "scatter"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$plotLines
+      $yAxis$plotLines[[1]]
+      $yAxis$plotLines[[1]]$value
+      [1] 1
+      
+      $yAxis$plotLines[[1]]$width
+      [1] 2
+      
+      $yAxis$plotLines[[1]]$dashStyle
+      [1] "Dash"
+      
+      
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      $yAxis$type
+      [1] "logarithmic"
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b><br>Observationer: <b>{point.n}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$scatter
+      $plotOptions$scatter$marker
+      $plotOptions$scatter$marker$symbol
+      [1] "diamond"
+      
+      $plotOptions$scatter$marker$radius
+      [1] 4
+      
+      
+      
+      $plotOptions$errorbar
+      $plotOptions$errorbar$whiskerLength
+      [1] "50%"
+      
+      $plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
+      
+      
+      
+
+---
+
+    Code
+      res
+    Output
+      [[1]]
+      [[1]]$title
+      [[1]]$title$text
+      [1] "Male"
+      
+      
+      [[1]]$chart
+      [[1]]$chart$type
+      [1] "scatter"
+      
+      [[1]]$chart$inverted
+      [1] TRUE
+      
+      [[1]]$chart$height
+      [1] 231.2
+      
+      
+      [[1]]$xAxis
+      [[1]]$xAxis$categories
+      [1] "A" "B"
+      
+      [[1]]$xAxis$labels
+      [[1]]$xAxis$labels$style
+      [[1]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$xAxis$title
+      [[1]]$xAxis$title$style
+      [[1]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      [[1]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 1
+      
+      [[1]]$data[[1]]$high
+      [1] 2
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 0
+      
+      [[1]]$data[[2]]$high
+      [1] 1
+      
+      
+      
+      [[1]]$name
+      [1] "Konfidensintervall"
+      
+      [[1]]$color
+      [1] "#051F23"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 1
+      
+      [[2]]$data[[1]]$lower
+      [1] 1
+      
+      [[2]]$data[[1]]$upper
+      [1] 2
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 1
+      
+      [[2]]$data[[2]]$lower
+      [1] 0
+      
+      [[2]]$data[[2]]$upper
+      [1] 1
+      
+      
+      
+      [[2]]$name
+      [1] ""
+      
+      [[2]]$color
+      [1] "#116875"
+      
+      [[2]]$type
+      [1] "scatter"
+      
+      
+      
+      [[1]]$legend
+      [[1]]$legend$enabled
+      [1] FALSE
+      
+      [[1]]$legend$itemStyle
+      [[1]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$yAxis
+      [[1]]$yAxis$labels
+      [[1]]$yAxis$labels$format
+      [1] "{value}"
+      
+      [[1]]$yAxis$labels$style
+      [[1]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[1]]$yAxis$title
+      [[1]]$yAxis$title$style
+      [[1]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      [[1]]$tooltip
+      [[1]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b>"
+      
+      
+      [[1]]$plotOptions
+      [[1]]$plotOptions$scatter
+      [[1]]$plotOptions$scatter$marker
+      [[1]]$plotOptions$scatter$marker$symbol
+      [1] "diamond"
+      
+      [[1]]$plotOptions$scatter$marker$radius
+      [1] 4
+      
+      
+      
+      [[1]]$plotOptions$errorbar
+      [[1]]$plotOptions$errorbar$whiskerLength
+      [1] "50%"
+      
+      [[1]]$plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      [[1]]$plotOptions$column
+      [[1]]$plotOptions$column$groupPadding
+      [1] 0.08
+      
+      [[1]]$plotOptions$column$pointPadding
+      [1] 0.02
+      
+      
+      
+      
+      [[2]]
+      [[2]]$title
+      [[2]]$title$text
+      [1] "Female"
+      
+      
+      [[2]]$chart
+      [[2]]$chart$type
+      [1] "scatter"
+      
+      [[2]]$chart$inverted
+      [1] TRUE
+      
+      [[2]]$chart$height
+      [1] 231.2
+      
+      
+      [[2]]$xAxis
+      [[2]]$xAxis$categories
+      [1] "A" "B"
+      
+      [[2]]$xAxis$labels
+      [[2]]$xAxis$labels$style
+      [[2]]$xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$xAxis$title
+      [[2]]$xAxis$title$style
+      [[2]]$xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      [[2]]$series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 1
+      
+      [[1]]$data[[1]]$high
+      [1] 1
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 1
+      
+      [[1]]$data[[2]]$high
+      [1] 1
+      
+      
+      
+      [[1]]$name
+      [1] "Konfidensintervall"
+      
+      [[1]]$color
+      [1] "#051F23"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 1
+      
+      [[2]]$data[[1]]$lower
+      [1] 1
+      
+      [[2]]$data[[1]]$upper
+      [1] 1
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 1
+      
+      [[2]]$data[[2]]$lower
+      [1] 1
+      
+      [[2]]$data[[2]]$upper
+      [1] 1
+      
+      
+      
+      [[2]]$name
+      [1] ""
+      
+      [[2]]$color
+      [1] "#116875"
+      
+      [[2]]$type
+      [1] "scatter"
+      
+      
+      
+      [[2]]$legend
+      [[2]]$legend$enabled
+      [1] FALSE
+      
+      [[2]]$legend$itemStyle
+      [[2]]$legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$yAxis
+      [[2]]$yAxis$labels
+      [[2]]$yAxis$labels$format
+      [1] "{value}"
+      
+      [[2]]$yAxis$labels$style
+      [[2]]$yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      [[2]]$yAxis$title
+      [[2]]$yAxis$title$style
+      [[2]]$yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      [[2]]$tooltip
+      [[2]]$tooltip$pointFormat
+      [1] "<b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b>"
+      
+      
+      [[2]]$plotOptions
+      [[2]]$plotOptions$scatter
+      [[2]]$plotOptions$scatter$marker
+      [[2]]$plotOptions$scatter$marker$symbol
+      [1] "diamond"
+      
+      [[2]]$plotOptions$scatter$marker$radius
+      [1] 4
+      
+      
+      
+      [[2]]$plotOptions$errorbar
+      [[2]]$plotOptions$errorbar$whiskerLength
+      [1] "50%"
+      
+      [[2]]$plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      [[2]]$plotOptions$column
+      [[2]]$plotOptions$column$groupPadding
+      [1] 0.08
+      
+      [[2]]$plotOptions$column$pointPadding
+      [1] 0.02
+      
+      
+      
+      
+
+---
+
+    Code
+      res
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "scatter"
+      
+      $chart$inverted
+      [1] TRUE
+      
+      $chart$height
+      [1] 363.2
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "A" "B" "C"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 0.7
+      
+      [[1]]$data[[1]]$high
+      [1] 1.4
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 0.6
+      
+      [[1]]$data[[2]]$high
+      [1] 1.3
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$low
+      [1] 1.1
+      
+      [[1]]$data[[3]]$high
+      [1] 2.9
+      
+      
+      
+      [[1]]$name
+      [1] "Female"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      [[1]]$showInLegend
+      [1] FALSE
+      
+      [[1]]$pointPlacement
+      [1] -0.3
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$low
+      [1] 0.9
+      
+      [[2]]$data[[1]]$high
+      [1] 1.6
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$low
+      [1] 0.5
+      
+      [[2]]$data[[2]]$high
+      [1] 1.1
+      
+      
+      [[2]]$data[[3]]
+      [[2]]$data[[3]]$low
+      [1] 1.3
+      
+      [[2]]$data[[3]]$high
+      [1] 3.4
+      
+      
+      
+      [[2]]$name
+      [1] "Male"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      [[2]]$type
+      [1] "errorbar"
+      
+      [[2]]$enableMouseTracking
+      [1] FALSE
+      
+      [[2]]$showInLegend
+      [1] FALSE
+      
+      [[2]]$pointPlacement
+      [1] 0.3
+      
+      
+      [[3]]
+      [[3]]$data
+      [[3]]$data[[1]]
+      [[3]]$data[[1]]$y
+      [1] 1
+      
+      [[3]]$data[[1]]$lower
+      [1] 0.7
+      
+      [[3]]$data[[1]]$upper
+      [1] 1.4
+      
+      
+      [[3]]$data[[2]]
+      [[3]]$data[[2]]$y
+      [1] 0.9
+      
+      [[3]]$data[[2]]$lower
+      [1] 0.6
+      
+      [[3]]$data[[2]]$upper
+      [1] 1.3
+      
+      
+      [[3]]$data[[3]]
+      [[3]]$data[[3]]$y
+      [1] 1.8
+      
+      [[3]]$data[[3]]$lower
+      [1] 1.1
+      
+      [[3]]$data[[3]]$upper
+      [1] 2.9
+      
+      
+      
+      [[3]]$name
+      [1] "Female"
+      
+      [[3]]$color
+      [1] "#116875"
+      
+      [[3]]$type
+      [1] "scatter"
+      
+      [[3]]$pointPlacement
+      [1] -0.3
+      
+      
+      [[4]]
+      [[4]]$data
+      [[4]]$data[[1]]
+      [[4]]$data[[1]]$y
+      [1] 1.2
+      
+      [[4]]$data[[1]]$lower
+      [1] 0.9
+      
+      [[4]]$data[[1]]$upper
+      [1] 1.6
+      
+      
+      [[4]]$data[[2]]
+      [[4]]$data[[2]]$y
+      [1] 0.8
+      
+      [[4]]$data[[2]]$lower
+      [1] 0.5
+      
+      [[4]]$data[[2]]$upper
+      [1] 1.1
+      
+      
+      [[4]]$data[[3]]
+      [[4]]$data[[3]]$y
+      [1] 2.1
+      
+      [[4]]$data[[3]]$lower
+      [1] 1.3
+      
+      [[4]]$data[[3]]$upper
+      [1] 3.4
+      
+      
+      
+      [[4]]$name
+      [1] "Male"
+      
+      [[4]]$color
+      [1] "#FC5930"
+      
+      [[4]]$type
+      [1] "scatter"
+      
+      [[4]]$pointPlacement
+      [1] 0.3
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      $legend$title
+      $legend$title$text
+      [1] "Kön"
+      
+      $legend$title$style
+      $legend$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$scatter
+      $plotOptions$scatter$marker
+      $plotOptions$scatter$marker$symbol
+      [1] "diamond"
+      
+      $plotOptions$scatter$marker$radius
+      [1] 4
+      
+      
+      
+      $plotOptions$errorbar
+      $plotOptions$errorbar$whiskerLength
+      [1] "50%"
+      
+      $plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      $plotOptions$column
+      $plotOptions$column$groupPadding
+      [1] 0.08
+      
+      $plotOptions$column$pointPadding
+      [1] 0.02
+      
+      
+      
+

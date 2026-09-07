@@ -35,7 +35,10 @@ box_plot_highcharts(
   horizontal_line = NULL,
   fill_var_order = NULL,
   n_decimals = 0,
-  x_var_order = NULL
+  x_var_order = NULL,
+  arrange_by = NULL,
+  arrange_desc = TRUE,
+  arrange_by_fill = NULL
 )
 }
 \arguments{
@@ -106,6 +109,12 @@ the levels}
 \item{n_decimals}{number of decimals to round numbers to}
 
 \item{x_var_order}{the order the x-variable should be displayed in}
+
+\item{arrange_by}{column to sort by}
+
+\item{arrange_desc}{to arrange descending}
+
+\item{arrange_by_fill}{what value in \code{fill_var} that sort be sorted by}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

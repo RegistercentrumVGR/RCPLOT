@@ -4211,6 +4211,9 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] 600
+      
       
       $xAxis
       $xAxis$categories
@@ -4355,6 +4358,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] 600
       
       
       $xAxis
@@ -4608,6 +4614,9 @@
       $chart$inverted
       [1] FALSE
       
+      $chart$height
+      [1] 600
+      
       
       $xAxis
       $xAxis$categories
@@ -4728,6 +4737,9 @@
       
       $chart$inverted
       [1] FALSE
+      
+      $chart$height
+      [1] 600
       
       
       $xAxis

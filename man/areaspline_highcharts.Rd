@@ -24,7 +24,8 @@ areaspline_highcharts(
   group_color = lifecycle::deprecated(),
   legend_title = NULL,
   text_size = NULL,
-  n_decimals = 0
+  n_decimals = 0,
+  plot_height = NULL
 )
 }
 \arguments{
@@ -72,6 +73,8 @@ or \code{"percent"}}
 \item{text_size}{size of text, will be interperted as pixels}
 
 \item{n_decimals}{number of decimals to round numbers to}
+
+\item{plot_height}{height of plot}
 }
 \value{
 highcharts config

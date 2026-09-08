@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.9.0
+Version: 1.9.1
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",
@@ -31,7 +31,7 @@ Imports:
     ggplot2,
     gridExtra,
     scales,
-    rlang (>= 0.1.2),
+    rlang,
     RColorBrewer,
     sf,
     checkmate,

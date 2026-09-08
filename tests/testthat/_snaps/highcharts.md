@@ -2883,6 +2883,13 @@
       [1] 8
       
       
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
       
 
 ---
@@ -3132,6 +3139,13 @@
       [1] 8
       
       
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
       
 
 ---
@@ -3327,6 +3341,13 @@
       [1] 8
       
       
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
       
 
 ---
@@ -3493,6 +3514,13 @@
       [1] 8
       
       
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
       
 
 ---
@@ -3639,6 +3667,13 @@
       $plotOptions$series
       $plotOptions$series$pointWidth
       [1] 8
+      
+      
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
       
       
       
@@ -4058,6 +4093,13 @@
       [1] 8
       
       
+      [[1]]$plotOptions$line
+      [[1]]$plotOptions$line$marker
+      [[1]]$plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
       
       
       [[2]]
@@ -4189,6 +4231,13 @@
       [[2]]$plotOptions$series
       [[2]]$plotOptions$series$pointWidth
       [1] 8
+      
+      
+      [[2]]$plotOptions$line
+      [[2]]$plotOptions$line$marker
+      [[2]]$plotOptions$line$marker$enabled
+      [1] TRUE
+      
       
       
       
@@ -4333,6 +4382,11 @@
       $plotOptions$areaspline
       $plotOptions$areaspline$fillOpacity
       [1] 0.5
+      
+      $plotOptions$areaspline$marker
+      $plotOptions$areaspline$marker$enabled
+      [1] TRUE
+      
       
       
       $plotOptions$series
@@ -4588,6 +4642,11 @@
       $plotOptions$areaspline$fillOpacity
       [1] 0.5
       
+      $plotOptions$areaspline$marker
+      $plotOptions$areaspline$marker$enabled
+      [1] TRUE
+      
+      
       
       $plotOptions$series
       $plotOptions$series$pointWidth
@@ -4711,6 +4770,11 @@
       $plotOptions$areaspline
       $plotOptions$areaspline$fillOpacity
       [1] 0.5
+      
+      $plotOptions$areaspline$marker
+      $plotOptions$areaspline$marker$enabled
+      [1] TRUE
+      
       
       
       $plotOptions$series
@@ -4875,6 +4939,11 @@
       $plotOptions$areaspline
       $plotOptions$areaspline$fillOpacity
       [1] 0.5
+      
+      $plotOptions$areaspline$marker
+      $plotOptions$areaspline$marker$enabled
+      [1] TRUE
+      
       
       
       $plotOptions$series

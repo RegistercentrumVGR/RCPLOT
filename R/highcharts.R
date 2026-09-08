@@ -322,6 +322,39 @@ bar_plot_highcharts <- function(df,
   return(out)
 }
 
+#' Build a highcharts `marker` plotOptions entry
+#'
+#' @param marker_enabled `TRUE`, `FALSE`, or `"enable_on_hover"` (markers are
+#' hidden until the point is hovered, keeping dense series uncluttered while
+#' still letting the tooltip reveal the exact point)
+#' @param marker_size radius of the marker, `NULL` to use the highcharts
+#' default
+#'
+#' @return a list suitable for `plotOptions$<type>$marker`
+#' @noRd
+marker_options <- function(marker_enabled, marker_size) {
+
+  checkmate::assert(
+    checkmate::check_flag(marker_enabled),
+    checkmate::check_choice(marker_enabled, "enable_on_hover")
+  )
+  checkmate::assert(
+    checkmate::check_number(marker_size, lower = 0),
+    checkmate::check_null(marker_size)
+  )
+
+  if (identical(marker_enabled, "enable_on_hover")) {
+    list(
+      enabled = FALSE,
+      states = list(
+        hover = purrr::compact(list(enabled = TRUE, radius = marker_size))
+      )
+    )
+  } else {
+    purrr::compact(list(enabled = marker_enabled, radius = marker_size))
+  }
+}
+
 #' Highchart Line plot
 #'
 #' creates a line plot in highchart, outputs config for highchart
@@ -360,6 +393,12 @@ bar_plot_highcharts <- function(df,
 #' @param surv if `TRUE`, draws the line as a right-continuous step function
 #' (as for a Kaplan-Meier curve). Intended to be used together with
 #' `proportion = TRUE`; a warning is issued otherwise
+#' @param marker_enabled `TRUE`, `FALSE`, or `"enable_on_hover"` to control
+#' whether point markers are shown; `"enable_on_hover"` hides them until a
+#' point is hovered, which keeps series with many points from looking
+#' cluttered while still letting users hover to see the tooltip
+#' @param marker_size radius of the point markers, `NULL` to use the
+#' highcharts default
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -387,7 +426,9 @@ line_plot_highcharts <- function(df,
                                  text_size = NULL,
                                  horizontal_line = NULL,
                                  n_decimals = rlang::missing_arg(),
-                                 surv = FALSE) {
+                                 surv = FALSE,
+                                 marker_enabled = TRUE,
+                                 marker_size = NULL) {
 
   checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
 
@@ -451,7 +492,9 @@ line_plot_highcharts <- function(df,
         text_size = text_size,
         horizontal_line = horizontal_line,
         n_decimals = n_decimals,
-        surv = surv
+        surv = surv,
+        marker_enabled = marker_enabled,
+        marker_size = marker_size
       )
     ))
   }
@@ -502,6 +545,7 @@ line_plot_highcharts <- function(df,
 
   out$chart$height <- plot_height %||% 600
 
+  out$plotOptions$line$marker <- marker_options(marker_enabled, marker_size)
 
   if (surv) {
     out$plotOptions$line$step <- "right"
@@ -728,6 +772,12 @@ box_plot_highcharts <- function(df,
 #' @param text_size size of text, will be interperted as pixels
 #' @param n_decimals number of decimals to round numbers to
 #' @param plot_height height of plot
+#' @param marker_enabled `TRUE`, `FALSE`, or `"enable_on_hover"` to control
+#' whether point markers are shown; `"enable_on_hover"` hides them until a
+#' point is hovered, which keeps series with many points from looking
+#' cluttered while still letting users hover to see the tooltip
+#' @param marker_size radius of the point markers, `NULL` to use the
+#' highcharts default
 #'
 #' @return highcharts config
 #' @export
@@ -751,7 +801,9 @@ areaspline_highcharts <- function(df,
                                   legend_title = NULL,
                                   text_size = NULL,
                                   n_decimals = 0,
-                                  plot_height = NULL) {
+                                  plot_height = NULL,
+                                  marker_enabled = TRUE,
+                                  marker_size = NULL) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
 
@@ -803,6 +855,8 @@ areaspline_highcharts <- function(df,
   if (!is.null(stacking)) {
     plot_options$areaspline$stacking <- stacking
   }
+
+  plot_options$areaspline$marker <- marker_options(marker_enabled, marker_size)
 
   out <- c(
     out,

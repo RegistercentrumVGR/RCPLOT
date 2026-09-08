@@ -25,7 +25,9 @@ areaspline_highcharts(
   legend_title = NULL,
   text_size = NULL,
   n_decimals = 0,
-  plot_height = NULL
+  plot_height = NULL,
+  marker_enabled = TRUE,
+  marker_size = NULL
 )
 }
 \arguments{
@@ -75,6 +77,14 @@ or \code{"percent"}}
 \item{n_decimals}{number of decimals to round numbers to}
 
 \item{plot_height}{height of plot}
+
+\item{marker_enabled}{\code{TRUE}, \code{FALSE}, or \code{"enable_on_hover"} to control
+whether point markers are shown; \code{"enable_on_hover"} hides them until a
+point is hovered, which keeps series with many points from looking
+cluttered while still letting users hover to see the tooltip}
+
+\item{marker_size}{radius of the point markers, \code{NULL} to use the
+highcharts default}
 }
 \value{
 highcharts config

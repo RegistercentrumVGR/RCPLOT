@@ -29,7 +29,9 @@ line_plot_highcharts(
   text_size = NULL,
   horizontal_line = NULL,
   n_decimals = rlang::missing_arg(),
-  surv = FALSE
+  surv = FALSE,
+  marker_enabled = TRUE,
+  marker_size = NULL
 )
 }
 \arguments{
@@ -91,6 +93,14 @@ when \code{proportion = TRUE} and \code{3} when \code{proportion = FALSE}}
 \item{surv}{if \code{TRUE}, draws the line as a right-continuous step function
 (as for a Kaplan-Meier curve). Intended to be used together with
 \code{proportion = TRUE}; a warning is issued otherwise}
+
+\item{marker_enabled}{\code{TRUE}, \code{FALSE}, or \code{"enable_on_hover"} to control
+whether point markers are shown; \code{"enable_on_hover"} hides them until a
+point is hovered, which keeps series with many points from looking
+cluttered while still letting users hover to see the tooltip}
+
+\item{marker_size}{radius of the point markers, \code{NULL} to use the
+highcharts default}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

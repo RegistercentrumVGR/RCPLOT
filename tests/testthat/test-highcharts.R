@@ -1344,3 +1344,202 @@ test_that("order_x_var works", {
   expect_equal(levels(result_extra$x), c("1", "2", "3", "4"))
   expect_equal(as.character(result_extra$x), c("1", "2", "3"))
 })
+
+test_that("forest_plot_highcharts works", {
+  df <- data.frame(
+    subgroup = c("A", "B", "C"),
+    or = c(1.2, 0.8, 2.1),
+    lower = c(0.9, 0.5, 1.3),
+    upper = c(1.6, 1.1, 3.4),
+    n = c(100, 80, 45)
+  )
+
+  forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper"
+  ) |>
+    expect_snapshot()
+
+  forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper",
+    reference_line = 1,
+    log_scale = TRUE,
+    other_vars = list(Observationer = "n"),
+    arrange_by = "or"
+  ) |>
+    expect_snapshot()
+
+  # errorbar and scatter series stay aligned by category after sorting
+  res <- forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper",
+    arrange_by = "or",
+    n_decimals = 1
+  )
+  expect_equal(as.character(res$xAxis$categories), c("C", "A", "B"))
+  ci_data <- purrr::map_dbl(res$series[[1]]$data, "low")
+  point_data <- purrr::map_dbl(res$series[[2]]$data, "y")
+  expect_equal(ci_data, c(1.3, 0.9, 0.5))
+  expect_equal(point_data, c(2.1, 1.2, 0.8))
+
+  # proportion works
+  df <- data.frame(
+    subgroup = c("A", "B", "C"),
+    prop = c(0.4, 0.6, 0.25),
+    lower = c(0.3, 0.5, 0.15),
+    upper = c(0.5, 0.7, 0.35)
+  )
+
+  res <- forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "prop",
+    y_lower = "lower",
+    y_upper = "upper",
+    proportion = TRUE
+  )
+
+  expect_equal(res$yAxis$min, 0)
+  expect_equal(res$yAxis$max, 100)
+  expect_equal(res$yAxis$labels$format, "{value}%")
+
+  ci_low <- purrr::map_dbl(res$series[[1]]$data, "low")
+  ci_high <- purrr::map_dbl(res$series[[1]]$data, "high")
+  point_data <- purrr::map_dbl(res$series[[2]]$data, "y")
+  expect_equal(ci_low, c(30, 50, 15))
+  expect_equal(ci_high, c(50, 70, 35))
+  expect_equal(point_data, c(40, 60, 25))
+
+  # scale_percentage = FALSE keeps the point estimate and CI on the 0-1 scale
+  res_unscaled <- forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "prop",
+    y_lower = "lower",
+    y_upper = "upper",
+    proportion = TRUE,
+    scale_percentage = FALSE,
+    n_decimals = 2
+  )
+
+  ci_low_unscaled <- purrr::map_dbl(res_unscaled$series[[1]]$data, "low")
+  ci_high_unscaled <- purrr::map_dbl(res_unscaled$series[[1]]$data, "high")
+  point_data_unscaled <- purrr::map_dbl(res_unscaled$series[[2]]$data, "y")
+  expect_equal(ci_low_unscaled, c(0.3, 0.5, 0.15))
+  expect_equal(ci_high_unscaled, c(0.5, 0.7, 0.35))
+  expect_equal(point_data_unscaled, c(0.4, 0.6, 0.25))
+
+  expect_error(
+    forest_plot_highcharts(
+      df = df,
+      x_var = "subgroup",
+      y_var = "prop",
+      y_lower = "lower",
+      y_upper = "upper",
+      proportion = TRUE,
+      log_scale = TRUE
+    )
+  )
+
+  # facet_by works
+  df <- data.frame(
+    subgroup = rep(c("A", "B"), 2),
+    grp = rep(c("Male", "Female"), each = 2),
+    or = c(1.2, 0.8, 1.0, 0.9),
+    lower = c(0.9, 0.5, 0.7, 0.6),
+    upper = c(1.6, 1.1, 1.4, 1.3)
+  )
+
+  res <- forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper",
+    facet_by = "grp"
+  )
+
+  expect_length(res, 2)
+  expect_snapshot(res)
+
+  # color_var works
+  df <- data.frame(
+    subgroup = rep(c("A", "B", "C"), 2),
+    grp = rep(c("Male", "Female"), each = 3),
+    or = c(1.2, 0.8, 2.1, 1.0, 0.9, 1.8),
+    lower = c(0.9, 0.5, 1.3, 0.7, 0.6, 1.1),
+    upper = c(1.6, 1.1, 3.4, 1.4, 1.3, 2.9)
+  )
+
+  res <- forest_plot_highcharts(
+    df = df,
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper",
+    color_var = "grp",
+    legend_title = "Kön",
+    n_decimals = 2
+  )
+
+  res |>
+    expect_snapshot()
+
+  # one point series and one (hidden from legend) errorbar series per group,
+  # both sharing the same color so they read as belonging together
+  expect_length(res$series, 4)
+  expect_setequal(
+    purrr::map_chr(res$series, "type"),
+    c("errorbar", "scatter")
+  )
+  expect_equal(res$legend$title$text, "Kön")
+
+  point_male <- purrr::keep(
+    res$series, ~ .x$name == "Male" && .x$type == "scatter"
+  )[[1]]
+  ci_male <- purrr::keep(
+    res$series, ~ .x$name == "Male" && .x$type == "errorbar"
+  )[[1]]
+
+  expect_null(point_male$showInLegend)
+  expect_false(ci_male$showInLegend)
+  expect_equal(point_male$color, ci_male$color)
+  expect_equal(as.character(res$xAxis$categories), c("A", "B", "C"))
+  expect_equal(purrr::map_dbl(point_male$data, "y"), c(1.2, 0.8, 2.1))
+  expect_equal(purrr::map_dbl(ci_male$data, "low"), c(0.9, 0.5, 1.3))
+  expect_equal(purrr::map_dbl(ci_male$data, "high"), c(1.6, 1.1, 3.4))
+
+  # each group's point and CI share a pointPlacement offset so they don't
+  # get drawn on top of each other within a shared x_var category
+  expect_equal(point_male$pointPlacement, ci_male$pointPlacement)
+  point_female <- purrr::keep(
+    res$series, ~ .x$name == "Female" && .x$type == "scatter"
+  )[[1]]
+  expect_true(point_male$pointPlacement != point_female$pointPlacement)
+
+  # an incomplete color_var/x_var grid is filled in as a gap rather than
+  # silently misaligning the two series
+  res_missing <- forest_plot_highcharts(
+    df = df[-6, ],
+    x_var = "subgroup",
+    y_var = "or",
+    y_lower = "lower",
+    y_upper = "upper",
+    color_var = "grp"
+  )
+  point_female <- purrr::keep(
+    res_missing$series, ~ .x$name == "Female" && .x$type == "scatter"
+  )[[1]]
+  expect_length(point_female$data, 3)
+  expect_null(point_female$data[[3]]$y)
+})

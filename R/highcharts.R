@@ -500,11 +500,8 @@ line_plot_highcharts <- function(df,
     )
   )
 
-  if (!is.null(plot_height)) {
-    out$chart$height <- plot_height
-  } else {
-    out$chart$height <- 600
-  }
+  out$chart$height <- plot_height %||% 600
+
 
   if (surv) {
     out$plotOptions$line$step <- "right"
@@ -752,7 +749,8 @@ areaspline_highcharts <- function(df,
                                   group_color = lifecycle::deprecated(),
                                   legend_title = NULL,
                                   text_size = NULL,
-                                  n_decimals = 0) {
+                                  n_decimals = 0,
+                                  plot_height = NULL) {
 
   checkmate::assert_number(fill_opacity, lower = 0, upper = 1)
 
@@ -809,6 +807,8 @@ areaspline_highcharts <- function(df,
     out,
     list(plotOptions = plot_options)
   )
+
+  out$chart$height <- plot_height %||% 600
 
   return(out)
 }

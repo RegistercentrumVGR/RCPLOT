@@ -727,6 +727,7 @@ box_plot_highcharts <- function(df,
 #' @param legend_title title of the legend
 #' @param text_size size of text, will be interperted as pixels
 #' @param n_decimals number of decimals to round numbers to
+#' @param plot_height height of plot
 #'
 #' @return highcharts config
 #' @export

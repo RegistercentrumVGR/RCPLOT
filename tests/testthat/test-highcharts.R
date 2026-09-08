@@ -933,11 +933,18 @@ test_that("line_plot_highcharts marker_enabled works", {
   )
   expect_equal(
     res_hover$plotOptions$line$marker,
-    list(enabled = FALSE, states = list(hover = list(enabled = TRUE, radius = 6)))
+    list(
+      enabled = FALSE, states = list(hover = list(enabled = TRUE, radius = 6))
+    )
   )
 
   expect_error(
-    line_plot_highcharts(df, x_var = "year", y_var = "y", marker_enabled = "invalid")
+    line_plot_highcharts(
+      df,
+      x_var = "year",
+      y_var = "y",
+      marker_enabled = "invalid"
+    )
   )
 })
 
@@ -1174,15 +1181,21 @@ test_that("areaspline_highcharts works", {
   )
 
   # marker_enabled: default, disabled, and enable_on_hover
-  res_marker_default <- areaspline_highcharts(df, x_var = "year", y_var = "prop")
-  expect_equal(res_marker_default$plotOptions$areaspline$marker, list(enabled = TRUE))
+  res_marker_default <- areaspline_highcharts(
+    df, x_var = "year", y_var = "prop"
+  )
+  expect_equal(
+    res_marker_default$plotOptions$areaspline$marker, list(enabled = TRUE)
+  )
 
   res_marker_disabled <- areaspline_highcharts(
     df,
     x_var = "year", y_var = "prop",
     marker_enabled = FALSE
   )
-  expect_equal(res_marker_disabled$plotOptions$areaspline$marker, list(enabled = FALSE))
+  expect_equal(
+    res_marker_disabled$plotOptions$areaspline$marker, list(enabled = FALSE)
+  )
 
   res_marker_hover <- areaspline_highcharts(
     df,
@@ -1192,7 +1205,9 @@ test_that("areaspline_highcharts works", {
   )
   expect_equal(
     res_marker_hover$plotOptions$areaspline$marker,
-    list(enabled = FALSE, states = list(hover = list(enabled = TRUE, radius = 6)))
+    list(
+      enabled = FALSE, states = list(hover = list(enabled = TRUE, radius = 6))
+    )
   )
 
   expect_error(

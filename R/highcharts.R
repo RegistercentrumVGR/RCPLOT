@@ -554,6 +554,9 @@ line_plot_highcharts <- function(df,
 #' the levels
 #' @param n_decimals number of decimals to round numbers to
 #' @param x_var_order the order the x-variable should be displayed in
+#' @param arrange_by column to sort by
+#' @param arrange_desc to arrange descending
+#' @param arrange_by_fill what value in `fill_var` that sort be sorted by
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -587,7 +590,10 @@ box_plot_highcharts <- function(df,
                                 horizontal_line = NULL,
                                 fill_var_order = NULL,
                                 n_decimals = 0,
-                                x_var_order = NULL) {
+                                x_var_order = NULL,
+                                arrange_by = NULL,
+                                arrange_desc = TRUE,
+                                arrange_by_fill = NULL) {
 
   if (lifecycle::is_present(group_color)) {
     lifecycle::deprecate_warn(
@@ -637,7 +643,10 @@ box_plot_highcharts <- function(df,
         remove_value = remove_value,
         horizontal_line = horizontal_line,
         fill_var_order = fill_var_order,
-        n_decimals = n_decimals
+        n_decimals = n_decimals,
+        arrange_by = arrange_by,
+        arrange_desc = arrange_desc,
+        arrange_by_fill = arrange_by_fill
       )
     ))
   }
@@ -676,7 +685,10 @@ box_plot_highcharts <- function(df,
     remove_value = remove_value,
     horizontal_line = horizontal_line,
     group_var_order = fill_var_order,
-    n_decimals = n_decimals
+    n_decimals = n_decimals,
+    arrange_by = arrange_by,
+    arrange_desc = arrange_desc,
+    arrange_by_group_var = arrange_by_fill
   )
 
   out <- set_size_params(out,

@@ -909,6 +909,93 @@ test_that("line_plot_highcharts works", {
 
 })
 
+test_that("line_plot_highcharts with surv = TRUE thins redundant step points", {
+  df <- data.frame(
+    time = 1:10,
+    surv = c(1, 1, 0.9, 0.9, 0.9, 0.8, 0.8, 0.7, 0.7, 0.7)
+  )
+
+  res <- line_plot_highcharts(
+    df = df,
+    x_var = "time",
+    y_var = "surv",
+    surv = TRUE,
+    proportion = TRUE,
+    n_decimals = 0
+  )
+
+  # only rows where the (rounded) value changes, plus the last row, survive
+  expect_equal(
+    unlist(res$series[[1]]$data),
+    c(100, 90, 80, 70, 70)
+  )
+
+  # thinning can leave a group with a gap at another group's x-value, so
+  # nulls must be connected across for surv curves
+  expect_true(res$plotOptions$line$connectNulls)
+
+  # a group where the value never changes still keeps its first and last row
+  df_flat <- data.frame(
+    time = 1:5,
+    surv = 1,
+    grp = "a"
+  )
+
+  res_flat <- line_plot_highcharts(
+    df = df_flat,
+    x_var = "time",
+    y_var = "surv",
+    color_var = "grp",
+    surv = TRUE,
+    proportion = TRUE,
+    n_decimals = 0
+  )
+
+  expect_equal(unlist(res_flat$series[[1]]$data), c(100, 100))
+
+  # rounding-induced ties are also thinned away (rounding is done on the
+  # same scale make_series() ultimately rounds and displays, so a
+  # `proportion = TRUE` percentage tie only merges rows when the displayed
+  # percentages actually match, not just the raw 0-1 values)
+  df_round <- data.frame(
+    time = 1:4,
+    surv = c(0.901, 0.899, 0.850, 0.849)
+  )
+
+  res_round <- line_plot_highcharts(
+    df = df_round,
+    x_var = "time",
+    y_var = "surv",
+    surv = TRUE,
+    proportion = FALSE,
+    n_decimals = 1
+  )
+
+  expect_equal(unlist(res_round$series[[1]]$data), c(0.9, 0.8, 0.8))
+
+  # the same raw values are NOT tied once scaled to percentages, since they
+  # differ well beyond 1 decimal place once multiplied by 100
+  res_round_pct <- line_plot_highcharts(
+    df = df_round,
+    x_var = "time",
+    y_var = "surv",
+    surv = TRUE,
+    proportion = TRUE,
+    n_decimals = 1
+  )
+
+  expect_equal(
+    unlist(res_round_pct$series[[1]]$data),
+    c(90.1, 89.9, 85, 84.9)
+  )
+
+  # connectNulls is only meaningful/safe for surv curves, not line charts in
+  # general (see thin_step_curve() docs), so it must stay unset otherwise
+  res_non_surv <- line_plot_highcharts(df, x_var = "time", y_var = "surv")
+  expect_null(res_non_surv$plotOptions$line$connectNulls)
+
+})
+
 test_that("line_plot_highcharts marker_enabled works", {
   df <- data.frame(
     year = 2010:2020,

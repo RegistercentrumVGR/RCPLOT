@@ -512,6 +512,17 @@ line_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
+  if (surv) {
+    df <- minify_step_curve(
+      df = df,
+      x_var = x_var,
+      y_var = y_var,
+      group_vars = color_var,
+      n_decimals = n_decimals,
+      scale_factor = if (proportion && scale_percentage) 100 else 1
+    )
+  }
+
   out <- plot_highcharts(
     df = df,
     x_var = x_var,
@@ -549,11 +560,13 @@ line_plot_highcharts <- function(df,
 
   if (surv) {
     out$plotOptions$line$step <- "right"
+    out$plotOptions$line$connectNulls <- TRUE
   }
 
   return(out)
 
 }
+
 #' Highchart Box plot
 #'
 #' creates highchart box plot, outputs highchart config
@@ -1803,12 +1816,11 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 #' @param bar_size size of bars
 #' @param plot_height height of plot
 #' @param group_padding padding between bars
-set_size_params <- function(
-    out,
-    position,
-    bar_size = NULL,
-    plot_height = NULL,
-    group_padding = NULL) {
+set_size_params <- function(out,
+                            position,
+                            bar_size = NULL,
+                            plot_height = NULL,
+                            group_padding = NULL) {
 
   # Antal värden på x-axeln
   n_x_axis <- length(out$xAxis$categories)
@@ -1914,11 +1926,10 @@ set_size_params <- function(
 #' @param total_var variable that contains the total
 #' @param x_var the variable in the x-axis
 #' @param break_total if there should be a break for the total
-add_total_label <- function(
-    df,
-    total_var = "total",
-    x_var = NULL,
-    break_total = FALSE) {
+add_total_label <- function(df,
+                            total_var = "total",
+                            x_var = NULL,
+                            break_total = FALSE) {
   checkmate::assert_choice(total_var, colnames(df))
   checkmate::assert_choice(x_var, colnames(df))
 
@@ -1960,9 +1971,8 @@ add_total_label <- function(
 #'
 #' @param out config
 #' @param text_size size of text, will be interperted as pixel
-set_text_size <- function(
-    out,
-    text_size = NULL) {
+set_text_size <- function(out,
+                          text_size = NULL) {
 
   if (is.null(text_size)) {
     text_size <- 14
@@ -2029,4 +2039,52 @@ order_x_var <- function(df, x_var = NULL, order = NULL) {
       !!x_var := factor(.data[[x_var]], levels = order)
     ) |>
     dplyr::arrange(.data[[x_var]])
+}
+
+#' Minify a right-continuous step curve for plotting
+#'
+#' A right-step curve (e.g. a Kaplan-Meier curve) only visually changes at
+#' the rows where the (rounded) `y_var` value differs from the previous row,
+#' so intermediate rows that repeat the same rounded value can be dropped
+#' without changing how the curve is rendered. This keeps the first row and
+#' last row of each `group_vars` group, plus every row where the rounded
+#' `y_var` differs from the previous row within that group.
+#'
+#' @param df data
+#' @param x_var x-axis variable, used to order rows within a group
+#' @param y_var y-axis variable
+#' @param group_vars variables identifying a series, or `NULL` for a single
+#' series
+#' @param n_decimals number of decimals `y_var` is rounded to before
+#' comparing rows
+#' @param scale_factor factor `y_var` is multiplied by before rounding,
+#' matching the scaling `make_series()` applies (e.g. `100` when
+#' `proportion` and `scale_percentage` are both `TRUE`) so that rows are
+#' only merged when they'd actually round to the same displayed value
+#'
+#' @return `df`, with redundant rows removed
+minify_step_curve <- function(df,
+                              x_var,
+                              y_var,
+                              group_vars,
+                              n_decimals,
+                              scale_factor = 1) {
+
+  group_vars <- group_vars %||% character(0)
+
+  df |>
+    dplyr::mutate(
+      .rc_y_rounded = round(.data[[y_var]] * scale_factor, n_decimals)
+    ) |>
+    dplyr::group_by(dplyr::across(dplyr::all_of(group_vars))) |>
+    dplyr::arrange(.data[[x_var]], .by_group = TRUE) |>
+    dplyr::filter(
+      dplyr::row_number() == 1 |
+        dplyr::row_number() == dplyr::n() |
+        is.na(.data$.rc_y_rounded) |
+        is.na(dplyr::lag(.data$.rc_y_rounded)) |
+        .data$.rc_y_rounded != dplyr::lag(.data$.rc_y_rounded)
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::select(-".rc_y_rounded")
 }

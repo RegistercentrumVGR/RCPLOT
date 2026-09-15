@@ -3678,6 +3678,245 @@
       
       
 
+# line_plot_highcharts error bars work
+
+    Code
+      res
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "line"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] 600
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "2010" "2011" "2012" "2013" "2014" "2015"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 4
+      
+      [[1]]$data[[1]]$high
+      [1] 6
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 5
+      
+      [[1]]$data[[2]]$high
+      [1] 7
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$low
+      [1] 6
+      
+      [[1]]$data[[3]]$high
+      [1] 8
+      
+      
+      [[1]]$data[[4]]
+      [[1]]$data[[4]]$low
+      [1] 5
+      
+      [[1]]$data[[4]]$high
+      [1] 7
+      
+      
+      [[1]]$data[[5]]
+      [[1]]$data[[5]]$low
+      [1] 7
+      
+      [[1]]$data[[5]]$high
+      [1] 9
+      
+      
+      [[1]]$data[[6]]
+      [[1]]$data[[6]]$low
+      [1] 8
+      
+      [[1]]$data[[6]]$high
+      [1] 10
+      
+      
+      
+      [[1]]$name
+      [1] "Konfidensintervall"
+      
+      [[1]]$color
+      [1] "#051F23"
+      
+      [[1]]$type
+      [1] "errorbar"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$y
+      [1] 5
+      
+      [[2]]$data[[1]]$lower
+      [1] 4
+      
+      [[2]]$data[[1]]$upper
+      [1] 6
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$y
+      [1] 6
+      
+      [[2]]$data[[2]]$lower
+      [1] 5
+      
+      [[2]]$data[[2]]$upper
+      [1] 7
+      
+      
+      [[2]]$data[[3]]
+      [[2]]$data[[3]]$y
+      [1] 7
+      
+      [[2]]$data[[3]]$lower
+      [1] 6
+      
+      [[2]]$data[[3]]$upper
+      [1] 8
+      
+      
+      [[2]]$data[[4]]
+      [[2]]$data[[4]]$y
+      [1] 6
+      
+      [[2]]$data[[4]]$lower
+      [1] 5
+      
+      [[2]]$data[[4]]$upper
+      [1] 7
+      
+      
+      [[2]]$data[[5]]
+      [[2]]$data[[5]]$y
+      [1] 8
+      
+      [[2]]$data[[5]]$lower
+      [1] 7
+      
+      [[2]]$data[[5]]$upper
+      [1] 9
+      
+      
+      [[2]]$data[[6]]
+      [[2]]$data[[6]]$y
+      [1] 9
+      
+      [[2]]$data[[6]]$lower
+      [1] 8
+      
+      [[2]]$data[[6]]$upper
+      [1] 10
+      
+      
+      
+      [[2]]$name
+      [1] ""
+      
+      [[2]]$color
+      [1] "#116875"
+      
+      
+      
+      $legend
+      $legend$enabled
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis$title
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "<b>{point.y}</b><br>Nedre gräns: <b>{point.lower}</b><br>Övre gräns: <b>{point.upper}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
+      $plotOptions$errorbar
+      $plotOptions$errorbar$whiskerLength
+      [1] "100%"
+      
+      $plotOptions$errorbar$stemWidth
+      [1] 2
+      
+      
+      
+
 # box_plot_highcharts work
 
     Code
@@ -5380,7 +5619,7 @@
       
       $plotOptions$errorbar
       $plotOptions$errorbar$whiskerLength
-      [1] "50%"
+      [1] "100%"
       
       $plotOptions$errorbar$stemWidth
       [1] 2
@@ -5598,7 +5837,7 @@
       
       $plotOptions$errorbar
       $plotOptions$errorbar$whiskerLength
-      [1] "50%"
+      [1] "100%"
       
       $plotOptions$errorbar$stemWidth
       [1] 2
@@ -5771,7 +6010,7 @@
       
       [[1]]$plotOptions$errorbar
       [[1]]$plotOptions$errorbar$whiskerLength
-      [1] "50%"
+      [1] "100%"
       
       [[1]]$plotOptions$errorbar$stemWidth
       [1] 2
@@ -5939,7 +6178,7 @@
       
       [[2]]$plotOptions$errorbar
       [[2]]$plotOptions$errorbar$whiskerLength
-      [1] "50%"
+      [1] "100%"
       
       [[2]]$plotOptions$errorbar$stemWidth
       [1] 2
@@ -6245,7 +6484,7 @@
       
       $plotOptions$errorbar
       $plotOptions$errorbar$whiskerLength
-      [1] "50%"
+      [1] "100%"
       
       $plotOptions$errorbar$stemWidth
       [1] 2

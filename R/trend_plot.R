@@ -19,23 +19,22 @@
 #' @param ...              Additional arguments passed to [theme_rc()]
 #' @return                 ggplot object containing trend plot.
 #' @export
-trend_plot <- function(
-    df,
-    x_var,
-    y_var,
-    y_breaks = 5,
-    y_lim = c(54.9, 65.1),
-    x_breaks = 5,
-    y_lab = "Procent kvinnor",
-    x_lab = "\u00E5r",
-    title = NULL,
-    subtitle = NULL,
-    line_colors = NULL,
-    fill_colors = "#CADBD5",
-    line_size = 1,
-    point_size = 1,
-    percent_accuracy = 1,
-    ...) {
+trend_plot <- function(df,
+                       x_var,
+                       y_var,
+                       y_breaks = 5,
+                       y_lim = c(54.9, 65.1),
+                       x_breaks = 5,
+                       y_lab = "Procent kvinnor",
+                       x_lab = "\u00E5r",
+                       title = NULL,
+                       subtitle = NULL,
+                       line_colors = NULL,
+                       fill_colors = "#CADBD5",
+                       line_size = 1,
+                       point_size = 1,
+                       percent_accuracy = 1,
+                       ...) {
   lifecycle::deprecate_warn(
     when = "1.1.0", what = "trend_plot()", with = "line_plot_2()"
   )

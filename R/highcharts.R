@@ -1948,6 +1948,13 @@ set_size_params <- function(out,
                             plot_height = NULL,
                             group_padding = NULL) {
 
+  checkmate::assert_integerish(
+    group_padding,
+    lower = 0,
+    len = 1,
+    null.ok = TRUE
+  )
+
   # Antal värden på x-axeln
   n_x_axis <- length(out$xAxis$categories)
 
@@ -1963,7 +1970,7 @@ set_size_params <- function(out,
     target_bar_height <- 24
 
     #Padding
-    group_padding <- 0.08
+    group_padding_calc <- 0.08
     point_padding <- 0.02
 
     pixels_per_category <-
@@ -1979,7 +1986,7 @@ set_size_params <- function(out,
     #Applicera
     out$chart$height <- chart_height
 
-    out$plotOptions$column$groupPadding <- group_padding
+    out$plotOptions$column$groupPadding <- group_padding_calc
 
     out$plotOptions$column$pointPadding <- point_padding
 
@@ -1999,7 +2006,7 @@ set_size_params <- function(out,
 
     point_width <- max(4, min(32, point_width))
 
-    group_padding <-
+    group_padding_calc <-
       max(
         0.02,
         min(
@@ -2023,7 +2030,7 @@ set_size_params <- function(out,
       point_width
 
     out$plotOptions$column$groupPadding <-
-      group_padding
+      group_padding_calc
 
     out$plotOptions$column$pointPadding <-
       point_padding

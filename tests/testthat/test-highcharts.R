@@ -1588,6 +1588,31 @@ test_that("set_size_params works", {
   expect_equal(plt$plotOptions$column$pointPadding, 0.038)
   expect_equal(plt$plotOptions$series$pointWidth, 32)
   expect_equal(plt$chart$height, 650)
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "fill_var",
+      group_padding = 123
+    ) |>
+    purrr::pluck(
+      "plotOptions",
+      "column",
+      "groupPadding"
+    ) |>
+    expect_equal(123)
+
+  expect_error(
+    df |>
+      bar_plot_highcharts(
+        x_var = "x",
+        y_var = "y",
+        fill_var = "fill_var",
+        group_padding = "hambuga"
+      )
+  )
+
 })
 
 test_that("order_x_var works", {

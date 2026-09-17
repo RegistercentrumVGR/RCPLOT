@@ -1035,6 +1035,111 @@ test_that("line_plot_highcharts marker_enabled works", {
   )
 })
 
+test_that("line_plot_highcharts error bars work", {
+  df <- data.frame(
+    year = 2010:2015,
+    y = c(5, 6, 7, 6, 8, 9),
+    lower = c(4, 5, 6, 5, 7, 8),
+    upper = c(6, 7, 8, 7, 9, 10)
+  )
+
+  res <- line_plot_highcharts(
+    df = df,
+    x_var = "year",
+    y_var = "y",
+    y_lower = "lower",
+    y_upper = "upper"
+  )
+
+  expect_length(res$series, 2)
+  expect_equal(res$series[[1]]$type, "errorbar")
+  expect_equal(res$series[[1]]$name, "Konfidensintervall")
+  expect_false(res$series[[1]]$enableMouseTracking)
+  expect_null(res$series[[2]]$type)
+  expect_equal(
+    res$plotOptions$errorbar,
+    list(whiskerLength = "100%", stemWidth = 2)
+  )
+
+  ci_low <- purrr::map_dbl(res$series[[1]]$data, "low")
+  ci_high <- purrr::map_dbl(res$series[[1]]$data, "high")
+  expect_equal(ci_low, df$lower)
+  expect_equal(ci_high, df$upper)
+
+  expect_snapshot(res)
+
+  # without error bars nothing changes, stays backwards compatible
+  res_no_ci <- line_plot_highcharts(df = df, x_var = "year", y_var = "y")
+  expect_length(res_no_ci$series, 1)
+  expect_null(res_no_ci$plotOptions$errorbar)
+
+  # y_lower and y_upper must both be supplied or both left NULL
+  expect_error(
+    line_plot_highcharts(
+      df = df, x_var = "year", y_var = "y", y_lower = "lower"
+    )
+  )
+  expect_error(
+    line_plot_highcharts(
+      df = df, x_var = "year", y_var = "y", y_upper = "upper"
+    )
+  )
+
+  # proportion rescaling is applied consistently to the CI bounds, the point
+  # estimate, and the tooltip
+  df_prop <- data.frame(
+    year = 2010:2012,
+    y = c(0.5, 0.6, 0.55),
+    lower = c(0.4, 0.5, 0.45),
+    upper = c(0.6, 0.7, 0.65)
+  )
+
+  res_prop <- line_plot_highcharts(
+    df = df_prop,
+    x_var = "year",
+    y_var = "y",
+    y_lower = "lower",
+    y_upper = "upper",
+    proportion = TRUE
+  )
+
+  ci_low_prop <- purrr::map_dbl(res_prop$series[[1]]$data, "low")
+  ci_high_prop <- purrr::map_dbl(res_prop$series[[1]]$data, "high")
+  point_prop <- purrr::map_dbl(res_prop$series[[2]]$data, "y")
+  expect_equal(ci_low_prop, c(40, 50, 45))
+  expect_equal(ci_high_prop, c(60, 70, 65))
+  expect_equal(point_prop, c(50, 60, 55))
+
+  # color_var: one line + errorbar series pair per group, colors match
+  # between the pair, and only the line series shows in the legend
+  df_grp <- data.frame(
+    year = rep(2010:2012, each = 2),
+    y = c(5, 10, 6, 11, 7, 12),
+    lower = c(4, 9, 5, 10, 6, 11),
+    upper = c(6, 11, 7, 12, 8, 13),
+    grp = rep(c("A", "B"), 3)
+  )
+
+  res_grp <- line_plot_highcharts(
+    df = df_grp,
+    x_var = "year",
+    y_var = "y",
+    y_lower = "lower",
+    y_upper = "upper",
+    color_var = "grp"
+  )
+
+  expect_length(res_grp$series, 4)
+  types <- purrr::map_chr(res_grp$series, ~ .x$type %||% "line")
+  expect_equal(types, c("errorbar", "errorbar", "line", "line"))
+  expect_equal(
+    purrr::map(res_grp$series, "showInLegend"),
+    list(FALSE, FALSE, NULL, NULL)
+  )
+  expect_equal(res_grp$series[[1]]$color, res_grp$series[[3]]$color)
+  expect_equal(res_grp$series[[2]]$color, res_grp$series[[4]]$color)
+})
+
 test_that("box_plot_highcharts work", {
   df <- data.frame(
     x = c("a", "b"),
@@ -1483,6 +1588,31 @@ test_that("set_size_params works", {
   expect_equal(plt$plotOptions$column$pointPadding, 0.038)
   expect_equal(plt$plotOptions$series$pointWidth, 32)
   expect_equal(plt$chart$height, 650)
+
+  df |>
+    bar_plot_highcharts(
+      x_var = "x",
+      y_var = "y",
+      fill_var = "fill_var",
+      group_padding = 123
+    ) |>
+    purrr::pluck(
+      "plotOptions",
+      "column",
+      "groupPadding"
+    ) |>
+    expect_equal(123)
+
+  expect_error(
+    df |>
+      bar_plot_highcharts(
+        x_var = "x",
+        y_var = "y",
+        fill_var = "fill_var",
+        group_padding = "hambuga"
+      )
+  )
+
 })
 
 test_that("order_x_var works", {

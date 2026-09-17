@@ -8,6 +8,8 @@ line_plot_highcharts(
   df,
   x_var,
   y_var,
+  y_lower = NULL,
+  y_upper = NULL,
   color_var = NULL,
   title = "",
   y_lim = NULL,
@@ -40,6 +42,12 @@ line_plot_highcharts(
 \item{x_var}{x-axis variabel}
 
 \item{y_var}{y_axis variabel}
+
+\item{y_lower}{the lower bound of the confidence interval, draws an error
+bar at each point when supplied together with \code{y_upper}}
+
+\item{y_upper}{the upper bound of the confidence interval, draws an error
+bar at each point when supplied together with \code{y_lower}}
 
 \item{color_var}{the name of the color variable}
 

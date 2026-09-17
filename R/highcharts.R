@@ -355,6 +355,111 @@ marker_options <- function(marker_enabled, marker_size) {
   }
 }
 
+#' Rescale confidence interval bounds and add them as tooltip variables
+#'
+#' `make_series()` only rescales the point-estimate series (renamed to `y`),
+#' so the CI bounds need to be rescaled here up front to stay consistent with
+#' the point estimate, both in the errorbar series and in the tooltip. Shared
+#' by [line_plot_highcharts()] and [forest_plot_highcharts()].
+#'
+#' @param df data
+#' @param y_lower the lower bound of the confidence interval
+#' @param y_upper the upper bound of the confidence interval
+#' @param other_vars other variables to include in the tooltip
+#' @param proportion if the estimate and confidence interval are proportions
+#' @param scale_percentage if proportions should be re-scaled to be
+#' percentages
+#'
+#' @return a list with the (possibly rescaled) `df` and the `other_vars` with
+#' the CI bounds added
+#' @noRd
+add_ci_tooltip_vars <- function(df,
+                                y_lower,
+                                y_upper,
+                                other_vars,
+                                proportion,
+                                scale_percentage) {
+
+  if (proportion && scale_percentage) {
+    df <- df |>
+      dplyr::mutate(
+        dplyr::across(dplyr::all_of(c(y_lower, y_upper)), ~ .x * 100)
+      )
+  }
+
+  ci_vars <- list(
+    "Nedre gräns" = y_lower,
+    "Övre gräns" = y_upper
+  )
+
+  list(df = df, other_vars = c(ci_vars, other_vars))
+}
+
+#' Build the errorbar series for a confidence interval
+#'
+#' Builds one `"errorbar"` series per `color_var` group from `y_lower`/
+#' `y_upper`, matching the coloring `make_series()` would produce for the
+#' accompanying point/line series. Shared by [line_plot_highcharts()] and
+#' [forest_plot_highcharts()].
+#'
+#' @param df data
+#' @param x_var x-axis variable
+#' @param y_lower the lower bound of the confidence interval
+#' @param y_upper the upper bound of the confidence interval
+#' @param color_var the name of the color variable
+#' @param color_var_order what order `color_var` should be displayed in
+#' @param n_decimals number of decimals to round numbers to
+#'
+#' @return a list of highcharts series of type `"errorbar"`
+#' @noRd
+build_ci_errorbar_series <- function(df,
+                                     x_var,
+                                     y_lower,
+                                     y_upper,
+                                     color_var,
+                                     color_var_order,
+                                     n_decimals) {
+
+  ci_series_list <- make_series(
+    df = df,
+    vars = list(low = y_lower, high = y_upper),
+    group_vars = color_var,
+    group_var_order = color_var_order,
+    x_var = x_var,
+    n_decimals = n_decimals
+  )
+
+  ci_series_list <- purrr::map(ci_series_list, function(s) {
+    s$type <- "errorbar"
+    s$enableMouseTracking <- FALSE
+    s
+  })
+
+  if (is.null(color_var)) {
+    ci_series_list[[1]]$name <- "Konfidensintervall"
+    ci_series_list[[1]]$color <- "#051F23"
+  } else {
+    # Without this, each color_var group would show up twice in the legend
+    # since both its point/line and CI series share the group's name
+    ci_series_list <- purrr::map(ci_series_list, function(s) {
+      s$showInLegend <- FALSE
+      s
+    })
+  }
+
+  ci_series_list
+}
+
+#' @describeIn build_ci_errorbar_series the `plotOptions` shared by the
+#' errorbar series in [line_plot_highcharts()] and [forest_plot_highcharts()]
+#' @noRd
+errorbar_plot_options <- function() {
+  list(
+    whiskerLength = "100%",
+    stemWidth = 2
+  )
+}
+
 #' Highchart Line plot
 #'
 #' creates a line plot in highchart, outputs config for highchart
@@ -362,6 +467,10 @@ marker_options <- function(marker_enabled, marker_size) {
 #' @param df data
 #' @param x_var x-axis variabel
 #' @param y_var y_axis variabel
+#' @param y_lower the lower bound of the confidence interval, draws an error
+#' bar at each point when supplied together with `y_upper`
+#' @param y_upper the upper bound of the confidence interval, draws an error
+#' bar at each point when supplied together with `y_lower`
 #' @param color_var the name of the color variable
 #' @param title title of the graph
 #' @param y_lim limits of y-axis, if `NULL` and `proportion` is `TRUE`, will be
@@ -405,6 +514,8 @@ marker_options <- function(marker_enabled, marker_size) {
 line_plot_highcharts <- function(df,
                                  x_var,
                                  y_var,
+                                 y_lower = NULL,
+                                 y_upper = NULL,
                                  color_var = NULL,
                                  title = "",
                                  y_lim = NULL,
@@ -431,6 +542,13 @@ line_plot_highcharts <- function(df,
                                  marker_size = NULL) {
 
   checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
+
+  if (xor(is.null(y_lower), is.null(y_upper))) {
+    cli::cli_abort(
+      paste0("{.arg y_lower} and {.arg y_upper} must either both be supplied ",
+             "or both be left {.code NULL}")
+    )
+  }
 
   if (lifecycle::is_present(group_color)) {
     lifecycle::deprecate_warn(
@@ -473,6 +591,8 @@ line_plot_highcharts <- function(df,
         df = dplyr::filter(df, .data[[facet_by]] == .x),
         x_var = x_var,
         y_var = y_var,
+        y_lower = y_lower,
+        y_upper = y_upper,
         color_var = color_var,
         title = facet_title(title, .x),
         y_lim = y_lim,
@@ -523,6 +643,21 @@ line_plot_highcharts <- function(df,
     )
   }
 
+  has_error_bars <- !is.null(y_lower)
+
+  if (has_error_bars) {
+    ci <- add_ci_tooltip_vars(
+      df,
+      y_lower,
+      y_upper,
+      other_vars,
+      proportion,
+      scale_percentage
+    )
+    df <- ci$df
+    other_vars <- ci$other_vars
+  }
+
   out <- plot_highcharts(
     df = df,
     x_var = x_var,
@@ -561,6 +696,22 @@ line_plot_highcharts <- function(df,
   if (surv) {
     out$plotOptions$line$step <- "right"
     out$plotOptions$line$connectNulls <- TRUE
+  }
+
+  if (has_error_bars) {
+    ci_series_list <- build_ci_errorbar_series(
+      df = df,
+      x_var = x_var,
+      y_lower = y_lower,
+      y_upper = y_upper,
+      color_var = color_var,
+      color_var_order = color_var_order,
+      n_decimals = n_decimals
+    )
+
+    out$plotOptions$errorbar <- errorbar_plot_options()
+
+    out$series <- I(c(ci_series_list, out$series))
   }
 
   return(out)
@@ -1060,21 +1211,16 @@ forest_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
-  # make_series() only rescales the point-estimate series (renamed to `y`
-  # below), so the CI bounds are rescaled here up front to stay consistent
-  # with the point estimate, both in the errorbar series and in the tooltip
-  if (proportion && scale_percentage) {
-    df <- df |>
-      dplyr::mutate(
-        dplyr::across(dplyr::all_of(c(y_lower, y_upper)), ~ .x * 100)
-      )
-  }
-
-  ci_vars <- list(
-    "Nedre gräns" = y_lower,
-    "Övre gräns" = y_upper
+  ci <- add_ci_tooltip_vars(
+    df,
+    y_lower,
+    y_upper,
+    other_vars,
+    proportion,
+    scale_percentage
   )
-  other_vars <- c(ci_vars, other_vars)
+  df <- ci$df
+  other_vars <- ci$other_vars
 
   out <- plot_highcharts(
     df = df,
@@ -1098,32 +1244,15 @@ forest_plot_highcharts <- function(df,
     n_decimals = n_decimals
   )
 
-  ci_series_list <- make_series(
+  ci_series_list <- build_ci_errorbar_series(
     df = df,
-    vars = list(low = y_lower, high = y_upper),
-    group_vars = color_var,
-    group_var_order = color_var_order,
     x_var = x_var,
+    y_lower = y_lower,
+    y_upper = y_upper,
+    color_var = color_var,
+    color_var_order = color_var_order,
     n_decimals = n_decimals
   )
-
-  ci_series_list <- purrr::map(ci_series_list, function(s) {
-    s$type <- "errorbar"
-    s$enableMouseTracking <- FALSE
-    s
-  })
-
-  if (is.null(color_var)) {
-    ci_series_list[[1]]$name <- "Konfidensintervall"
-    ci_series_list[[1]]$color <- "#051F23"
-  } else {
-    # Without this, each color_var group would show up twice in the legend
-    # since both its point and CI series share the group's name
-    ci_series_list <- purrr::map(ci_series_list, function(s) {
-      s$showInLegend <- FALSE
-      s
-    })
-  }
 
   point_series_list <- purrr::map(out$series, function(s) {
     s$type <- "scatter"
@@ -1167,10 +1296,7 @@ forest_plot_highcharts <- function(df,
           radius = marker_size
         )
       ),
-      errorbar = list(
-        whiskerLength = "50%",
-        stemWidth = 2
-      )
+      errorbar = errorbar_plot_options()
     )
   )
 
@@ -1822,6 +1948,13 @@ set_size_params <- function(out,
                             plot_height = NULL,
                             group_padding = NULL) {
 
+  checkmate::assert_integerish(
+    group_padding,
+    lower = 0,
+    len = 1,
+    null.ok = TRUE
+  )
+
   # Antal värden på x-axeln
   n_x_axis <- length(out$xAxis$categories)
 
@@ -1837,7 +1970,7 @@ set_size_params <- function(out,
     target_bar_height <- 24
 
     #Padding
-    group_padding <- 0.08
+    group_padding_calc <- 0.08
     point_padding <- 0.02
 
     pixels_per_category <-
@@ -1853,7 +1986,7 @@ set_size_params <- function(out,
     #Applicera
     out$chart$height <- chart_height
 
-    out$plotOptions$column$groupPadding <- group_padding
+    out$plotOptions$column$groupPadding <- group_padding_calc
 
     out$plotOptions$column$pointPadding <- point_padding
 
@@ -1873,7 +2006,7 @@ set_size_params <- function(out,
 
     point_width <- max(4, min(32, point_width))
 
-    group_padding <-
+    group_padding_calc <-
       max(
         0.02,
         min(
@@ -1897,7 +2030,7 @@ set_size_params <- function(out,
       point_width
 
     out$plotOptions$column$groupPadding <-
-      group_padding
+      group_padding_calc
 
     out$plotOptions$column$pointPadding <-
       point_padding

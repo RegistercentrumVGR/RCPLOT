@@ -17,16 +17,15 @@
 #' @import sf
 #' @export
 
-map_plot <- function(
-    df,
-    fill_var = "id",
-    label_var = NULL,
-    fill_colors = NULL,
-    legend_labels = ggplot2::waiver(),
-    label_breaks = ggplot2::waiver(),
-    legend_row = NULL,
-    legend_col = NULL,
-    palette_type = "sequential") {
+map_plot <- function(df,
+                     fill_var = "id",
+                     label_var = NULL,
+                     fill_colors = NULL,
+                     legend_labels = ggplot2::waiver(),
+                     label_breaks = ggplot2::waiver(),
+                     legend_row = NULL,
+                     legend_col = NULL,
+                     palette_type = "sequential") {
   # Fill colors ------------------------------------------------------------
   lifecycle::deprecate_warn(
     when = "1.1.0",

@@ -21,18 +21,17 @@
 #' @rdname registercentrum_themes
 #' @export
 #' @import ggplot2
-theme_rc <- function(
-    axis_text_angle = NULL,
-    legend_position = "bottom",
-    legend_justification = legend_position,
-    text_size = 7,
-    subtitle_size = 8,
-    title_size = 9,
-    title_hjust = 0.5,
-    subtitle = FALSE,
-    title_margin = if (subtitle) 1 else title_size / 2,
-    remove_grid = TRUE,
-    remove_legend = FALSE) {
+theme_rc <- function(axis_text_angle = NULL,
+                     legend_position = "bottom",
+                     legend_justification = legend_position,
+                     text_size = 7,
+                     subtitle_size = 8,
+                     title_size = 9,
+                     title_hjust = 0.5,
+                     subtitle = FALSE,
+                     title_margin = if (subtitle) 1 else title_size / 2,
+                     remove_grid = TRUE,
+                     remove_legend = FALSE) {
 
   thm <- theme_classic() %+replace%
     theme(

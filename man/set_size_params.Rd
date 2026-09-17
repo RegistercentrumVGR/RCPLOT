@@ -23,6 +23,8 @@ set_size_params(
 \item{plot_height}{height of plot}
 
 \item{group_padding}{padding between bars}
+
+\item{type}{type of plot, \code{"column"} or \code{"boxplot"}}
 }
 \description{
 This function dynamically calculates bar width, chart height, and padding to

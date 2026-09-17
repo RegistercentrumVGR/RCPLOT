@@ -1944,6 +1944,7 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 #' @param bar_size size of bars
 #' @param plot_height height of plot
 #' @param group_padding padding between bars
+#' @param type type of plot, `"column"` or `"boxplot"`
 set_size_params <- function(out,
                             position,
                             bar_size = NULL,

@@ -2,14 +2,15 @@
 % Please edit documentation in R/highcharts.R
 \name{set_size_params}
 \alias{set_size_params}
-\title{Create parameters for sizing and padding for bar plot.}
+\title{Create parameters for sizing and padding for bar and box plots.}
 \usage{
 set_size_params(
   out,
   position,
   bar_size = NULL,
   plot_height = NULL,
-  group_padding = NULL
+  group_padding = NULL,
+  type = "column"
 )
 }
 \arguments{

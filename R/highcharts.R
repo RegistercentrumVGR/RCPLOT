@@ -1952,10 +1952,9 @@ set_size_params <- function(out,
                             group_padding = NULL,
                             type = "column") {
 
-  checkmate::assert_integerish(
+  checkmate::assert_number(
     group_padding,
     lower = 0,
-    len = 1,
     null.ok = TRUE
   )
   checkmate::assert_choice(type, c("column", "boxplot"))

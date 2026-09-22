@@ -131,7 +131,9 @@ release_job:
 
 mirror-to-github:
   stage: deploy
-  image: alpine/git:latest
+  image:
+    name: alpine/git:latest
+    entrypoint: [""]
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
   before_script:

@@ -4044,11 +4044,11 @@
       [1] 32
       
       
-      $plotOptions$column
-      $plotOptions$column$groupPadding
+      $plotOptions$boxplot
+      $plotOptions$boxplot$groupPadding
       [1] 0.172
       
-      $plotOptions$column$pointPadding
+      $plotOptions$boxplot$pointPadding
       [1] 0.046
       
       
@@ -4186,11 +4186,11 @@
       
       
       $plotOptions
-      $plotOptions$column
-      $plotOptions$column$groupPadding
+      $plotOptions$boxplot
+      $plotOptions$boxplot$groupPadding
       [1] 0.08
       
-      $plotOptions$column$pointPadding
+      $plotOptions$boxplot$pointPadding
       [1] 0.02
       
       

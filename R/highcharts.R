@@ -316,7 +316,8 @@ bar_plot_highcharts <- function(df,
                          position = position,
                          bar_size = bar_size,
                          plot_height = plot_height,
-                         group_padding = group_padding)
+                         group_padding = group_padding,
+                         type = "column")
 
 
   return(out)
@@ -900,7 +901,8 @@ box_plot_highcharts <- function(df,
                          position = position,
                          bar_size = bar_size,
                          plot_height = plot_height,
-                         group_padding = group_padding)
+                         group_padding = group_padding,
+                         type = "boxplot")
 
   return(out)
 
@@ -1923,7 +1925,7 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
   res
 }
 
-#' Create parameters for sizing and padding for bar plot.
+#' Create parameters for sizing and padding for bar and box plots.
 #'
 #' This function dynamically calculates bar width, chart height, and padding to
 #' improve readability for both horizontal and vertical plots, while also
@@ -1942,18 +1944,20 @@ export_highcharts <- function(cfg, write_clip = TRUE) {
 #' @param bar_size size of bars
 #' @param plot_height height of plot
 #' @param group_padding padding between bars
+#' @param type type of plot, `"column"` or `"boxplot"`
 set_size_params <- function(out,
                             position,
                             bar_size = NULL,
                             plot_height = NULL,
-                            group_padding = NULL) {
+                            group_padding = NULL,
+                            type = "column") {
 
-  checkmate::assert_integerish(
+  checkmate::assert_number(
     group_padding,
     lower = 0,
-    len = 1,
     null.ok = TRUE
   )
+  checkmate::assert_choice(type, c("column", "boxplot"))
 
   # Antal värden på x-axeln
   n_x_axis <- length(out$xAxis$categories)
@@ -1986,9 +1990,9 @@ set_size_params <- function(out,
     #Applicera
     out$chart$height <- chart_height
 
-    out$plotOptions$column$groupPadding <- group_padding_calc
+    out$plotOptions[[type]]$groupPadding <- group_padding_calc
 
-    out$plotOptions$column$pointPadding <- point_padding
+    out$plotOptions[[type]]$pointPadding <- point_padding
 
   } else if (!isTRUE(out$chart$inverted)) {
 
@@ -2029,10 +2033,10 @@ set_size_params <- function(out,
     out$plotOptions$series$pointWidth <-
       point_width
 
-    out$plotOptions$column$groupPadding <-
+    out$plotOptions[[type]]$groupPadding <-
       group_padding_calc
 
-    out$plotOptions$column$pointPadding <-
+    out$plotOptions[[type]]$pointPadding <-
       point_padding
 
     out$chart$height <- 650
@@ -2047,7 +2051,7 @@ set_size_params <- function(out,
   }
 
   if (!is.null(group_padding)) {
-    out$plotOptions$column$groupPadding <- group_padding
+    out$plotOptions[[type]]$groupPadding <- group_padding
   }
 
   out

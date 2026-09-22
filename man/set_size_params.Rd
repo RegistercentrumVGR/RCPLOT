@@ -2,14 +2,15 @@
 % Please edit documentation in R/highcharts.R
 \name{set_size_params}
 \alias{set_size_params}
-\title{Create parameters for sizing and padding for bar plot.}
+\title{Create parameters for sizing and padding for bar and box plots.}
 \usage{
 set_size_params(
   out,
   position,
   bar_size = NULL,
   plot_height = NULL,
-  group_padding = NULL
+  group_padding = NULL,
+  type = "column"
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ set_size_params(
 \item{plot_height}{height of plot}
 
 \item{group_padding}{padding between bars}
+
+\item{type}{type of plot, \code{"column"} or \code{"boxplot"}}
 }
 \description{
 This function dynamically calculates bar width, chart height, and padding to

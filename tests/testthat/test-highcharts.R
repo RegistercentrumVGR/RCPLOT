@@ -1613,6 +1613,33 @@ test_that("set_size_params works", {
       )
   )
 
+  df <- data.frame(
+    x = c("a", "b"),
+    median = 3,
+    low = 1,
+    q1 = 2,
+    q3 = 4,
+    high = 5,
+    total = 10
+  )
+
+  box_plot_highcharts(
+    df = df,
+    x_var = "x",
+    y_var = "median",
+    y_min = "low",
+    y_lower = "q1",
+    y_upper = "q3",
+    y_max = "high",
+    group_padding = 1
+  ) |>
+    purrr::pluck(
+      "plotOptions",
+      "boxplot",
+      "groupPadding"
+    ) |>
+    expect_equal(1)
+
 })
 
 test_that("order_x_var works", {

@@ -129,3 +129,21 @@ release_job:
     description: 'Automatic tag and release using $TAG'
     ref: '$CI_COMMIT_SHA'
 
+mirror-to-github:
+  stage: deploy
+  image: alpine/git:latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  before_script:
+    - apk add --no-cache openssh-client
+    - mkdir -p ~/.ssh
+    - cp "$GITHUB_DEPLOY_KEY" ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+  script:
+    - sed -i 's#gitlab::registercentrum/statistikenheten/RCStat#github::RegistercentrumVGR/RCStat#g' DESCRIPTION
+    - git config user.name "gitlab-ci"
+    - git config user.email "ci@vgregion.se"
+    - git add DESCRIPTION
+    - 'git commit -m "ci: point Remotes at public GitHub mirror" || echo "No DESCRIPTION changes to commit"'
+    - git push git@github.com:RegistercentrumVGR/RCPLOT.git HEAD:main --force

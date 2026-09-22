@@ -1,0 +1,41 @@
+name: Rewrite internal Remotes for public mirror
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - DESCRIPTION
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-remotes-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fix-remotes:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rewrite gitlab Remote to github
+        run: |
+          sed -i 's#gitlab::registercentrum/statistikenheten/RCStat#github::RegistercentrumVGR/RCStat#g' DESCRIPTION
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- DESCRIPTION; then
+            echo "No changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add DESCRIPTION
+          git commit -m "ci: rewrite internal GitLab Remotes to public GitHub mirrors"
+          git push

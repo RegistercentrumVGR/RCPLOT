@@ -139,7 +139,7 @@ mirror-to-github:
   before_script:
     - apk add --no-cache openssh-client
     - mkdir -p ~/.ssh
-    - cp "$GITHUB_DEPLOY_KEY" ~/.ssh/id_ed25519
+    - tr -d '\r' < "$GITHUB_DEPLOY_KEY" > ~/.ssh/id_ed25519
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
   script:

@@ -107,6 +107,8 @@ view_highcharts <- function(plt = NULL) {
 #' @param yearly_report A yearly report config created by rcconfig
 #' @param title Title of graph to display
 #' @param id id for graph to display
+#'
+#' @export
 view_yearly_report_hc <- function(yearly_report = NULL,
                                   title = NULL,
                                   id = NULL) {

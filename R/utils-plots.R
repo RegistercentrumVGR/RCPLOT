@@ -100,6 +100,7 @@ view_highcharts <- function(plt = NULL) {
       )
     )
   )
+  cli::cli_inform("Size and color of plot might differ from frontend use")
 }
 
 #' Display a highcharts plot from a yearly report created by rcconfig

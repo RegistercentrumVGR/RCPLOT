@@ -641,7 +641,7 @@ line_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
-  if (surv & minify_step_curve) {
+  if (surv && minify_step_curve) {
     df <- minify_step_curve(
       df = df,
       x_var = x_var,
@@ -723,7 +723,7 @@ line_plot_highcharts <- function(df,
     out$series <- I(c(ci_series_list, out$series))
   }
 
-  if (surv & !is.null(x_labels_surv_type)) {
+  if (surv && !is.null(x_labels_surv_type)) {
     out <- replace_categories_with_years(out,
                                          type = x_labels_surv_type)
 

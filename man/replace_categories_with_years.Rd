@@ -4,12 +4,12 @@
 \alias{replace_categories_with_years}
 \title{Convert x axis days to years}
 \usage{
-replace_categories_with_years(plt, type = "years")
+replace_categories_with_years(out, type = "years")
 }
 \arguments{
-\item{type}{which type of labels, if 'years' will only display the years.}
-
 \item{out}{config}
+
+\item{type}{which type of labels, if 'years' will only display the years.}
 }
 \value{
 highcarts config

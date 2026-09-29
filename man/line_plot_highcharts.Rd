@@ -33,7 +33,9 @@ line_plot_highcharts(
   n_decimals = rlang::missing_arg(),
   surv = FALSE,
   marker_enabled = TRUE,
-  marker_size = NULL
+  marker_size = NULL,
+  minify_step_curve = TRUE,
+  x_labels_surv_type = NULL
 )
 }
 \arguments{
@@ -109,6 +111,12 @@ cluttered while still letting users hover to see the tooltip}
 
 \item{marker_size}{radius of the point markers, \code{NULL} to use the
 highcharts default}
+
+\item{minify_step_curve}{if \link{minify_step_curve} should be applied. Only used
+if 'surv' is true.}
+
+\item{x_labels_surv_type}{what type of labels that should be used on x-axis
+for survival plots}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

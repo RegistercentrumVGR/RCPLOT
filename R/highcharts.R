@@ -509,6 +509,10 @@ errorbar_plot_options <- function() {
 #' cluttered while still letting users hover to see the tooltip
 #' @param marker_size radius of the point markers, `NULL` to use the
 #' highcharts default
+#' @param minify_step_curve if [minify_step_curve] should be applied. Only used
+#' if 'surv' is true.
+#' @param x_labels_surv_type what type of labels that should be used on x-axis
+#' for survival plots
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -540,7 +544,9 @@ line_plot_highcharts <- function(df,
                                  n_decimals = rlang::missing_arg(),
                                  surv = FALSE,
                                  marker_enabled = TRUE,
-                                 marker_size = NULL) {
+                                 marker_size = NULL,
+                                 minify_step_curve = TRUE,
+                                 x_labels_surv_type = NULL) {
 
   checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
 
@@ -615,7 +621,9 @@ line_plot_highcharts <- function(df,
         n_decimals = n_decimals,
         surv = surv,
         marker_enabled = marker_enabled,
-        marker_size = marker_size
+        marker_size = marker_size,
+        minify_step_curve = minify_step_curve,
+        x_labels_surv_type = x_labels_surv_type
       )
     ))
   }
@@ -633,7 +641,7 @@ line_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
-  if (surv) {
+  if (surv && minify_step_curve) {
     df <- minify_step_curve(
       df = df,
       x_var = x_var,
@@ -713,6 +721,12 @@ line_plot_highcharts <- function(df,
     out$plotOptions$errorbar <- errorbar_plot_options()
 
     out$series <- I(c(ci_series_list, out$series))
+  }
+
+  if (surv && !is.null(x_labels_surv_type)) {
+    out <- replace_categories_with_years(out,
+                                         type = x_labels_surv_type)
+
   }
 
   return(out)
@@ -2224,4 +2238,44 @@ minify_step_curve <- function(df,
     ) |>
     dplyr::ungroup() |>
     dplyr::select(-".rc_y_rounded")
+}
+
+
+#' Convert x axis days to years
+#'
+#' This function is used for survival curves to changes the days values in the
+#' x-axis to years.
+#'
+#' @param out config
+#' @param type which type of labels, if 'years' will only display the years.
+#'
+#' @returns highcarts config
+replace_categories_with_years <- function(out,
+                                          type = "years") {
+
+  checkmate::assert_choice(type, c("years"))
+
+  days <- as.numeric(out$xAxis$categories)
+
+  #Years covered by the data
+  years <- 0:floor(max(days, na.rm = TRUE) / 365)
+
+  #Find the closest category index for each year
+  idx <- vapply(years, function(year) {
+    which.min(abs(days - year * 365))
+  }, integer(1))
+
+  #Remove duplicate indices
+  keep <- !duplicated(idx)
+
+  idx <- idx[keep]
+  years <- years[keep]
+
+  categories <- rep("", length(days))
+  categories[idx] <- as.character(years)
+
+  out$xAxis$categories <- categories
+  out$xAxis$tickPositions <- idx - 1L
+
+  return(out)
 }

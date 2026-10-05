@@ -1999,7 +1999,8 @@ set_size_params <- function(out,
 
     chart_height <-
       extra_height +
-      1.2 * (n_x_axis * pixels_per_category)
+      1.2 * (n_x_axis * pixels_per_category) +
+      legend_extra_height(out)
 
     #Applicera
     out$chart$height <- chart_height
@@ -2069,6 +2070,38 @@ set_size_params <- function(out,
   }
 
   out
+}
+
+#' Estimate extra height needed by a multi-row legend
+#'
+#' The fixed `extra_height` in [set_size_params()] only leaves room for a
+#' single legend row. Highcharts lays the legend items out in equally wide
+#' columns, so the number of rows is estimated from the widest series name,
+#' the legend font size and the available width. Every row beyond the first is
+#' added to the chart height so the plot area (and thereby the bars) is not
+#' squeezed.
+#'
+#' @param out config
+#' @param usable_width width in pixels available for the legend
+#' @return extra height in pixels
+legend_extra_height <- function(out, usable_width = 900 - 120) {
+  if (isFALSE(out$legend$enabled) || length(out$series) == 0) return(0)
+
+  names <- purrr::map_chr(out$series, \(s) as.character(s$name %||% ""))
+  names <- names[nzchar(names)]
+  if (length(names) == 0) return(0)
+
+  font_size <- suppressWarnings(
+    as.numeric(sub("px$", "", out$legend$itemStyle$fontSize %||% "14px"))
+  )
+  if (is.na(font_size)) font_size <- 14
+
+  # symbol (16) + symbol padding (5) + item distance (20) + approx. text width
+  item_width <- 41 + 0.6 * font_size * max(nchar(names))
+  n_cols <- max(1, floor(usable_width / item_width))
+  n_rows <- ceiling(length(names) / n_cols)
+
+  (n_rows - 1) * (font_size + 7)
 }
 
 #' Add total to x-axis

@@ -1985,7 +1985,7 @@ set_size_params <- function(out,
 
   if (isTRUE(out$chart$inverted)) {
 
-    target_bar_height <- 24
+    target_bar_height <- bar_size %||% 24
 
     #Padding
     group_padding_calc <- 0.08

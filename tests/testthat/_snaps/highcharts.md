@@ -1212,7 +1212,7 @@
       [[1]]$data[[1]]$y
       [1] 50
       
-      [[1]]$data[[1]]$total
+      [[1]]$data[[1]]$rc_total
       [1] 10
       
       [[1]]$data[[1]]$n
@@ -1223,7 +1223,7 @@
       [[1]]$data[[2]]$y
       [1] 100
       
-      [[1]]$data[[2]]$total
+      [[1]]$data[[2]]$rc_total
       [1] 10
       
       [[1]]$data[[2]]$n
@@ -1282,7 +1282,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "<b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
+      [1] "<b>{point.y}%</b><br>Nämnare: <b>{point.rc_total}</b><br>Täljare: <b>{point.n}</b>"
       
       
       $caption
@@ -1366,7 +1366,7 @@
       [[1]]$data[[1]]$y
       [1] 50
       
-      [[1]]$data[[1]]$total
+      [[1]]$data[[1]]$rc_total
       [1] 10
       
       [[1]]$data[[1]]$n
@@ -1377,7 +1377,7 @@
       [[1]]$data[[2]]$y
       [1] 100
       
-      [[1]]$data[[2]]$total
+      [[1]]$data[[2]]$rc_total
       [1] 10
       
       [[1]]$data[[2]]$n
@@ -1398,7 +1398,7 @@
       [[2]]$data[[1]]$y
       [1] 50
       
-      [[2]]$data[[1]]$total
+      [[2]]$data[[1]]$rc_total
       [1] 10
       
       [[2]]$data[[1]]$n
@@ -1409,7 +1409,7 @@
       [[2]]$data[[2]]$y
       [1] 100
       
-      [[2]]$data[[2]]$total
+      [[2]]$data[[2]]$rc_total
       [1] 10
       
       [[2]]$data[[2]]$n
@@ -1468,7 +1468,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
+      [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.rc_total}</b><br>Täljare: <b>{point.n}</b>"
       
       
       $caption
@@ -1549,7 +1549,7 @@
       [[1]]$data[[1]]$y
       [1] 50
       
-      [[1]]$data[[1]]$total
+      [[1]]$data[[1]]$rc_total
       [1] 10
       
       [[1]]$data[[1]]$n
@@ -1560,7 +1560,7 @@
       [[1]]$data[[2]]$y
       [1] 100
       
-      [[1]]$data[[2]]$total
+      [[1]]$data[[2]]$rc_total
       [1] 10
       
       [[1]]$data[[2]]$n
@@ -1582,7 +1582,7 @@
       [[2]]$data[[1]]$y
       [1] 50
       
-      [[2]]$data[[1]]$total
+      [[2]]$data[[1]]$rc_total
       [1] 10
       
       [[2]]$data[[1]]$n
@@ -1593,7 +1593,7 @@
       [[2]]$data[[2]]$y
       [1] 100
       
-      [[2]]$data[[2]]$total
+      [[2]]$data[[2]]$rc_total
       [1] 10
       
       [[2]]$data[[2]]$n
@@ -1653,7 +1653,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.total}</b><br>Täljare: <b>{point.n}</b>"
+      [1] "{series.name}: <b>{point.y}%</b><br>Nämnare: <b>{point.rc_total}</b><br>Täljare: <b>{point.n}</b>"
       
       
       $caption
@@ -4115,7 +4115,7 @@
       [[1]]$high
       [1] 5
       
-      [[1]]$total
+      [[1]]$rc_total
       [1] 10
       
       [[1]]$color
@@ -4138,7 +4138,7 @@
       [[2]]$high
       [1] 5
       
-      [[2]]$total
+      [[2]]$rc_total
       [1] 10
       
       [[2]]$color
@@ -4182,7 +4182,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.total}</b>"
+      [1] "\n      95e kvantilen: <b>{point.high}</b><br>\n      75e kvantilen: <b>{point.q3}</b><br>\n      Median: <b>{point.median}</b><br>\n      25e kvantilen: <b>{point.q1}</b><br>\n      5e kvantilen: <b>{point.low}</b><br><br>Observationer: <b>{point.rc_total}</b>"
       
       
       $plotOptions
@@ -5074,7 +5074,7 @@
       [[1]]$data[[1]]$n
       [1] 10
       
-      [[1]]$data[[1]]$total
+      [[1]]$data[[1]]$rc_total
       [1] 100
       
       
@@ -5085,7 +5085,7 @@
       [[1]]$data[[2]]$n
       [1] 20
       
-      [[1]]$data[[2]]$total
+      [[1]]$data[[2]]$rc_total
       [1] 100
       
       
@@ -5096,7 +5096,7 @@
       [[1]]$data[[3]]$n
       [1] 30
       
-      [[1]]$data[[3]]$total
+      [[1]]$data[[3]]$rc_total
       [1] 100
       
       
@@ -5107,7 +5107,7 @@
       [[1]]$data[[4]]$n
       [1] 40
       
-      [[1]]$data[[4]]$total
+      [[1]]$data[[4]]$rc_total
       [1] 100
       
       
@@ -5118,7 +5118,7 @@
       [[1]]$data[[5]]$n
       [1] 50
       
-      [[1]]$data[[5]]$total
+      [[1]]$data[[5]]$rc_total
       [1] 100
       
       
@@ -5171,7 +5171,7 @@
       
       $tooltip
       $tooltip$pointFormat
-      [1] "<b>{point.y}%</b><br>Täljare: <b>{point.n}</b><br>Nämnare: <b>{point.total}</b>"
+      [1] "<b>{point.y}%</b><br>Täljare: <b>{point.n}</b><br>Nämnare: <b>{point.rc_total}</b>"
       
       
       $plotOptions

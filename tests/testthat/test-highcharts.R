@@ -127,8 +127,8 @@ test_that("make_series works", {
       list(
         list(
           data = list(
-            list(y = 50, n = 50, total = 100),
-            list(y = 100, n = 100, total = 100)
+            list(y = 50, n = 50, rc_total = 100),
+            list(y = 100, n = 100, rc_total = 100)
           ),
           name = "",
           color = "#116875"

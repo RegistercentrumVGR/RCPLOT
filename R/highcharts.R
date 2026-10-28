@@ -1726,7 +1726,11 @@ add_tooltip <- function(out,
   point_format <- paste(
     c(
       main_format,
-      sprintf("%s: <b>{point.%s}</b>", names(other_vars), other_vars)
+      sprintf(
+        "%s: <b>{point.%s}</b>",
+        names(other_vars),
+        other_var_key(unlist(other_vars))
+      )
     ),
     collapse = "<br>"
   )
@@ -1768,6 +1772,22 @@ sort_numeric <- function(x) {
   x[order]
 }
 
+#' Key used for a tooltip variable on the highcharts point
+#'
+#' Highcharts injects its own properties on points, e.g. `total` for the stack
+#' total, which would shadow a column with the same name in the tooltip. Only
+#' columns that collide with such a property are stored under a prefixed key.
+#'
+#' @param x column names
+#'
+#' @return keys to use on the point and in the tooltip, `character(0)` for
+#' empty `x`
+other_var_key <- function(x) {
+  if (length(x) == 0) return(character(0))
+  reserved <- c("total")
+  ifelse(x %in% reserved, paste0("rc_", x), x)
+}
+
 #' @describeIn plot_highcharts converts a data.frame to a highcharts series
 #' representation
 #' @param palette_type passed to [colors_rc_3()]
@@ -1798,7 +1818,17 @@ make_series <- function(df,
   checkmate::assert_list(vars, names = "named")
   checkmate::assert_subset(unlist(vars), names(df))
 
+  other_cols <- unlist(other_vars)
+  other_keys <- other_var_key(other_cols)
+  renamed <- other_keys != other_cols
+
   tmp <- df |>
+    dplyr::mutate(
+      !!!rlang::set_names(
+        rlang::syms(other_cols[renamed]),
+        other_keys[renamed]
+      )
+    ) |>
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(group_vars), as.character
@@ -1868,7 +1898,7 @@ make_series <- function(df,
           dplyr::group_map(
             tmp,
             ~ c(
-              as.list(.x[c(names(vars), unlist(other_vars))]),
+              as.list(.x[c(names(vars), other_keys)]),
               color = .y$color
             )
           )
@@ -1893,7 +1923,7 @@ make_series <- function(df,
         ~ c(
           list(
             data = purrr::pmap(
-              .x[c(names(vars), unlist(other_vars))],
+              .x[c(names(vars), other_keys)],
               \(...) {
                 vals <- list(...)
                 vals <- lapply(vals, function(v) if (is.na(v)) NULL else v)

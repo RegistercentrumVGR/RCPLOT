@@ -40,14 +40,14 @@
 <text x='15.23' y='371.59' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>2</text>
 <text x='15.23' y='208.35' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>4</text>
 <text x='15.23' y='45.11' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>6</text>
-<polyline points='17.42,532.43 20.16,532.43 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='17.42,369.19 20.16,369.19 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='17.42,205.94 20.16,205.94 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='17.42,42.70 20.16,42.70 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='17.42,532.43 20.16,532.43 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='17.42,369.19 20.16,369.19 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='17.42,205.94 20.16,205.94 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='17.42,42.70 20.16,42.70 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
 <polyline points='20.16,532.43 708.66,532.43 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
-<polyline points='149.26,535.17 149.26,532.43 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='364.41,535.17 364.41,532.43 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='579.57,535.17 579.57,532.43 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='149.26,535.17 149.26,532.43 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='364.41,535.17 364.41,532.43 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='579.57,535.17 579.57,532.43 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
 <text x='149.26' y='540.71' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.32px' lengthAdjust='spacingAndGlyphs'>c, N = 5</text>
 <text x='364.41' y='540.71' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.71px' lengthAdjust='spacingAndGlyphs'>b, N = 4</text>
 <text x='579.57' y='540.71' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.71px' lengthAdjust='spacingAndGlyphs'>a, N = 3</text>

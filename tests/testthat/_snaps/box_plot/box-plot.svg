@@ -39,11 +39,11 @@
 <text x='24.96' y='446.47' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='13.62px' lengthAdjust='spacingAndGlyphs'>0.25</text>
 <text x='24.96' y='292.18' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='13.62px' lengthAdjust='spacingAndGlyphs'>0.50</text>
 <text x='24.96' y='137.88' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='13.62px' lengthAdjust='spacingAndGlyphs'>0.75</text>
-<polyline points='27.16,444.06 29.89,444.06 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='27.16,289.77 29.89,289.77 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='27.16,135.48 29.89,135.48 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='27.16,444.06 29.89,444.06 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='27.16,289.77 29.89,289.77 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
+<polyline points='27.16,135.48 29.89,135.48 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
 <polyline points='29.89,561.32 708.66,561.32 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
-<polyline points='369.28,564.06 369.28,561.32 ' style='stroke-width: 0.43; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='369.28,564.06 369.28,561.32 ' style='stroke-width: 0.43; stroke-linecap: butt;' />
 <text x='369.28' y='569.60' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='369.28' y='12.80' text-anchor='middle' style='font-size: 9.00px; font-family: sans;' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>box plot</text>
 </g>

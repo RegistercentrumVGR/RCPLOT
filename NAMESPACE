@@ -41,13 +41,15 @@ export(view_yearly_report_hc)
 import(ggplot2)
 import(sf)
 importFrom(magrittr,"%>%")
-importFrom(rlang,"%||%")
-importFrom(rlang,":=")
-importFrom(rlang,.data)
-importFrom(rlang,as_label)
-importFrom(rlang,as_name)
-importFrom(rlang,enquo)
-importFrom(rlang,enquos)
-importFrom(rlang,expr)
-importFrom(rlang,sym)
-importFrom(rlang,syms)
+importFrom(rlang,
+  "%||%",
+  ":=",
+  .data,
+  as_label,
+  as_name,
+  enquo,
+  enquos,
+  expr,
+  sym,
+  syms
+)

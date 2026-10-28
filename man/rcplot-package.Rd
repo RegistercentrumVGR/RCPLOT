@@ -13,6 +13,7 @@ Implementing the graphical design used by Registercentrum. Used for annual repor
 
 Authors:
 \itemize{
+  \item Jonatan Nåtman \email{jonatan.natman@vgregion.se}
   \item Rikard Isaksson \email{rikard.isaksson@vgregion.se}
   \item Erik Bülow \email{erik.bulow@vgregion.se}
 }

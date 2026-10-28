@@ -111,7 +111,7 @@ Produces a line plot according to Registercentrum graphical standards.
 }
 \details{
 The arguments \verb{*_lim}, \verb{*_breaks}, and \verb{*_labels} are passed to
-\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous} and \link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete}.
+\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous} and \link[ggplot2:scale_x_discrete]{ggplot2::scale_x_discrete}.
 
 The arguments \code{x_lab}, \code{y_lab}, and \code{title} are passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.
 }

@@ -410,6 +410,7 @@ add_ci_tooltip_vars <- function(df,
 #' @param color_var the name of the color variable
 #' @param color_var_order what order `color_var` should be displayed in
 #' @param n_decimals number of decimals to round numbers to
+#' @param error_type what type of error bar that should be used
 #'
 #' @return a list of highcharts series of type `"errorbar"`
 #' @noRd
@@ -419,7 +420,10 @@ build_ci_errorbar_series <- function(df,
                                      y_upper,
                                      color_var,
                                      color_var_order,
-                                     n_decimals) {
+                                     n_decimals,
+                                     error_type) {
+
+  checkmate::assert_choice(error_type, c("errorbar", "arearange"))
 
   ci_series_list <- make_series(
     df = df,
@@ -431,7 +435,7 @@ build_ci_errorbar_series <- function(df,
   )
 
   ci_series_list <- purrr::map(ci_series_list, function(s) {
-    s$type <- "errorbar"
+    s$type <- error_type
     s$enableMouseTracking <- FALSE
     s
   })
@@ -513,6 +517,7 @@ errorbar_plot_options <- function() {
 #' if 'surv' is true.
 #' @param x_labels_surv_type what type of labels that should be used on x-axis
 #' for survival plots
+#' @param error_type what type of errorbar should be used.
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -546,7 +551,8 @@ line_plot_highcharts <- function(df,
                                  marker_enabled = TRUE,
                                  marker_size = NULL,
                                  minify_step_curve = TRUE,
-                                 x_labels_surv_type = NULL) {
+                                 x_labels_surv_type = NULL,
+                                 error_type = "errorbar") {
 
   checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
 
@@ -715,12 +721,27 @@ line_plot_highcharts <- function(df,
       y_upper = y_upper,
       color_var = color_var,
       color_var_order = color_var_order,
-      n_decimals = n_decimals
+      n_decimals = n_decimals,
+      error_type = error_type
     )
 
     out$plotOptions$errorbar <- errorbar_plot_options()
-
     out$series <- I(c(ci_series_list, out$series))
+
+    if (error_type == "arearange") {
+      out$plotOptions$arearange <- list(
+        fillOpacity = 0.45,
+        connectNulls = TRUE,
+        marker = list(
+          enabled = FALSE,
+          states = list(
+            hover = list(
+              enabled = FALSE
+            )
+          )
+        )
+      )
+    }
   }
 
   if (surv && !is.null(x_labels_surv_type)) {

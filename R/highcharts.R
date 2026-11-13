@@ -52,6 +52,8 @@
 bar_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,
+                                y_lower = NULL,
+                                y_upper = NULL,
                                 horizontal = FALSE,
                                 fill_var = NULL,
                                 position = "dodge",
@@ -245,6 +247,21 @@ bar_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
+  has_error_bars <- !is.null(y_lower)
+
+  if (has_error_bars) {
+    ci <- add_ci_tooltip_vars(
+      df,
+      y_lower,
+      y_upper,
+      other_vars,
+      proportion,
+      scale_percentage
+    )
+    df <- ci$df
+    other_vars <- ci$other_vars
+  }
+
   out <- plot_highcharts(
     df = df,
     x_var = x_var,
@@ -271,6 +288,23 @@ bar_plot_highcharts <- function(df,
     horizontal_line = horizontal_line,
     n_decimals = n_decimals
   )
+
+  if (has_error_bars) {
+    ci_series_list <- build_ci_errorbar_series(
+      df = df,
+      x_var = x_var,
+      y_lower = y_lower,
+      y_upper = y_upper,
+      color_var = fill_var,
+      color_var_order = fill_var_order,
+      n_decimals = n_decimals,
+      error_type = "errorbar"
+    )
+
+    out$plotOptions$errorbar <- errorbar_plot_options()
+    out$series <- I(c(ci_series_list, out$series))
+
+  }
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
     checkmate::assert_list(color_x_value)
@@ -424,6 +458,22 @@ build_ci_errorbar_series <- function(df,
                                      error_type) {
 
   checkmate::assert_choice(error_type, c("errorbar", "arearange"))
+
+  # Complete missing x_var / color_var combinations
+  if (!is.null(color_var) && !all(color_var == x_var)) {
+
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(
+          !!x_var := forcats::fct_drop(.data[[x_var]])
+        )
+    }
+
+    df <- df |>
+      tidyr::complete(
+        !!!rlang::syms(c(x_var, color_var))
+      )
+  }
 
   ci_series_list <- make_series(
     df = df,
@@ -725,8 +775,11 @@ line_plot_highcharts <- function(df,
       error_type = error_type
     )
 
-    out$plotOptions$errorbar <- errorbar_plot_options()
     out$series <- I(c(ci_series_list, out$series))
+
+    if (error_type == "errorbar") {
+      out$plotOptions$errorbar <- errorbar_plot_options()
+    }
 
     if (error_type == "arearange") {
       out$plotOptions$arearange <- list(
@@ -1947,8 +2000,19 @@ make_series <- function(df,
               .x[c(names(vars), other_keys)],
               \(...) {
                 vals <- list(...)
-                vals <- lapply(vals, function(v) if (is.na(v)) NULL else v)
-                vals
+
+                # Replace missing values with NULL
+                vals <- lapply(vals, function(v) {
+                  if (length(v) == 0 || all(is.na(v))) NULL else v
+                })
+
+                # Return an empty point if all values are missing
+                if (all(vapply(vals, is.null, logical(1)))) {
+                  return(stats::setNames(list(), character(0)))
+                }
+
+                # Otherwise retain only non-missing values
+                purrr::compact(vals)
               }
             ),
             name = .y$series_var,

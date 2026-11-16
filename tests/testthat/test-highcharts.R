@@ -1868,7 +1868,7 @@ test_that("forest_plot_highcharts works", {
 test_that("arearange works", {
 
   df <- data.frame(
-    x = rep(c(1,2,3,4), 2),
+    x = rep(c(1, 2, 3, 4), 2),
     grp = c(rep("a", 4), rep("b", 4))
   ) |>
     dplyr::mutate(y = dplyr::case_when(

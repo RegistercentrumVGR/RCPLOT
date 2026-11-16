@@ -5,6 +5,8 @@
 #' @param df data
 #' @param x_var x-axis variable
 #' @param y_var y_axis variable
+#' @param y_lower variable for lower value in errorbar
+#' @param y_upper variable for upper value in errorbar
 #' @param fill_var the name of the fill variable
 #' @param horizontal whether or not the bar plot should be horizontal,
 #' @param position whether or not to make the bars stack or dodge according to
@@ -302,7 +304,7 @@ bar_plot_highcharts <- function(df,
     )
 
     out$plotOptions$errorbar <- errorbar_plot_options()
-    out$series <- I(c(ci_series_list, out$series))
+    out$series <- I(c(out$series, ci_series_list))
 
   }
 
@@ -679,7 +681,8 @@ line_plot_highcharts <- function(df,
         marker_enabled = marker_enabled,
         marker_size = marker_size,
         minify_step_curve = minify_step_curve,
-        x_labels_surv_type = x_labels_surv_type
+        x_labels_surv_type = x_labels_surv_type,
+        error_type = error_type
       )
     ))
   }
@@ -1341,7 +1344,8 @@ forest_plot_highcharts <- function(df,
     y_upper = y_upper,
     color_var = color_var,
     color_var_order = color_var_order,
-    n_decimals = n_decimals
+    n_decimals = n_decimals,
+    error_type = "errorbar"
   )
 
   point_series_list <- purrr::map(out$series, function(s) {

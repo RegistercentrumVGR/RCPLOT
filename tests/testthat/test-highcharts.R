@@ -531,7 +531,7 @@ test_that("plot_highcharts works", {
     purrr::pluck("series", 1, "data") |>
     expect_equal(
       list(
-        list(y = NULL, y2 = 1, y3 = NULL),
+        list(y2 = 1),
         list(y = 1, y2 = 2, y3 = 3)
       )
     )

@@ -6500,3 +6500,329 @@
       
       
 
+# arearange works
+
+    Code
+      rcplot::line_plot_highcharts(df, x_var = "x", y_var = "y", color_var = "grp",
+        y_lower = "y_lower", y_upper = "y_upper", n_decimals = 2, y_lab = "Medelvärde",
+        error_type = "arearange")
+    Output
+      $title
+      $title$text
+      [1] ""
+      
+      
+      $chart
+      $chart$type
+      [1] "line"
+      
+      $chart$inverted
+      [1] FALSE
+      
+      $chart$height
+      [1] 600
+      
+      
+      $xAxis
+      $xAxis$categories
+      [1] "1" "2" "3" "4"
+      
+      $xAxis$labels
+      $xAxis$labels$style
+      $xAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      $xAxis$title
+      $xAxis$title$style
+      $xAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      
+      $series
+      [[1]]
+      [[1]]$data
+      [[1]]$data[[1]]
+      [[1]]$data[[1]]$low
+      [1] 18
+      
+      [[1]]$data[[1]]$high
+      [1] 20
+      
+      
+      [[1]]$data[[2]]
+      [[1]]$data[[2]]$low
+      [1] 17
+      
+      [[1]]$data[[2]]$high
+      [1] 19
+      
+      
+      [[1]]$data[[3]]
+      [[1]]$data[[3]]$low
+      [1] 16
+      
+      [[1]]$data[[3]]$high
+      [1] 18
+      
+      
+      [[1]]$data[[4]]
+      [[1]]$data[[4]]$low
+      [1] 15
+      
+      [[1]]$data[[4]]$high
+      [1] 17
+      
+      
+      
+      [[1]]$name
+      [1] "a"
+      
+      [[1]]$color
+      [1] "#116875"
+      
+      [[1]]$type
+      [1] "arearange"
+      
+      [[1]]$enableMouseTracking
+      [1] FALSE
+      
+      [[1]]$showInLegend
+      [1] FALSE
+      
+      
+      [[2]]
+      [[2]]$data
+      [[2]]$data[[1]]
+      [[2]]$data[[1]]$low
+      [1] 9.4
+      
+      [[2]]$data[[1]]$high
+      [1] 11.4
+      
+      
+      [[2]]$data[[2]]
+      [[2]]$data[[2]]$low
+      [1] 9.8
+      
+      [[2]]$data[[2]]$high
+      [1] 11.8
+      
+      
+      [[2]]$data[[3]]
+      [[2]]$data[[3]]$low
+      [1] 10.2
+      
+      [[2]]$data[[3]]$high
+      [1] 12.2
+      
+      
+      [[2]]$data[[4]]
+      [[2]]$data[[4]]$low
+      [1] 10.6
+      
+      [[2]]$data[[4]]$high
+      [1] 12.6
+      
+      
+      
+      [[2]]$name
+      [1] "b"
+      
+      [[2]]$color
+      [1] "#FC5930"
+      
+      [[2]]$type
+      [1] "arearange"
+      
+      [[2]]$enableMouseTracking
+      [1] FALSE
+      
+      [[2]]$showInLegend
+      [1] FALSE
+      
+      
+      [[3]]
+      [[3]]$data
+      [[3]]$data[[1]]
+      [[3]]$data[[1]]$y
+      [1] 19
+      
+      [[3]]$data[[1]]$y_lower
+      [1] 18
+      
+      [[3]]$data[[1]]$y_upper
+      [1] 20
+      
+      
+      [[3]]$data[[2]]
+      [[3]]$data[[2]]$y
+      [1] 18
+      
+      [[3]]$data[[2]]$y_lower
+      [1] 17
+      
+      [[3]]$data[[2]]$y_upper
+      [1] 19
+      
+      
+      [[3]]$data[[3]]
+      [[3]]$data[[3]]$y
+      [1] 17
+      
+      [[3]]$data[[3]]$y_lower
+      [1] 16
+      
+      [[3]]$data[[3]]$y_upper
+      [1] 18
+      
+      
+      [[3]]$data[[4]]
+      [[3]]$data[[4]]$y
+      [1] 16
+      
+      [[3]]$data[[4]]$y_lower
+      [1] 15
+      
+      [[3]]$data[[4]]$y_upper
+      [1] 17
+      
+      
+      
+      [[3]]$name
+      [1] "a"
+      
+      [[3]]$color
+      [1] "#116875"
+      
+      
+      [[4]]
+      [[4]]$data
+      [[4]]$data[[1]]
+      [[4]]$data[[1]]$y
+      [1] 10.4
+      
+      [[4]]$data[[1]]$y_lower
+      [1] 9.4
+      
+      [[4]]$data[[1]]$y_upper
+      [1] 11.4
+      
+      
+      [[4]]$data[[2]]
+      [[4]]$data[[2]]$y
+      [1] 10.8
+      
+      [[4]]$data[[2]]$y_lower
+      [1] 9.8
+      
+      [[4]]$data[[2]]$y_upper
+      [1] 11.8
+      
+      
+      [[4]]$data[[3]]
+      [[4]]$data[[3]]$y
+      [1] 11.2
+      
+      [[4]]$data[[3]]$y_lower
+      [1] 10.2
+      
+      [[4]]$data[[3]]$y_upper
+      [1] 12.2
+      
+      
+      [[4]]$data[[4]]
+      [[4]]$data[[4]]$y
+      [1] 11.6
+      
+      [[4]]$data[[4]]$y_lower
+      [1] 10.6
+      
+      [[4]]$data[[4]]$y_upper
+      [1] 12.6
+      
+      
+      
+      [[4]]$name
+      [1] "b"
+      
+      [[4]]$color
+      [1] "#FC5930"
+      
+      
+      
+      $legend
+      $legend$reversed
+      [1] FALSE
+      
+      $legend$itemStyle
+      $legend$itemStyle$fontSize
+      [1] "14px"
+      
+      
+      
+      $yAxis
+      $yAxis$title
+      $yAxis$title$text
+      [1] "Medelvärde"
+      
+      $yAxis$title$style
+      $yAxis$title$style$fontSize
+      [1] "16px"
+      
+      
+      
+      $yAxis$labels
+      $yAxis$labels$format
+      [1] "{value}"
+      
+      $yAxis$labels$style
+      $yAxis$labels$style$fontSize
+      [1] "14px"
+      
+      
+      
+      
+      $tooltip
+      $tooltip$pointFormat
+      [1] "{series.name}: <b>{point.y}</b><br>Nedre gräns: <b>{point.y_lower}</b><br>Övre gräns: <b>{point.y_upper}</b>"
+      
+      
+      $plotOptions
+      $plotOptions$series
+      $plotOptions$series$pointWidth
+      [1] 8
+      
+      
+      $plotOptions$line
+      $plotOptions$line$marker
+      $plotOptions$line$marker$enabled
+      [1] TRUE
+      
+      
+      
+      $plotOptions$arearange
+      $plotOptions$arearange$fillOpacity
+      [1] 0.45
+      
+      $plotOptions$arearange$connectNulls
+      [1] TRUE
+      
+      $plotOptions$arearange$marker
+      $plotOptions$arearange$marker$enabled
+      [1] FALSE
+      
+      $plotOptions$arearange$marker$states
+      $plotOptions$arearange$marker$states$hover
+      $plotOptions$arearange$marker$states$hover$enabled
+      [1] FALSE
+      
+      
+      
+      
+      
+      
+

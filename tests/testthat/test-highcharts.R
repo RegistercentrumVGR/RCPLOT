@@ -1864,3 +1864,33 @@ test_that("forest_plot_highcharts works", {
   expect_length(point_female$data, 3)
   expect_null(point_female$data[[3]]$y)
 })
+
+test_that("arearange works", {
+
+  df <- data.frame(
+    x = rep(c(1,2,3,4), 2),
+    grp = c(rep("a", 4), rep("b", 4))
+  ) |>
+    dplyr::mutate(y = dplyr::case_when(
+      grp == "a" ~ 20 - 1 * x,
+      grp == "b" ~ 10 + 0.4 * x
+    )) |>
+    dplyr::mutate(
+      y_lower = y - 1,
+      y_upper = y + 1
+    )
+
+  plt <- rcplot::line_plot_highcharts(
+    df,
+    x_var = "x",
+    y_var = "y",
+    color_var = "grp",
+    y_lower = "y_lower",
+    y_upper = "y_upper",
+    n_decimals = 2,
+    y_lab = "Medelvärde",
+    error_type = "arearange"
+  ) |>
+    expect_snapshot()
+
+})

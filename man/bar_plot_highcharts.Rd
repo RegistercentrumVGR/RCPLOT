@@ -8,6 +8,8 @@ bar_plot_highcharts(
   df,
   x_var,
   y_var,
+  y_lower = NULL,
+  y_upper = NULL,
   horizontal = FALSE,
   fill_var = NULL,
   position = "dodge",
@@ -49,6 +51,10 @@ bar_plot_highcharts(
 \item{x_var}{x-axis variable}
 
 \item{y_var}{y_axis variable}
+
+\item{y_lower}{variable for lower value in errorbar}
+
+\item{y_upper}{variable for upper value in errorbar}
 
 \item{horizontal}{whether or not the bar plot should be horizontal,}
 

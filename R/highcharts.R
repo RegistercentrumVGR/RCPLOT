@@ -5,6 +5,8 @@
 #' @param df data
 #' @param x_var x-axis variable
 #' @param y_var y_axis variable
+#' @param y_lower variable for lower value in errorbar
+#' @param y_upper variable for upper value in errorbar
 #' @param fill_var the name of the fill variable
 #' @param horizontal whether or not the bar plot should be horizontal,
 #' @param position whether or not to make the bars stack or dodge according to
@@ -52,6 +54,8 @@
 bar_plot_highcharts <- function(df,
                                 x_var,
                                 y_var,
+                                y_lower = NULL,
+                                y_upper = NULL,
                                 horizontal = FALSE,
                                 fill_var = NULL,
                                 position = "dodge",
@@ -93,6 +97,13 @@ bar_plot_highcharts <- function(df,
       details = paste0("This argument has been deprecated since the order of ",
                        "qualitative palette has been chosen to guarantee ",
                        "optimal contrasts between colors")
+    )
+  }
+
+  if (xor(is.null(y_lower), is.null(y_upper))) {
+    cli::cli_abort(
+      paste0("{.arg y_lower} and {.arg y_upper} must either both be supplied ",
+             "or both be left {.code NULL}")
     )
   }
 
@@ -245,6 +256,26 @@ bar_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
+  has_error_bars <- FALSE
+  if (!is.null(y_lower) || !is.null(y_upper)) {
+    checkmate::assert_choice(y_lower, names(df))
+    checkmate::assert_choice(y_lower, names(df))
+    has_error_bars <- TRUE
+  }
+
+  if (has_error_bars) {
+    ci <- add_ci_tooltip_vars(
+      df,
+      y_lower,
+      y_upper,
+      other_vars,
+      proportion,
+      scale_percentage
+    )
+    df <- ci$df
+    other_vars <- ci$other_vars
+  }
+
   out <- plot_highcharts(
     df = df,
     x_var = x_var,
@@ -271,6 +302,23 @@ bar_plot_highcharts <- function(df,
     horizontal_line = horizontal_line,
     n_decimals = n_decimals
   )
+
+  if (has_error_bars) {
+    ci_series_list <- build_ci_errorbar_series(
+      df = df,
+      x_var = x_var,
+      y_lower = y_lower,
+      y_upper = y_upper,
+      color_var = fill_var,
+      color_var_order = fill_var_order,
+      n_decimals = n_decimals,
+      error_type = "errorbar"
+    )
+
+    out$plotOptions$errorbar <- errorbar_plot_options()
+    out$series <- I(c(out$series, ci_series_list))
+
+  }
 
   if (!(is.null(color_x_value)) && is.null(fill_var)) {
     checkmate::assert_list(color_x_value)
@@ -410,6 +458,8 @@ add_ci_tooltip_vars <- function(df,
 #' @param color_var the name of the color variable
 #' @param color_var_order what order `color_var` should be displayed in
 #' @param n_decimals number of decimals to round numbers to
+#' @param error_type what type of error bar that should be used, possible
+#' values are "errorbar" or "arearange"
 #'
 #' @return a list of highcharts series of type `"errorbar"`
 #' @noRd
@@ -419,7 +469,26 @@ build_ci_errorbar_series <- function(df,
                                      y_upper,
                                      color_var,
                                      color_var_order,
-                                     n_decimals) {
+                                     n_decimals,
+                                     error_type) {
+
+  checkmate::assert_choice(error_type, c("errorbar", "arearange"))
+
+  # Complete missing x_var / color_var combinations
+  if (!is.null(color_var) && !all(color_var == x_var)) {
+
+    if (is.factor(df[[x_var]])) {
+      df <- df |>
+        dplyr::mutate(
+          !!x_var := forcats::fct_drop(.data[[x_var]])
+        )
+    }
+
+    df <- df |>
+      tidyr::complete(
+        !!!rlang::syms(c(x_var, color_var))
+      )
+  }
 
   ci_series_list <- make_series(
     df = df,
@@ -431,7 +500,7 @@ build_ci_errorbar_series <- function(df,
   )
 
   ci_series_list <- purrr::map(ci_series_list, function(s) {
-    s$type <- "errorbar"
+    s$type <- error_type
     s$enableMouseTracking <- FALSE
     s
   })
@@ -513,6 +582,8 @@ errorbar_plot_options <- function() {
 #' if 'surv' is true.
 #' @param x_labels_surv_type what type of labels that should be used on x-axis
 #' for survival plots
+#' @param error_type what type of errorbar should be used, possible
+#' values are "errorbar" or "arearange"
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -546,7 +617,8 @@ line_plot_highcharts <- function(df,
                                  marker_enabled = TRUE,
                                  marker_size = NULL,
                                  minify_step_curve = TRUE,
-                                 x_labels_surv_type = NULL) {
+                                 x_labels_surv_type = NULL,
+                                 error_type = "errorbar") {
 
   checkmate::assert_logical(surv, len = 1, any.missing = FALSE)
 
@@ -623,7 +695,8 @@ line_plot_highcharts <- function(df,
         marker_enabled = marker_enabled,
         marker_size = marker_size,
         minify_step_curve = minify_step_curve,
-        x_labels_surv_type = x_labels_surv_type
+        x_labels_surv_type = x_labels_surv_type,
+        error_type = error_type
       )
     ))
   }
@@ -652,7 +725,12 @@ line_plot_highcharts <- function(df,
     )
   }
 
-  has_error_bars <- !is.null(y_lower)
+  has_error_bars <- FALSE
+  if (!is.null(y_lower) || !is.null(y_upper)) {
+    checkmate::assert_choice(y_lower, names(df))
+    checkmate::assert_choice(y_lower, names(df))
+    has_error_bars <- TRUE
+  }
 
   if (has_error_bars) {
     ci <- add_ci_tooltip_vars(
@@ -715,12 +793,30 @@ line_plot_highcharts <- function(df,
       y_upper = y_upper,
       color_var = color_var,
       color_var_order = color_var_order,
-      n_decimals = n_decimals
+      n_decimals = n_decimals,
+      error_type = error_type
     )
 
-    out$plotOptions$errorbar <- errorbar_plot_options()
-
     out$series <- I(c(ci_series_list, out$series))
+
+    if (error_type == "errorbar") {
+      out$plotOptions$errorbar <- errorbar_plot_options()
+    }
+
+    if (error_type == "arearange") {
+      out$plotOptions$arearange <- list(
+        fillOpacity = 0.45,
+        connectNulls = TRUE,
+        marker = list(
+          enabled = FALSE,
+          states = list(
+            hover = list(
+              enabled = FALSE
+            )
+          )
+        )
+      )
+    }
   }
 
   if (surv && !is.null(x_labels_surv_type)) {
@@ -1267,7 +1363,8 @@ forest_plot_highcharts <- function(df,
     y_upper = y_upper,
     color_var = color_var,
     color_var_order = color_var_order,
-    n_decimals = n_decimals
+    n_decimals = n_decimals,
+    error_type = "errorbar"
   )
 
   point_series_list <- purrr::map(out$series, function(s) {
@@ -1926,8 +2023,19 @@ make_series <- function(df,
               .x[c(names(vars), other_keys)],
               \(...) {
                 vals <- list(...)
-                vals <- lapply(vals, function(v) if (is.na(v)) NULL else v)
-                vals
+
+                # Replace missing values with NULL
+                vals <- lapply(vals, function(v) {
+                  if (length(v) == 0 || all(is.na(v))) NULL else v
+                })
+
+                # Return an empty point if all values are missing
+                if (all(vapply(vals, is.null, logical(1)))) {
+                  return(stats::setNames(list(), character(0)))
+                }
+
+                # Otherwise retain only non-missing values
+                purrr::compact(vals)
               }
             ),
             name = .y$series_var,

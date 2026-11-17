@@ -119,7 +119,8 @@ if 'surv' is true.}
 \item{x_labels_surv_type}{what type of labels that should be used on x-axis
 for survival plots}
 
-\item{error_type}{what type of errorbar should be used.}
+\item{error_type}{what type of errorbar should be used, possible
+values are "errorbar" or "arearange"}
 }
 \value{
 highcharts config, or a named list of configs when \code{facet_by} is set

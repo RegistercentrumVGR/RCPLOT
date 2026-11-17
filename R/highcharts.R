@@ -100,6 +100,13 @@ bar_plot_highcharts <- function(df,
     )
   }
 
+  if (xor(is.null(y_lower), is.null(y_upper))) {
+    cli::cli_abort(
+      paste0("{.arg y_lower} and {.arg y_upper} must either both be supplied ",
+             "or both be left {.code NULL}")
+    )
+  }
+
   if (!is.null(x_var_order)) {
     df <- order_x_var(df, x_var, x_var_order)
   }
@@ -249,7 +256,12 @@ bar_plot_highcharts <- function(df,
     y_lim <- c(0, 100)
   }
 
-  has_error_bars <- !is.null(y_lower)
+  has_error_bars <- FALSE
+  if (!is.null(y_lower) || !is.null(y_upper)) {
+    checkmate::assert_choice(y_lower, names(df))
+    checkmate::assert_choice(y_lower, names(df))
+    has_error_bars <- TRUE
+  }
 
   if (has_error_bars) {
     ci <- add_ci_tooltip_vars(
@@ -446,7 +458,8 @@ add_ci_tooltip_vars <- function(df,
 #' @param color_var the name of the color variable
 #' @param color_var_order what order `color_var` should be displayed in
 #' @param n_decimals number of decimals to round numbers to
-#' @param error_type what type of error bar that should be used
+#' @param error_type what type of error bar that should be used, possible
+#' values are "errorbar" or "arearange"
 #'
 #' @return a list of highcharts series of type `"errorbar"`
 #' @noRd
@@ -569,7 +582,8 @@ errorbar_plot_options <- function() {
 #' if 'surv' is true.
 #' @param x_labels_surv_type what type of labels that should be used on x-axis
 #' for survival plots
-#' @param error_type what type of errorbar should be used.
+#' @param error_type what type of errorbar should be used, possible
+#' values are "errorbar" or "arearange"
 #'
 #' @return highcharts config, or a named list of configs when `facet_by` is set
 #' @export
@@ -711,7 +725,12 @@ line_plot_highcharts <- function(df,
     )
   }
 
-  has_error_bars <- !is.null(y_lower)
+  has_error_bars <- FALSE
+  if (!is.null(y_lower) || !is.null(y_upper)) {
+    checkmate::assert_choice(y_lower, names(df))
+    checkmate::assert_choice(y_lower, names(df))
+    has_error_bars <- TRUE
+  }
 
   if (has_error_bars) {
     ci <- add_ci_tooltip_vars(

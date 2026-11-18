@@ -1,6 +1,6 @@
 Package: rcplot
 Title: Plot functions for Registercentrum
-Version: 1.10.10
+Version: 1.10.11
 Authors@R: c(
     person(given = "Jonatan",
            family = "Nåtman",

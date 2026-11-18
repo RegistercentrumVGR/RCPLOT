@@ -2157,7 +2157,7 @@
       
       $xAxis
       $xAxis$categories
-      [1] "a"  "b"  "b*" "c" 
+      [1] "a"  "b*" "c" 
       
       $xAxis$labels
       $xAxis$labels$style
@@ -2271,7 +2271,7 @@
       
       $plotOptions$column
       $plotOptions$column$groupPadding
-      [1] 0.164
+      [1] 0.168
       
       $plotOptions$column$pointPadding
       [1] 0.046

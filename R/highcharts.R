@@ -209,15 +209,21 @@ bar_plot_highcharts <- function(df,
         )
       # nolint end
     } else {
+      # Star every row of an x value if any of its rows is obfuscated,
+      # otherwise dodged fill groups split into e.g. "1" and "1*"
+      obfuscated <- df |>
+        dplyr::filter(.data$obfuscated_reason == "N < 15") |>
+        dplyr::distinct(.data[[x_var]]) |>
+        dplyr::pull()
+
       df <- df |>
         dplyr::mutate(
           dplyr::across(
             dplyr::all_of(x_var),
             ~ dplyr::if_else(
-              .data$obfuscated_reason == "N < 15",
+              .x %in% obfuscated,
               paste0(as.character(.x), "*"),
-              as.character(.x),
-              missing = as.character(.x)
+              as.character(.x)
             )
           )
         )
